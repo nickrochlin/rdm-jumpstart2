@@ -89,7 +89,7 @@ daily_rushed <- data[data$feelRushed == "daily", ]
 head(daily_rushed)
 ```
 
-The expression `data$feelRushed == "daily"` creates a logical vector that is `TRUE` for rows where the value equals `"daily"`. Using square brackets `([ , ])`, we subset survey_data to keep only rows where that condition is `TRUE`
+The expression `data$feelRushed == "daily"` creates a logical vector that is `TRUE` for rows where the value equals `"daily"`. Using square brackets `([ , ])`, we subset data to keep only rows where that condition is `TRUE`
 
 Not only can you use the `==` operator to test for equality, but you can also use operators such as `<`, `>`, `<=`, `>=`, and `!=` to compare values. For example, you might filter rows where a numeric variable exceeds a certain threshold, is below a limit, or is not equal to a specified value.
 
