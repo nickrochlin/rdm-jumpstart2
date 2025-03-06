@@ -75,7 +75,6 @@ Let's explore it
 We want to understand whether feeling rushed might relate to how much time is spent on work, sleep, or alone time. So, the first column that we might be interested in `feelRushed`. First let's explore what value the `feelRushed` has.
 
 ```{r}
-# Explore the unique values in the feelRushed column
 unique_values <- unique(data$feelRushed)
 print(unique_values)
 ```
@@ -97,7 +96,6 @@ Not only can you use the `==` operator to test for equality, but you can also us
 For example, for `durSleep` column, we can filter any rows with have sleep duration < 600 by this
 
 ```{r}
-# Filter rows where the sleep duration is less than 600
 short_sleep <- data[data$durSleep < 600, ]
 head(short_sleep)
 ```
@@ -120,7 +118,6 @@ Now, let’s perform a more complex filtering. Assume we want to capture respond
 There are two ways to filter rows that meet one of several conditions. The first way is to chain three conditions together using the `|` operator. For example, to select rows where the `feelRushed` value is either `daily`, `onceWeek`, or `fewTimesWeek`, you can write:
 
 ```{r}
-# Filter rows using the | (or) operator
 rushed <- data[data$feelRushed == "daily" | data$feelRushed == "onceWeek" | data$feelRushed == "fewTimesWeek", ]
 head(rushed)
 ```
@@ -183,7 +180,6 @@ head(bachelor)
 Now, use `select()` to retrieve only the columns that record time perceptions and study/work durations.
 
 ```{r}
-# Select columns for time perceptions and time spent on work/study
 bachelor_time <- select(bachelor, timeWorkaholic, timeWantAlone, durWork, durStudy)
 head(bachelor_time)
 ```
@@ -204,7 +200,6 @@ We want to see if certain demographic groups (for instance, respondents in the "
 Let’s narrow the data to respondents in the "age25to34" age group who are also "married".
 
 ```{r}
-# Filter rows: select respondents in age group "30-39" and who are Married
 demo_subset <- filter(data, ageGrp == "age25to34" & maritalStat == "married")
 head(demo_subset)
 
@@ -215,7 +210,6 @@ The condition uses the & operator to ensure both demographic criteria are met.
 Next, use `select()` to focus on columns related to social time, for example, `durAlone` and `timeNotFamFriends`.
 
 ```{r}
-# Select columns that capture social time
 social_time <- select(demo_subset, durAlone, timeNotFamFriends)
 head(social_time)
 ```
