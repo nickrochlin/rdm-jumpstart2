@@ -11,7 +11,7 @@
 
 
 
-<title>Mise en Place</title>
+<title>03_Suggested-Workflow</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,12 +29,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/navigation-1.1/codefolding.js"></script>
-<script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
@@ -61,11 +56,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-#rmd-source-code {
-  display: none;
-}
-</style>
 
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -227,79 +217,7 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
-<style type="text/css">
-.code-folding-btn { margin-bottom: 4px; }
-</style>
 
-
-
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-}
-
-</style>
 
 
 
@@ -309,16 +227,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -387,65 +295,14 @@ div.tocify {
 
 <div id="header">
 
-<div class="btn-group pull-right float-right">
-<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
-<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
-<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
-<li role="separator" class="divider"></li>
-<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
-</ul>
+
+
+
 </div>
 
 
 
-<h1 class="title toc-ignore">Day 2</h1>
 
-</div>
-
-
-<div id="day-2-setting-up-for-success" class="section level2">
-<h2>Day 2: Setting Up for Success</h2>
-<div id="objectives" class="section level3">
-<h3>Objectives</h3>
-<ul>
-<li>Deepen an understanding of the consequences of poor data management
-practices [Findable]</li>
-<li>Review licencing of data [Reusable]</li>
-<li>Become familiar with issues related to Indigenous Data
-Governance</li>
-<li>Introduce the basics of R</li>
-</ul>
-</div>
-<div id="outcomes" class="section level3">
-<h3>Outcomes</h3>
-<ul>
-<li>Identify the cascading impacts of poor RDM</li>
-<li>Describe basic licencing concerns and needs associated with
-data</li>
-<li>Articulate tensions between research data and the structures that
-surround them(policies, IP, copyright)</li>
-<li>Discuss Indigenous data sovereignty</li>
-<li>Install packages and use basic functions in R</li>
-</ul>
-</div>
-<div id="deliverables" class="section level3">
-<h3>Deliverables</h3>
-<ul>
-<li>Local root folder with appropriate directory structure created using
-an R script</li>
-<li>An Excel and csv file of original data in appropriate directory</li>
-</ul>
-</div>
-<div id="materials" class="section level3">
-<h3>Materials</h3>
-</div>
-<div id="agenda" class="section level3">
-<h3>Agenda</h3>
-</div>
-</div>
-
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF5IDIiCnBhZ2V0aXRsZTogIk1pc2UgZW4gUGxhY2UiCm91dHB1dDoKICBodG1sX2RvY3VtZW50OgogICAgY29kZV9mb2xkaW5nOiBzaG93ICMgYWxsb3dzIHRvZ2dsaW5nIG9mIHNob3dpbmcgYW5kIGhpZGluZyBjb2RlLiBSZW1vdmUgaWYgbm90IHVzaW5nIGNvZGUuCiAgICBjb2RlX2Rvd25sb2FkOiB0cnVlICMgYWxsb3dzIHRoZSB1c2VyIHRvIGRvd25sb2FkIHRoZSBzb3VyY2UgLlJtZCBmaWxlLiBSZW1vdmUgaWYgbm90IHVzaW5nIGNvZGUuCiAgICBpbmNsdWRlczoKICAgICAgYWZ0ZXJfYm9keTogZm9vdGVyLmh0bWwgIyBpbmNsdWRlIGEgY3VzdG9tIGZvb3Rlci4KICAgIHRvYzogdHJ1ZQogICAgdG9jX2RlcHRoOiAzCiAgICB0b2NfZmxvYXQ6CiAgICAgIGNvbGxhcHNlZDogZmFsc2UKICAgICAgc21vb3RoX3Njcm9sbDogZmFsc2UKLS0tCgojIyBEYXkgMjogU2V0dGluZyBVcCBmb3IgU3VjY2VzcwoKIyMjIE9iamVjdGl2ZXMKKiBEZWVwZW4gYW4gdW5kZXJzdGFuZGluZyBvZiB0aGUgY29uc2VxdWVuY2VzIG9mIHBvb3IgZGF0YSBtYW5hZ2VtZW50IHByYWN0aWNlcyBbRmluZGFibGVdCiogUmV2aWV3IGxpY2VuY2luZyBvZiBkYXRhIFtSZXVzYWJsZV0KKiBCZWNvbWUgZmFtaWxpYXIgd2l0aCAgaXNzdWVzIHJlbGF0ZWQgdG8gSW5kaWdlbm91cyBEYXRhIEdvdmVybmFuY2UKKiBJbnRyb2R1Y2UgdGhlIGJhc2ljcyBvZiBSCgoKIyMjIE91dGNvbWVzCiogSWRlbnRpZnkgdGhlIGNhc2NhZGluZyBpbXBhY3RzIG9mIHBvb3IgUkRNCiogRGVzY3JpYmUgYmFzaWMgbGljZW5jaW5nIGNvbmNlcm5zIGFuZCBuZWVkcyBhc3NvY2lhdGVkIHdpdGggZGF0YQoqIEFydGljdWxhdGUgdGVuc2lvbnMgYmV0d2VlbiByZXNlYXJjaCBkYXRhIGFuZCB0aGUgc3RydWN0dXJlcyB0aGF0IHN1cnJvdW5kIHRoZW0ocG9saWNpZXMsIElQLCBjb3B5cmlnaHQpCiogRGlzY3VzcyBJbmRpZ2Vub3VzIGRhdGEgc292ZXJlaWdudHkKKiBJbnN0YWxsIHBhY2thZ2VzIGFuZCB1c2UgYmFzaWMgZnVuY3Rpb25zIGluIFIKCgojIyMgRGVsaXZlcmFibGVzCiogTG9jYWwgcm9vdCBmb2xkZXIgd2l0aCBhcHByb3ByaWF0ZSBkaXJlY3Rvcnkgc3RydWN0dXJlIGNyZWF0ZWQgdXNpbmcgYW4gUiBzY3JpcHQgCiogQW4gRXhjZWwgYW5kIGNzdiBmaWxlIG9mIG9yaWdpbmFsIGRhdGEgaW4gYXBwcm9wcmlhdGUgZGlyZWN0b3J5CgojIyMgTWF0ZXJpYWxzCgoKIyMjIEFnZW5kYQo=</div>
 <div id="footer">
     <hr />
     <p>Built and rendered curtousy of <a href="https://rmarkdown.rstudio.com/index.html" target ="blank">RMarkdown from RStudio</a></p>
@@ -454,8 +311,6 @@ an R script</li>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -487,42 +342,7 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
-<script>
-$(document).ready(function () {
-  window.initializeSourceEmbed("day_2.Rmd");
-  window.initializeCodeFolding("show" === "show");
-});
-</script>
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = false;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
