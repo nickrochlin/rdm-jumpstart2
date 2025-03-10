@@ -111,15 +111,66 @@ View(mydata)
 ```
 This will open our dataset in a separate window
 
+#Packages and libraries
+
+## Install package
+
+```{r}
+#install.packages("tidyverse")
+```
+## Load libraries
+
+```{r}
+library(tidyverse)
+```
+## Change column names
+
+```{r}
+mydata <- mydata %>%
+  rename ("id" = "PUMFID",
+          "ageGrp" = "AGEGR10",
+          "sex" = "SEX",
+          "maritalStat" = "MARSTAT",
+          "province" =  "PRV",
+          "popCenter" = "LUC_RST",
+          "eduLevel" = "EHG_ALL",
+          "feelRushed" = "GTU_110",
+          "extraTime" = "GTU_130",
+          "durSleep" = "DUR01",
+          "durMealPrep" = "DUR05",
+          "durEating" = "DUR06",
+          "durAlone" = "DURS200",
+          "durDriving" = "DURL313",
+          "durWork" = "DUR08",
+          "durShoolSite" = "DUR13",
+          "durSchoolOnline" = "DUR14",
+          "durStudy" = "DUR15",
+          "worked12m" = "MRW_D40A",
+          "workedWeek" = "MRW_D40B",
+          "enrollStat" = "EDM_02",
+          "dailyTexts" = "TST_01",
+          "timeSlowDown" = "TCS_110",
+          "timeWorkaholic" = "TCS_120",
+          "timeNotFamFriends" = "TCS_150",
+          "timeWantAlone" = "TCS_200")
+```
+```{r}
+colnames(mydata)
+```
+
+
+
+
 ## Save as RData
 Saving your dataset in R format (RData) will preserve data types and metadata you asign to your dataset. 
 The text format (csv) will be the ideal format to share your data.
 #need to edit the wording here, describe difference between csv and RData, when and why use each.
 
 ```{r}
-save(mydata, file="mydata.RData")
+file.path("~/Desktop/GitHubIntro/rdm-jumpstart/data")
+save(mydata, file=(file.path("timeuse_day2.RData")))
 ```
+#file is not saving in the right folder???
 
-#Packages and libraries
 
 #I will also include in day 2 how to install packages and load libraries
