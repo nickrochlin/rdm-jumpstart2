@@ -1,0 +1,208 @@
+## Introduction
+
+Subsetting data is an essential step in data analysis that involves extracting a portion of your dataset based on specific conditions. Being able to filter rows and select columns allows you to focus on relevant parts of your data.
+
+Let's return to the time usage dataset. In this section, suppose you're interested in understanding patterns—such as how work-life balance varies, how educational background shapes time perception, or how demographics influence social time. To answer these questions, you don't need every single row or column, as working with the data in its original format would be unnecessarily complex. Instead, you need to "get inside" your data by subsetting: filtering the rows and selecting the columns that matter.
+
+In this short tutorial, we will learn:
+
+- Why subsetting is crucial and what subsetting means
+- How to perform subsetting using base R conditional operators the dplyr functions `filter()` and `select()`
+
+We will explore our dataset through three guiding questions:
+
+1. How do time allocation patterns differ between respondents who feel rushed and those who do not?
+2. Do individuals with different levels of educational attainment report different perceptions of time, and how does that relate to their actual work or study time?
+3. How do demographic factors like age group and marital status influence the amount of time spent alone versus with family or friends?
+
+First, let's take a look at our data to see what we ended up with from the previous steps.
+
+To begin, load your CSV file (named time_spent_transformed.csv in this example) from your working directory. You can load the file into R using either the base function `read.csv()` or `read_csv()` from the readr package.
+
+```{R}
+# Option 1: Using base R
+data <- read.csv("time_spent_transformed.csv")
+
+# Option 2: Using readr (if you prefer)
+# library(readr)
+# data <- read_csv("data.csv")
+head
+# View the first few rows of the dataset
+head(data)
+```
+
+As you can see, there are 30 columns in the dataset, which is a lot to work with. For now, we can focus on the following key columns:
+   - `id`: Record identification
+   - `ageGrp`: Age group of respondent (groups of 10)
+   - `sex`: Sex of respondent
+   - `maritalStat`: Marital status of the respondent
+   - `province`: Province of residence
+   - `popCenter`: Population centre indicator
+   - `eduLevel`: Educational attainment (highest degree)
+   - `feelRushed`: General time use – Feel rushed
+   - `extraTime`: General time use – Extra time
+   - `durSleep`: Duration – Sleeping, resting, relaxing, sick in bed
+   - `durWork`: Duration – Paid work
+   - `timeWorkaholic`: Perceptions of time – Workaholic
+   - `timeWantAlone`: Perceptions of time – Would like more time alone
+
+These columns provide critical information on demographics, time usage, and time perceptions. Use them to explore patterns in work–life balance, education, and social time.
+
+## Conditional Filtering with Boolean Operators
+
+Conditional filtering is a powerful technique that lets you extract only the data that meets specific criteria. In R, you can create conditions using Boolean operators like `==`, `<`, `>`, `<=`, `>=`, and `!=` to test values, and combine these conditions using `&` (and) or `|` (or). By chaining multiple conditions together, you can target exactly the subset of your data that you need.
+
+Let's explore it
+
+### Work–Life Balance
+
+We want to understand whether feeling rushed might relate to how much time is spent on work, sleep, or alone time. So, the first column that we might be interested in `feelRushed`. First let's explore what value the `feelRushed` has.
+
+```{r}
+unique_values <- unique(data$feelRushed)
+print(unique_values)
+```
+In our dataset, the feelRushed column takes categorical values such as `daily`, `onceWeek`, `fewTimesWeek`, `onceMonth`, `lessMonth`, `never`, `dontKnow`, and `refusal`. 
+
+For this analysis, we will consider respondents who report feeling rushed as those whose frequency is either `daily`, `onceWeek`, or `fewTimesWeek`.
+
+First, let’s extract only those respondents who report feeling rushed daily. This is a straightforward filter using a single condition with the `==` operator.
+
+```{r}
+daily_rushed <- data[data$feelRushed == "daily", ]
+head(daily_rushed)
+```
+
+The expression `data$feelRushed == "daily"` creates a logical vector that is `TRUE` for rows where the value equals `"daily"`. Using square brackets `([ , ])`, we subset data to keep only rows where that condition is `TRUE`
+
+Not only can you use the `==` operator to test for equality, but you can also use operators such as `<`, `>`, `<=`, `>=`, and `!=` to compare values. For example, you might filter rows where a numeric variable exceeds a certain threshold, is below a limit, or is not equal to a specified value.
+
+For example, for `durSleep` column, we can filter any rows with have sleep duration < 600 by this
+
+```{r}
+short_sleep <- data[data$durSleep < 600, ]
+head(short_sleep)
+```
+
+Alternatively, we can filter rows where durSleep is between 600 and 1000. To do this, we chain two conditions using the `&` operator:
+
+```{r}
+sleep_range <- data[data$durSleep >= 600 & data$durSleep <= 1000, ]
+head(sleep_range)
+```
+
+The condition data$durSleep >= 600 checks for rows where the sleep duration is at least 600.
+The condition data$durSleep <= 1000 checks for rows where the sleep duration is at most 1000.
+The & operator combines these conditions so that only rows satisfying both are returned
+
+Thus, by using these boolean operators, we can chain multiple conditions together. Not only can we use the `&` operator for "and" conditions, but we can also use the `|` operator to specify "or" conditions.
+
+Now, let’s perform a more complex filtering. Assume we want to capture respondents who feel rushed frequently—that is, those whose feelRushed value is either `daily`, `onceWeek`, or `fewTimesWeek`.
+
+There are two ways to filter rows that meet one of several conditions. The first way is to chain three conditions together using the `|` operator. For example, to select rows where the `feelRushed` value is either `daily`, `onceWeek`, or `fewTimesWeek`, you can write:
+
+```{r}
+rushed <- data[data$feelRushed == "daily" | data$feelRushed == "onceWeek" | data$feelRushed == "fewTimesWeek", ]
+head(rushed)
+```
+
+This method method works fine for a small number of conditions, but will become cumbersome as the number of conditions increases. 
+
+Instead, we can use the `%in` operator. 
+
+First, we need to define the levels that indicate feeling rushed. These are the responses that we consider as showing that a respondent feels rushed.
+
+```{r}
+rushed_levels <- c("daily", "onceWeek", "fewTimesWeek")
+```
+
+Now, we can filter rows using base R subsetting. We check each row of our data to see if the value in the `feelRushed` column is one of the values defined in rushed_levels (using the `%in%` operator). The result is a subset of data that contains only respondents who feel rushed.
+
+```{r}
+rushed <- data[data$feelRushed %in% rushed_levels, ]
+head(rushed)
+```
+
+Now, we select only the key time allocation columns: durWork, durSleep, and durAlone
+
+```{r}
+rushed_time <- rushed[, c("durWork", "durSleep", "durAlone")]
+head(rushed_time)
+```
+
+Finally, we use summary statistics to quickly review the distribution of these time variables, giving us insight into how respondents who feel rushed allocate their time.
+
+```{r}
+# Summarize the selected time variables
+summary(rushed_time)
+```
+
+The `summary()` function displays important statistics (such as minimum, median, mean, and maximum) for each of the time variables.
+
+## Introduction to dplyr library
+
+In the previous session, we learned how to use conditional operators to filter and select rows. Next, we can use the dplyr library with its `filter()` and `select()` functions to achieve the same tasks in a more streamlined and readable way.
+
+dplyr is a powerful R package designed to simplify data manipulation tasks. It provides a set of intuitive functions that make filtering, selecting, and transforming data frames more readable and efficient. The filter() function in dplyr allows you to extract rows that meet specific conditions, while the select() function lets you choose particular columns to keep. Together, these functions enable you to easily create a focused subset of your data for further analysis.
+
+Let's explore the `dplyr` in the next following example! 
+
+Examining Education and Time Perceptions
+
+Our goal is to explore if education shapes how people perceive time. We’ll filter our data by educational level, then compare their responses on time perception (e.g., `timeWorkaholic`, `timeWantAlone`) alongside actual durations like `durWork` and `durStudy`.
+
+For example, let’s focus on respondents with a "bachelors" degree. We use `filter()` to extract these rows.
+
+```{r}
+# Filter respondents with a Bachelor's degree
+bachelor <- filter(data, eduLevel == "bachelors")
+head(bachelor)
+
+```
+`filter()` returns only the rows where the eduLevel column is equal to "bachelors".
+
+Now, use `select()` to retrieve only the columns that record time perceptions and study/work durations.
+
+```{r}
+bachelor_time <- select(bachelor, timeWorkaholic, timeWantAlone, durWork, durStudy)
+head(bachelor_time)
+```
+By selecting these columns, we prepare a concise dataset to compare subjective time perceptions with actual time allocated to work and study.
+
+A quick summary helps reveal the differences in averages or distributions.
+
+```{r}
+# Summarize the data to observe trends
+summary(bachelor_time)
+```
+This step can help you discover if, for example, respondents with a Bachelor’s degree are more prone to feeling like work consumes their life—even if their actual work hours don’t differ drastically.
+
+### Understanding Demographics and Social Time
+
+We want to see if certain demographic groups (for instance, respondents in the "age25to34" age group who are "married") have distinct patterns in their social time. This insight could suggest how social responsibilities or personal preferences vary across demographics.
+
+Let’s narrow the data to respondents in the "age25to34" age group who are also "married".
+
+```{r}
+demo_subset <- filter(data, ageGrp == "age25to34" & maritalStat == "married")
+head(demo_subset)
+
+```
+
+The condition uses the & operator to ensure both demographic criteria are met.
+
+Next, use `select()` to focus on columns related to social time, for example, `durAlone` and `timeNotFamFriends`.
+
+```{r}
+social_time <- select(demo_subset, durAlone, timeNotFamFriends)
+head(social_time)
+```
+
+By narrowing the columns, you’re better able to examine how much time is spent alone versus with family and friends.
+
+Finally, summarize the social time data to understand patterns.
+
+```{r}
+# Summarize the social time data
+summary(social_time)
+```

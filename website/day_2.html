@@ -13,7 +13,7 @@
 
 <title>Mise en Place</title>
 
-<script src="site_libs/header-attrs-2.26/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -404,11 +404,189 @@ div.tocify {
 </div>
 
 
-<div id="day-2" class="section level2">
-<h2>Day 2</h2>
+<div id="day-2-setting-up-for-success" class="section level2">
+<h2>Day 2: Setting Up for Success</h2>
+<div id="objectives" class="section level3">
+<h3>Objectives</h3>
+<ul>
+<li>Deepen an understanding of the consequences of poor data management
+practices [Findable]</li>
+<li>Review licencing of data [Reusable]</li>
+<li>Become familiar with issues related to Indigenous Data
+Governance</li>
+<li>Introduce the basics of R</li>
+</ul>
+</div>
+<div id="outcomes" class="section level3">
+<h3>Outcomes</h3>
+<ul>
+<li>Identify the cascading impacts of poor RDM</li>
+<li>Describe basic licencing concerns and needs associated with
+data</li>
+<li>Articulate tensions between research data and the structures that
+surround them(policies, IP, copyright)</li>
+<li>Discuss Indigenous data sovereignty</li>
+<li>Install packages and use basic functions in R</li>
+</ul>
+</div>
+<div id="deliverables" class="section level3">
+<h3>Deliverables</h3>
+<ul>
+<li>Local root folder with appropriate directory structure created using
+an R script</li>
+<li>An Excel and csv file of original data in appropriate directory</li>
+</ul>
+</div>
+<div id="materials" class="section level3">
+<h3>Materials</h3>
+</div>
+<div id="agenda" class="section level3">
+<h3>Agenda</h3>
+</div>
+</div>
+<div id="part-1-setting-up-r" class="section level2">
+<h2>Part 1: Setting up R</h2>
+</div>
+<div id="part-2-intro-to-r-markdown-and-r" class="section level2">
+<h2>Part 2: Intro to R Markdown and R</h2>
+</div>
+<div id="rmarkdown" class="section level1">
+<h1>RMarkdown</h1>
+<p>RMarkdown is a document format that integrates R code with formatted
+text, allowing users to create dynamic and reproducible reports,
+presentations, and documents.</p>
+<p>The key difference between R and RMarkdown is that R is used for
+executing code and performing computations, whereas RMarkdown is a tool
+for combining R code with explanatory text in a structured document. In
+RMarkdown, code chunks can be embedded within a narrative, and when the
+document is <strong>knit</strong> the results (including text, tables,
+and plots) are automatically generated and formatted, making it ideal
+for creating research reports, analyses, and presentations.</p>
+<p>You can add annotations to a regular r file by using the # symbol.
+Any text that follows will be treated as a comment and not as part of
+the code. RMarkdown have more formatting options that help organize the
+file into sections, helping the researcher document every step taken
+when working with data.</p>
+<p>The importance of creating the habit of annotating your files for
+RDM</p>
+<div id="basics-of-rmarkdown" class="section level2">
+<h2>Basics of RMarkdown</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>#</td>
+<td>Level 1 heading</td>
+</tr>
+<tr class="even">
+<td>##</td>
+<td>Level 2 heading</td>
+</tr>
+<tr class="odd">
+<td>###</td>
+<td>Level 3 heading</td>
+</tr>
+<tr class="even">
+<td>* word * (without spaces)</td>
+<td><em>Italics</em></td>
+</tr>
+<tr class="odd">
+<td>** word ** (without spaces)</td>
+<td><em>Bold</em></td>
+</tr>
+</tbody>
+</table>
+<p>For aditional information, [click here] <a
+href="https://rmarkdown.rstudio.com/lesson-8.html"
+class="uri">https://rmarkdown.rstudio.com/lesson-8.html</a></p>
+</div>
+<div id="chunks-of-code" class="section level2">
+<h2>Chunks of code</h2>
+<p>Inside a chunk of R code, everything behaves the same as a regular R
+document.</p>
+<pre class="r"><code>#Starts with ```{r}
+#ends with ```</code></pre>
+</div>
+</div>
+<div id="intro-to-data-in-r" class="section level1">
+<h1>Intro to Data in R</h1>
+<div id="basic-syntax-of-an-r-script" class="section level2">
+<h2>Basic syntax of an R script</h2>
+<p>The most important components of an R script are objects and
+functions. Objects store information and functions are used to
+manipulate the data.</p>
+</div>
+<div id="read-data" class="section level2">
+<h2>Read data</h2>
+<p>To import a dataset</p>
+<pre class="r"><code>mydata &lt;- read.csv(&quot;~/Desktop/GitHubIntro/rdm-jumpstart/data/timeuse_subset_day2.csv&quot;)
+#note to RDM RA team: check file naming standards or suggestions.</code></pre>
+<p>#Will also add how to read spss, stata, sas, excel, and how to open
+from “import dataset” in environment window</p>
+</div>
+<div id="listing-colnames" class="section level2">
+<h2>Listing colnames</h2>
+<p>To ask for a list of all the column names in your dataset</p>
+<pre class="r"><code>colnames(mydata)</code></pre>
+<pre><code>##  [1] &quot;X&quot;        &quot;PUMFID&quot;   &quot;AGEGR10&quot;  &quot;SEX&quot;      &quot;MARSTAT&quot;  &quot;PRV&quot;     
+##  [7] &quot;LUC_RST&quot;  &quot;EHG_ALL&quot;  &quot;GTU_110&quot;  &quot;GTU_130&quot;  &quot;DUR01&quot;    &quot;DUR05&quot;   
+## [13] &quot;DUR06&quot;    &quot;DURS200&quot;  &quot;DURL313&quot;  &quot;DUR08&quot;    &quot;DUR13&quot;    &quot;DUR14&quot;   
+## [19] &quot;DUR15&quot;    &quot;MRW_20&quot;   &quot;MRW_30&quot;   &quot;MRW_40&quot;   &quot;MRW_D40A&quot; &quot;MRW_D40B&quot;
+## [25] &quot;EDM_02&quot;   &quot;TST_01&quot;   &quot;TCS_110&quot;  &quot;TCS_120&quot;  &quot;TCS_150&quot;  &quot;TCS_200&quot;</code></pre>
+</div>
+<div id="head-function" class="section level2">
+<h2>Head function</h2>
+<p>The head function will show you the top rows of your dataset. It will
+include information about the default data type assigned to each column.
+You will learn more about data types tomorrow.</p>
+<pre class="r"><code>head(mydata)</code></pre>
+<pre><code>##   X PUMFID AGEGR10 SEX MARSTAT PRV LUC_RST EHG_ALL GTU_110 GTU_130 DUR01 DUR05
+## 1 0  10000       5   1       5  46       1       3       1       1   510    60
+## 2 1  10001       5   1       1  59       1       4       3       4   420   150
+## 3 2  10002       4   2       1  47       1       5       1       6   570     0
+## 4 3  10003       6   2       5  35       1       4       2       4   510    10
+## 5 4  10004       2   1       6  35       1      99       1       3   525    90
+## 6 5  10005       1   1       6  35       1       1       1       6   435     0
+##   DUR06 DURS200 DURL313 DUR08 DUR13 DUR14 DUR15 MRW_20 MRW_30 MRW_40 MRW_D40A
+## 1   120     770      90     0     0     0     0      6      1      1        1
+## 2     0       0       0     0     0     0     0      6      2      1        1
+## 3     0     630      30   480     0     0     0      6      6      6        1
+## 4    45     875      80    20     0     0     0      6      6      6        1
+## 5    40     815       0     0     0     0     0      6      9      9        2
+## 6     0     430      40   530     0     0     0      6      6      6        1
+##   MRW_D40B EDM_02 TST_01 TCS_110 TCS_120 TCS_150 TCS_200
+## 1        2      6      8       2       2       2       2
+## 2        2      6      1       2       2       2       2
+## 3        1      6      7       2       1       1       1
+## 4        1      6      1       2       2       2       2
+## 5        2      6      1       2       2       2       2
+## 6        1      6      2       2       1       1       2</code></pre>
+</div>
+<div id="viewing-data" class="section level2">
+<h2>Viewing data</h2>
+<p>To visualize the full dataset</p>
+<pre class="r"><code>View(mydata)</code></pre>
+<p>This will open our dataset in a separate window</p>
+</div>
+<div id="save-as-rdata" class="section level2">
+<h2>Save as RData</h2>
+<p>Saving your dataset in R format (RData) will preserve data types and
+metadata you asign to your dataset. The text format (csv) will be the
+ideal format to share your data. #need to edit the wording here,
+describe difference between csv and RData, when and why use each.</p>
+<pre class="r"><code>save(mydata, file=&quot;mydata.RData&quot;)</code></pre>
+<p>#Packages and libraries</p>
+<p>#I will also include in day 2 how to install packages and load
+libraries</p>
+</div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF5IDIiCnBhZ2V0aXRsZTogIk1pc2UgZW4gUGxhY2UiCm91dHB1dDoKICBodG1sX2RvY3VtZW50OgogICAgY29kZV9mb2xkaW5nOiBzaG93ICMgYWxsb3dzIHRvZ2dsaW5nIG9mIHNob3dpbmcgYW5kIGhpZGluZyBjb2RlLiBSZW1vdmUgaWYgbm90IHVzaW5nIGNvZGUuCiAgICBjb2RlX2Rvd25sb2FkOiB0cnVlICMgYWxsb3dzIHRoZSB1c2VyIHRvIGRvd25sb2FkIHRoZSBzb3VyY2UgLlJtZCBmaWxlLiBSZW1vdmUgaWYgbm90IHVzaW5nIGNvZGUuCiAgICBpbmNsdWRlczoKICAgICAgYWZ0ZXJfYm9keTogZm9vdGVyLmh0bWwgIyBpbmNsdWRlIGEgY3VzdG9tIGZvb3Rlci4KICAgIHRvYzogdHJ1ZQogICAgdG9jX2RlcHRoOiAzCiAgICB0b2NfZmxvYXQ6CiAgICAgIGNvbGxhcHNlZDogZmFsc2UKICAgICAgc21vb3RoX3Njcm9sbDogZmFsc2UKLS0tCgojIyBEYXkgMg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF5IDIiCnBhZ2V0aXRsZTogIk1pc2UgZW4gUGxhY2UiCm91dHB1dDoKICBodG1sX2RvY3VtZW50OgogICAgY29kZV9mb2xkaW5nOiBzaG93ICMgYWxsb3dzIHRvZ2dsaW5nIG9mIHNob3dpbmcgYW5kIGhpZGluZyBjb2RlLiBSZW1vdmUgaWYgbm90IHVzaW5nIGNvZGUuCiAgICBjb2RlX2Rvd25sb2FkOiB0cnVlICMgYWxsb3dzIHRoZSB1c2VyIHRvIGRvd25sb2FkIHRoZSBzb3VyY2UgLlJtZCBmaWxlLiBSZW1vdmUgaWYgbm90IHVzaW5nIGNvZGUuCiAgICBpbmNsdWRlczoKICAgICAgYWZ0ZXJfYm9keTogZm9vdGVyLmh0bWwgIyBpbmNsdWRlIGEgY3VzdG9tIGZvb3Rlci4KICAgIHRvYzogdHJ1ZQogICAgdG9jX2RlcHRoOiAzCiAgICB0b2NfZmxvYXQ6CiAgICAgIGNvbGxhcHNlZDogZmFsc2UKICAgICAgc21vb3RoX3Njcm9sbDogZmFsc2UKLS0tCgojIyBEYXkgMjogU2V0dGluZyBVcCBmb3IgU3VjY2VzcwoKIyMjIE9iamVjdGl2ZXMKKiBEZWVwZW4gYW4gdW5kZXJzdGFuZGluZyBvZiB0aGUgY29uc2VxdWVuY2VzIG9mIHBvb3IgZGF0YSBtYW5hZ2VtZW50IHByYWN0aWNlcyBbRmluZGFibGVdCiogUmV2aWV3IGxpY2VuY2luZyBvZiBkYXRhIFtSZXVzYWJsZV0KKiBCZWNvbWUgZmFtaWxpYXIgd2l0aCAgaXNzdWVzIHJlbGF0ZWQgdG8gSW5kaWdlbm91cyBEYXRhIEdvdmVybmFuY2UKKiBJbnRyb2R1Y2UgdGhlIGJhc2ljcyBvZiBSCgoKIyMjIE91dGNvbWVzCiogSWRlbnRpZnkgdGhlIGNhc2NhZGluZyBpbXBhY3RzIG9mIHBvb3IgUkRNCiogRGVzY3JpYmUgYmFzaWMgbGljZW5jaW5nIGNvbmNlcm5zIGFuZCBuZWVkcyBhc3NvY2lhdGVkIHdpdGggZGF0YQoqIEFydGljdWxhdGUgdGVuc2lvbnMgYmV0d2VlbiByZXNlYXJjaCBkYXRhIGFuZCB0aGUgc3RydWN0dXJlcyB0aGF0IHN1cnJvdW5kIHRoZW0ocG9saWNpZXMsIElQLCBjb3B5cmlnaHQpCiogRGlzY3VzcyBJbmRpZ2Vub3VzIGRhdGEgc292ZXJlaWdudHkKKiBJbnN0YWxsIHBhY2thZ2VzIGFuZCB1c2UgYmFzaWMgZnVuY3Rpb25zIGluIFIKCgojIyMgRGVsaXZlcmFibGVzCiogTG9jYWwgcm9vdCBmb2xkZXIgd2l0aCBhcHByb3ByaWF0ZSBkaXJlY3Rvcnkgc3RydWN0dXJlIGNyZWF0ZWQgdXNpbmcgYW4gUiBzY3JpcHQgCiogQW4gRXhjZWwgYW5kIGNzdiBmaWxlIG9mIG9yaWdpbmFsIGRhdGEgaW4gYXBwcm9wcmlhdGUgZGlyZWN0b3J5CgojIyMgTWF0ZXJpYWxzCgoKIyMjIEFnZW5kYQoKCiMjIFBhcnQgMTogU2V0dGluZyB1cCBSIAoKIyMgUGFydCAyOiBJbnRybyB0byBSIE1hcmtkb3duIGFuZCBSCgojIFJNYXJrZG93bgoKUk1hcmtkb3duIGlzIGEgZG9jdW1lbnQgZm9ybWF0IHRoYXQgaW50ZWdyYXRlcyBSIGNvZGUgd2l0aCBmb3JtYXR0ZWQgdGV4dCwgYWxsb3dpbmcgdXNlcnMgdG8gY3JlYXRlIGR5bmFtaWMgYW5kIHJlcHJvZHVjaWJsZSByZXBvcnRzLCBwcmVzZW50YXRpb25zLCBhbmQgZG9jdW1lbnRzLiAKClRoZSBrZXkgZGlmZmVyZW5jZSBiZXR3ZWVuIFIgYW5kIFJNYXJrZG93biBpcyB0aGF0IFIgaXMgdXNlZCBmb3IgZXhlY3V0aW5nIGNvZGUgYW5kIHBlcmZvcm1pbmcgY29tcHV0YXRpb25zLCB3aGVyZWFzIFJNYXJrZG93biBpcyBhIHRvb2wgZm9yIGNvbWJpbmluZyBSIGNvZGUgd2l0aCBleHBsYW5hdG9yeSB0ZXh0IGluIGEgc3RydWN0dXJlZCBkb2N1bWVudC4gSW4gUk1hcmtkb3duLCBjb2RlIGNodW5rcyBjYW4gYmUgZW1iZWRkZWQgd2l0aGluIGEgbmFycmF0aXZlLCBhbmQgd2hlbiB0aGUgZG9jdW1lbnQgaXMgKiprbml0KiogdGhlIHJlc3VsdHMgKGluY2x1ZGluZyB0ZXh0LCB0YWJsZXMsIGFuZCBwbG90cykgYXJlIGF1dG9tYXRpY2FsbHkgZ2VuZXJhdGVkIGFuZCBmb3JtYXR0ZWQsIG1ha2luZyBpdCBpZGVhbCBmb3IgY3JlYXRpbmcgcmVzZWFyY2ggcmVwb3J0cywgYW5hbHlzZXMsIGFuZCBwcmVzZW50YXRpb25zLgoKWW91IGNhbiBhZGQgYW5ub3RhdGlvbnMgdG8gYSByZWd1bGFyIHIgZmlsZSBieSB1c2luZyB0aGUgIyBzeW1ib2wuIEFueSB0ZXh0IHRoYXQgZm9sbG93cyB3aWxsIGJlIHRyZWF0ZWQgYXMgYSBjb21tZW50IGFuZCBub3QgYXMgcGFydCBvZiB0aGUgY29kZS4gUk1hcmtkb3duIGhhdmUgbW9yZSBmb3JtYXR0aW5nIG9wdGlvbnMgdGhhdCBoZWxwIG9yZ2FuaXplIHRoZSBmaWxlIGludG8gc2VjdGlvbnMsIGhlbHBpbmcgdGhlIHJlc2VhcmNoZXIgZG9jdW1lbnQgZXZlcnkgc3RlcCB0YWtlbiB3aGVuIHdvcmtpbmcgd2l0aCBkYXRhLiAKClRoZSBpbXBvcnRhbmNlIG9mIGNyZWF0aW5nIHRoZSBoYWJpdCBvZiBhbm5vdGF0aW5nIHlvdXIgZmlsZXMgZm9yIFJETQoKIyMgQmFzaWNzIG9mIFJNYXJrZG93bgoKU3ltYm9sIHwgRnVuY3Rpb24KfC0tLS0tLXwtLS0tLS18CnwgI3wgTGV2ZWwgMSBoZWFkaW5nfAp8ICMjfCBMZXZlbCAyIGhlYWRpbmd8CnwgIyMjfCBMZXZlbCAzIGhlYWRpbmd8CnwgKiB3b3JkICogKHdpdGhvdXQgc3BhY2VzKXwgKkl0YWxpY3MqfCAKfCAqKiB3b3JkICoqICh3aXRob3V0IHNwYWNlcyl8ICpCb2xkKnwKCgoKRm9yIGFkaXRpb25hbCBpbmZvcm1hdGlvbiwgW2NsaWNrIGhlcmVdIDxodHRwczovL3JtYXJrZG93bi5yc3R1ZGlvLmNvbS9sZXNzb24tOC5odG1sPgoKIyMgQ2h1bmtzIG9mIGNvZGUKCkluc2lkZSBhIGNodW5rIG9mIFIgY29kZSwgZXZlcnl0aGluZyBiZWhhdmVzIHRoZSBzYW1lIGFzIGEgcmVndWxhciBSIGRvY3VtZW50LgoKYGBge3J9CiNTdGFydHMgd2l0aCBgYGB7cn0KI2VuZHMgd2l0aCBgYGAKYGBgCgojIEludHJvIHRvIERhdGEgaW4gUgojIyBCYXNpYyBzeW50YXggb2YgYW4gUiBzY3JpcHQKClRoZSBtb3N0IGltcG9ydGFudCBjb21wb25lbnRzIG9mIGFuIFIgc2NyaXB0IGFyZSBvYmplY3RzIGFuZCBmdW5jdGlvbnMuCk9iamVjdHMgc3RvcmUgaW5mb3JtYXRpb24gYW5kIGZ1bmN0aW9ucyBhcmUgdXNlZCB0byBtYW5pcHVsYXRlIHRoZSBkYXRhLgoKIyMgUmVhZCBkYXRhClRvIGltcG9ydCBhIGRhdGFzZXQKYGBge3J9Cm15ZGF0YSA8LSByZWFkLmNzdigifi9EZXNrdG9wL0dpdEh1YkludHJvL3JkbS1qdW1wc3RhcnQvZGF0YS90aW1ldXNlX3N1YnNldF9kYXkyLmNzdiIpCiNub3RlIHRvIFJETSBSQSB0ZWFtOiBjaGVjayBmaWxlIG5hbWluZyBzdGFuZGFyZHMgb3Igc3VnZ2VzdGlvbnMuCmBgYAojV2lsbCBhbHNvIGFkZCBob3cgdG8gcmVhZCBzcHNzLCBzdGF0YSwgc2FzLCBleGNlbCwgYW5kIGhvdyB0byBvcGVuIGZyb20gImltcG9ydCBkYXRhc2V0IiBpbiBlbnZpcm9ubWVudCB3aW5kb3cKCiMjIExpc3RpbmcgY29sbmFtZXMKVG8gYXNrIGZvciBhIGxpc3Qgb2YgYWxsIHRoZSBjb2x1bW4gbmFtZXMgaW4geW91ciBkYXRhc2V0CmBgYHtyfQpjb2xuYW1lcyhteWRhdGEpCmBgYAoKIyMgSGVhZCBmdW5jdGlvbgpUaGUgaGVhZCBmdW5jdGlvbiB3aWxsIHNob3cgeW91IHRoZSB0b3Agcm93cyBvZiB5b3VyIGRhdGFzZXQuIEl0IHdpbGwgaW5jbHVkZSBpbmZvcm1hdGlvbiBhYm91dCB0aGUgZGVmYXVsdCBkYXRhIHR5cGUgYXNzaWduZWQgdG8gZWFjaCBjb2x1bW4uIFlvdSB3aWxsIGxlYXJuIG1vcmUgYWJvdXQgZGF0YSB0eXBlcyB0b21vcnJvdy4KYGBge3J9CmhlYWQobXlkYXRhKQpgYGAKCiMjIFZpZXdpbmcgZGF0YQpUbyB2aXN1YWxpemUgdGhlIGZ1bGwgZGF0YXNldApgYGB7cn0KVmlldyhteWRhdGEpCmBgYApUaGlzIHdpbGwgb3BlbiBvdXIgZGF0YXNldCBpbiBhIHNlcGFyYXRlIHdpbmRvdwoKIyMgU2F2ZSBhcyBSRGF0YQpTYXZpbmcgeW91ciBkYXRhc2V0IGluIFIgZm9ybWF0IChSRGF0YSkgd2lsbCBwcmVzZXJ2ZSBkYXRhIHR5cGVzIGFuZCBtZXRhZGF0YSB5b3UgYXNpZ24gdG8geW91ciBkYXRhc2V0LiAKVGhlIHRleHQgZm9ybWF0IChjc3YpIHdpbGwgYmUgdGhlIGlkZWFsIGZvcm1hdCB0byBzaGFyZSB5b3VyIGRhdGEuCiNuZWVkIHRvIGVkaXQgdGhlIHdvcmRpbmcgaGVyZSwgZGVzY3JpYmUgZGlmZmVyZW5jZSBiZXR3ZWVuIGNzdiBhbmQgUkRhdGEsIHdoZW4gYW5kIHdoeSB1c2UgZWFjaC4KCmBgYHtyfQpzYXZlKG15ZGF0YSwgZmlsZT0ibXlkYXRhLlJEYXRhIikKYGBgCgojUGFja2FnZXMgYW5kIGxpYnJhcmllcwoKI0kgd2lsbCBhbHNvIGluY2x1ZGUgaW4gZGF5IDIgaG93IHRvIGluc3RhbGwgcGFja2FnZXMgYW5kIGxvYWQgbGlicmFyaWVzCg==</div>
 <div id="footer">
     <hr />
     <p>Built and rendered curtousy of <a href="https://rmarkdown.rstudio.com/index.html" target ="blank">RMarkdown from RStudio</a></p>
