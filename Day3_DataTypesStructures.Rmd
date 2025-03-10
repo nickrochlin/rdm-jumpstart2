@@ -1,6 +1,17 @@
 ---
 title: "Day3_DataTypes_DataStructures"
-output: html_document
+pagetitle: "Data Types and Structures in R"
+output:
+  html_document:
+    code_folding: show # allows toggling of showing and hiding code. Remove if not using code.
+    code_download: true # allows the user to download the source .Rmd file. Remove if not using code.
+    includes:
+      after_body: footer.html # include a custom footer.
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
 date: "2025-02-28"
 ---
 
@@ -8,20 +19,20 @@ date: "2025-02-28"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Data Types in R
+## Data Types in R
 Data can come in many different formats or units. Sometimes we have numbers with decimals, sometimes we have counts of how many times something happened, sometimes we have categories with names. It is important to know what type of data you have, how to figure that out in R, and how to modify the data type if needed. Various functions in R require having certain data types, so this is an important foundational skill for managing data in R. 
 
-### Numeric
-Numeric data is data made up of numbers. This is what we most commonly think of as data. For example, how many hours people slept on a given day (6, 8.25, 7.5), the percent accuracy that students got on an exam (87, 75, 98), or number of people who attended a data managment workshop each day (32, 38, 28). 
+#### Numeric
+Numeric data is data made up of numbers. This is what we most commonly think of as data. For example, how many hours people slept on a given day (6, 8.25, 7.5), the percent accuracy that students got on an exam (87.45, 75.92, 98.40), or number of people who attended a data management workshop each day (32, 38, 28). 
 
-### Integer
-This data type deals with whole numbers (i.e., no decimals) and operates similarly to numeric data types. 
+#### Integer
+This data type deals with whole numbers (i.e., no decimals) and operates similarly to numeric data types. Some data is stored as "numeric" and "integer" at the same time.
 
-### Character/String
+#### Character/String
 Character variables are variables with words or letters. Such as names of people ("Erin", "Maria", "Huy") or places ("ON", "BC", "QC). Character variables usually need to be put in quotation marks in R code.
 
-### Boolean/Logical
-Boolean and logical operators can be used to compare values or create logical statements. These also can be useful if you want to modify how data is grouped (e.g., you want to re-label everyone over 6 feet as "tall").
+#### Boolean/Logical
+Boolean and logical operators can be used to compare values or create logical statements. You might have used Boolean characters to search databases in the past (e.g., searching in journal databases for articles with certain keywords). They work similarly in R. These functions also can be useful if you want to filter for a certain value in the data (e.g., sub-set only women in a dataset) or modify how data is grouped (e.g., you want to re-label everyone over 6 feet as "tall").
 
 Symbol | Function
 |-------|---------|
@@ -36,110 +47,124 @@ Symbol | Function
 |TRUE | A statement is true|
 |FALSE | A statement is false| 
 
-### Factors (this is a data structure, but we often use it more as a data type I think? not sure where it fits best)
-Factor data is good for categorical/string data. Factors can store string or integer data. Factor structure is useful for statistical modeling. 
+### Checking Data Types in Our Data
 
-##Checking Data Types in Our Data
-
-First we load our data. Information on the data type can be seein the "head" function in R.
+First we load our data. Information on the data type can be seen in the "head" function in R.
 ```{r}
-data <- read.csv("RDM_Data_Recoded_3_3.csv")
+load("Data/timeuse_day2.Rdata")
+data <- mydata
 print(head(data))
+
+library(dplyr)
 ```
 
 You can also check the data type of a specific variable with the "class" function,
 
 ```{r}
-print(class(data$PRV))
+print(class(data$province))
 ```
 
 For some variables, we might want to change the data type based on our codebook. For instance, maybe we would prefer to have province acronyms rather than the integer representation of them. We can re-code variables like this.
 
 ```{r}
-data$PRV_string <- factor(data$PRV,
-                  levels = c(10, 11, 12, 13, 24, 35, 46, 47, 48, 59, 96, 97, 98, 99),
-                  labels = c ("NL", "PEI", "NS", "NB", "QC", "ON", "MB", "SK", "AB", "BC", 
-                              "Valid_Skip", "Dont_Know", "Refusal", "Not_Stated"))
-print(class(data$PRV_string)) #not working, currently prints as factor, need to reconsider how to approach this for teaching. 
+#data$province_string <- factor(data$province,
+                #  levels = c(10, 11, 12, 13, 24, 35, 46, 47, 48, 59, 96, 97, 98, 99),
+                #  labels = c ("NL", "PEI", "NS", "NB", "QC", "ON", "MB", "SK", "AB", "BC", 
+                #             "Valid_Skip", "Dont_Know", "Refusal", "Not_Stated"))
+#print(class(data$province_string)) #not working, currently prints as factor, need to reconsider how to approach this for teaching. 
+
+
+data<-data %>% mutate(province_character = recode(data$province, 
+                            "10" = "NL", 
+                            "11" = "PEI", 
+                            "12" = "NS",
+                            "13" = "NB", 
+                            "24" = "QC", 
+                            "35" = "ON", 
+                            "46" = "MB", 
+                            "47" = "SK", 
+                            "48" = "AB", 
+                            "59" = "BC", 
+                            "96" = "Valid_Skip", 
+                            "97" = "Dont_Know", 
+                            "98" = "Refusal", 
+                            "99" = "Not_Stated"))
+
 ```
-
-```{r, include = FALSE}
-as.character(data$PRV_string) #without including the "FALSE" above for this chunk, it prints all the data. Need to fix this.
-
-```
-
 ```{r}
-is.character((data$PRV_string)) #still prints as factor
+print(class(data$province_character))
 ```
 
 Most of this dataset is in integer format, because the data does not have decimals, and that is what R defaults to. However, it also stores this data as numeric at the same time. You can see this by checking the "class" of the data and asking if the data "is.numeric".
 
 ```{r}
-print(class(data$DUR01))
-is.numeric(data$DUR01)
+print(class(data$durSleep))
+is.numeric(data$durSleep)
 
 ```
 
 ```{r, include = FALSE}
-as.numeric(data$DUR01) #mention that this would usually work as a command but in this case the data is already numeric/integer 
+as.numeric(data$durSleep) #mention that this would usually work as a command but in this case the data is already numeric/integer 
 
 ```
 
-# Data Structures in R
+## Data Structures in R
 Data structures are how the data is organized in R. 
 
-## Vectors
+#### Vectors
 Vectors are simplest data structure. They are essentially a list of elements of the same data type. For example, you could have a numeric vector containing the elements (10, 15, 20, 25) or a character vector containing the elements ("blue", "red", "green"). They are one dimensional.
 
-## Matrices
+#### Matrices
 Matrices, like vectors, can contain only a single type of data. However, matrices are two-dimensional (i.e., they have rows and columns). 
 
-### Arrays
+#### Arrays
 Arrays are an extension of matrices, in that they can have additional dimensions. For example, an array that is 3:4:2, has three rows, four columns, and two layers in depth. You likely won't need to use arrays much, but know that when conducting statistics sometimes, the model results are stored in matrices and arrays. 
 
-## Lists
+#### Lists
 Lists are an ordered collection of elements. They can contain different data types and they are one dimensional. So, you can have a list of vectors, a list of characters etc. 
 
-## Data Frames
+#### Data Frames
 Data frames are the most common and popular type of data structure used in R. Data frames work essentially like spreadsheets in that they are two dimensional (i.e., have columns and rows) and can store different data types in teh same data frame (i.e., numeric and character). 
 
 However, data frames do have some constraints. First, the columns and rows must be named. Second, the lists of vectors in the data frame must have equal lengths (i.e., each column needs an identical number of elements/rows). Third, all elements in a single column must be of the same data type (i.e., you can't switch between numbers and names in a single column)
 
-### Tibbles
+#### Factors (this is a data structure, but we often use it more as a data type I think? not sure where it fits best)
+Factor data is good for categorical/string data. Factors can store string or integer data. Factor structure is useful for statistical modeling. 
+
+#### Tibbles
 Tibbles are an updated version of data frames and part of the tidyverse package. They are a bit more user-friendly version of tabular data. 
--more user-friendly version of tabular data
 
-# Checking Data Structures in Our Data 
-```{r}
-#create data frame, data.frame()
-#not sure what else to do here
-```
-
-# Your Turn!
-## Changing Data Types
+## Your Turn!
+### Changing Data Types
 What type of data is the variable for marital status?
 
 Can you re-code marital status into a character/string variable?
 
 ```{r}
-print(typeof(data$MARSTAT))
+print(typeof(data$maritalStat))
 
-data$MARSTAT_string <- factor(data$MARSTAT,
+data$maritalStat_string <- factor(data$maritalStat,
                               levels = c (1, 2, 3, 4, 5, 6, 96, 97, 98, 99),
                               labels = c ("Married", "Living common-law", "Widowed", "Separated",
                                           "Divorced", "Single, never married", "Valid skip", "Don't know",
                                           "Refrusal", "Not stated"))
-print(typeof(data$MARSTAT_string))
+print(typeof(data$maritalStat_string))
 ```
 
-## Checking/changing data structures? 
-as.data.frame(data)
+How about level of education?
 
-Let's check if our data is a data frame. 
 
-```{r}
-is.data.frame(data)
-#not sure what else to do here
-```
+### Check Your Knowledge of Data Structures
 
+:::question
+What data structure would you use to store the folloiwng data?
+a) A list of heights of movie characters
+b) A list of names of characters from a movie
+c) A spreadsheet with both a and b in it
+d) The data we have been working with in this workshop
+:::
+
+:::question
+Is our data in a data frame format? Hint: use the function "is.data.frame()"
+:::
 
