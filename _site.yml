@@ -6,7 +6,13 @@ navbar:
     - text: "Day 1"
       href: day_1.html
     - text: "Day 2"
-      href: day_2.html
+      menu:
+        - text: "Day 2 - Overview"
+          href: day_2.html
+        - text: "Day 2 - Setting up R"
+          href: day2_RSetup.html
+        - text: "Day 2 - First steps in R"
+          href: day2_FirstSteps.html
     - text: "Day 3"
       menu:
         - text: "Day 3 - Part 1"
