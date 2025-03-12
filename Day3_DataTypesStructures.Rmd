@@ -51,7 +51,7 @@ Symbol | Function
 
 First we load our data. Information on the data type can be seen in the "head" function in R.
 ```{r}
-load("Data/timeuse_day2.Rdata")
+load("data/timeuse_day2.Rdata")
 data <- mydata
 print(head(data))
 
@@ -67,14 +67,9 @@ print(class(data$province))
 For some variables, we might want to change the data type based on our codebook. For instance, maybe we would prefer to have province acronyms rather than the integer representation of them. We can re-code variables like this.
 
 ```{r}
-#data$province_string <- factor(data$province,
-                #  levels = c(10, 11, 12, 13, 24, 35, 46, 47, 48, 59, 96, 97, 98, 99),
-                #  labels = c ("NL", "PEI", "NS", "NB", "QC", "ON", "MB", "SK", "AB", "BC", 
-                #             "Valid_Skip", "Dont_Know", "Refusal", "Not_Stated"))
-#print(class(data$province_string)) #not working, currently prints as factor, need to reconsider how to approach this for teaching. 
+print(class(data$province))
 
-
-data<-data %>% mutate(province_character = recode(data$province, 
+data<-data %>% mutate(province_char = recode(data$province, 
                             "10" = "NL", 
                             "11" = "PEI", 
                             "12" = "NS",
@@ -85,14 +80,12 @@ data<-data %>% mutate(province_character = recode(data$province,
                             "47" = "SK", 
                             "48" = "AB", 
                             "59" = "BC", 
-                            "96" = "Valid_Skip", 
-                            "97" = "Dont_Know", 
+                            "96" = "Valid skip", 
+                            "97" = "Don't know", 
                             "98" = "Refusal", 
-                            "99" = "Not_Stated"))
+                            "99" = "Not stated"))
 
-```
-```{r}
-print(class(data$province_character))
+print(class(data$province_char))
 ```
 
 Most of this dataset is in integer format, because the data does not have decimals, and that is what R defaults to. However, it also stores this data as numeric at the same time. You can see this by checking the "class" of the data and asking if the data "is.numeric".
@@ -136,31 +129,64 @@ Tibbles are an updated version of data frames and part of the tidyverse package.
 
 ## Your Turn!
 ### Changing Data Types
+::: question
 What type of data is the variable for marital status?
+:::
 
-Can you re-code marital status into a character/string variable?
-
-```{r}
-print(typeof(data$maritalStat))
-
-data$maritalStat_string <- factor(data$maritalStat,
-                              levels = c (1, 2, 3, 4, 5, 6, 96, 97, 98, 99),
-                              labels = c ("Married", "Living common-law", "Widowed", "Separated",
-                                          "Divorced", "Single, never married", "Valid skip", "Don't know",
-                                          "Refrusal", "Not stated"))
-print(typeof(data$maritalStat_string))
+```{r class.source = 'fold-hide'}
+typeof(data$maritalStat)
 ```
 
+:::question
+Can you re-code marital status into a character/string variable?
+:::
+
+```{r class.source = 'fold-hide'}
+data<-data %>% mutate(maritalStat_char = recode(data$maritalStat, 
+                            "1" = "Married", 
+                            "2" = "Living common-law", 
+                            "3" = "Widowed",
+                            "4" = "Separated", 
+                            "5" = "Divorced", 
+                            "6" = "Single, never married", 
+                            "96" = "Valid skip",
+                            "97" ="Don't know", 
+                            "98" = "Refusal",
+                            "99" = "Not stated"))
+
+class(data$maritalStat_char)
+```
+
+::: question
 How about level of education?
+:::
 
+```{r class.source = 'fold-hide'}
+data <- data %>% mutate(eduLevel_char = recode(data$eduLevel,
+                            "1" = "Less than high school dimploma or its equivalent",
+                            "2" = "High school diploma or equivalency",
+                            "3" = "Trade certificate or diploma",
+                            "4" = "College, CEGEP, or other non-university certificate or dimploma",
+                            "5" = "University certificate or dimploma below the bachelor's level",
+                            "6" = "Bachelor's degree",
+                            "7" = "University certificate, diploma, degree above the BA level",
+                            "96" = "Valid skip",
+                            "97" = "Don't know",
+                            "98" = "Refusal", 
+                            "99" = "Not stated"))
 
+class(data$eduLevel_char)
+```
 ### Check Your Knowledge of Data Structures
 
 :::question
-What data structure would you use to store the folloiwng data?
+What data structure would you use to store the following data?
 a) A list of heights of movie characters
+
 b) A list of names of characters from a movie
+
 c) A spreadsheet with both a and b in it
+
 d) The data we have been working with in this workshop
 :::
 
