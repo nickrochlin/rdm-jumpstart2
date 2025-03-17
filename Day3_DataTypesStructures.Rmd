@@ -133,7 +133,7 @@ Tibbles are an updated version of data frames and part of the tidyverse package.
 What type of data is the variable for marital status?
 :::
 
-```{r class.source = 'fold-hide'}
+```{r class.source = 'fold-hide', results = 'hide'}
 typeof(data$maritalStat)
 ```
 
@@ -141,7 +141,7 @@ typeof(data$maritalStat)
 Can you re-code marital status into a character/string variable?
 :::
 
-```{r class.source = 'fold-hide'}
+```{r class.source = 'fold-hide', results = 'hide'}
 data<-data %>% mutate(maritalStat_char = recode(data$maritalStat, 
                             "1" = "Married", 
                             "2" = "Living common-law", 
@@ -161,7 +161,7 @@ class(data$maritalStat_char)
 How about level of education?
 :::
 
-```{r class.source = 'fold-hide'}
+```{r class.source = 'fold-hide', results = 'hide'}
 data <- data %>% mutate(eduLevel_char = recode(data$eduLevel,
                             "1" = "Less than high school dimploma or its equivalent",
                             "2" = "High school diploma or equivalency",
