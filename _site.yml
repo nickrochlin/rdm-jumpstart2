@@ -15,6 +15,8 @@ navbar:
           href: day2_FirstSteps.html
     - text: "Day 3"
       menu:
+        - text: "Day 3 - Overview"
+          href: day3_Objectives.html
         - text: "Day 3 - Part 1"
           href: day_3-1.html
         - text: "Day 3 - Part 2"
