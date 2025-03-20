@@ -20,27 +20,29 @@ RMarkdown is a document format that integrates R code with formatted text, allow
 
 The key difference between R and RMarkdown is that R is used for executing code and performing computations, whereas RMarkdown is a tool for combining R code with explanatory text in a structured document. In RMarkdown, code chunks can be embedded within a narrative, and when the document is **knit** the results (including text, tables, and plots) are automatically generated and formatted, making it ideal for creating research reports, analyses, and presentations.
 
-You can add annotations to a regular r file by using the # symbol. Any text that follows will be treated as a comment and not as part of the code. RMarkdown have more formatting options that help organize the file into sections, helping the researcher document every step taken when working with data. 
+RMarkdown offers formatting options that help us organize the file into sections, it is a good practice to document every step taken when working with data. 
 
-The importance of creating the habit of annotating your files for RDM
+The importance of creating the habit of annotating your files for RDM (add info here)
 
 ## Basics of RMarkdown
 
-Symbol | Function
+**Symbol** |**Description**
 |------|------|
 | #| Level 1 heading|
 | ##| Level 2 heading|
 | ###| Level 3 heading|
 | * word * (without spaces)| *Italics*| 
-| ** word ** (without spaces)| *Bold*|
+| ** word ** (without spaces)| **Bold**|
 
 
+For aditional information, [click here](https://rmarkdown.rstudio.com/lesson-8.html)
 
-For aditional information, [click here] <https://rmarkdown.rstudio.com/lesson-8.html>
-
-## Chunks of code
+## Chunks of Code
 
 Inside a chunk of R code, everything behaves the same as a regular R document.
+We can add comments inside a chunk of code with the `#` symbol.
+
+#I will change this to a screenshot to show how it realy looks
 
 :::note
 ```{r}
@@ -51,53 +53,75 @@ Inside a chunk of R code, everything behaves the same as a regular R document.
 
 
 # Intro to Data in R
-## Basic syntax of an R script
+## Basic Syntax of an R Script
 
 The most important components of an R script are objects and functions.
 Objects store information and functions are used to manipulate the data.
 
-## Read data
-To import a dataset
+## Read Data
+
+### Read a csv file
+To import a csv file we can use the `read.csv` function and asign it to a new object we will call *data*. We create a new object to be able to call it in different functions later on.
 ```{r}
-mydata <- read.csv("data/timeuse_day1.csv")
+data <- read.csv("data/timeuse_day1.csv")
 ```
 #Will also add how to read spss, stata, sas, excel, and how to open from "import dataset" in environment window
 
-## Listing colnames
-To ask for a list of all the column names in your dataset
+### Read Other Formats
+In the example we are working with the data is stored in a csv file. There are other functions that allow us to import different file types. 
+
+#need to move section about installing packages and loading libraries to the beginning
+
+**File Type** |**Function** | **Package**
+|------|------|-------|
+|.csv | `read_csv()`| readr |
+| .xlsx | `read.xlsx()`| xlsx |
+| .sav | `read_sav()`| haven |
+| .sas7bdat , .sas7bcat | `read_sas()`| haven |
+| .dta | `read_dta()`| haven |
+
+## Listing Column Names
+To ask for a list of all the column names in our dataset we can use the `colnames()` function.
 ```{r}
-colnames(mydata)
+colnames(data)
 ```
 
-## Head function
-The head function will show you the top rows of your dataset. It will include information about the default data type assigned to each column. You will learn more about data types tomorrow.
+## Head Function
+The head function will display the top rows of the dataset. It will include information about the default data type assigned to each column. You will learn more about data types tomorrow.
 ```{r}
-head(mydata)
+head(data)
+```
+#data types are not showing in website
+
+## Viewing Data
+To visualize the full dataset we use the `View()` function. This will open our dataset in a separate window.
+```{r}
+View(data)
 ```
 
-## Viewing data
-To visualize the full dataset
-```{r}
-View(mydata)
-```
-This will open our dataset in a separate window
 
-#Packages and libraries
+## Packages and Libraries
 
-## Install package
+#pending add text description
+
+### Install Package
+#pending add text description
 
 ```{r}
 #install.packages("tidyverse")
 ```
-## Load libraries
+### Load Libraries
+#pending add text description
 
 ```{r}
 library(tidyverse)
 ```
-## Change column names
+
+## Change Column Names
+#pending add text description
 
 ```{r}
-mydata <- mydata %>%
+data <- data %>%
   rename ("id" = "PUMFID",
           "ageGrp" = "AGEGR10",
           "sex" = "SEX",
@@ -126,22 +150,19 @@ mydata <- mydata %>%
           "timeWantAlone" = "TCS_200")
 ```
 ```{r}
-colnames(mydata)
+colnames(data)
 ```
 
 
 
 
 ## Save as RData
-Saving your dataset in R format (RData) will preserve data types and metadata you asign to your dataset. 
-The text format (csv) will be the ideal format to share your data.
+Saving in R format (RData) will preserve data types and metadata assigned to the dataset. 
+The text format (csv) will be the ideal format to share the data.
 #need to edit the wording here, describe difference between csv and RData, when and why use each.
 
 ```{r}
 file.path("~/data/")
-save(mydata, file=(file.path("timeuse_day2.RData")))
+save(data, file=(file.path("timeuse_day2.RData")))
 ```
 #file is not saving in the right folder???
-
-
-#I will also include in day 2 how to install packages and load libraries
