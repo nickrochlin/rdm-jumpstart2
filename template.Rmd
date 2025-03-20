@@ -51,3 +51,19 @@ And when `code_folding: hide` is true:
 ```{r class.source = 'fold-show'}
 2  # code is hidden initially
 ```
+
+
+To create nice tables from a chunk of RMarkdown and to solve the problem with code chunks not running, you can adapt the following example:
+
+```{r, data-isolation, results = 'hide'}
+search_data <- search_body_list$data
+summary(search_data)
+```
+
+```{r, echo = FALSE}
+summary(search_data) |>
+  kbl() |>
+  kable_styling(bootstrap_options = "striped")
+```
+
+
