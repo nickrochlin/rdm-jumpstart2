@@ -43,6 +43,23 @@ pre {
   margin-top: 50px;
 }
 
+#footer img {
+  box-shadow: none;
+  margin: 20px auto 0 auto;
+  max-width: 150px;
+}
+
+.uvic {
+  margin-top: 35px !important;
+  max-width: 80px!important;
+}
+
+.inst-logos {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
 h1 {
   display: none;
 }
