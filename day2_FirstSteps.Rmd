@@ -22,7 +22,6 @@ The key difference between R and RMarkdown is that R is used for executing code 
 
 RMarkdown offers formatting options that help us organize the file into sections, it is a good practice to document every step taken when working with data. 
 
-The importance of creating the habit of annotating your files for RDM (add info here)
 
 ## Basics of RMarkdown
 
@@ -35,7 +34,7 @@ The importance of creating the habit of annotating your files for RDM (add info 
 | ** word ** (without spaces)| **Bold**|
 
 
-For aditional information, [click here](https://rmarkdown.rstudio.com/lesson-8.html)
+For additional information, [click here](https://rmarkdown.rstudio.com/lesson-8.html)
 
 ## Chunks of Code
 
@@ -61,7 +60,7 @@ Objects store information and functions are used to manipulate the data.
 ## Read Data
 
 ### Read a csv file
-To import a csv file we can use the `read.csv` function and asign it to a new object we will call *data*. We create a new object to be able to call it in different functions later on.
+To import a csv file we can use the `read.csv` function and assign it to a new object we will call *data*. We create a new object to be able to call it in different functions later on.
 ```{r}
 data <- read.csv("data/timeuse_day1.csv")
 ```
@@ -86,6 +85,8 @@ To ask for a list of all the column names in our dataset we can use the `colname
 colnames(data)
 ```
 
+Notice that the column names from the original dataset don't provide a clear description of what the variable is. We will change the column names later to facilitate working with our data in the future.
+
 ## Head Function
 The head function will display the top rows of the dataset. It will include information about the default data type assigned to each column. You will learn more about data types tomorrow.
 ```{r}
@@ -102,23 +103,26 @@ View(data)
 
 ## Packages and Libraries
 
-#pending add text description
+Collections of R functions are stored in Packages. In order to use a specific function we need to install the package that contains that function.
 
 ### Install Package
-#pending add text description
+To install a package we use the function `install.packages()`.
 
 ```{r}
 #install.packages("tidyverse")
 ```
 ### Load Libraries
-#pending add text description
+Packages are stored in libraries. Once a package is installed, we need to call the library with the function `library()`.
 
 ```{r}
 library(tidyverse)
 ```
 
 ## Change Column Names
-#pending add text description
+We mentioned earlier that we wanted to work with column names that were more descriptive of the content of each variable. To change column names we can use the function `rename()`.
+
+The function 'rename()' is part of the dplyr package that was installed with tidyverse.
+
 
 ```{r}
 data <- data %>%
