@@ -62,7 +62,7 @@ Objects store information and functions are used to manipulate the data.
 ### Read a csv file
 To import a csv file we can use the `read.csv` function and assign it to a new object we will call *data*. We create a new object to be able to call it in different functions later on.
 ```{r}
-data <- read.csv("data/timeuse_day1.csv")
+data <- read.csv("data/timeuse_day1_na.csv")
 ```
 #Will also add how to read spss, stata, sas, excel, and how to open from "import dataset" in environment window
 
