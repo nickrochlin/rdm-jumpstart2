@@ -25,112 +25,115 @@ This section covers how data is organized in R. This includes both types of data
 ## Data Types in R
 Data can come in many different formats or units. Sometimes we have numbers with decimals, sometimes we have counts of how many times something happened, sometimes we have categories with names. It is important to know what type of data you have, how to figure that out in R, and how to modify the data type if needed. Various functions in R require having certain data types, so this is an important foundational skill for managing data in R. 
 
-#### Numeric
-Numeric data is data made up of numbers. This is what we most commonly think of as data. For example, how many hours people slept on a given day (6, 8.25, 7.5), the percent accuracy that students got on an exam (87.45, 75.92, 98.40), or number of people who attended a data management workshop each day (32, 38, 28). 
+#### **Numeric**
+Numeric data is data made up of numbers. This is what we most commonly think of as data and this data type can have decimals. For example, how many hours people slept on a given day (6, 8.25, 7.5), the percent accuracy that students got on an exam (87.45, 75.92, 98.40), or number of people who attended a data management workshop each day (32, 38, 28). 
 
-#### Integer
+#### **Integer**
 This data type deals with whole numbers (i.e., no decimals) and operates similarly to numeric data types. Some data is stored as "numeric" and "integer" at the same time.
 
-#### Character/String
-Character variables are variables with words or letters. Such as names of people ("Erin", "Maria", "Huy") or places ("ON", "BC", "QC). Character variables usually need to be put in quotation marks in R code.
+#### **Character/String**
+Character variables are variables with words or letters. Such as names of people (Erin, Maria, Huy) or places (ON, BC, QC). Character variables usually need to be put in quotation marks in R code, so they are not confused with words that actually denote functions in R. We will create some character variables later in this section. 
 
-#### Boolean/Logical
-Boolean and logical operators can be used to compare values or create logical statements. You might have used Boolean characters to search databases in the past (e.g., searching in journal databases for articles with certain keywords). They work similarly in R. These functions also can be useful if you want to filter for a certain value in the data (e.g., sub-set only women in a dataset) or modify how data is grouped (e.g., you want to re-label everyone over 6 feet as "tall").
+#### **Boolean/Comparison/Logical Operators**
+Boolean and logical operators can be used to compare values or create logical statements. These are a bit different from the rest of the data types, because you usually don't have these operators within a dataset. However, they are very useful for understanding, checking, and managing your data. 
 
-Symbol | Function
-|-------|---------|
-| > | Greater than|
-|< | Less than|
-|>= | Greater than or equal to|
-|<= | Less than or equal to|
-|== | Equal to|
-|!= | Not equal to|
-|& | AND|
-|! | NOT|
-|TRUE | A statement is true|
-|FALSE | A statement is false| 
+You might have used Boolean characters to search databases in the past (e.g., searching in journal databases for articles with certain keywords). They work similarly in R. Boolean (or comparison) operators allow you to check conditions within your dataset. These return `TRUE` or `FALSE` based on whether the condition is met. These functions also can be useful if you want to filter for a certain value in the data (e.g., sub-set only women in a dataset) or modify how data is grouped (e.g., you want to re-label everyone over 6 feet as "tall"). Logical operators allow you to filter data based on multiple conditions.
 
-## Missing Data
-Some missing data is usually present in data. There are many reasons for missing data and many different ways to handle missing data. These choices will depend on the context of specific research, but generally a plan for how to approach missing data should be thought through in advance. 
+| Comparison Operator | Meaning                  | Example  | Result |
+|:----------|:--------------------------|:----------|:--------|
+| `==`     | Equal to                 | `5 == 5` | `TRUE` |
+| `!=`     | Not equal to             | `5 != 3` | `TRUE` |
+| `<`      | Less than                | `3 < 5`  | `TRUE` |
+| `>`      | Greater than             | `5 > 3`  | `TRUE` |
+| `<=`     | Less than or equal to    | `3 <= 3` | `TRUE` |
+| `>=`     | Greater than or equal to | `5 >= 3` | `TRUE` |
 
-In this dataset missing data has been coded in a variety of ways, capturing the reason for the data being missing. For example, for several of the categorical variables, such as age group, if the participant refused to answer the question the data includes the code "98," while if the question was skipped for a valid reason the code "96" was applied. 
-
-For questions about duration, where the variables are in minutes (e.g., minutes they have slept), if the participant refused to answer the code "9998" was used, or if the participant said they didn't know the code "9997" was used. 
-
-You will notice that in both cases, the number used to show that this data is missing is well out of the range of the actual complete data (i.e., the age groups are coded 1 through 7, and people would have to sleep for a whole week to reaching that many minutes). 
-
-However, we may run into an issue if we start to do analyses and include these numerical codes as actual points of data (i.e., find the mean of duration of sleep). To avoid this, we will recode these values that indicate missing values to read as "NA" instead. 
-
-```{r}
-# data <- data %>% mutate (across (
-#   
-# ))
-# durSleep, 
-# durMealPrep, 
-# durEating, 
-# durAlone, 
-# durDriving, 
-# durWork, 
-# durSchoolSite, 
-# durSchoolOnline, 
-# durStudy,
-# )
-
-#> 9995 means missing data
-# 9996 = Valid skip, 9997 = Don't know, 9998 = refusal, 9999 = not stated
-# 
-# mutate(across(
-#         y1:y2,
-#         ~na_if(., 999)
-#     ))
-```
-### Useful Missing Data Related Functions
-If your data contains NA values, sometimes functions will give error messages due to incomplete data. Including `na.rm` to the function will typically tell R that it should complete the function, ignoring missing values. 
-
-If you want to check if a varibale or data frame has missing data, you can use the function `is.na`. 
-
-If you want to find instances where there is no missing data you can use `complete.cases()`. 
-
-na.rm, is.na, complete.cases()
-read in as NA? - yes, in Day 3 part 1, cover that in the integer → character variables + the duration variables (teach once, copy/paste code for the rest), check work via the commands above 
+| Logical Operator | Meaning                                        | Example               | Result |
+|:----------|:------------------------------------------------|:-----------------------|:--------|
+| `&`      | Logical AND (Both conditions must be TRUE)     | `(5 > 3) & (4 < 6)`    | `TRUE` |
+| `|`      | Logical OR (At least one condition must be TRUE)| `(5 > 3) | (4 > 6)`     | `TRUE` |
+| `!`      | Logical NOT (Reverses TRUE/FALSE)               | `!(5 > 3)`            | `FALSE` |
 
 ## Introduction to dplyr Library
-dplyr is a powerful R package designed to simplify data manipulation tasks. It provides a set of intuitive functions that make filtering, selecting, and transforming data frames (we will talk about this data structure soon) more readable and efficient. It is the go to package for data set organization. 
+In order to check and modify data types we suggest using the dplyr package. dplyr is a powerful R package designed to simplify data manipulation tasks. It provides a set of intuitive functions that make filtering, selecting, and transforming data frames (we will talk about this data structure soon) more readable and efficient. It is the go to package for data set organization. We will use just a few of the functions of this package in this course, but there are many more applications of dplyr you can explore. 
 
-Lets load the dplyr library.
-
-```{r, warning = FALSE}
-library(dplyr)
-```
 Here are some of the most common functions of dplyr. We will practice using some of these today with our dataset. 
 
   - `mutate()`: Useful when you want to create new columns based on values in existing columns in your dataset. For example, you may want to recode numeric data into new categories with character names. 
+  
   - `recode()`: Useful for changing data format of variables or re-categorizing certain values in a variable as some other value. For example, maybe you want to label everyone who sleeps less than seven hours a night as "sleep deprived." 
+  
   - `group_by()`: Allows you to view your data based on groups that you define or already exist in your data. For example, you may want to group your data based on whether people live in a city or rural area, or by gender. 
+  
   - `summarize()` or `summarise()`: Useful for seeing basic descriptive info about your data. This is particularly helpful when use with the `group_by()` function. For example, you can see if people in cities compared to rural areas feel more rushed on average (i.e., compare means between these two groups). 
+  
   - `%>%` (pipe operator): Allows you to tell R to apply one function several times. You can read it more or less as "and then" when thinking about what your R code is doing. 
+  
   - `filter()`: This function allows you to extract rows that meet specific conditions you include. 
+  
   - `select()`: This function lets you choose particular columns based on your specifications. 
   
 It is important when using dplyr to assign your output to an object if you want to retain the info you've found or created. Remember the `<-` symbol can be used to assign output to a named object. We will practice this today too. 
 
 Together, these functions in dplyr enable you to easily explore your data by various subgroups, create new variables, or create a focused subset of your data for further analysis.
 
-Let's explore the data types in our data using the `dplyr` functions! 
+Let's explore the data types in our data using the `dplyr` functions!
 
 ## Checking Data Types in Our Data
 
-First we load our data. Information on the data type can be seen in the "head" function in R. NEED TO GET THIS TO PRINT ON WEBSITE.
-```{r}
+First we load our data and the dplyr package (remember to install it first if you haven't yet). Information on the data type can be seen in the "head" function in R. NEED TO GET THIS TO PRINT ON WEBSITE.
+```{r, message = FALSE}
+library(dplyr)
 load("data/timeuse_day2.Rdata")
-data <- mydata
+```
+
+```{r, data-isolation, results = FALSE}
 print(head(data))
+```
+
+```{r, echo = FALSE, message = FALSE}
+library(kableExtra)
+print(head(data)) |>
+  kbl() |>
+  kable_styling(bootstrap_options = "striped")
 ```
 
 You can also check the data type of a specific variable with the "class" function,
 
 ```{r}
 print(class(data$province))
+```
+
+Try exploring the data type of a few other variables on your own. 
+
+## Missing Data
+You may have noticed that there are some cells in the data with "NA." This represents missing data in our dataset. Some missing data is usually present in data. There are many reasons for missing data and many different ways to handle missing data. These choices will depend on the context of specific research, but generally a plan for how to approach missing data should be thought through in advance. 
+
+In this dataset missing data had been notated with various numerical codes (you can see these in the original codebook), but we have recoded the data so that all missing data as been denoted "NA." 
+
+### Useful Missing Data Related Functions
+If your data contains NA values, sometimes functions will give error messages due to incomplete data. For example, if you try to get the mean of education level (eduLevel), R will not provide one because it can't calculate a mean when there are missing values. 
+
+```{r}
+mean(data$eduLevel)
+```
+
+Instead, we tell R to ignore those missing values. Including `na.rm = TRUE` to the function will typically tell R that it should complete the function, ignoring missing values. 
+
+```{r}
+mean(data$eduLevel, na.rm = TRUE)
+```
+
+If you want to check if a variable or data frame has missing data, you can use the function `is.na`. 
+
+```{r, results = 'hide'}
+is.na(data$eduLevel)
+```
+
+If you want to find instances where there is no missing data you can use `complete.cases()`. 
+
+```{r, results = 'hide'}
+complete.cases(data)
 ```
 
 ## Recoding Variables and Changing Data Types
@@ -141,9 +144,11 @@ print(class(data$province))
 
 However, maybe we would prefer to have province acronyms (i.e., character data format) rather than the integer representation of them. We can re-code variables using the dplyr functions `%>%` and `mutate()`.
 
-This code is telling R to `recode()` the variable "province" from the dataset "data" into a new variable called "province_char" (you could call it anything, but make sure it is a meaningful name). The list outlines how each value of the current "province" variable should be recoded for the new "province_char" variable. These integer values and what province they represent can be found in the dataset codebook. The `mutate()` portion tells R to create a new column called "province_char". Before the `mutate()` function this code tells R to take the "data" object (i.e., dataset) "and then" (i.e., the pipe function) apply the following functions. The pipe function (`%>%`) tells R to recode all of these values all at once, rather than having to write out `mutate()` and `recode()` for each one. Lastly, all of this work needs to be assigned back to our dataset "data" in order to save it. Note that we did not assign this work to replace/overwrite the existing "province" variable. In order to have transparent data management and to prevent overwriting the original data in the instance that you make a mistake in your recoding, it is always best practice to keep the original variables in their original format and create new variables based on them as needed. In this way, if you ever need to reference the original data (and you definitely will need to), you still have it available to you. 
+This code is telling R to `recode()` the variable "province" from the dataset "data" into a new variable called "province_char" (you could call it anything, but make sure it is a meaningful name). The list outlines how each value of the current "province" variable should be recoded for the new "province_char" variable. These integer values and what province they represent can be found in the dataset codebook. The `mutate()` portion tells R to create a new column called "province_char". Before the `mutate()` function this code tells R to take the "data" object (i.e., the dataset) "and then" (i.e., the pipe function) apply the following functions. The pipe function (`%>%`) tells R to recode all of these values all at once, rather than having to write out `mutate()` and `recode()` for each one. Lastly, all of this work needs to be assigned back to our dataset "data" in order to save it. 
+
+Note that we did not assign this work to replace/overwrite the existing "province" variable. In order to have transparent data management and to prevent overwriting the original data in the instance that you make a mistake in your recoding, it is always best practice to keep the original variables in their original format and create new variables based on them as needed. In this way, if you ever need to reference the original data (and you definitely will need to), you still have it available to you. 
 ```{r}
-data<-data %>% mutate(province_char = recode(data$province, 
+data <- data %>% mutate(province_char = recode(data$province, 
                             "10" = "NL", 
                             "11" = "PEI", 
                             "12" = "NS",
@@ -153,11 +158,7 @@ data<-data %>% mutate(province_char = recode(data$province,
                             "46" = "MB", 
                             "47" = "SK", 
                             "48" = "AB", 
-                            "59" = "BC", 
-                            "96" = "NA", 
-                            "97" = "NA", 
-                            "98" = "NA", 
-                            "99" = "NA"))
+                            "59" = "BC"))
 ```
 
 Now lets check the data type of this new variable we just created. 
@@ -175,7 +176,7 @@ is.numeric(data$durSleep)
 You will see here that you get a logical operator as the output. 
 
 Sometimes you may want to change the data type without recoding all of the data. In this case a useful function is `as.numeric()`. Because this data is already stored as both integer and numeric, this function will not change the data type in this instance, but this can be helpful for other datasets you may work with in the future. Here is an example of how you would use this function. 
-```{r, include = FALSE}
+```{r, results = 'hide'}
 as.numeric(data$durSleep)
 ```
 
@@ -217,7 +218,7 @@ print(list_example [3])
 #### Data Frames
 Data frames are the most common and popular type of data structure used in R. Data frames work essentially like spreadsheets in that they are two dimensional (i.e., have columns and rows) and can store different data types in teh same data frame (i.e., numeric and character). 
 
-However, data frames do have some constraints. First, the columns and rows must be named. Second, the lists of vectors in the data frame must have equal lengths (i.e., each column needs an identical number of elements/rows). Third, all elements in a single column must be of the same data type (i.e., you can't switch between numbers and names in a single column)
+However, data frames do have some constraints. First, the columns and rows must be named. Second, the lists of vectors in the data frame must have equal lengths (i.e., each column needs an identical number of elements/rows). Third, all elements in a single column must be of the same data type (i.e., you can't switch between numbers and names in a single column).
 
 For this course, our data is in data frame format. 
 
@@ -250,11 +251,7 @@ data<-data %>% mutate(maritalStat_char = recode(data$maritalStat,
                             "3" = "Widowed",
                             "4" = "Separated", 
                             "5" = "Divorced", 
-                            "6" = "Single, never married", 
-                            "96" = "NA",
-                            "97" ="NA", 
-                            "98" = "NAl",
-                            "99" = "NA"))
+                            "6" = "Single, never married"))
 
 class(data$maritalStat_char)
 ```
@@ -271,11 +268,7 @@ data <- data %>% mutate(eduLevel_char = recode(data$eduLevel,
                             "4" = "College, CEGEP, or other non-university certificate or dimploma",
                             "5" = "University certificate or dimploma below the bachelor's level",
                             "6" = "Bachelor's degree",
-                            "7" = "University certificate, diploma, degree above the BA level",
-                            "96" = "NA",
-                            "97" = "NA",
-                            "98" = "NA", 
-                            "99" = "NA"))
+                            "7" = "University certificate, diploma, degree above the BA level"))
 
 class(data$eduLevel_char)
 ```
@@ -283,6 +276,7 @@ class(data$eduLevel_char)
 
 :::question
 What data structure would you use to store the following data?
+
 a) A list of heights of movie characters
 
 b) A list of names of characters from a movie
