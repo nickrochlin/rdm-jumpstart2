@@ -17,6 +17,10 @@ output:
 library(kableExtra)
 ```
 
+## Add this at the start of the RMarkdown to hide all messages and warnings
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message = FALSE, warnings = FALSE)
+```
 
 ## Start with a level two header
 
