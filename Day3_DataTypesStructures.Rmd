@@ -25,13 +25,13 @@ This section covers how data is organized in R. This includes both types of data
 ## Data Types in R
 Data can come in many different formats or units. Sometimes we have numbers with decimals, sometimes we have counts of how many times something happened, sometimes we have categories with names. It is important to know what type of data you have, how to figure that out in R, and how to modify the data type if needed. Various functions in R require having certain data types, so this is an important foundational skill for managing data in R. 
 
-#### **Numeric**
+#### **Numeric Data**
 Numeric data is data made up of numbers. This is what we most commonly think of as data and this data type can have decimals. For example, how many hours people slept on a given day (6, 8.25, 7.5), the percent accuracy that students got on an exam (87.45, 75.92, 98.40), or number of people who attended a data management workshop each day (32, 38, 28). 
 
-#### **Integer**
+#### **Integer Data**
 This data type deals with whole numbers (i.e., no decimals) and operates similarly to numeric data types. Some data is stored as "numeric" and "integer" at the same time.
 
-#### **Character/String**
+#### **Character/String Data**
 Character variables are variables with words or letters. Such as names of people (Erin, Maria, Huy) or places (ON, BC, QC). Character variables usually need to be put in quotation marks in R code, so they are not confused with words that actually denote functions in R. We will create some character variables later in this section. 
 
 #### **Boolean/Comparison/Logical Operators**
@@ -55,9 +55,9 @@ You might have used Boolean characters to search databases in the past (e.g., se
 | `!`      | Logical NOT (Reverses TRUE/FALSE)               | `!(5 > 3)`            | `FALSE` |
 
 ## Introduction to dplyr Library
-In order to check and modify data types we suggest using the dplyr package. dplyr is a powerful R package designed to simplify data manipulation tasks. It provides a set of intuitive functions that make filtering, selecting, and transforming data frames (we will talk about this data structure soon) more readable and efficient. It is the go to package for data set organization. We will use just a few of the functions of this package in this course, but there are many more applications of dplyr you can explore. 
+In order to check and modify data types we suggest using the `dplyr` package. `dplyr` is a powerful R package designed to simplify data manipulation tasks. It provides a set of intuitive functions that make filtering, selecting, and transforming data frames (we will talk about this data structure soon) more readable and efficient. It is the go to package for data set organization. We will use just a few of the functions of this package in this course, but there are many more applications of `dplyr` you can explore. 
 
-Here are some of the most common functions of dplyr. We will practice using some of these today with our dataset. 
+Here are some of the most common functions of `dplyr`. We will practice using some of these today with our dataset. 
 
   - `mutate()`: Useful when you want to create new columns based on values in existing columns in your dataset. For example, you may want to recode numeric data into new categories with character names. 
   
@@ -73,15 +73,15 @@ Here are some of the most common functions of dplyr. We will practice using some
   
   - `select()`: This function lets you choose particular columns based on your specifications. 
   
-It is important when using dplyr to assign your output to an object if you want to retain the info you've found or created. Remember the `<-` symbol can be used to assign output to a named object. We will practice this today too. 
+It is important when using `dplyr` to assign your output to an object if you want to retain the info you've found or created. Remember the `<-` symbol can be used to assign output to a named object. We will practice this today too. 
 
-Together, these functions in dplyr enable you to easily explore your data by various subgroups, create new variables, or create a focused subset of your data for further analysis.
+Together, these functions in `dplyr` enable you to easily explore your data by various subgroups, create new variables, or create a focused subset of your data for further analysis.
 
 Let's explore the data types in our data using the `dplyr` functions!
 
 ## Checking Data Types in Our Data
 
-First we load our data and the dplyr package (remember to install it first if you haven't yet). Information on the data type can be seen in the "head" function in R. NEED TO GET THIS TO PRINT ON WEBSITE.
+First we load our data and the dplyr package (remember to install it first if you haven't yet). Information on the data type can be seen in the "head" function in R. 
 ```{r, message = FALSE}
 library(dplyr)
 load("data/timeuse_day2.Rdata")
@@ -91,11 +91,14 @@ load("data/timeuse_day2.Rdata")
 print(head(data))
 ```
 
-```{r, echo = FALSE, message = FALSE}
+```{r, echo = FALSE, message = FALSE, warning=FALSE}
 library(kableExtra)
-print(head(data)) |>
+head(data)|>
   kbl() |>
-  kable_styling(bootstrap_options = "striped")
+  #kable_styling(bootstrap_options = "striped")
+kable_paper() %>%
+  scroll_box(width = "500px", height = "200px")
+
 ```
 
 You can also check the data type of a specific variable with the "class" function,
@@ -146,7 +149,7 @@ However, maybe we would prefer to have province acronyms (i.e., character data f
 
 This code is telling R to `recode()` the variable "province" from the dataset "data" into a new variable called "province_char" (you could call it anything, but make sure it is a meaningful name). The list outlines how each value of the current "province" variable should be recoded for the new "province_char" variable. These integer values and what province they represent can be found in the dataset codebook. The `mutate()` portion tells R to create a new column called "province_char". Before the `mutate()` function this code tells R to take the "data" object (i.e., the dataset) "and then" (i.e., the pipe function) apply the following functions. The pipe function (`%>%`) tells R to recode all of these values all at once, rather than having to write out `mutate()` and `recode()` for each one. Lastly, all of this work needs to be assigned back to our dataset "data" in order to save it. 
 
-Note that we did not assign this work to replace/overwrite the existing "province" variable. In order to have transparent data management and to prevent overwriting the original data in the instance that you make a mistake in your recoding, it is always best practice to keep the original variables in their original format and create new variables based on them as needed. In this way, if you ever need to reference the original data (and you definitely will need to), you still have it available to you. 
+**Note:** We did not assign this work to replace/overwrite the existing "province" variable. In order to have transparent data management and to prevent overwriting the original data in the instance that you make a mistake in your recoding, it is always best practice to keep the original variables in their original format and create new variables based on them as needed. In this way, if you ever need to reference the original data (and you definitely will need to), you still have it available to you. 
 ```{r}
 data <- data %>% mutate(province_char = recode(data$province, 
                             "10" = "NL", 
