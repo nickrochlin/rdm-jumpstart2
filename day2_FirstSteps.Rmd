@@ -26,7 +26,7 @@ RMarkdown offers formatting options that help us organize the file into sections
 ## Basics of RMarkdown
 
 **Symbol** |**Description**
-|------|------|
+|:------|:------|
 | #| Level 1 heading|
 | ##| Level 2 heading|
 | ###| Level 3 heading|
@@ -72,7 +72,7 @@ In the example we are working with the data is stored in a csv file. There are o
 #need to move section about installing packages and loading libraries to the beginning
 
 **File Type** |**Function** | **Package**
-|------|------|-------|
+|:------|:------|:-------|
 |.csv | `read_csv()`| readr |
 | .xlsx | `read.xlsx()`| xlsx |
 | .sav | `read_sav()`| haven |
@@ -89,8 +89,16 @@ Notice that the column names from the original dataset don't provide a clear des
 
 ## Head Function
 The head function will display the top rows of the dataset. It will include information about the default data type assigned to each column. You will learn more about data types tomorrow.
-```{r}
+
+```{r, data-isolation, results = 'hide'}
 head(data)
+```
+
+```{r, echo = FALSE}
+library(kableExtra)
+print(head(data)) |>
+  kbl() |>
+  kable_styling(bootstrap_options = "striped")
 ```
 #data types are not showing in website
 
@@ -123,11 +131,19 @@ We mentioned earlier that we wanted to work with column names that were more des
 
 The function 'rename()' is part of the dplyr package that was installed with tidyverse.
 
+### Try changing the ID column name
+Try typing the following code to change the column name from "PUMFID" to "id"
 
 ```{r}
 data <- data %>%
-  rename ("id" = "PUMFID",
-          "ageGrp" = "AGEGR10",
+  rename ("id" = "PUMFID")
+```
+
+Now, to change the rest of the column names copy the following code. (click show to see the code)
+
+```{r, class.source = 'fold-hide'}
+data <- data %>%
+  rename ("ageGrp" = "AGEGR10",
           "sex" = "SEX",
           "maritalStat" = "MARSTAT",
           "province" =  "PRV",
@@ -153,11 +169,12 @@ data <- data %>%
           "timeNotFamFriends" = "TCS_150",
           "timeWantAlone" = "TCS_200")
 ```
+
+
+Use the function`colnames(data)` to display the column names.
 ```{r}
 colnames(data)
 ```
-
-
 
 
 ## Save as RData
@@ -166,7 +183,6 @@ The text format (csv) will be the ideal format to share the data.
 #need to edit the wording here, describe difference between csv and RData, when and why use each.
 
 ```{r}
-file.path("~/data/")
-save(data, file=(file.path("timeuse_day2.RData")))
+save(data, file="timeuse_day2.RData")
 ```
-#file is not saving in the right folder???
+
