@@ -32,6 +32,10 @@ This is a question.
 This is a flag.
 :::
 
+:::walkthrough
+This is a walkthrough.
+:::
+
 The following can be used for erroneous code, incorrect output, and proper code with correct output. The otuput at the moment is a little jarring. We'll fix this.    
 
 ```{r class.source="bg-danger", class.output="bg-warning"}

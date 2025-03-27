@@ -1,4 +1,4 @@
-.note, .question, .flag {
+.note, .question, .flag, .walkthrough {
   padding: 10px;
   margin: 20px 0px;
   border-radius: 5px;
@@ -17,6 +17,11 @@
 .flag {
   border: 1pt solid #9d0606;
   background-color: #f9f3f3;
+}
+
+.walkthrough {
+  border: 1pt solid #ffa600;
+  background-color: #fef9e7 ;
 }
 
 pre {
