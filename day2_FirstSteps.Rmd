@@ -13,6 +13,9 @@ output:
       collapsed: false
       smooth_scroll: false
 ---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message = FALSE, warnings = FALSE)
+```
 
 ## RMarkdown
 
@@ -37,18 +40,19 @@ RMarkdown offers formatting options that help us organize the file into sections
 For additional information, [click here](https://rmarkdown.rstudio.com/lesson-8.html)
 
 ## Chunks of Code
+You can have sections with R code inside an RMarkdown document. Sections with code are called "chunks of code".
 
 Inside a chunk of R code, everything behaves the same as a regular R document.
 We can add comments inside a chunk of code with the `#` symbol.
 
 #I will change this to a screenshot to show how it realy looks
 
-:::note
-```{r}
-#Starts with ```{r}
-#ends with ```
+````markdown
+`r ''````{r}
+
 ```
-:::
+````
+
 
 
 # Intro to Data in R
@@ -64,7 +68,7 @@ To import a csv file we can use the `read.csv` function and assign it to a new o
 ```{r}
 data <- read.csv("data/timeuse_day1_na.csv")
 ```
-#Will also add how to read spss, stata, sas, excel, and how to open from "import dataset" in environment window
+#PENDING: Will also add how to open from "import dataset" in environment window and "file.choose (add)"
 
 ### Read Other Formats
 In the example we are working with the data is stored in a csv file. There are other functions that allow us to import different file types. 
@@ -90,17 +94,17 @@ Notice that the column names from the original dataset don't provide a clear des
 ## Head Function
 The head function will display the top rows of the dataset. It will include information about the default data type assigned to each column. You will learn more about data types tomorrow.
 
-```{r, data-isolation, results = 'hide'}
+```{r, data-isolation, results = FALSE}
 head(data)
 ```
 
 ```{r, echo = FALSE}
 library(kableExtra)
-print(head(data)) |>
+head(data) |>
   kbl() |>
   kable_styling(bootstrap_options = "striped")
 ```
-#data types are not showing in website
+
 
 ## Viewing Data
 To visualize the full dataset we use the `View()` function. This will open our dataset in a separate window.
@@ -122,9 +126,10 @@ To install a package we use the function `install.packages()`.
 ### Load Libraries
 Packages are stored in libraries. Once a package is installed, we need to call the library with the function `library()`.
 
-```{r}
+```{r, results = FALSE}
 library(tidyverse)
 ```
+Let's explore the Tidyverse packages [click here](https://www.tidyverse.org/)
 
 ## Change Column Names
 We mentioned earlier that we wanted to work with column names that were more descriptive of the content of each variable. To change column names we can use the function `rename()`.
