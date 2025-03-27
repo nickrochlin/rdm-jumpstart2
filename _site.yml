@@ -19,8 +19,8 @@ navbar:
           href: day3_Objectives.html
         - text: "Day 3 - Part 1"
           href: day_3-1.html
-        - text: "Day 3 - Part 2"
-          href: day_3-2.html
+        - text: "Day 3 - Filter & Select"
+          href: day_3_filterSelect.html
     - text: "Day 4"
       menu:
         - text: "Day 4 - Part 1"
@@ -31,6 +31,8 @@ navbar:
       href: day_5.html
     - text: "Resources"
       href: resources.html
+    - text: "Contributors"
+      href: contributors.html
 output:
   html_document:
     theme: flatly

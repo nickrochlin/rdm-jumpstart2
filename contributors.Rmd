@@ -1,0 +1,27 @@
+---
+title: "Contributors"
+pagetitle: "Contributors"
+output:
+  html_document:
+    code_folding: show
+    code_download: true
+    includes:
+      after_body: footer.html
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+---
+
+## Who is creating and delivering this workshop?
+
+In alphabetic order…
+
+- Erin McCoy, Research Assistant, Carleton University
+- Gia-Huy Hoang, Research Assistant, University of Calgary
+- Jane Fry, Data Services Librarian, Carleton University
+- Jennifer Abel, Research Data Management Librarian, University of Calgary
+- Maria Amoros, Research Assistant, University of Victoria
+- Mathew Vis-Dunbar, Data Librarian, UBCO
+- Nick Rochlin, Data Science Librarian, University of Victoria
