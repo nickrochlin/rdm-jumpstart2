@@ -2,26 +2,38 @@
   padding: 10px;
   margin: 20px 0px;
   border-radius: 5px;
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-origin: content-box;
+  padding-top: 10px;
 }
 
 .note {
   border: 1pt solid #0d4a7b;
   background-color: #f0f7fd;
+  background-image: url("images/note.png");
 }
 
 .question {
   border: 1pt solid #1f7b0d;
   background-color: #f1fdf0;
+  background-image: url("images/question.png");
 }
 
 .flag {
   border: 1pt solid #9d0606;
   background-color: #f9f3f3;
+  background-image: url("images/flag.png");
 }
 
 .walkthrough {
   border: 1pt solid #ffa600;
   background-color: #fef9e7 ;
+  background-image: url("images/walkthrough.png");
+}
+
+.walkthrough p:first-of-type, .flag p:first-of-type, .question p:first-of-type, .note p:first-of-type {
+  padding-top: 50px;
 }
 
 pre {
