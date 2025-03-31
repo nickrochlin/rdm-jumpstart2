@@ -1,0 +1,188 @@
+---
+title: "Day 2 - First steps in R"
+pagetitle: "Mise en Place"
+output:
+  html_document:
+    code_folding: show # allows toggling of showing and hiding code. Remove if not using code.
+    code_download: true # allows the user to download the source .Rmd file. Remove if not using code.
+    includes:
+      after_body: footer.html # include a custom footer.
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+---
+
+## RMarkdown
+
+RMarkdown is a document format that integrates R code with formatted text, allowing users to create dynamic and reproducible reports, presentations, and documents. 
+
+The key difference between R and RMarkdown is that R is used for executing code and performing computations, whereas RMarkdown is a tool for combining R code with explanatory text in a structured document. In RMarkdown, code chunks can be embedded within a narrative, and when the document is **knit** the results (including text, tables, and plots) are automatically generated and formatted, making it ideal for creating research reports, analyses, and presentations.
+
+RMarkdown offers formatting options that help us organize the file into sections, it is a good practice to document every step taken when working with data. 
+
+
+## Basics of RMarkdown
+
+**Symbol** |**Description**
+|:------|:------|
+| #| Level 1 heading|
+| ##| Level 2 heading|
+| ###| Level 3 heading|
+| * word * (without spaces)| *Italics*| 
+| ** word ** (without spaces)| **Bold**|
+
+
+For additional information, [click here](https://rmarkdown.rstudio.com/lesson-8.html)
+
+## Chunks of Code
+
+Inside a chunk of R code, everything behaves the same as a regular R document.
+We can add comments inside a chunk of code with the `#` symbol.
+
+#I will change this to a screenshot to show how it realy looks
+
+:::note
+```{r}
+#Starts with ```{r}
+#ends with ```
+```
+:::
+
+
+# Intro to Data in R
+## Basic Syntax of an R Script
+
+The most important components of an R script are objects and functions.
+Objects store information and functions are used to manipulate the data.
+
+## Read Data
+
+### Read a csv file
+To import a csv file we can use the `read.csv` function and assign it to a new object we will call *data*. We create a new object to be able to call it in different functions later on.
+```{r}
+data <- read.csv("data/timeuse_day1_na.csv")
+```
+#Will also add how to read spss, stata, sas, excel, and how to open from "import dataset" in environment window
+
+### Read Other Formats
+In the example we are working with the data is stored in a csv file. There are other functions that allow us to import different file types. 
+
+#need to move section about installing packages and loading libraries to the beginning
+
+**File Type** |**Function** | **Package**
+|:------|:------|:-------|
+|.csv | `read_csv()`| readr |
+| .xlsx | `read.xlsx()`| xlsx |
+| .sav | `read_sav()`| haven |
+| .sas7bdat , .sas7bcat | `read_sas()`| haven |
+| .dta | `read_dta()`| haven |
+
+## Listing Column Names
+To ask for a list of all the column names in our dataset we can use the `colnames()` function.
+```{r}
+colnames(data)
+```
+
+Notice that the column names from the original dataset don't provide a clear description of what the variable is. We will change the column names later to facilitate working with our data in the future.
+
+## Head Function
+The head function will display the top rows of the dataset. It will include information about the default data type assigned to each column. You will learn more about data types tomorrow.
+
+```{r, data-isolation, results = 'hide'}
+head(data)
+```
+
+```{r, echo = FALSE}
+library(kableExtra)
+print(head(data)) |>
+  kbl() |>
+  kable_styling(bootstrap_options = "striped")
+```
+#data types are not showing in website
+
+## Viewing Data
+To visualize the full dataset we use the `View()` function. This will open our dataset in a separate window.
+```{r}
+View(data)
+```
+
+
+## Packages and Libraries
+
+Collections of R functions are stored in Packages. In order to use a specific function we need to install the package that contains that function.
+
+### Install Package
+To install a package we use the function `install.packages()`.
+
+```{r}
+#install.packages("tidyverse")
+```
+### Load Libraries
+Packages are stored in libraries. Once a package is installed, we need to call the library with the function `library()`.
+
+```{r}
+library(tidyverse)
+```
+
+## Change Column Names
+We mentioned earlier that we wanted to work with column names that were more descriptive of the content of each variable. To change column names we can use the function `rename()`.
+
+The function 'rename()' is part of the dplyr package that was installed with tidyverse.
+
+### Try changing the ID column name
+Try typing the following code to change the column name from "PUMFID" to "id"
+
+```{r}
+data <- data %>%
+  rename ("id" = "PUMFID")
+```
+
+Now, to change the rest of the column names copy the following code. (click show to see the code)
+
+```{r, class.source = 'fold-hide'}
+data <- data %>%
+  rename ("ageGrp" = "AGEGR10",
+          "sex" = "SEX",
+          "maritalStat" = "MARSTAT",
+          "province" =  "PRV",
+          "popCenter" = "LUC_RST",
+          "eduLevel" = "EHG_ALL",
+          "feelRushed" = "GTU_110",
+          "extraTime" = "GTU_130",
+          "durSleep" = "DUR01",
+          "durMealPrep" = "DUR05",
+          "durEating" = "DUR06",
+          "durAlone" = "DURS200",
+          "durDriving" = "DURL313",
+          "durWork" = "DUR08",
+          "durShoolSite" = "DUR13",
+          "durSchoolOnline" = "DUR14",
+          "durStudy" = "DUR15",
+          "worked12m" = "MRW_D40A",
+          "workedWeek" = "MRW_D40B",
+          "enrollStat" = "EDM_02",
+          "dailyTexts" = "TST_01",
+          "timeSlowDown" = "TCS_110",
+          "timeWorkaholic" = "TCS_120",
+          "timeNotFamFriends" = "TCS_150",
+          "timeWantAlone" = "TCS_200")
+```
+
+
+Use the function`colnames(data)` to display the column names.
+```{r}
+colnames(data)
+```
+
+
+## Save as RData
+Saving in R format (RData) will preserve data types and metadata assigned to the dataset. 
+The text format (csv) will be the ideal format to share the data.
+#need to edit the wording here, describe difference between csv and RData, when and why use each.
+
+```{r}
+save(data, file="timeuse_day2.RData")
+```
+
