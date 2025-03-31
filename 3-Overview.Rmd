@@ -1,0 +1,41 @@
+---
+title: "Day3_Objectives"
+pagetitle: "Day 3 Objectives"
+output:
+  html_document:
+    code_folding: show # allows toggling of showing and hiding code. Remove if not using code.
+    code_download: true # allows the user to download the source .Rmd file. Remove if not using code.
+    includes:
+      after_body: footer.html # include a custom footer.
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Day 3: Scripting and Documentation (not sure this is still accurate)
+### Objectives
+  - Review file encoding [Interoperable]
+  - Examine  file naming
+  - Become familiar with  Version Control
+  - Learn how to manipulate variables in R
+
+### Outcomes
+  - Explain why multiple encoding schemes exist and the value of ASCII / UTF-8, as well as the need to denote the file encoding being used
+  - Articulate the value of a human and machine readable file-naming scheme
+  - Describe the difference between manual and software implemented version control, and the pros and cons of each
+  - Create new variables in R
+
+### Deliverables
+  - Renamed files
+  - Updated readme with file naming convention and versioning described
+  - A cleaned RData file in appropriate directory
+  - A data set saved as .RData that has derived variables
+  - A data set saved as .RData that is a subset
+  - An updated data dictionary
+  - Backup to OSF

@@ -3,32 +3,46 @@ output_dir: "website"
 navbar:
   title: "RDM Jumpstart"
   left:
-    - text: "Day 1"
-      href: day_1.html
+     - text: "Day 1"
+      menu:
+        - text: "Day 1 Overview"      
+          href: 1-Overview.html
+        - text: "Day 1"
+          href: 1-LEC-TBD.html
     - text: "Day 2"
       menu:
         - text: "Day 2 - Overview"
-          href: day_2.html
-        - text: "Day 2 - Setting up R"
-          href: day2_RSetup.html
-        - text: "Day 2 - First steps in R"
-          href: day2_FirstSteps.html
+          href: 2-Overview.html
+        - text: "Day 2 - Setting Up R"
+          href: 2-ACT-1-RSetup.html
+        - text: "Day 2 - First Steps in R"
+          href: 2-ACT-2-FirstSteps.html
     - text: "Day 3"
       menu:
         - text: "Day 3 - Overview"
-          href: day3_Objectives.html
-        - text: "Day 3 - Part 1"
-          href: day_3-1.html
-        - text: "Day 3 - Filter & Select"
-          href: day_3_filterSelect.html
+          href: 3-Overview.html
+        - text: "Day 3 - Data Types and Structures"
+          href: 3-ACT-1-DataTypesStructures.html
+        - text: "Day 3 - Filter and Select"
+          href: 3-ACT-2-FilterSelect.html
+        - text: "Day 3 - Extra Exercises"
+          href: 3-ExtraExercises.html
     - text: "Day 4"
       menu:
-        - text: "Day 4 - Part 1"
-          href: day_4-1.html
-        - text: "Day 4 - Part 2"
-          href: day_4-1.html
-    - text: "Day 5"
-      href: day_5.html
+        - text: "Day 4 - Overview"
+          href: 4-Overview.html
+        - text: "Day 4 - Troubleshooting"
+          href: 4-ACT-1-Troubleshooting.html
+        - text: "Day 4 - Data Visualization"
+          href: 4-ACT-2-DataVisualization.html
+        - text: "Day 4 - Saving Output"
+          href: 4-ACT-3-SavingOutput.html
+        - text: "Day 4 - Extra Exercises"
+          href: 4-ExtraExercises.html
+   - text: "Day 5"
+      menu:        
+    - text: "Day 5 - Overview"
+      href: 5-Overview.html
     - text: "Resources"
       href: resources.html
     - text: "Contributors"
