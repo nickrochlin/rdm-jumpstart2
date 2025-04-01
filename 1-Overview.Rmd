@@ -14,4 +14,27 @@ output:
       smooth_scroll: false
 ---
 
-## Day 1:
+## RDM: The Why and the What
+
+### Objectives
+
+* Situate the importance of RDM as it relates to scholarly integrity, ethics, and copyright
+* Review tools that support various aspects of RDM
+* Address the need to conduct a risk assessment of one's data
+* Introduce the basics of  OSF
+
+### Outcomes
+
+* Articulate the importance of RDM for scholarly integrity and its relation to the research data lifecycle
+* Identify the strengths of specific tools for various aspects of RDM
+* Create an OSF project
+* Describe, at a high level, FAIR (Findable, Accessible, Interoperable, Reusable)
+* Conduct a risk assessment classification of data
+
+### Deliverables
+
+* OSF project with this directory structure mapped to it
+* Readme file in root directory modeled on DMP Assistant
+* A data risk assessment
+* A data dictionary 
+* Original data file in appropriate directory and backed up to OSF
