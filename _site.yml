@@ -3,7 +3,7 @@ output_dir: "website"
 navbar:
   title: "RDM Jumpstart"
   left:
-     - text: "Day 1"
+    - text: "Day 1"
       menu:
         - text: "Day 1 Overview"      
           href: 1-Overview.html
@@ -39,14 +39,14 @@ navbar:
           href: 4-ACT-3-SavingOutput.html
         - text: "Day 4 - Extra Exercises"
           href: 4-ExtraExercises.html
-   - text: "Day 5"
+    - text: "Day 5"
       menu:        
-    - text: "Day 5 - Overview"
-      href: 5-Overview.html
-    - text: "Resources"
-      href: resources.html
-    - text: "Contributors"
-      href: contributors.html
+        - text: "Day 5 - Overview"
+          href: 5-Overview.html
+        - text: "Resources"
+          href: resources.html
+        - text: "Contributors"
+          href: contributors.html
 output:
   html_document:
     theme: flatly
