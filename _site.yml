@@ -7,7 +7,9 @@ navbar:
       menu:
         - text: "Day 1 Overview"      
           href: 1-Overview.html
-        - text: "Day 1"
+        - text: "Day 1 - Morning"
+          href: 1-LEC-TBD_2.html
+        - text: "Day 1 - Afternoon"
           href: 1-LEC-TBD.html
     - text: "Day 2"
       menu:
