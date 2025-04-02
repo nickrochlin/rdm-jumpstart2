@@ -16,7 +16,7 @@ navbar:
         - text: "Day 1 - OSF"
           href: 1-LEC-4-OSF.html
         - text: "Day 1 - Finding Data"
-          href: 1-ACT-1FindingData.html
+          href: 1-ACT-1-FindingData.html
     - text: "Day 2"
       menu:
         - text: "Day 2 - Overview"
@@ -65,6 +65,12 @@ navbar:
       menu:        
         - text: "Day 5 - Overview"
           href: 5-Overview.html
+        - text: "Day 5 - Final Project"
+          href: 5-ACT-1-FinalProject.html
+        - text : "Day 5 - Data Deposit on Borealis"
+          href: 5-LEC-1-Borealis.html
+    - text: "Extras"
+      menu:
         - text: "Resources"
           href: resources.html
         - text: "Contributors"
