@@ -15,12 +15,23 @@ output:
 date: "2025-02-28"
 ---
 
+```{r, libraries}
+library(kableExtra)
+```
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warnings = FALSE)
 ```
 ## Data Organization in R
 
-This section covers how data is organized in R. This includes both types of data (i.e., is your data composed of numbers, words, or both) and data structures (i.e., do you have one long list of elements, a spreadsheet, or something else). This section also covers how to recode existing data into another type of data and how to deal with missing data. Let's get started! 
+This section covers how data is organized in R. Understanding how your data is organized and being able to adjust that organization to match your research needs is an important part of research data management. For example, you might need your data to be in a certain structure to run certain statistical analyses or you may need to transform variables into versions that are more easily understood. This section covers four main topics: 
+
+1. What data types exist in R (i.e., is your data composed of numbers, words, or both) 
+2. Dealing with missing values 
+3. Re-coding existing data into another type of data
+4. What data structures exist in R (i.e., do you have one long list of elements, a spreadsheet, or something else)
+
+Let's get started! 
 
 ## Data Types in R
 Data can come in many different formats or units. Sometimes we have numbers with decimals, sometimes we have counts of how many times something happened, sometimes we have categories with names. It is important to know what type of data you have, how to figure that out in R, and how to modify the data type if needed. Various functions in R require having certain data types, so this is an important foundational skill for managing data in R. 
@@ -81,7 +92,8 @@ Let's explore the data types in our data using the `dplyr` functions!
 
 ## Checking Data Types in Our Data
 
-First we load our data and the dplyr package (remember to install it first if you haven't yet). Information on the data type can be seen in the "head" function in R. 
+First we load our data and the dplyr package (remember to install it first if you haven't yet). Just to reacquaint ourselves with our data, use the `head` function. 
+
 ```{r, message = FALSE}
 library(dplyr)
 load("data/timeuse_day2.Rdata")
@@ -101,13 +113,15 @@ kable_paper() %>%
 
 ```
 
-You can also check the data type of a specific variable with the "class" function,
+You can check the data type of a specific variable with the "class" function,
 
 ```{r}
 print(class(data$province))
 ```
 
+:::question
 Try exploring the data type of a few other variables on your own. 
+:::
 
 ## Missing Data
 You may have noticed that there are some cells in the data with "NA." This represents missing data in our dataset. Some missing data is usually present in data. There are many reasons for missing data and many different ways to handle missing data. These choices will depend on the context of specific research, but generally a plan for how to approach missing data should be thought through in advance. 
@@ -145,11 +159,8 @@ For some variables, we might want to change the data type based on our codebook.
 print(class(data$province))
 ```
 
-However, maybe we would prefer to have province acronyms (i.e., character data format) rather than the integer representation of them. We can re-code variables using the dplyr functions `%>%` and `mutate()`.
+However, maybe we would prefer to have province acronyms (i.e., character data format) rather than the integer representation of them. We can re-code variables using the dplyr functions `%>%` and `mutate()`. The possible integer values for the provicne variable, and what province they represent can be found in the dataset codebook. 
 
-This code is telling R to `recode()` the variable "province" from the dataset "data" into a new variable called "province_char" (you could call it anything, but make sure it is a meaningful name). The list outlines how each value of the current "province" variable should be recoded for the new "province_char" variable. These integer values and what province they represent can be found in the dataset codebook. The `mutate()` portion tells R to create a new column called "province_char". Before the `mutate()` function this code tells R to take the "data" object (i.e., the dataset) "and then" (i.e., the pipe function) apply the following functions. The pipe function (`%>%`) tells R to recode all of these values all at once, rather than having to write out `mutate()` and `recode()` for each one. Lastly, all of this work needs to be assigned back to our dataset "data" in order to save it. 
-
-**Note:** We did not assign this work to replace/overwrite the existing "province" variable. In order to have transparent data management and to prevent overwriting the original data in the instance that you make a mistake in your recoding, it is always best practice to keep the original variables in their original format and create new variables based on them as needed. In this way, if you ever need to reference the original data (and you definitely will need to), you still have it available to you. 
 ```{r}
 data <- data %>% mutate(province_char = recode(data$province, 
                             "10" = "NL", 
@@ -163,6 +174,22 @@ data <- data %>% mutate(province_char = recode(data$province,
                             "48" = "AB", 
                             "59" = "BC"))
 ```
+
+:::walkthrough
+  - This code is telling R to `recode()` the variable "province" from the dataset "data" into a new variable called "province_char" (you could call it anything, but make sure it is a meaningful name).
+
+  - The list outlines how each value of the current "province" variable should be recoded for the new "province_char" variable. 
+  
+  - The `mutate()` portion tells R to create a new column called "province_char". 
+  
+  - Before the `mutate()` function this code tells R to take the "data" object (i.e., the dataset) "and then" (i.e., the pipe function) apply the following functions. 
+  
+  - The pipe function (`%>%`) tells R to recode all of these values all at once, rather than having to write out `mutate()` and `recode()` for each one. 
+  
+  - Lastly, all of this work needs to be assigned back to our dataset "data" in order to save it using the `<-` symbol. 
+:::
+
+**Note:** We did not assign this work to replace/overwrite the existing "province" variable. In order to have transparent data management and to prevent overwriting the original data in the instance that you make a mistake in your recoding, it is always best practice to keep the original variables in their original format and create new variables based on them as needed. In this way, if you ever need to reference the original data (and you definitely will need to), you still have it available to you. 
 
 Now lets check the data type of this new variable we just created. 
 ```{r}
@@ -184,25 +211,10 @@ as.numeric(data$durSleep)
 ```
 
 ## Data Structures in R
-Data structures are how the data is organized in R. Here are the major data structures in R. Some of these are mostly used only when doing statistical modeling, but we will list them all out here anyway. 
+Data structures are how the data is organized in R. Here are the major data structures in R. There are some additional structures (e.g., matrices and arrays) that are mostly used only when doing statistical modeling. We will skip over these for now and focus on the data structures you will likely encounter in a research data managment context. 
 
 #### Vectors
 Vectors are simplest data structure. They are essentially a list of elements of the same data type. For example, you could have a numeric vector containing the elements (10, 15, 20, 25) or a character vector containing the elements ("blue", "red", "green"). They are one dimensional, since they are just one long list. A single variable (e.g., a list of ages of all the participants) can be considered a vector. 
-
-#### Matrices
-Matrices, like vectors, can contain only a single type of data. However, matrices are two-dimensional (i.e., they have rows and columns). This is a data structure R uses to store certain information about statistical models. A matrix of numbers could look like this: 
-
-```{r}
-matrix_example <- matrix(
-  c(1, 2, 3, 4, 5, 6, 7, 8, 9), 
-  nrow = 3,             
-  ncol = 3,             
-  byrow = TRUE)
-print (matrix_example)
-```
-
-#### Arrays
-Arrays are an extension of matrices, in that they can have additional dimensions. For example, an array that is 3:4:2, has three rows, four columns, and two layers in depth. You likely won't need to use arrays much, but know that when conducting statistics sometimes, the model results are stored in matrices and arrays. 
 
 #### Lists
 Lists are an ordered collection of elements. They can contain different data types and they are one dimensional. So, you can have a list of vectors, a list of characters etc. Here is an example of a list:
@@ -226,7 +238,7 @@ However, data frames do have some constraints. First, the columns and rows must 
 For this course, our data is in data frame format. 
 
 #### Factors
-Factor data is good for categorical/string data. Factors can store string or integer data. Factors have leveled data. For example, the variable of education may have the levels of "high school," "bachelors degree," and "masters degree." 
+Factors are how R handles categorical data. Factors can store string or integer data, because sometimes numbers do represent categories (rather than a continuous range of numbers).Factors have leveled data. For example, the variable of education may have the levels of "high school," "bachelors degree," and "masters degree." 
 
 Factor structure is particularly useful for statistical modeling. Sometimes you might need to change an object into factor structure, so you can use the function `as.factor()` to do so. 
 
