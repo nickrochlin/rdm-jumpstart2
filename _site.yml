@@ -7,12 +7,26 @@ navbar:
       menu:
         - text: "Day 1 Overview"      
           href: 1-Overview.html
-        - text: "Day 1"
-          href: 1-LEC-TBD.html
+        - text: "Day 1 - The Importance of RDM"
+          href: 1-LEC-1-ImportanceRDM.html
+        - text: "Day 1 - The Data Science Workflow"
+          href: 1-LEC-2-DataScience.html
+        - text: "Day 1 - Data Management Plans"
+          href: 1-LEC-3-DMPs.html
+        - text: "Day 1 - OSF"
+          href: 1-LEC-4-OSF.html
+        - text: "Day 1 - Finding Data"
+          href: 1-ACT-1-FindingData.html
     - text: "Day 2"
       menu:
         - text: "Day 2 - Overview"
           href: 2-Overview.html
+        - text: "Day 2 - Bias & Reproducibility"
+          href: 2-LEC-1-BiasRepro.html
+        - text: "Day 2 - Licencing and Copyright"
+          href: 2-LEC-2-LicenceCopyright.html
+        - text: "Day 2 - GUI vs Scripting"
+          href: 2-LEC-3-GUIscript.html
         - text: "Day 2 - Setting Up R"
           href: 2-ACT-1-RSetup.html
         - text: "Day 2 - First Steps in R"
@@ -21,16 +35,24 @@ navbar:
       menu:
         - text: "Day 3 - Overview"
           href: 3-Overview.html
+        - text: "Day 3 - FAIR"
+          href: 3-LEC-1-FAIR.html
+        - text: "Day 3 - Computational Literacies"
+          href: 3-LEC-2-CompLiteracies.html
+        - text: 'Day 3 - Creating a readme'
+          href: 3-ACT-1-readme.html
         - text: "Day 3 - Data Types and Structures"
-          href: 3-ACT-1-DataTypesStructures.html
+          href: 3-ACT-2-DataTypesStructures.html
         - text: "Day 3 - Filter and Select"
-          href: 3-ACT-2-FilterSelect.html
+          href: 3-ACT-3-FilterSelect.html
         - text: "Day 3 - Extra Exercises"
           href: 3-ExtraExercises.html
     - text: "Day 4"
       menu:
         - text: "Day 4 - Overview"
           href: 4-Overview.html
+        - text: "Day 4 - RMarkdown, Scripts & IDEs"
+          href: 4-LEC-1-RmarkdownScripts.html
         - text: "Day 4 - Troubleshooting"
           href: 4-ACT-1-Troubleshooting.html
         - text: "Day 4 - Data Visualization"
@@ -40,13 +62,19 @@ navbar:
         - text: "Day 4 - Extra Exercises"
           href: 4-ExtraExercises.html
     - text: "Day 5"
-      menu:
+      menu:        
         - text: "Day 5 - Overview"
           href: 5-Overview.html
-    - text: "Resources"
-      href: resources.html
-    - text: "Contributors"
-      href: contributors.html
+        - text: "Day 5 - Final Project"
+          href: 5-ACT-1-FinalProject.html
+        - text : "Day 5 - Data Deposit on Borealis"
+          href: 5-LEC-1-Borealis.html
+    - text: "Extras"
+      menu:
+        - text: "Resources"
+          href: resources.html
+        - text: "Contributors"
+          href: contributors.html
 output:
   html_document:
     theme: flatly
