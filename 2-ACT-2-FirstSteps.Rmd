@@ -13,6 +13,9 @@ output:
       collapsed: false
       smooth_scroll: false
 ---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message = FALSE, warnings = FALSE)
+```
 
 ## RMarkdown
 
@@ -96,7 +99,7 @@ head(data)
 
 ```{r, echo = FALSE}
 library(kableExtra)
-print(head(data)) |>
+head(data) |>
   kbl() |>
   kable_styling(bootstrap_options = "striped")
 ```
@@ -183,6 +186,6 @@ The text format (csv) will be the ideal format to share the data.
 #need to edit the wording here, describe difference between csv and RData, when and why use each.
 
 ```{r}
-save(data, file="timeuse_day2.RData")
+save(data, file="data/timeuse_day2.RData")
 ```
 
