@@ -73,6 +73,10 @@ navbar:
       menu:
         - text: "Resources"
           href: resources.html
+        - text: "RDM Roadmap"
+          href: 6-EXT-RDMRoadmap.html
+        - text: "Reproducible Roadmap"
+          href: 6-EXT-CRRoadmap.html
         - text: "Contributors"
           href: contributors.html
 output:

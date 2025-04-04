@@ -151,8 +151,7 @@ img {
   color: #8b0000;
 }
 
-/*
-pre:not([class]) {
-  background-color: #ecf0f1;
+.md-table > table > tbody > tr > td {
+  padding:1em 0;
+  vertical-align: top;
 }
-*/
