@@ -1,0 +1,45 @@
+---
+title: "R Cheatsheet"
+pagetitle: "R Cheatsheet"
+output:
+  html_document:
+    code_folding: show # allows toggling of showing and hiding code. Remove if not using code.
+    code_download: true # allows the user to download the source .Rmd file. Remove if not using code.
+    includes:
+      after_body: footer.html # include a custom footer.
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+date: "2025-04-7"
+---
+
+## R Cheatsheet
+
+:::md-table
+
+| Command | Description | Syntax
+| :-- | :----- | :---- |
+| `<-` | Assign content to an R object. | `object-name <- content-assigned`
+| `read.csv()` | Read data into R. It's advised to assign to an R object). | ` data <- read.csv("file-path/data-file-name.csv")`
+| `colnames()` | List all the column names in a dataset. | `colnames(data)`
+| `head` | Display the top rows of a dataset. Can optionally include a specified number after a comma. | `head(data, 10)` 
+| `View()` | Display a dataset as a spreadsheet within an RStudio window. | `View(data)`
+| `install.packages()` | Install a package into R. Only need to do this once. | `install.packages("package-name")`
+| `library()` | Bring a package to use by calling its library. | `library(package-name)`
+| `%>%` | The pipe operator, which takes the output of one command/function and passes it through to another, and can be thought of as "and then" in your code. | `data <- data %>% function(...)`
+| `rename()` | Allows you to rename column names (variables) of a dataset. | `data <- data %>% rename("new-column-name" = "old-column-name")`
+| `mean()` | Calculates the mean of the data that's placed in the brackets. | `mean(data)` 
+| `is.na()` | Display when a variable or dataframe has missing values, presented as TRUE/FALSE. | `is.na(data$variable)` 
+| `complete.cases()` | Display when a row has no missing values, presented as TRUE/FALSE | `complete.cases(data)`
+| `mutate()` | Create new columns based on values in existing columns. | `data <- data %>% mutate(new-variable-name = recode(data$old-variable, "old-value" = "new-value))`
+| `class()` | Prints the data type of a variable, or the structure of a dataset. | `class(object-of-interest)`
+| `as.numeric()` | Converts alternative data types into numeric values. | `as.numeric(data)`
+| `distinct()` | Display distinct values of a variable. | `data %>% distinct(variable) %>% print()`
+| `count()` | Counts the number of occurrences of each value in a column. | `data %>% count(variable) %>% print()`
+| `arrange()` | Display outcome results in ascending or descending order (default is ascending) | `data %>% arrange(desc(value-of-interest))`
+| `filter` | Subset the data to keep only rows where a specified condition is met. | `data %>% filter(variable-value == x)`
+| `nrow()` | Returns the number of rows present in x. | `nrow(data)`
+| `ncol()` | Returns the number of columns present in x. | `ncol(data)`
+

@@ -79,6 +79,8 @@ navbar:
           href: 6-EXT-CRRoadmap.html
         - text: "Contributors"
           href: contributors.html
+        - text: "R Cheatsheet"
+          href: 6-EXT-RCheatsheel.html
 output:
   html_document:
     theme: flatly
