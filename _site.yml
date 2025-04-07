@@ -80,7 +80,7 @@ navbar:
         - text: "Contributors"
           href: contributors.html
         - text: "R Cheatsheet"
-          href: 6-EXT-RCheatsheel.html
+          href: 6-EXT-RCheatsheet.html
 output:
   html_document:
     theme: flatly
