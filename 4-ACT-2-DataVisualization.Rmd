@@ -22,6 +22,10 @@ library(kableExtra)
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warnings = FALSE)
 ```
 
+```{r, include = FALSE}
+load("data/timeuse_day3_1_recoded.Rdata")
+library(ggplot2)
+```
 ## Data Visualization in R
 
 Communicating about research and data is a critical part of the data science workflow. ** add data science workflow image ** One powerful way to communicate research findings is through visualizations. Visuals can often more efficiently and more effectively tell the story of your data, rather than only relying on writing. Well done data visualizations will often have the biggest impact on an audience in a science communication context. In this session we have a few main goals. 
@@ -46,32 +50,57 @@ A classic pie chart is useful for representing parts that add up to a whole. Thi
 ADD EXAMPLE
 
 #### Box Plots
-(good for comparing group variance and means, i.e., understanding distribution of a sample, can show over time too)
+Box plots (also known as box and whisker plots) are good for understanding and comparing variance between groups. They typically depict the median and min/max of each group for a certain variable. The box portion represents the 1st and 3rd quartiles of the distribution. You can also show change over time with this type of plot. 
 
-ADD EXAMPLE
+```{r, echo = FALSE}
+ggplot(data, aes(x=as.factor(province_char), y=durSleep)) + 
+    geom_boxplot(fill="slateblue", alpha=0.2) + 
+    xlab("Province")
+```
 
 #### Histogram 
-(histogram displays continuous variable with bars) (good for understanding  distribution of one variable)
+Histograms display the distribution of one variable. The height of the bars represent how many times that value was represented in the data. This is typically what you view if you want to visually inspect if a variable in normally distributed. 
 
-ADD EXAMPLE
+``` {r, echo = FALSE}
 
-#### Bbar Chart 
-(bar chart is comparing different groups, good for comparing groups or showing change ver time)
+ggplot(data, aes(x=durSleep)) + 
+  geom_histogram()+
+  xlab("Number of Minutes Sleeping") +
+  ylab ("Number of Participants")
+```
 
-ADD EXAMPLE
+#### Bar Chart 
+Bar charts are good for representing data from groups or categories, with the bars representing different categories. The bar height usually represent a mean, a count, or a percentage, by category. These can be useful for comparing groups or showing change over time. 
+
+``` {r, echo = FALSE}
+ggplot(data, aes(x=maritalStat_char, fill = as.factor(maritalStat_char))) +
+  geom_bar() + 
+  xlab("Marital Status") +
+  ylab ("Number of Participants") +
+  scale_fill_hue(c = 40) +
+  theme(legend.position = "none")
+```
 
 #### Scatter Plot 
-(good for understanding relationships between variables)
+Scatter plots include data points that are plotted along an x and y axis, showing the relationship between these two variables. Often researchers add a regression line or line of best fit to these plots to show the statistical relationship between the variables. 
 
-ADD EXAMPLE
+```{r, echo = FALSE}
+ggplot(data, aes(durWork, durSleep)) +
+  geom_point(alpha = .4) +
+  geom_smooth(method=lm, se=TRUE, alpha = .2) +
+  xlab("Duration of Work") +
+  ylab ("Duration of Sleep") +
+  labs(title = "Relationship Between Time Working and Time Sleeping")+
+  theme_bw () + guides(color = 'none')
+```
 
 #### Line Chart 
-(good for showing changes over time, good for comparing groups)
+Line charts used connected straight lines to display data. They are good for showing change over time on a continuous variable. They are often similar in purpose to bar charts, but visually simpler if there are many time points. 
 
 ADD EXAMPLE
 
 #### Interactive Data Visualizations 
-https://www.gapminder.org/tools/#$chart-type=bubbles&url=v2 
+As research and publications move more online and away from print, this can allow for more interactive data visualizations. These are types of data visualizations that allow a person to select and change what is being shown. Check out this great example from [Gapminder](https://www.gapminder.org/tools/#$chart-type=bubbles&url=v2). The default visualization shows GDP and life expectancy over time, and by country. However, you can change the variables included to view other data. 
 
 #### So many more! 
 - Heat Map
@@ -79,7 +108,6 @@ https://www.gapminder.org/tools/#$chart-type=bubbles&url=v2
 - Biolin Plot
 - Gantt Chart
 - Choropleth Map
-
 
 ### What Makes a Good Visualization?
 There is an art to picking the best data visualization that fits your data and the story you are telling. Consider the following: 
@@ -138,28 +166,43 @@ If you have installed the tidyverse, then `ggplot2` is included. Otherwise you c
 #library(ggplot2)
 ```
 
-Although there are many ways to make data visualizations in R, other approaches tend to be more automatic and consequently limit the amount you can change and adapt your visualization to your needs. However, `ggplot` works in layers, allowing for maximum control and flexibility. 
+Although there are many ways to make data visualizations in R, other approaches tend to be more automatic and consequently limit the amount you can change and adapt your visualization to your needs. However, `ggplot2` works in layers, allowing for maximum control and flexibility. There are three categories of components commonly used in `ggplot2`.
 
-Typically you will use the function `ggplot()`, tell what dataset you are using and aesthetic mapping `aes()`. Then you can add layers such as what type of visualization you want (e.g., `geom_point()` or `geom_histogram()`) or what axis labels to add (e.g., `xlab`, `labs(title = )`). You will usually add layers using `+` symbols, building up all the compoents of your data visualization that you need. 
+1. **Geometries:** visual representations of the data. This is often lines, points, box, histograms etc.
+2. **Attributes:** Set values for the visual properties of geometries. This could include the color of bars on a bar plot or the shape of a line.
+3. **Aesthetics:** Values of visual properites of geometries that vary depending on the data. This could be the color of a line varying based on gender. 
 
-- Geometries
-- Attributes
-- Aesthetics
+Here are some of the most common layers (i.e., functions) used in `ggplot2`. Typically you connect these layers using the `+` symbol. 
 
-Some of the most common aesthetics that people add include:
+**- `ggplot()`:** how you will start most plots you build in `ggplot2`. The rest of the information goes within this function.
 
-- `x` to set the x-axis coordinate
-- `y` to set the x-axis coordinate
-- `color` to set the color of a feature of plot (e.g., groups, data points)
-- `fill` to set the interior color of a feature (e.g., bars of the bar plot, color of the standard error band)
-- `size` to set  the size or width (e.g., of text)
-- `alpha` to set the transparency (e.g., of data points, or bars)
+**- `aes()`:** this is the aesthetic mapping function, in which you can control many visual components of the plot. You can add colors, axis labels, font sizes and more within this function
 
-#### Bar Plot
+**- `geom_point()`:** used for making a scatter plot
+
+**- `geom_line()`:** used for adding a line to a plot
+
+**- `geom_histogram()`:** used for making a histogram
+
+**- `geom_col()`:** used for making a bar plot
+
+**- `xlab`, `ylab`, and `labs(title = )`:** used for adding axis labels and an overall title to plots
+
+**- `color`:** assigns a color to part of the plot, such as different groups or the data points
+
+**- `fill`:** assigns the interior color of part of the plot, such as a confidence band or the bars in bar plots
+
+**- `alpha`:** used to change the transparency of a component of the plot. Useful if you lots of have overlapping data points or distributions from multiple groups. 
+
+**- `size`:** used to set the size of part of the plot, such as how big the data points or text should be
+
+There are an infinite number of data visualization options in `ggplot` but to get started today we are going to focus on making a bar plot (good for categorical data) and a scatter plot (good for continuous data). 
+
+#### Making a Bar Plot
 m/SD bar plot of rushed people using day 3 part 2 results example
 Patchwork package-stack plots; Furcates put more to less filter 
 
-#### Correlation Plot
+#### Making a Scatter Plot
 number of hours worked and feeling rushed? or some more coninuous variable?
 
 ```{r}
@@ -172,24 +215,4 @@ number of hours worked and feeling rushed? or some more coninuous variable?
 ::: question
 Create a data visualization to depict if X is different for Y groups? If X or Y feels more rushed?
 :::
-
-
-###Extra
-<!-- ```r{} -->
-<!-- p_cor <-ggplot(dat, aes(Gossip_Freq_Scale, FriendSatGen_Scale, color = Group),  -->
-<!--                x.label = "Gossip Frequency") +  -->
-<!--   geom_point(position = position_jitter (.15), alpha = .7) + -->
-<!--   geom_smooth(method=lm, se=TRUE, alpha = .2) +  -->
-<!--   xlab("Gossip Frequency") +  -->
-<!--   ylab ("Friendship Satisfaction") +  -->
-<!--   scale_color_manual(values=met.brewer("Juarez", 2)) +  -->
-<!--   labs(title = "Gossip Fequency and Friendship Satisfaction") + -->
-<!--   theme(axis.text.x = element_text(size = 24), axis.title.x = element_text(size = 30, margin = margin(t = 30)), -->
-<!--         axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 30, margin = margin (r = 30)), -->
-<!--         plot.title = element_text(size = 30, hjust = .5, vjust = 1.5, face = "bold", margin = margin (t = 20)),  -->
-<!--         panel.background = element_rect(fill="white"), -->
-<!--         legend.title = element_text(size=10),  -->
-<!--         legend.text = element_text(size=9))  -->
-<!-- p_cor -->
-<!-- ``` -->
 
