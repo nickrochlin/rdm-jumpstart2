@@ -162,7 +162,7 @@ print(class(data$province))
 However, maybe we would prefer to have province acronyms (i.e., character data format) rather than the integer representation of them. We can re-code variables using the dplyr functions `%>%` and `mutate()`. The possible integer values for the provicne variable, and what province they represent can be found in the dataset codebook. 
 
 ```{r}
-data <- data %>% mutate(province_char = recode(data$province, 
+data <- data |> mutate(province_char = recode(data$province, 
                             "10" = "NL", 
                             "11" = "PEI", 
                             "12" = "NS",
@@ -260,7 +260,7 @@ Can you re-code marital status into a character/string variable?
 :::
 
 ```{r class.source = 'fold-hide', results = 'hide'}
-data<-data %>% mutate(maritalStat_char = recode(data$maritalStat, 
+data<-data |> mutate(maritalStat_char = recode(data$maritalStat, 
                             "1" = "Married", 
                             "2" = "Living common-law", 
                             "3" = "Widowed",
@@ -276,7 +276,7 @@ How about level of education?
 :::
 
 ```{r class.source = 'fold-hide', results = 'hide'}
-data <- data %>% mutate(eduLevel_char = recode(data$eduLevel,
+data <- data |> mutate(eduLevel_char = recode(data$eduLevel,
                             "1" = "Less than high school dimploma or its equivalent",
                             "2" = "High school diploma or equivalency",
                             "3" = "Trade certificate or diploma",
