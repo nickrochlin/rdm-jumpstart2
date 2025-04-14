@@ -1,6 +1,6 @@
 ---
 title: "Day 4 - Part 2"
-pagetitle: "Pending"
+pagetitle: "Data Visualization"
 output:
   html_document:
     code_folding: show # allows toggling of showing and hiding code. Remove if not using code.
@@ -14,4 +14,182 @@ output:
       smooth_scroll: false
 ---
 
-## Getting the Data
+```{r, libraries, include = FALSE}
+library(kableExtra)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warnings = FALSE)
+```
+
+## Data Visualization in R
+
+Communicating about research and data is a critical part of the data science workflow. ** add data science workflow image ** One powerful way to communicate research findings is through visualizations. Visuals can often more efficiently and more effectively tell the story of your data, rather than only relying on writing. Well done data visualizations will often have the biggest impact on an audience in a science communication context. In this session we have a few main goals. 
+
+1. Introduction to types of data visualizations
+2. Discuss what makes a good visualization
+3. Review and critique some data visualization examples
+4. Introduction to ggplot to generate visualizations in R
+
+### Types of Data Visualization
+
+Data visualizations can be descriptive in nature, such as portraying the demographic distribution of a group people, or can represent statistical findings, such as a regression line with a confidence interval overlayed on a scatter plot of data. In certain contexts it is also common to present data and information in more easily digestible infographics (add link to examples), that enter more of a graphic design space. Different data visualizations fulfill different goals. Having a toolbox of a variety of data visualization types can help you pick the best type to fit your needs for a given project. 
+
+#### Table
+Tables to collect and organize data are one of the most common and basic data visualizations. But don't discount them! They can be efficient ways to convey a large amount of information about your data all at once. 
+
+ADD EXAMPLE
+
+#### Pie Chart
+A classic pie chart is useful for representing parts that add up to a whole. This also allows for comparing group sizes. Often used for demographic variables, with the whole representing the whole sample, or for representing money, with the whole representing a budget or total money spent/made. Careful to use a pie chart only when it really adds to the story. For instance, if there are only two parts to the whole, a pie chart might not convey much more information. Conversely, if there are many groups, it can become difficult to really see all of them and compare them. 
+
+ADD EXAMPLE
+
+#### Box Plots
+(good for comparing group variance and means, i.e., understanding distribution of a sample, can show over time too)
+
+ADD EXAMPLE
+
+#### Histogram 
+(histogram displays continuous variable with bars) (good for understanding  distribution of one variable)
+
+ADD EXAMPLE
+
+#### Bbar Chart 
+(bar chart is comparing different groups, good for comparing groups or showing change ver time)
+
+ADD EXAMPLE
+
+#### Scatter Plot 
+(good for understanding relationships between variables)
+
+ADD EXAMPLE
+
+#### Line Chart 
+(good for showing changes over time, good for comparing groups)
+
+ADD EXAMPLE
+
+#### Interactive Data Visualizations 
+https://www.gapminder.org/tools/#$chart-type=bubbles&url=v2 
+
+#### So many more! 
+- Heat Map
+- Stacked Bar or Stacked Area Chart
+- Biolin Plot
+- Gantt Chart
+- Choropleth Map
+
+
+### What Makes a Good Visualization?
+There is an art to picking the best data visualization that fits your data and the story you are telling. Consider the following: 
+
+- What is your data visualization adding to your science communication? 
+- What take-away message are you conveying with the image? 
+- What type of variables to you have? Continuous? Categorical?
+- Are you comparing groups?
+- Are you showing change over time?
+- Are you visualizing a relationship between variables?
+
+It can be easy to get in the habit of using the same types of data visualization over and over again. Check out this website that gives many creative data visualization options, categorized by goal: https://r-graph-gallery.com/ 
+
+#### Good Data Visualization Princicples
+Once you pick the format that fits your needs best, these are some principles to keep in mind when crafting your visualization to make sure it is clear to your audience. 
+
+**- Clear Data:** Consider the format of your data when you include it. Your data needs to be unambiguously communicated to your audience. For instance, do you have so many groups that they are difficult to differentiate? Are your data points stacked on the same spot so the audience can't see the density of your data points?
+
+**- Clear Labels:** All data visualizations need labels. This may be the axis on a scatter plot, legends for your bar graph, or percentages on your pie chart. You must tell the audience what they are looking at. If different colors are used, they should represent some aspect of the data and be clearly labeled. 
+
+**- Clear Scales**: Clear and consistent scales are important to avoid misinterpretation of your data visualization. An axis should be clearly labeled and include the full scale range. Make it clear if the scale does not start at 0. Scales should be consistent across visualizations to allow for comparisons. 
+
+**- Simplicity:** Aim to have uncluttered data visualization. It is easy to get excited about all you can do creatively in the world of data visualizations, but sometimes adding too much (e.g., extra colors, pictures) can actually obscure your main message. Avoid extra info that doesn't add to the story you are telling.
+
+**- Accessibility:** Consider how your data visualization design would be viewed by a variety of other people. Text font and size for legends and axis labels should be clear and not too small. Try not to rely only on color to distinguish groups (e.g., lines can be dashed or doted), or pick colors/hues that are distinguishable by people who are colorblind. Include alternative text descriptions that can be read aloud by a screen reader. 
+
+
+### Your Turn!
+One of the best ways to get into data visualization is to get inspired from some of the amazing data visualizations that already exist! 
+
+We have two websites with a variety of data visualization examples. 
+
+- [R Graph Gallery](https://r-graph-gallery.com/best-r-chart-examples) includes many examples of data visualization created in R. These also include tutorials/R Code used to make them. These examples go beyond what we will cover in this workshop, but serve as great inspiration for how much you can do in R!
+
+- [Tableau Viz Gallery](https://www.tableau.com/viz-gallery) includes examples created with the platform Tableau. This is a proprietary (paid) platform which we are not using in this workshop, but this gallery still has some great examples to help inspire your data visualization creativity! 
+
+:::question
+In small groups, on either of these websites, find a data visualization example that jumps out ot you as interesting and then answer the following questions. 
+
+1. What captured your attention about this data visualization? The topic? The design? 
+2. What is the story this example is trying to tell? What is one of the take-away messages it is conveying?
+3. What do you like about this visualization? Does it convey information about the data in a uniquely effective way? Does it adhere to the principles we discussed? 
+4. Is there anything you find confusing about this example? Antying you think is missing or that you would change to improve it? 
+:::
+
+### ggplot R Package
+
+Now that we have our data visualization imaginations going, let's get into how we can visually represent our data in R.
+
+The go-to package for data visualization in R is `ggplot2`, which is part of the tidyverse. You can find more information about `ggplot2` on the [tidyverse website](https://ggplot2.tidyverse.org/)
+
+If you have installed the tidyverse, then `ggplot2` is included. Otherwise you can install it now. Let's also load our dataset for today.
+
+```{r}
+#install.packages("ggplot2")
+#library(ggplot2)
+```
+
+Although there are many ways to make data visualizations in R, other approaches tend to be more automatic and consequently limit the amount you can change and adapt your visualization to your needs. However, `ggplot` works in layers, allowing for maximum control and flexibility. 
+
+Typically you will use the function `ggplot()`, tell what dataset you are using and aesthetic mapping `aes()`. Then you can add layers such as what type of visualization you want (e.g., `geom_point()` or `geom_histogram()`) or what axis labels to add (e.g., `xlab`, `labs(title = )`). You will usually add layers using `+` symbols, building up all the compoents of your data visualization that you need. 
+
+- Geometries
+- Attributes
+- Aesthetics
+
+Some of the most common aesthetics that people add include:
+
+- `x` to set the x-axis coordinate
+- `y` to set the x-axis coordinate
+- `color` to set the color of a feature of plot (e.g., groups, data points)
+- `fill` to set the interior color of a feature (e.g., bars of the bar plot, color of the standard error band)
+- `size` to set  the size or width (e.g., of text)
+- `alpha` to set the transparency (e.g., of data points, or bars)
+
+#### Bar Plot
+m/SD bar plot of rushed people using day 3 part 2 results example
+Patchwork package-stack plots; Furcates put more to less filter 
+
+#### Correlation Plot
+number of hours worked and feeling rushed? or some more coninuous variable?
+
+```{r}
+#ggplot(data, aes(x = x_column, y = y_column)) +
+       #geom_line(aes(color = z_column))
+      
+```
+
+### Your Turn!
+::: question
+Create a data visualization to depict if X is different for Y groups? If X or Y feels more rushed?
+:::
+
+
+###Extra
+<!-- ```r{} -->
+<!-- p_cor <-ggplot(dat, aes(Gossip_Freq_Scale, FriendSatGen_Scale, color = Group),  -->
+<!--                x.label = "Gossip Frequency") +  -->
+<!--   geom_point(position = position_jitter (.15), alpha = .7) + -->
+<!--   geom_smooth(method=lm, se=TRUE, alpha = .2) +  -->
+<!--   xlab("Gossip Frequency") +  -->
+<!--   ylab ("Friendship Satisfaction") +  -->
+<!--   scale_color_manual(values=met.brewer("Juarez", 2)) +  -->
+<!--   labs(title = "Gossip Fequency and Friendship Satisfaction") + -->
+<!--   theme(axis.text.x = element_text(size = 24), axis.title.x = element_text(size = 30, margin = margin(t = 30)), -->
+<!--         axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 30, margin = margin (r = 30)), -->
+<!--         plot.title = element_text(size = 30, hjust = .5, vjust = 1.5, face = "bold", margin = margin (t = 20)),  -->
+<!--         panel.background = element_rect(fill="white"), -->
+<!--         legend.title = element_text(size=10),  -->
+<!--         legend.text = element_text(size=9))  -->
+<!-- p_cor -->
+<!-- ``` -->
+
