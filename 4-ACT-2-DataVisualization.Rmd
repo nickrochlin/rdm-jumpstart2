@@ -16,6 +16,7 @@ output:
 
 ```{r, libraries, include = FALSE}
 library(kableExtra)
+library(ggplot2)
 ```
 
 ```{r setup, include=FALSE}
@@ -23,8 +24,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warnings = FALSE)
 ```
 
 ```{r, include = FALSE}
-load("data/timeuse_day3_1_recoded.Rdata")
-library(ggplot2)
+load("data/timeuse_day3_2.Rdata")
 ```
 ## Data Visualization in R
 
@@ -176,13 +176,13 @@ Although there are many ways to make data visualizations in R, other approaches 
 
 1. **Geometries:** visual representations of the data. This is often lines, points, box, histograms etc.
 2. **Attributes:** Set values for the visual properties of geometries. This could include the color of bars on a bar plot or the shape of a line.
-3. **Aesthetics:** Values of visual properites of geometries that vary depending on the data. This could be the color of a line varying based on gender. 
+3. **Aesthetics:** Values of visual properties of geometries that vary depending on the data. This could be the color of a line varying based on gender. 
 
-Here are some of the most common layers (i.e., functions) used in `ggplot2`. Typically you connect these layers using the `+` symbol. 
+Here are some of the most common layers (i.e., functions) used in `ggplot2`. Typically you connect these layers using the `+` symbol. There is often more than one way to build the same plot with the `ggplot` package. 
 
 **- `ggplot()`:** how you will start most plots you build in `ggplot2`. The rest of the information goes within this function.
 
-**- `aes()`:** this is the aesthetic mapping function, in which you can control many visual components of the plot. You can add colors, axis labels, font sizes and more within this function
+**- `aes()`:** this is the aesthetic mapping function, in which you can control aesthetic components of the plot. You can add colors, axis labels, font sizes and more within this function
 
 **- `geom_point()`:** used for making a scatter plot
 
@@ -205,20 +205,44 @@ Here are some of the most common layers (i.e., functions) used in `ggplot2`. Typ
 There are an infinite number of data visualization options in `ggplot` but to get started today we are going to focus on making a bar plot (good for categorical data) and a scatter plot (good for continuous data). 
 
 #### Making a Bar Plot
-m/SD bar plot of rushed people using day 3 part 2 results example
-Patchwork package-stack plots; Furcates put more to less filter 
+Building from yesterday, let's see if people who feel rushed tend to work more than people who do not feel rushed. 
+
+```{r}
+ggplot(data, aes(x = isFeelRushed, y = durWork)) +
+  geom_bar(stat = "summary") + 
+  xlab("Feeling Rushed") +
+  ylab ("Time Working") 
+```
+
+IMPROVE AND ADD WALKTHROUGH
 
 #### Making a Scatter Plot
 number of hours worked and feeling rushed? or some more coninuous variable?
 
 ```{r}
-#ggplot(data, aes(x = x_column, y = y_column)) +
-       #geom_line(aes(color = z_column))
+ggplot(data, aes(durWork, durSleep)) +
+  geom_point(alpha = .4) +
+  geom_smooth(method=lm, se=TRUE, alpha = .2) +
+  xlab("Duration of Work") +
+  ylab ("Duration of Sleep") +
+  labs(title = "Relationship Between Time Working and Time Sleeping")+
+  theme_bw () + guides(color = 'none')
       
 ```
 
+IMPROVE AND ADD WALKTHROUGH
+
 ### Your Turn!
 ::: question
-Create a data visualization to depict if X is different for Y groups? If X or Y feels more rushed?
+Take a look at our data set and make two new plots. 
+
+1. Make a plot comparing groups (i.e., a categorical variable) on one of the duration variables (i.e., a continuous variable).
+
+2. Make a plot comparing two continuous variables. 
+:::
+
+::: question
+
+**Challenge:** What is one component of your plot you would like to change? Can you look up a solution? 
 :::
 
