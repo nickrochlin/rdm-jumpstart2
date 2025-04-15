@@ -28,7 +28,13 @@ library(ggplot2)
 ```
 ## Data Visualization in R
 
-Communicating about research and data is a critical part of the data science workflow. ** add data science workflow image ** One powerful way to communicate research findings is through visualizations. Visuals can often more efficiently and more effectively tell the story of your data, rather than only relying on writing. Well done data visualizations will often have the biggest impact on an audience in a science communication context. In this session we have a few main goals. 
+Communicating about research and data is a critical part of the data science workflow. One powerful way to communicate research findings is through visualizations. Visuals can often more efficiently and more effectively tell the story of your data, rather than only relying on writing. Well done data visualizations will often have the biggest impact on an audience in a science communication context. 
+
+![](images/tidyverse-workflow.png)
+
+
+
+In this session we have a few main goals. 
 
 1. Introduction to types of data visualizations
 2. Discuss what makes a good visualization

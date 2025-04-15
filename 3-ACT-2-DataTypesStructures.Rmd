@@ -15,16 +15,21 @@ output:
 date: "2025-02-28"
 ---
 
-```{r, libraries}
+```{r, libraries, include = FALSE}
 library(kableExtra)
 ```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warnings = FALSE)
 ```
+
 ## Data Organization in R
 
-This section covers how data is organized in R. Understanding how your data is organized and being able to adjust that organization to match your research needs is an important part of research data management. For example, you might need your data to be in a certain structure to run certain statistical analyses or you may need to transform variables into versions that are more easily understood. This section covers four main topics: 
+This section covers how data is organized in R and how to clean a dataset. Understanding how your data is organized and being able to adjust that organization to match your research needs is an important part of research data management. For example, you might need your data to be in a certain structure to run certain statistical analyses or you may need to transform variables into versions that are more easily understood. 
+
+![](images/tidyverse-workflow.png)
+
+This section covers four main topics: 
 
 1. What data types exist in R (i.e., is your data composed of numbers, words, or both) 
 2. Dealing with missing values 
@@ -44,6 +49,9 @@ This data type deals with whole numbers (i.e., no decimals) and operates similar
 
 #### **Character/String Data**
 Character variables are variables with words or letters. Such as names of people (Erin, Maria, Huy) or places (ON, BC, QC). Character variables usually need to be put in quotation marks in R code, so they are not confused with words that actually denote functions in R. We will create some character variables later in this section. 
+
+#### **Logical Data**
+Logical data includes `TRUE` and `FALSE` data. We can also ask R to provide us `TRUE` or `FALSE` response if we ask if a condition is met. 
 
 #### **Boolean/Comparison/Logical Operators**
 Boolean and logical operators can be used to compare values or create logical statements. These are a bit different from the rest of the data types, because you usually don't have these operators within a dataset. However, they are very useful for understanding, checking, and managing your data. 
@@ -65,20 +73,59 @@ You might have used Boolean characters to search databases in the past (e.g., se
 | `|`      | Logical OR (At least one condition must be TRUE)| `(5 > 3) | (4 > 6)`     | `TRUE` |
 | `!`      | Logical NOT (Reverses TRUE/FALSE)               | `!(5 > 3)`            | `FALSE` |
 
+## Data Structures in R
+Data structures are how the data is organized in R. Here are the major data structures in R. There are some additional structures (e.g., matrices and arrays) that are mostly used only when doing statistical modeling. We will skip over these for now and focus on the data structures you will likely encounter in a research data managment context. 
+
+#### Vectors
+Vectors are simplest data structure. They are essentially a list of elements of the same data type. For example, you could have a numeric vector containing the elements (10, 15, 20, 25) or a character vector containing the elements ("blue", "red", "green"). They are one dimensional, since they are just one long list. A single variable (e.g., a list of ages of all the participants) can be considered a vector. 
+
+#### Data Frames
+Data frames are the most common and popular type of data structure used in R. Data frames work essentially like spreadsheets in that they are two dimensional (i.e., have columns and rows) and can store different data types in teh same data frame (i.e., numeric and character). Data frames are made up of vectors of the same length. 
+
+However, data frames do have some constraints. First, the columns and rows must be named. Second, the lists of vectors in the data frame must have equal lengths (i.e., each column needs an identical number of elements/rows). Third, all elements in a single column must be of the same data type (i.e., you can't switch between numbers and names in a single column).
+
+You may see mention of tibbles, which are an updated version of data frames and part of the tidyverse package. They are a bit more user-friendly version of tabular data. 
+
+For this course, our data is in data frame format. 
+
+#### Lists
+Lists are an ordered collection of elements. They can contain different data types and they are one dimensional. So, you can have a list of vectors, a list of characters etc. Here is an example of a list:
+
+```{r}
+list_example <- list("red", "blue", "skyblue", "forestgreen")
+print(list_example)
+```
+
+Because lists are ordered (i.e., each element in the list has a specific spot in the list), you can call for an element based on the order it has been assigned. For example, "skyblue" is third in this example list. 
+
+```{r}
+print(list_example [3])
+```
+
+## Data Attributes in R
+
+#### Factors
+Factors are how R handles categorical data. Factors can store string or integer data, because sometimes numbers do represent categories (rather than a continuous range of numbers).Factors have leveled data. For example, the variable of education may have the levels of "high school," "bachelors degree," and "masters degree." 
+
+Factor structure is particularly useful for statistical modeling. Sometimevs you might need to change an object into factor structure, so you can use the function `as.factor()` to do so. 
+
+#### Dates
+NEED TO ADD
+
 ## Introduction to dplyr Library
-In order to check and modify data types we suggest using the `dplyr` package. `dplyr` is a powerful R package designed to simplify data manipulation tasks. It provides a set of intuitive functions that make filtering, selecting, and transforming data frames (we will talk about this data structure soon) more readable and efficient. It is the go to package for data set organization. We will use just a few of the functions of this package in this course, but there are many more applications of `dplyr` you can explore. 
+In order to check and modify data types we suggest using the `dplyr` package, which is part of the Tidyverse. `dplyr` is a powerful R package designed to simplify data manipulation tasks. It provides a set of intuitive functions that make filtering, selecting, and transforming data frames (we will talk about this data structure soon) more readable and efficient. It is the go to package for data set organization. We will use just a few of the functions of this package in this course, but there are many more applications of `dplyr` you can explore. 
 
 Here are some of the most common functions of `dplyr`. We will practice using some of these today with our dataset. 
 
   - `mutate()`: Useful when you want to create new columns based on values in existing columns in your dataset. For example, you may want to recode numeric data into new categories with character names. 
   
   - `recode()`: Useful for changing data format of variables or re-categorizing certain values in a variable as some other value. For example, maybe you want to label everyone who sleeps less than seven hours a night as "sleep deprived." 
-  
+
   - `group_by()`: Allows you to view your data based on groups that you define or already exist in your data. For example, you may want to group your data based on whether people live in a city or rural area, or by gender. 
   
   - `summarize()` or `summarise()`: Useful for seeing basic descriptive info about your data. This is particularly helpful when use with the `group_by()` function. For example, you can see if people in cities compared to rural areas feel more rushed on average (i.e., compare means between these two groups). 
   
-  - `%>%` (pipe operator): Allows you to tell R to apply one function several times. You can read it more or less as "and then" when thinking about what your R code is doing. 
+  - `|>` (pipe operator): Allows you to tell R to apply one function several times. You can read it more or less as "and then" when thinking about what your R code is doing. 
   
   - `filter()`: This function allows you to extract rows that meet specific conditions you include. 
   
@@ -92,7 +139,7 @@ Let's explore the data types in our data using the `dplyr` functions!
 
 ## Checking Data Types in Our Data
 
-First we load our data and the dplyr package (remember to install it first if you haven't yet). Just to reacquaint ourselves with our data, use the `head` function. 
+First we load our data and the `dplyr` package (remember to install it first if you haven't yet). If you have installed the `tidyverse` package, then `dplyr` was also included. Just to reacquaint ourselves with our data, use the `head` function. 
 
 ```{r, message = FALSE}
 library(dplyr)
@@ -113,53 +160,24 @@ kable_paper() %>%
 
 ```
 
-You can check the data type of a specific variable with the "class" function,
+
+We can check the data type of variables using the `class()` function and calling for a specific variable from our dataset `data` using the `$` operator, followed by the name of our variable. 
 
 ```{r}
-print(class(data$province))
+class(data$province)
 ```
 
 :::question
 Try exploring the data type of a few other variables on your own. 
 :::
 
-## Missing Data
-You may have noticed that there are some cells in the data with "NA." This represents missing data in our dataset. Some missing data is usually present in data. There are many reasons for missing data and many different ways to handle missing data. These choices will depend on the context of specific research, but generally a plan for how to approach missing data should be thought through in advance. 
-
-In this dataset missing data had been notated with various numerical codes (you can see these in the original codebook), but we have recoded the data so that all missing data as been denoted "NA." 
-
-### Useful Missing Data Related Functions
-If your data contains NA values, sometimes functions will give error messages due to incomplete data. For example, if you try to get the mean of education level (eduLevel), R will not provide one because it can't calculate a mean when there are missing values. 
-
+## Recoding Variables/Data Types
+For some variables, we might want to change the data type based on our codebook. For instance, we can see that our "province" variable is in integer format. 
 ```{r}
-mean(data$eduLevel)
+class(data$province)
 ```
 
-Instead, we tell R to ignore those missing values. Including `na.rm = TRUE` to the function will typically tell R that it should complete the function, ignoring missing values. 
-
-```{r}
-mean(data$eduLevel, na.rm = TRUE)
-```
-
-If you want to check if a variable or data frame has missing data, you can use the function `is.na`. 
-
-```{r, results = 'hide'}
-is.na(data$eduLevel)
-```
-
-If you want to find instances where there is no missing data you can use `complete.cases()`. 
-
-```{r, results = 'hide'}
-complete.cases(data)
-```
-
-## Recoding Variables and Changing Data Types
-For some variables, we might want to change the data type based on our codebook. If we check the current data type of our "province" variable we see that it is in integer format. 
-```{r}
-print(class(data$province))
-```
-
-However, maybe we would prefer to have province acronyms (i.e., character data format) rather than the integer representation of them. We can re-code variables using the dplyr functions `%>%` and `mutate()`. The possible integer values for the provicne variable, and what province they represent can be found in the dataset codebook. 
+However, maybe we would prefer to have province acronyms (i.e., character data format) rather than the integer representation of them. We can re-code variables using the dplyr functions `|>` and `mutate()`. The possible integer values for the provicne variable, and what province they represent can be found in the dataset codebook. 
 
 ```{r}
 data <- data |> mutate(province_char = recode(data$province, 
@@ -184,7 +202,7 @@ data <- data |> mutate(province_char = recode(data$province,
   
   - Before the `mutate()` function this code tells R to take the "data" object (i.e., the dataset) "and then" (i.e., the pipe function) apply the following functions. 
   
-  - The pipe function (`%>%`) tells R to recode all of these values all at once, rather than having to write out `mutate()` and `recode()` for each one. 
+  - The pipe function (`|>`) tells R to recode all of these values all at once, rather than having to write out `mutate()` and `recode()` for each one. 
   
   - Lastly, all of this work needs to be assigned back to our dataset "data" in order to save it using the `<-` symbol. 
 :::
@@ -193,13 +211,13 @@ data <- data |> mutate(province_char = recode(data$province,
 
 Now lets check the data type of this new variable we just created. 
 ```{r}
-print(class(data$province_char))
+class(data$province_char)
 ```
 
 Most of this dataset is in integer format, because the data does not have decimals, and that is what R defaults to. However, it also stores this data as numeric at the same time. You can see this by checking the "class" of the data and asking if the data "is.numeric".
 
 ```{r}
-print(class(data$durSleep))
+class(data$durSleep)
 is.numeric(data$durSleep)
 
 ```
@@ -210,40 +228,48 @@ Sometimes you may want to change the data type without recoding all of the data.
 as.numeric(data$durSleep)
 ```
 
-## Data Structures in R
-Data structures are how the data is organized in R. Here are the major data structures in R. There are some additional structures (e.g., matrices and arrays) that are mostly used only when doing statistical modeling. We will skip over these for now and focus on the data structures you will likely encounter in a research data managment context. 
+## Missing Data
+You may have noticed that there are some cells in the data with "NA." This represents missing data in our dataset. Some missing data is usually present in data. There are many reasons for missing data and many different ways to handle missing data. These choices will depend on the context of specific research, but generally a plan for how to approach missing data should be thought through in advance. 
 
-#### Vectors
-Vectors are simplest data structure. They are essentially a list of elements of the same data type. For example, you could have a numeric vector containing the elements (10, 15, 20, 25) or a character vector containing the elements ("blue", "red", "green"). They are one dimensional, since they are just one long list. A single variable (e.g., a list of ages of all the participants) can be considered a vector. 
+In this dataset missing data had been notated with various numerical codes (you can see these in the original codebook), but we have recoded the data so that all missing data as been denoted "NA." 
 
-#### Lists
-Lists are an ordered collection of elements. They can contain different data types and they are one dimensional. So, you can have a list of vectors, a list of characters etc. Here is an example of a list:
+### Missing Data Related Functions
+If your data contains NA values, sometimes functions will give error messages due to incomplete data. For example, if you try to get the mean of education level (eduLevel), R will not provide one because it can't calculate a mean when there are missing values. 
 
-```{r}
-list_example <- list("red", "blue", "skyblue", "forestgreen")
-print(list_example)
-```
-
-Because lists are ordered (i.e., each element in the list has a specific spot in the list), you can call for an element based on the order it has been assigned. For example, "skyblue" is third in this example list. 
 
 ```{r}
-print(list_example [3])
+mean(data$eduLevel)
 ```
 
-#### Data Frames
-Data frames are the most common and popular type of data structure used in R. Data frames work essentially like spreadsheets in that they are two dimensional (i.e., have columns and rows) and can store different data types in teh same data frame (i.e., numeric and character). 
+Instead, we tell R to ignore those missing values. Including `na.rm = TRUE` to the function will typically tell R that it should complete the function, ignoring missing values. 
 
-However, data frames do have some constraints. First, the columns and rows must be named. Second, the lists of vectors in the data frame must have equal lengths (i.e., each column needs an identical number of elements/rows). Third, all elements in a single column must be of the same data type (i.e., you can't switch between numbers and names in a single column).
+```{r}
+mean(data$eduLevel, na.rm = TRUE)
+```
 
-For this course, our data is in data frame format. 
+If you want to check if a variable or data frame has missing data, you can use the function `is.na`. 
 
-#### Factors
-Factors are how R handles categorical data. Factors can store string or integer data, because sometimes numbers do represent categories (rather than a continuous range of numbers).Factors have leveled data. For example, the variable of education may have the levels of "high school," "bachelors degree," and "masters degree." 
+```{r, results = 'hide'}
+is.na(data$eduLevel)
+```
 
-Factor structure is particularly useful for statistical modeling. Sometimes you might need to change an object into factor structure, so you can use the function `as.factor()` to do so. 
+If you want to know the number of cells with missing data for a given variable you can use the same function, wrapped in the `sum` function. 
 
-#### Tibbles
-Tibbles are an updated version of data frames and part of the tidyverse package. They are a bit more user-friendly version of tabular data. 
+```{r}
+sum(is.na(data$eduLevel))
+```
+
+If you want to find instances where there is no missing data you can use `complete.cases()`. 
+
+```{r, results = 'hide'}
+complete.cases(data)
+```
+
+If you want to know the total number of rows (i.e., participants) with no missing data you can take the `complete.cases()` function and wrap it in the `nrow()` funciton. 
+
+```{r}
+nrow(complete.cases(data))
+```
 
 ## Your Turn!
 ### Changing Data Types
@@ -252,7 +278,7 @@ What type of data is the variable for marital status?
 :::
 
 ```{r class.source = 'fold-hide', results = 'hide'}
-typeof(data$maritalStat)
+class(data$maritalStat)
 ```
 
 :::question
@@ -287,7 +313,7 @@ data <- data |> mutate(eduLevel_char = recode(data$eduLevel,
 
 class(data$eduLevel_char)
 ```
-### Check Your Knowledge of Data Structures
+### Check Your Knowledge
 
 :::question
 What data structure would you use to store the following data?
