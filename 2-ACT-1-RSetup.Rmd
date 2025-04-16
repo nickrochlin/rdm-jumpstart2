@@ -87,7 +87,12 @@ Absolute paths have the full address to a file or folder and are specific to ope
 
 ````markdown
 `r ''`Example (Windows): C:\Users\Name\Documents\Research\data.csv
+Example (Mac): /Users/Name/Documents/Research/data.csv
+
+Note: Windows uses \, MacOS uses /
 ````
+
+ 
 
 #### Relative paths 
 Relative paths have the location of a file relative to the current directory or the directory where your R script is located (if you're using R).
