@@ -1,17 +1,203 @@
----
-title: "Day 4 - Part 2"
-pagetitle: "Pending"
-output:
-  html_document:
-    code_folding: show # allows toggling of showing and hiding code. Remove if not using code.
-    code_download: true # allows the user to download the source .Rmd file. Remove if not using code.
-    includes:
-      after_body: footer.html # include a custom footer.
-    toc: true
-    toc_depth: 3
-    toc_float:
-      collapsed: false
-      smooth_scroll: false
+## Saving Output for Reproducible Research
+
+:::note
+Saving output is a crucial part of responsible research data management and directly supports the FAIR principles: mak ing data **Findable, Accessible, Interoperable, and Reusable**.
+:::
+
+In this section, we will learn how to save cleaned datasets, update metadata, export plots, and document our data processing in a transparent and accessible way. These practices support reproducibility and alignment with the FAIR principles.
+
+
+```{r, data-isolation-1, results = 'hide', echo=FALSE}
+library(kableExtra)
+```
+
+
+```{r, data-isolation-2, results = 'hide'}
+library(dplyr)
+library(datadictionary)
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+
 ---
 
-## Getting the Data
+### Saving Cleaned Datasets
+
+Let’s return to Part 3 of this series.
+
+We’ll begin by first loading the dataset that we obtained in Day 3 of this series.
+
+
+```{r}
+file_path <- "data/timeuse_day3_2.Rdata"
+load(file_path)
+```
+
+
+
+#### Save datasets into CSV files
+
+Now, let's save this dataset into a CSV file for sharing or reuse.
+
+
+```{r}
+write.csv(data, "data/timeuse_day4_3.csv", row.names = FALSE)
+```
+
+The `data` object contains the dataset we loaded from Part 1 of Day 3. In this session, we will assume that this is our final dataset to deposit into a repository such as OSF or Borealis.
+
+Saving in `.csv` format ensures that your files are open and usable across platforms, promoting **interoperability** and **accessibility**. These formats are easily imported into other programming languages, databases, or spreadsheet software.
+
+
+#### Compression
+
+If you're working with large files, compressing your outputs (e.g., into `.csv.gz`) helps conserve storage and facilitates faster file transfers.
+
+Why use `.gz` specifically? The `.gz` format is widely supported, simple, and natively handled by R through the `gzfile()` function. It's also compatible with most data repositories and file-sharing platforms. Unlike `.zip`, which can hold multiple files, `.gz` compresses a single file
+
+
+```{r}
+gz1 <- gzfile("data/timeuse_day4_3.csv.gz", "w")
+write.csv(data, gz1, row.names = FALSE)
+close(gz1)
+```
+
+Compression is especially helpful when sharing data through email or uploading to repositories, enhancing **accessibility** by minimizing bandwidth requirements. Even though in this example we're working with a relatively small dataset, in real-world scenarios it's common to encounter CSV files containing millions of rows—potentially several gigabytes in size. In such cases, compression becomes not just helpful but essential to efficiently store, transfer, and share data files, especially when uploading to platforms like OSF or institutional repositories.
+
+
+#### Proprietary vs. Non-Proprietary Formats (Interoperability)
+
+- Prefer **non-proprietary** formats like `.csv` or `.tsv` to ensure **interoperability** across systems and users.
+- Use **proprietary formats** like `.rds` or `.RData` only when data is meant to be consumed specifically within the R ecosystem.
+
+
+```{r}
+save(data, file = "data/timeuse_day4_3.RData")
+```
+
+Interoperability ensures that your data is accessible regardless of the software or tools used by other researchers.
+
+
+### Updating and Saving Data Dictionary
+
+To enhance **Findability** and **Reusability**, metadata must be kept up to date. Metadata provides context about the data—what each variable means, how values were coded, and how data were collected. This makes it easier for others (including your future self!) to interpret and reuse your data accurately.
+
+One practical way to create and maintain metadata in R is to use a **data dictionary**. A data dictionary is a structured summary that describes each variable in a dataset, including its name, type, and label or definition.
+
+In this simple example, we use the `datadictionary` package to generate a basic data dictionary and save it alongside our dataset. This supports both human and machine readability and contributes to a dataset’s FAIRness by improving discoverability and documentation.
+
+
+<!--
+filtered_dict <- create_dictionary(rushed, var_labels = labels_full)
+write.csv(filtered_dict, "data/data_dictionary_rushed_data.csv", row.names = FALSE)
+save(filtered_dict, file = "data/data_dictionary_rushed.RData")
+-->
+
+<!-- Rich metadata supports machine readability and allows datasets to be indexed and searched in repositories, directly addressing **FAIR** goals. -->
+
+
+### Documenting What Has Been Changed
+
+Use your RMarkdown file as a living logbook. Write clear descriptions of how your data has been transformed, which variables have been changed, removed, or created. This documentation improves **transparency**, promotes **reusability**.
+
+Example explanation:
+
+> "We filtered the dataset to include only respondents who feel rushed at least once a week (`feelRushed` ≤ 3), and retained only time-use columns for analysis."
+
+
+Remember that we can create the `rushed` and `not_rushed` data frames by filtering `isFeelRushed == 1` for rushed participants and `isFeelRushed == 0` for those who are not rushed.
+
+
+```{r}
+rushed <- data |> 
+  filter(isFeelRushed == 1)
+
+not_rushed <- data |> 
+  filter(isFeelRushed == 0)
+```
+
+
+And then, you can also track changes quantitatively:
+
+
+```{r}
+summary_changes <- data.frame(
+  Step = c("Original rows", "Filtered for isFeelRushed == 1", "Final rows"),
+  Count = c(nrow(data), sum(data$isFeelRushed == 1, na.rm = TRUE), nrow(rushed))
+)
+summary_changes
+```
+
+Such logs help other researchers understand your workflow and replicate or build upon your analysis.
+
+
+### Saving Plots
+
+Exporting plots in multiple formats ensures your visualizations are **reusable** and **accessible** for different purposes: publication, presentation, or web display.
+
+
+```{r, fig.width=8, fig.height=6}
+library(ggplot2)
+p <- ggplot(not_rushed, aes(x = durSleep)) +
+  geom_histogram(binwidth = 100, fill = "skyblue", color = "white") +
+  labs(title = "Distribution of Sleep Duration (Not Rushed Group)",
+       x = "Sleep Duration (minutes)", y = "Count")
+p
+```
+
+
+#### Save as PNG
+
+```{r}
+ggsave("figures/sleep_histogram_not_rushed_day4.png", plot = p, width = 8, height = 6, dpi = 300)
+```
+
+This format is suitable for web use or slide presentations. PNG is a raster format that offers high quality and is widely supported across platforms.
+
+
+#### Save as PDF
+
+```{r}
+ggsave("figures/sleep_histogram_not_rushed_day4.pdf", plot = p, width = 8, height = 6)
+```
+
+PDF files preserve vector graphics, which means your plot can be resized without losing quality. This is especially useful for embedding in academic papers or generating printer-friendly outputs.
+
+
+#### Save as TIFF (Use Cairo on macOS)
+
+```{r}
+tiff("figures/sleep_histogram_not_rushed_day4.tiff", width = 8, height = 6, units = "in", res = 600, compression = "lzw", type = "cairo")
+print(p)
+dev.off()
+```
+
+TIFF is often requested by academic journals for its high resolution. Using LZW compression helps reduce file size without losing image quality. On macOS, using the Cairo graphics device ensures compatibility with compression options.
+
+
+Saving plots in appropriate formats facilitates sharing and integration in different dissemination workflows.
+
+
+### Best Practices and Things to Consider (Aligned with FAIR)
+
+| Topic                   | Recommendation                                                                 |
+|------------------------|--------------------------------------------------------------------------------|
+| **Compression**        | Use `.csv.gz`, `.rds` for large files to reduce size and improve access speed. |
+| **Interoperability**   | Prefer `.csv`, `.tsv`; avoid locked-in formats to maximize cross-platform use. |
+| **Naming Conventions** | Use descriptive names with dates/versions: `timeuse_day4_3_2025_04_15.csv`.    |
+| **Transparency**       | Log all changes in RMarkdown; describe decisions in plain language.            |
+| **Metadata**           | Maintain and save an updated data dictionary with rich, structured metadata.   |
+| **Persistent IDs**     | Use repositories that assign DOIs for your datasets to ensure long-term findability. |
+| **Plot Formats**       | Use appropriate formats (`.png`, `.pdf`, `.tiff`) based on audience/platform.  |
+| **Licensing**          | Apply open licenses (e.g., Creative Commons) to enable legal data reuse.       |
+
+
+### Wrap-Up
+
+Following these practices ensures your research outputs are understandable, reusable, and verifiable. Saving data, metadata, and visuals properly helps you, your collaborators, and future researchers reproduce and extend your work. More importantly, it aligns your workflow with the FAIR principles—making your research more open, ethical, and impactful.
+
+Remember: every saved dataset, every labeled plot, and every comment in your RMarkdown is a contribution toward a more FAIR research ecosystem.
