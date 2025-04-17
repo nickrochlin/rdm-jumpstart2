@@ -24,6 +24,9 @@ knitr::opts_chunk$set(message = FALSE, warnings = FALSE)
 
 ## Start with a level two header
 
+
+<p style="text-align:center"> this is code for centered text </p>
+
 :::note
 This is a note.
 
