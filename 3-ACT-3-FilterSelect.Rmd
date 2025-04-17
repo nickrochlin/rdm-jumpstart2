@@ -3,10 +3,10 @@ title: "Day 3 - Part 2"
 pagetitle: "Data Filtering and Selection Techniques"
 output:
   html_document:
-    code_folding: show # allows toggling of showing and hiding code. Remove if not using code.
-    code_download: true # allows the user to download the source .Rmd file. Remove if not using code.
+    code_folding: show
+    code_download: true
     includes:
-      after_body: footer.html # include a custom footer.
+      after_body: footer.html
     toc: true
     toc_depth: 3
     toc_float:
@@ -14,35 +14,82 @@ output:
       smooth_scroll: false
 ---
 
-## Introduction
+## Overview
+
+---
+
+![](images/3-ACT-3-Overview.png)
+
+
+### Introduction
 
 :::note
-Subsetting data is an essential step in data analysis that involves extracting a portion of our dataset based on specific conditions.
+  Subsetting data is an essential part of the *data exploration* stage in the data science workflow. It involves extracting a portion of the dataset based on specific conditions.
 :::
-
-Let's return to the time usage dataset. In this section, suppose we're interested in understanding how people who feel rushed spend their time differently from those who don't. To answer this question, we don't need every single row or column, as working with the data in its original format would be unnecessarily complex. Instead, we need to "get inside" our data by subsetting: filtering the rows and selecting the columns that matter.
 
 In this short tutorial, we will learn:
 
-- Why subsetting is crucial and what subsetting means
-- How to perform subsetting using conditional operators and the dplyr functions `filter()` and `select()`
+1. Why subsetting is crucial and what subsetting means
+2. How to perform subsetting using conditional operators and the dplyr functions `filter()` and `select()`
+
+---
+
+### Why subsetting dataset is important?
+
+:::note
+  Most real-world datasets are large and complex, with many variables and thousands of records.
+:::
+
+Most real-world datasets are large and complex, with many variables and thousands of records. Analyzing all of it at once can introduce noise, slow down computation, and make it harder to detect meaningful patterns. By filtering rows and selecting specific columns, you reduce this complexity, improve clarity, and can more efficiently test hypotheses or build models. Subsetting also plays a key role in ensuring data quality, allowing you to remove irrelevant or problematic entries like missing values, outliers, or categories outside the scope of your analysis.
+
+:::note
+  Filtering rows and selecting specific columns helps you:
+
+  - Reduce dataset complexity and improve clarity, making it easier to test hypotheses efficiently
+  - Remove irrelevant or problematic entries such as missing values, outliers, or unused categories, improving overall data quality
+:::
+
+
+:::flag
+The original dataset is very large—it includes 848 variables and 17,000+ observations.
+:::
+
+The dataset we have used in previous sessions originated from the General Social Survey, Cycle 29 (2015), from the Social and Aboriginal Statistics Division at Statistics Canada. This survey tracks how Canadians spend and manage their time, helping us understand patterns tied to well-being and stress. However, the original dataset is very large—it includes over 848 variables and more than 17,000 observations. 
+
+For the purposes of this tutorial, we are not interested in every variable. Instead, we work with a **subset** of this dataset: 29 variables focused mainly on time durations and key demographic characteristics. This makes the data more manageable and relevant for our exploration of time use and perceptions of time pressure.
+
+---
+
+### Framing the Guiding Question: Who Feels Rushed?
+
+Let's return to the time usage dataset. In this section, suppose we're interested in understanding how people who feel rushed spend their time differently from those who don't. To answer this question, we don't need every single row or column, as working with the data in its original format would be unnecessarily complex. Instead, we need to "get inside" our data by subsetting: filtering the rows and selecting the columns that matter.
 
 We will explore our dataset through one guiding question:
 
-How do people who **feel rushed** spend their time *differently* from those who don't?
+**How do people who feel rushed spend their time differently from those who don't?**
 
-First, let's load and take a look at our data to see what we ended up with from the previous steps.
+We'll focus on relevant rows and columns that answer this question.
 
-## Load and Understand Dataset 
+---
+
+## Step 0: Setup and Load Data
+
+---
+
+
+### Load and Understand Dataset 
 
 First, we need to load the necessary libraries for today.
 
-```{r, libraries}
-library(dplyr)
+```{r, data-isolation-15, results = 'hide', echo=FALSE}
 library(kableExtra)
 ```
 
-In our subsequent tasks, the `dplyr` package will be essential for subsetting operations like filtering rows and selecting columns, while `kableExtra` will help us create more readable and attractive tables for displaying our results. For the sake of simplicity, we don't need to focus on `kableExtra` in detail today, as we'll primarily use it for formatting our output tables.
+```{r, libraries}
+library(dplyr)
+```
+
+In our subsequent tasks, the `dplyr` package will be essential for subsetting operations like filtering rows and selecting columns. 
 
 Now, let's load our time usage dataset that we prepared in the previous part. We'll use the `.Rdata` file format, which is a convenient way to save and load R objects. This file contains the cleaned and processed dataset that we'll be working with for our subsetting operations.
 
@@ -71,6 +118,7 @@ head(data) |>
   scroll_box(width = "100%")
 ```
 
+
 As we can see, there are 30 columns in the dataset, which is a lot to work with. For now, we can focus on the following key columns:
 
 - `id`: Record identification
@@ -89,15 +137,21 @@ As we can see, there are 30 columns in the dataset, which is a lot to work with.
 
 These columns provide information on demographics, time usage, and time perceptions. We can use them to explore patterns in work–life balance, education, and social time.
 
-Now that we understand our dataset structure, let's move on to learning how to filter and manipulate this data effectively using Boolean operators in dplyr.
+Now that we understand our dataset structure, let's move on to learning how to filter and manipulate this data effectively using Boolean operators in `dplyr`.
 
-## Conditional Filtering with Boolean Operators using dplyr
+---
 
-dplyr is a powerful package that lets us extract and transform data with a clear, readable syntax. In dplyr, we use functions like `filter()`, `select()`, and `mutate()` to work with our data. Boolean operators (`==`, `<`, `>`, `<=`, `>=`, and `!=`) are used within these functions to test conditions, and we can combine conditions with `&` (and) or `|` (or).
+## Step 1: Learn About Filtering
+
+---
+
+### Conditional Filtering with Boolean Operators using **dplyr**
+
+`dplyr` is a powerful package that lets us extract and transform data with a clear, readable syntax. In `dplyr`, we use functions like `filter()`, `select()`, and `mutate()` to work with our data. Boolean operators (`==`, `<`, `>`, `<=`, `>=`, and `!=`) are used within these functions to test conditions, and we can combine conditions with `&` (and) or `|` (or).
 
 Let's start by understanding the basic comparison operators that will help us create filtering conditions.
 
-### **Comparison Operators**
+#### **Comparison Operators**
 
 Comparison operators allow us to check conditions within our dataset. These return `TRUE` or `FALSE` based on whether the condition is met.
 
@@ -112,7 +166,7 @@ Comparison operators allow us to check conditions within our dataset. These retu
 
 Once we understand these basic comparison operators, we can combine them using logical operators to create more complex filtering conditions.
 
-### **Logical Operators**
+#### **Logical Operators**
 
 Logical operators allow us to filter data based on multiple conditions.
 
@@ -124,46 +178,53 @@ Logical operators allow us to filter data based on multiple conditions.
 
 Let's try using these logical operators to filter the rows in the following example.
 
-### Example: Work–Life Balance
-
-We want to understand whether feeling rushed might relate to how much time is spent on work, sleep, or alone time. Therefore, the columns of interest are `feelRushed`, `durSleep`, `durWork`, and `durAlone`. First, let's explore the values in these columns using dplyr.
+We want to understand whether feeling rushed might relate to how much time is spent on work, sleep, or alone time. Therefore, the columns of interest are `feelRushed`, `durSleep`, `durWork`, and `durAlone`. First, let's explore the values in these columns using `dplyr`.
 
 Let's see unique values in the `feelRushed` column to understand what categories exist in our data before we start filtering based on these values.
 
 ```{r}
 # Explore the unique values for each column
-data %>% 
-  distinct(feelRushed) %>% 
+data |> 
+  distinct(feelRushed) |> 
   print()
 ```
 
 Since our duration columns (`durSleep`, `durWork`, and `durAlone`) are continuous numerical variables rather than categorical, it's more informative to examine their distributions rather than just their unique values. Looking at the distribution helps us understand which values are common, identify patterns, and spot potential outliers:
 
 ```{r}
-data %>% 
-  count(durSleep) %>% 
-  arrange(desc(n)) %>% 
-  head(10) %>%
+data |> 
+  count(durSleep) |> 
+  arrange(desc(n)) |> 
+  head(10) |>
   print()
 ```
 
 ```{r}
-data %>% 
-  count(durWork) %>% 
-  arrange(desc(n)) %>% 
-  head(10) %>%
+data |> 
+  count(durWork) |> 
+  arrange(desc(n)) |> 
+  head(10) |>
   print()
 ```
 
 ```{r}
-data %>% 
-  count(durAlone) %>% 
-  arrange(desc(n)) %>% 
-  head(10) %>%
+data |> 
+  count(durAlone) |> 
+  arrange(desc(n)) |> 
+  head(10) |>
   print()
 ```
 
-These commands work together to show the most common time patterns: `count()` tallies each duration value, `arrange(desc(n))` sorts from highest to lowest frequency, `head(10)` keeps only the top 10 results, and `print()` displays them. This quick overview helps us understand typical time allocation patterns for sleep, work, and alone activities.
+:::walkthrough
+These commands work together to show the most common time patterns: 
+
+  - `count()` tallies each duration value, 
+  - `arrange(desc(n))` sorts from highest to lowest frequency, 
+  - `head(10)` keeps only the top 10 results, and 
+  - `print()` displays them. 
+
+This quick overview helps us understand typical time allocation patterns for sleep, work, and alone activities.
+:::
 
 It appears that all three columns contain numeric values. However, as we look at the metadata file, we'll see that only `durWork` and `durSleep` have numeric values that represent real quantities (hours of work or sleep in a month). In contrast, the values in the `feelRushed` column have a different meaning.
 
@@ -180,23 +241,37 @@ It appears that all three columns contain numeric values. However, as we look at
 | 98   | refusal     |
 | 99   | not Stated   |
 
-## Filtering Rows with dplyr
+---
+
+## Step 2: Apply Basic Filtering
+
+---
+
+### Filtering Rows with *dplyr*
+
+![](images/3-ACT-3-Filter.png)
 
 For this analysis, we will consider respondents who report feeling rushed as those whose frequency is at least once a week, and those with less than once a week as not feeling rushed.
 
-### Extracting Respondents Who Do or Do not Feel Rushed Daily
+#### Extracting Respondents Who Do or Do not Feel Rushed Daily
 
 First, let's extract only the respondents who report feeling rushed daily. Looking at the table, the value corresponding to feeling rushed daily is number 1. We can filter for these respondents using `filter()`.
 
+:::note
+  The `filter()` function in `dplyr` returns only the rows that meet a specified condition.
+:::
+
 ```{r}
-daily_rushed <- data %>% 
+daily_rushed <- data |> 
   filter(feelRushed == 1)
 ```
 
-and then using head() to see what the filtered data look like
+and then using `head()` to see what the filtered data look like
+
 ```{r, data-isolation-2, results = 'hide'}
 head(daily_rushed)
 ```
+
 ```{r, echo=FALSE}
 # Display the first few rows with kableExtra styling
 head(daily_rushed) |>
@@ -205,25 +280,26 @@ head(daily_rushed) |>
   scroll_box(width = "100%")
 ```
 
+
 Looking at the filtered data, we can confirm that our filter worked correctly - all rows show `feelRushed` equal to 1 (meaning they feel rushed daily).
 
 Using `filter()`, we subset the data to keep only those rows where the condition is met. In the above example, the condition `feelRushed == 1` creates a logical vector that is `TRUE` for rows where the value equals 1 (corresponding to "daily").
 
-### Using Comparison and Logical Operators
+#### Using Comparison and Logical Operators
 
 Not only can we use the `==` operator to test for equality, but we can also use operators such as `<`, `>`, `<=`, `>=`, and `!=` to compare values. For example, we might filter rows where a numeric variable exceeds a certain threshold, is below a limit, or is not equal to a specified value. Let's use an example from the `duration` sleep columns
 
 For instance, if we want to filter rows for the `durSleep` column to capture any instances with sleep duration less than `600`, we can write:
 
 ```{r}
-short_sleep <- data %>% 
+short_sleep <- data |> 
   filter(durSleep < 600)
 ```
 ```{r, data-isolation-3, results = 'hide'}
 head(short_sleep)
 ```
+
 ```{r, echo=FALSE}
-# Display the first few rows with kableExtra styling
 head(short_sleep) |>
   kbl() |>
   kable_styling(bootstrap_options = "striped") |>
@@ -233,7 +309,7 @@ head(short_sleep) |>
 Alternatively, we can filter rows where `durSleep` is between `600` and `1000`. To do this, we chain two conditions using the `&` operator:
 
 ```{r}
-sleep_range <- data %>% 
+sleep_range <- data |> 
   filter(durSleep >= 600 & durSleep <= 1000)
 ```
 ```{r, data-isolation-4, results = 'hide'}
@@ -247,43 +323,59 @@ head(sleep_range) |>
   scroll_box(width = "100%")
 ```
 
+:::walkthrough
 In this example:
 
 - The condition `data$durSleep >= 600` checks for rows where sleep duration is at least `600`.
 - The condition `data$durSleep <= 1000` checks for rows where sleep duration is at most `1000`.
 - The `&` operator combines these conditions, ensuring that only rows satisfying both conditions are returned.
+:::
 
 By using these boolean operators, we can chain multiple conditions together. Not only can we use the `&` operator for "and" conditions, but we can also use the `|` operator to specify "or" conditions.
 
+---
 
-## Complex Filtering with dyplyr
+## Step 3: Apply Complex Filtering
+
+---
+
+### Complex Filtering with dyplyr: Filtering Rows for Those Who Feels Rushed
 
 Now, let's back into our main task again. 
 
 Now, let's perform a more complex filtering. Suppose we want to capture respondents who feel rushed frequently—that is, those whose `feelRushed` value is either `1`, `2`, or `3`—and those who do not feel rushed frequently, meaning those whose `feelRushed` value is either `4`, `5`, or `6`.
 
-There are multiple ways to filter rows that meet one of these conditions. The first method uses a range comparison with `<=` to filter the rows.
+There are multiple ways to filter rows that meet one of these conditions. 
+
+#### Using Range Comparison
+
+The first method uses a range comparison with `<=` to filter the rows.
 
 ```{r}
 # Filter rows for respondents who feel rushed: those with feelRushed <= 3
-rushed <- data %>% 
+rushed <- data |> 
   filter(feelRushed <= 3)
 
 # For not rushed, we filter rows where feelRushed is > 3 and <= 6
-not_rushed <- data %>% 
+not_rushed <- data |> 
   filter(feelRushed > 3 & feelRushed <= 6)
 ```
+
 ```{r, data-isolation-5, results = 'hide'}
 head(rushed)
+
 head(not_rushed)
 ```
+
 ```{r, echo=FALSE}
-# Display the first few rows with kableExtra styling
 head(rushed) |>
   kbl() |>
   kable_styling(bootstrap_options = "striped") |>
   scroll_box(width = "100%")
 
+```
+
+```{r, echo=FALSE}
 head(not_rushed) |>
   kbl() |>
   kable_styling(bootstrap_options = "striped") |>
@@ -291,6 +383,7 @@ head(not_rushed) |>
 ```
 
 Now let's calculate how many rows remain after we performed filtering. 
+
 ```{r}
 # Calculate the number of rows in each subset
 all_rows <- nrow(data)
@@ -302,15 +395,22 @@ print(paste("The number of rows in rushed is:", rushed_rows))
 print(paste("The number of rows in not rushed is:", not_rushed_rows))
 ```
 
-This approach selects rows where `feelRushed` is less than or equal to `3` (i.e., values `1` or `2`) to indicate respondents who feel rushed, while rows where `feelRushed` is greater than or equal to `3` and less than or equal to `6` are considered not rushed. Here, we can see that we use the & operator to chain two boolean operations. It isn't necessary that the upper bound be `6`, but we use it here to demonstrate how to chain two boolean operations.
+:::walkthrough
+- This approach selects rows where `feelRushed` is less than or equal to `3` (i.e., values `1`, `2`, or `3`) to indicate respondents who feel rushed.
+- Rows where `feelRushed` is greater than or equal to `4` and less than or equal to `6` are considered not rushed.
+- We use the `&` operator to chain two Boolean operations. It isn't necessary that the upper bound be `6`, but we use it here to demonstrate how to chain two Boolean operations.
+- The `nrow()` function calculates the number of rows in the data frame.
+:::
 
-Furthermore, the `nrow` function calculates the number of rows in the data frame. For example, if the original data frame has `17,390` rows, after filtering, the rushed data frame might contain only `12,689` rows.
+As you can see, the original data frame has `17,390` rows, after filtering, the rushed data frame might contain only `12,689` rows.
+
+#### Chaining Multiple Conditions
 
 Alternatively, we can use a second method that involves chaining three conditions using the `|` operator. While this approach is more verbose, it makes the logic very explicit:
 
 ```{r}
 # Filter rows for respondents who feel rushed (values 1, 2, or 3)
-rushed <- data %>% 
+rushed <- data |> 
   filter(feelRushed == 1 | feelRushed == 2 | feelRushed == 3)
 ```
 
@@ -328,7 +428,7 @@ head(rushed) |>
 
 ```{r, data-isolation-7, results = 'hide'}
 # Filter rows for respondents who do not feel rushed (values 4, 5, or 6)
-not_rushed <- data %>% 
+not_rushed <- data |> 
   filter(feelRushed == 4 | feelRushed == 5 | feelRushed == 6)
 head(not_rushed)
 ```
@@ -356,51 +456,61 @@ print(paste("The number of rows in not rushed is:", not_rushed_rows))
 
 As we can see, looks at the remain row, it produces the same output as previously
 
-Finally, we can use a third, more elegant approach using the `%in%` operator. This method is both concise and clear in expressing our filtering intent:
+Finally, we can use a third, more elegant approach using the `%in%` operator, but we will explore this method in the excercises below
 
-```{r}
-# Define the levels that indicate feeling rushed and not rushed
-rushed_levels <- c(1, 2, 3)
-not_rushed_levels <- c(4, 5, 6)
 
-# Filter the data using the %in% operator
-rushed <- data %>% 
-  filter(feelRushed %in% rushed_levels)
 
-not_rushed <- data %>% 
-  filter(feelRushed %in% not_rushed_levels)
-```
+<!-- ```{r} -->
+<!-- # Define the levels that indicate feeling rushed and not rushed -->
+<!-- rushed_levels <- c(1, 2, 3) -->
+<!-- not_rushed_levels <- c(4, 5, 6) -->
 
-```{r, data-isolation-8, results = 'hide'}
-head(rushed)
-head(not_rushed)
-``` 
+<!-- # Filter the data using the %in% operator -->
+<!-- rushed <- data |>  -->
+<!--   filter(feelRushed %in% rushed_levels) -->
 
-```{r, echo=FALSE}
-# Display the first few rows with kableExtra styling
-head(rushed) |>
-  kbl() |>
-  kable_styling(bootstrap_options = "striped") |>
-  scroll_box(width = "100%")
+<!-- not_rushed <- data |>  -->
+<!--   filter(feelRushed %in% not_rushed_levels) -->
+<!-- ``` -->
 
-head(not_rushed) |>
-  kbl() |>
-  kable_styling(bootstrap_options = "striped") |>
-  scroll_box(width = "100%")
-```
+<!-- ```{r, data-isolation-8, results = 'hide'} -->
+<!-- head(rushed) -->
+<!-- head(not_rushed) -->
+<!-- ```  -->
 
-```{r}
-# Calculate the number of rows in each subset
-rushed_rows <- nrow(rushed)
-not_rushed_rows <- nrow(not_rushed)
+<!-- ```{r, echo=FALSE} -->
+<!-- # Display the first few rows with kableExtra styling -->
+<!-- head(rushed) |> -->
+<!--   kbl() |> -->
+<!--   kable_styling(bootstrap_options = "striped") |> -->
+<!--   scroll_box(width = "100%") -->
 
-print(paste("The number of rows in rushed is:", rushed_rows))
-print(paste("The number of rows in not rushed is:", not_rushed_rows))
-```
+<!-- head(not_rushed) |> -->
+<!--   kbl() |> -->
+<!--   kable_styling(bootstrap_options = "striped") |> -->
+<!--   scroll_box(width = "100%") -->
+<!-- ``` -->
 
-This method explicitly tests for rows where `feelRushed` is in the set `{1, 2, 3}` for rushed respondents, and in `{4, 5, 6}` for not rushed respondents.
+<!-- ```{r} -->
+<!-- # Calculate the number of rows in each subset -->
+<!-- rushed_rows <- nrow(rushed) -->
+<!-- not_rushed_rows <- nrow(not_rushed) -->
 
-## Selecting and Cleaning Time-Related Variables
+<!-- print(paste("The number of rows in rushed is:", rushed_rows)) -->
+<!-- print(paste("The number of rows in not rushed is:", not_rushed_rows)) -->
+<!-- ``` -->
+
+<!-- This method explicitly tests for rows where `feelRushed` is in the set `{1, 2, 3}` for rushed respondents, and in `{4, 5, 6}` for not rushed respondents. -->
+
+---
+
+## Step 4: Select Relevant Variables
+
+---
+
+![](images/3-ACT-3-Select.png)
+
+### Selecting and Cleaning Time-Related Variables
 
 Next, we'll focus on the key time allocation columns that are most relevant to our analysis: `durWork`, `durSleep`, and `durAlone`. These variables represent:
 
@@ -408,16 +518,34 @@ Next, we'll focus on the key time allocation columns that are most relevant to o
 - `durSleep`: Time spent sleeping, resting, or relaxing
 - `durAlone`: Time spent alone
 
+:::note
+The `select()` function in `dplyr` is used to choose specific columns from a dataset.
+:::
+
 We'll select only these three columns from our rushed and not_rushed datasets using `select()`.
 
 ```{r}
 # Select the time allocation columns for each group
-rushed_time <- rushed %>% 
+rushed_time <- rushed |> 
   select(durWork, durSleep, durAlone)
 
-not_rushed_time <- not_rushed %>% 
+not_rushed_time <- not_rushed |> 
   select(durWork, durSleep, durAlone)
 ```
+
+:::walkthrough
+In this example, we use the `select()` function to extract only the relevant columns from each dataset (`rushed` and `not_rushed`). 
+
+- `select(durWork, durSleep, durAlone)` tells R to keep only these three columns:  
+  - `durWork`: duration of paid work  
+  - `durSleep`: duration of sleep and rest  
+  - `durAlone`: duration of time spent alone  
+
+- The `|>` (pipe operator) passes the dataset on the left (`rushed` or `not_rushed`) into the `select()` function.
+
+This step helps reduce the dataset to only the variables we care about for comparing how rushed and not-rushed individuals allocate their time.
+:::
+
 
 Let's examine the first few rows of our cleaned datasets to verify our transformations:
 
@@ -439,18 +567,26 @@ head(not_rushed_time) |>
   scroll_box(width = "100%")
 ```
 
-## Results: Comparing Time Usage Between Groups
+---
+
+## Step 5: Compare Time Use Between Groups
+
+---
+
+### Results: Comparing Time Usage Between Groups
 
 Now that we have our cleaned datasets for both rushed and not rushed groups, we can analyze how these groups differ in their time allocation patterns. We'll calculate and compare the mean durations for sleep, work, and alone time between the two groups.
 
-Let's break this down into steps: first, we'll calculate the mean values for each time-use variable within each group, then we'll compute the differences between these means to understand the magnitude of variation.
+Let's break this down into steps: 
+  1. First, we'll calculate the mean values for each time-use variable within each group,
+  2. Then, we'll compute the differences between these means to understand the magnitude of variation.
 
 ```{r}
 # Calculate the mean values for each variable using summarise and across
-mean_rushed <- rushed_time %>% 
+mean_rushed <- rushed_time |> 
   summarise(across(everything(), ~ mean(. , na.rm = TRUE)))
 
-mean_not_rushed <- not_rushed_time %>% 
+mean_not_rushed <- not_rushed_time |> 
   summarise(across(everything(), ~ mean(. , na.rm = TRUE)))
 
 # Calculate the differences between the means (rushed - not rushed)
@@ -484,127 +620,230 @@ diff_means |>
 ```
 
 :::note
-Positive values in the difference calculation indicate that rushed individuals spend more time on that activity, while negative values indicate they spend less time compared to those who don't feel rushed.
+ Positive values in the difference calculation indicate that rushed individuals spend more time on that activity, while negative values indicate they spend less time compared to those who don't feel rushed.
 :::
 
 These results provide interesting insights into how feeling rushed relates to time allocation patterns. For instance, we can observe whether people who feel rushed actually spend more time working or less time sleeping than those who don't feel rushed, which might help explain their perception of time pressure.
 
-## Exercise: Urban vs Rural Time Pressure Analysis
+---
 
-Now that we've learned about filtering and selecting data using dplyr, let's apply these skills to investigate a specific question: whether location affects how people experience time pressure. We'll do this by comparing reported extra time availability between urban and rural populations.
+## Exercises: Time for Practice! 
 
-### Step 1: Explore the Data
+---
 
-Before applying our filtering and selection operations, it's essential to understand our data. Let's examine the values in our population center and extra time variables:
+### Optional Exercise 1: Using `%in%` Operator
 
-```{r}
-# Check unique values in popCenter
-data %>% 
-  distinct(popCenter) %>% 
-  print()
+In the previous session, we learned that we can filter respondents who feel rushed or not by either using a range comparison (e.g., `feelRushed <= 3`) or by chaining multiple conditions with logical operators (e.g., `feelRushed == 1 | feelRushed == 2 | feelRushed == 3`).
 
-# Examine distribution of extraTime
-data %>% 
-  count(extraTime) %>% 
-  arrange(desc(n)) %>% 
-  head(10) %>%
-  print()
+However, there's also a third, more elegant approach: using the `%in%` operator. This method is especially helpful when you want to filter a dataset based on multiple specific values of a variable, making your code shorter and easier to read.
+
+---
+
+:::question
+
+#### *Example Scenario*
+
+Remember the previous question where you're analyzing survey data on how frequently people feel rushed. The `feelRushed` variable includes values from 1 (daily) to 6 (never). You want to group respondents into two categories:
+
+- **Rushed**: those who feel rushed at least once a week (`1`, `2`, `3`)
+- **Not Rushed**: those who feel rushed less often (`4`, `5`, `6`)
+
+---
+
+#### *Task Instructions*
+
+1. Define the sets of values that represent each group.
+2. Use the `%in%` operator inside `filter()` to create subsets.
+3. Display the first few rows of each subset to verify correctness.
+4. Count the number of rows in each group to compare sizes.
+
+---
+
+#### *Starter Code*
+
+```{r class.source = 'fold-hide', results = 'hide'}
+# Define group levels
+rushed_levels <- c(1, 2, 3)
+not_rushed_levels <- c(4, 5, 6)
+
+# Filter using %in%
+rushed <- data |> 
+  filter(feelRushed %in% rushed_levels)
+
+not_rushed <- data |> 
+  filter(feelRushed %in% not_rushed_levels)
 ```
 
-Understanding these distributions will help us make informed decisions about our filtering conditions in the next step.
+#### *View Results*
 
-### Step 2: Filter Urban and Rural Populations
-
-Using the filtering techniques we just learned, let's separate our data into urban and rural populations:
-
-```{r}
-# Create urban and rural subsets
-urban_data <- data %>%
-  filter(popCenter == 'urban')  # Urban population
-
-rural_data <- data %>%
-  filter(popCenter == 'rural')  # Rural population
-
+```{r class.source = 'fold-hide', results = 'hide'}
+head(rushed)
 ```
 
-```{r, data-isolation-10, results = 'hide'}
-# Verify our filtered datasets
+```{r, echo=FALSE}
+head(rushed) |> 
+  kbl() |> 
+  kable_styling(bootstrap_options = "striped") |> 
+  scroll_box(width = "100%")
+```
+
+```{r class.source = 'fold-hide', results = 'hide'}
+head(not_rushed)
+```
+
+```{r, echo=FALSE}
+head(not_rushed) |> 
+  kbl() |> 
+  kable_styling(bootstrap_options = "striped") |> 
+  scroll_box(width = "100%")
+```
+
+#### *Check Subset Sizes*
+
+```{r class.source = 'fold-hide'}
+
+rushed_rows <- nrow(rushed)
+not_rushed_rows <- nrow(not_rushed)
+
+print(paste("The number of rows in rushed is:", rushed_rows))
+print(paste("The number of rows in not rushed is:", not_rushed_rows))
+```
+
+---
+
+#### *Summary*
+
+This example shows how the `%in%` operator simplifies filtering when working with categorical variables. It avoids the need to write multiple `==` and `|` conditions, making your code cleaner and easier to read.
+
+:::
+
+---
+
+### Optional Exercise 2: Urban vs Rural Time Pressure Analysis
+
+---
+
+:::walkthrough
+
+Use your new filtering and selecting skills to explore how people in urban and rural areas differ in terms of time pressure, based on their reported extra time.
+
+#### *Task Instructions*
+
+1. Explore the `popCenter` and `extraTime` columns to understand the variable types and possible values.
+2. Filter the dataset into two groups: `urban` and `rural`.
+3. Select the relevant variables: `popCenter`, `extraTime`, `durWork`, and `durSleep`.
+4. Calculate and compare the average `extraTime` between the two groups.
+
+---
+
+#### *Step 1: Explore the Data*
+
+```{r, class.source = 'fold-hide', results = 'hide'}
+data |> 
+  distinct(popCenter)
+data |> 
+  count(extraTime) |> arrange(desc(n)) |> head(10)
+```
+
+```{r, echo=FALSE}
+kable(data |> distinct(popCenter)) |> kable_styling()
+kable(data |> count(extraTime) |> arrange(desc(n)) |> head(10)) |> kable_styling()
+```
+
+---
+
+#### *Step 2: Filter Urban and Rural Populations*
+
+To filter the urban population, we use the `filter()` function to keep only rows where `popCenter` is equal to `"urban"`:
+
+```{r, class.source = 'fold-hide', results = 'hide'}
+urban_data <- data |> filter(popCenter == 'urban')
+```
+
+Then, we use `head()` to display the first few rows of the `urban_data` dataframe:
+
+```{r, class.source = 'fold-hide', results = 'hide'}
 head(urban_data)
+```
+
+```{r, echo=FALSE}
+head(urban_data) |> kbl() |> kable_styling(bootstrap_options = "striped") |> scroll_box(width = "100%")
+```
+
+Similarly, we filter the rural population:
+
+```{r, class.source = 'fold-hide', results = 'hide'}
+rural_data <- data |> filter(popCenter == 'rural')
+```
+
+We then preview the first few rows of the `rural_data` dataframe:
+
+```{r, class.source = 'fold-hide', results = 'hide'}
 head(rural_data)
 ```
 
 ```{r, echo=FALSE}
-# Display the first few rows with kableExtra styling
-head(urban_data) |>
-  kbl() |>
-  kable_styling(bootstrap_options = "striped") |>
-  scroll_box(width = "100%")
-
-head(rural_data) |>
-  kbl() |>
-  kable_styling(bootstrap_options = "striped") |>
-  scroll_box(width = "100%")
+head(rural_data) |> kbl() |> kable_styling(bootstrap_options = "striped") |> scroll_box(width = "100%")
 ```
 
-Now that we have our filtered datasets, we can focus on selecting only the variables relevant to our analysis.
+---
 
-### Step 3: Select Relevant Variables
+#### *Step 3: Select Relevant Variables*
 
-Just as we used select() earlier to focus on specific columns, let's now choose only the variables needed for our analysis:
+We select the following variables:
 
-```{r}
-# Select relevant columns for each population group
-urban_selected <- urban_data %>%
-  select(popCenter, extraTime, durWork, durSleep)
+- `popCenter`: to retain group identity (urban vs. rural)
+- `extraTime`: to measure perceived time availability
+- `durWork`: to examine work duration
+- `durSleep`: to evaluate sleep patterns
 
-rural_selected <- rural_data %>%
-  select(popCenter, extraTime, durWork, durSleep)
+We start by selecting the relevant columns from the `urban_data` dataframe:
 
-```
-
-```{r, data-isolation-12, results = 'hide'}
-# Verify our filtered datasets
-head(urban_selected)
-head(rural_selected)
+```{r, class.source = 'fold-hide', results = 'hide'}
+urban_selected <- urban_data |> select(popCenter, extraTime, durWork, durSleep)
 ```
 
 ```{r, echo=FALSE}
-# Display the first few rows with kableExtra styling
-head(urban_selected) |>
-  kbl() |>
-  kable_styling(bootstrap_options = "striped") |>
-  scroll_box(width = "100%")
-
-head(rural_selected) |>
-  kbl() |>
-  kable_styling(bootstrap_options = "striped") |>
-  scroll_box(width = "100%")
+head(urban_selected) |> kbl() |> kable_styling(bootstrap_options = "striped") |> scroll_box(width = "100%")
 ```
 
-With our data now both filtered and selected, we're ready to calculate summary statistics.
+Similarly, we select columns from the `rural_data` dataframe:
 
-### Step 4: Calculate Mean Extra Time
-
-Building on our previous work with summary statistics, let's analyze the average extra time reported by each group:
-
-```{r}
-# Calculate mean extra time for each population group
-mean_urban <- urban_selected %>%
-  summarise(avg_extra_time = mean(extraTime, na.rm = TRUE))
-
-mean_rural <- rural_selected %>%
-  summarise(avg_extra_time = mean(extraTime, na.rm = TRUE))
-
-# Display results
-print("Mean extra time by population center:")
-print(mean_urban)
-print(mean_rural)
+```{r, class.source = 'fold-hide', results = 'hide'}
+rural_selected <- rural_data |> select(popCenter, extraTime, durWork, durSleep)
 ```
+
+```{r, echo=FALSE}
+head(rural_selected) |> kbl() |> kable_styling(bootstrap_options = "striped") |> scroll_box(width = "100%")
+```
+
+---
+
+#### *Step 4: Calculate and Compare Mean Extra Time*
+
+To calculate the average amount of extra time reported by urban and rural respondents, we use the `summarise()` function:
+
+```{r, class.source = 'fold-hide', results = 'hide'}
+mean_urban <- urban_selected |> summarise(avg_extra_time = mean(extraTime, na.rm = TRUE))
+mean_rural <- rural_selected |> summarise(avg_extra_time = mean(extraTime, na.rm = TRUE))
+```
+
+```{r, echo=FALSE}
+print("Mean extra time for Urban respondents:")
+mean_urban |> kbl() |> kable_styling()
+
+print("Mean extra time for Rural respondents:")
+mean_rural |> kbl() |> kable_styling()
+```
+
+:::
+
+---
 
 :::note
-Key considerations:
-1. Use `na.rm = TRUE` to handle missing values
-2. Remember that lower values in `extraTime` indicate more available time
-3. Consider the sample sizes when interpreting differences
+**Key considerations:**
+1. Use `na.rm = TRUE` to handle missing values.
+2. Lower values in `extraTime` indicate more available time.
+3. Consider the sample sizes when interpreting differences.
 :::
 
