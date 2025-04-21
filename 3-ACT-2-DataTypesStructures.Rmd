@@ -23,6 +23,8 @@ library(kableExtra)
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warnings = FALSE)
 ```
 
+<h4 style="text-align:center;"><strong>Data in R can be stored as a variety of data types and organized in a variety of data structures. We can also recode data in R depending on our research needs.</strong></h4>
+
 ## Data Organization in R
 
 This section covers how data is organized in R and how to clean a dataset. Understanding how your data is organized and being able to adjust that organization to match your research needs is an important part of research data management. For example, you might need your data to be in a certain structure to run certain statistical analyses or you may need to transform variables into versions that are more easily understood. 
@@ -50,28 +52,16 @@ This data type deals with whole numbers (i.e., no decimals) and operates similar
 #### **Character/String Data**
 Character variables are variables with words or letters. Such as names of people (Erin, Maria, Huy) or places (ON, BC, QC). Character variables usually need to be put in quotation marks in R code, so they are not confused with words that actually denote functions in R. We will create some character variables later in this section. 
 
+#### **Factors**
+Factors are how R handles categorical data. Factors can store string or integer data, because sometimes numbers do represent categories (rather than a continuous range of numbers).Factors have leveled data. For example, the variable of education may have the levels of "high school," "bachelors degree," and "masters degree." 
+
+Factor structure is particularly useful for statistical modeling. Sometimes you might need to change an object into factor structure, so you can use the function `as.factor()` to do so. 
+
+#### **Dates and Times**
+Data can also be stored in date and/or time format in R. Our data doesn't contain dates or times, but we want to let you know this is possible. Date data would typically look like "22-05-2025" or "2025-05-22." Times could look like "11:12:34."
+
 #### **Logical Data**
 Logical data includes `TRUE` and `FALSE` data. We can also ask R to provide us `TRUE` or `FALSE` response if we ask if a condition is met. 
-
-#### **Boolean/Comparison/Logical Operators**
-Boolean and logical operators can be used to compare values or create logical statements. These are a bit different from the rest of the data types, because you usually don't have these operators within a dataset. However, they are very useful for understanding, checking, and managing your data. 
-
-You might have used Boolean characters to search databases in the past (e.g., searching in journal databases for articles with certain keywords). They work similarly in R. Boolean (or comparison) operators allow you to check conditions within your dataset. These return `TRUE` or `FALSE` based on whether the condition is met. These functions also can be useful if you want to filter for a certain value in the data (e.g., sub-set only women in a dataset) or modify how data is grouped (e.g., you want to re-label everyone over 6 feet as "tall"). Logical operators allow you to filter data based on multiple conditions.
-
-| Comparison Operator | Meaning                  | Example  | Result |
-|:----------|:--------------------------|:----------|:--------|
-| `==`     | Equal to                 | `5 == 5` | `TRUE` |
-| `!=`     | Not equal to             | `5 != 3` | `TRUE` |
-| `<`      | Less than                | `3 < 5`  | `TRUE` |
-| `>`      | Greater than             | `5 > 3`  | `TRUE` |
-| `<=`     | Less than or equal to    | `3 <= 3` | `TRUE` |
-| `>=`     | Greater than or equal to | `5 >= 3` | `TRUE` |
-
-| Logical Operator | Meaning                                        | Example               | Result |
-|:----------|:------------------------------------------------|:-----------------------|:--------|
-| `&`      | Logical AND (Both conditions must be TRUE)     | `(5 > 3) & (4 < 6)`    | `TRUE` |
-| `|`      | Logical OR (At least one condition must be TRUE)| `(5 > 3) | (4 > 6)`     | `TRUE` |
-| `!`      | Logical NOT (Reverses TRUE/FALSE)               | `!(5 > 3)`            | `FALSE` |
 
 ## Data Structures in R
 Data structures are how the data is organized in R. Here are the major data structures in R. There are some additional structures (e.g., matrices and arrays) that are mostly used only when doing statistical modeling. We will skip over these for now and focus on the data structures you will likely encounter in a research data managment context. 
@@ -93,24 +83,14 @@ Lists are an ordered collection of elements. They can contain different data typ
 
 ```{r}
 list_example <- list("red", "blue", "skyblue", "forestgreen")
-print(list_example)
+list_example
 ```
 
 Because lists are ordered (i.e., each element in the list has a specific spot in the list), you can call for an element based on the order it has been assigned. For example, "skyblue" is third in this example list. 
 
 ```{r}
-print(list_example [3])
+list_example [3]
 ```
-
-## Data Attributes in R
-
-#### Factors
-Factors are how R handles categorical data. Factors can store string or integer data, because sometimes numbers do represent categories (rather than a continuous range of numbers).Factors have leveled data. For example, the variable of education may have the levels of "high school," "bachelors degree," and "masters degree." 
-
-Factor structure is particularly useful for statistical modeling. Sometimevs you might need to change an object into factor structure, so you can use the function `as.factor()` to do so. 
-
-#### Dates
-NEED TO ADD
 
 ## Introduction to dplyr Library
 In order to check and modify data types we suggest using the `dplyr` package, which is part of the Tidyverse. `dplyr` is a powerful R package designed to simplify data manipulation tasks. It provides a set of intuitive functions that make filtering, selecting, and transforming data frames (we will talk about this data structure soon) more readable and efficient. It is the go to package for data set organization. We will use just a few of the functions of this package in this course, but there are many more applications of `dplyr` you can explore. 
@@ -147,7 +127,7 @@ load("data/timeuse_day2.Rdata")
 ```
 
 ```{r, data-isolation, results = FALSE}
-print(head(data))
+head(data)
 ```
 
 ```{r, echo = FALSE, message = FALSE, warning=FALSE}
@@ -180,7 +160,7 @@ class(data$province)
 However, maybe we would prefer to have province acronyms (i.e., character data format) rather than the integer representation of them. We can re-code variables using the dplyr functions `|>` and `mutate()`. The possible integer values for the provicne variable, and what province they represent can be found in the dataset codebook. 
 
 ```{r}
-data <- data |> mutate(province_char = recode(data$province, 
+data <- data |> mutate(province_char = recode_factor(data$province, 
                             "10" = "NL", 
                             "11" = "PEI", 
                             "12" = "NS",
@@ -194,7 +174,7 @@ data <- data |> mutate(province_char = recode(data$province,
 ```
 
 :::walkthrough
-  - This code is telling R to `recode()` the variable "province" from the dataset "data" into a new variable called "province_char" (you could call it anything, but make sure it is a meaningful name).
+  - This code is telling R to `recode_factor()` the variable "province" from the dataset "data" into a new variable called "province_char" (you could call it anything, but make sure it is a meaningful name). We are using `recode_factor()` instead of just `recode()` to keep the data in factor structure. 
 
   - The list outlines how each value of the current "province" variable should be recoded for the new "province_char" variable. 
   
@@ -286,7 +266,7 @@ Can you re-code marital status into a character/string variable?
 :::
 
 ```{r class.source = 'fold-hide', results = 'hide'}
-data<-data |> mutate(maritalStat_char = recode(data$maritalStat, 
+data<-data |> mutate(maritalStat_char = recode_factor(data$maritalStat, 
                             "1" = "Married", 
                             "2" = "Living common-law", 
                             "3" = "Widowed",
@@ -302,7 +282,7 @@ How about level of education?
 :::
 
 ```{r class.source = 'fold-hide', results = 'hide'}
-data <- data |> mutate(eduLevel_char = recode(data$eduLevel,
+data <- data |> mutate(eduLevel_char = recode_factor(data$eduLevel,
                             "1" = "Less than high school dimploma or its equivalent",
                             "2" = "High school diploma or equivalency",
                             "3" = "Trade certificate or diploma",
