@@ -17,6 +17,7 @@ output:
 ```{r, libraries, include = FALSE}
 library(kableExtra)
 library(ggplot2)
+library(dplyr)
 ```
 
 ```{r setup, include=FALSE}
@@ -26,13 +27,14 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warnings = FALSE)
 ```{r, include = FALSE}
 load("data/timeuse_day3_2.Rdata")
 ```
+
+<h4 style="text-align:center;"><strong>Data in R can be stored as a variety of data types and organized in a variety of data structures. We can also recode data in R depending on our research needs.</strong></h4>
+
 ## Data Visualization in R
 
-Communicating about research and data is a critical part of the data science workflow. One powerful way to communicate research findings is through visualizations. Visuals can often more efficiently and more effectively tell the story of your data, rather than only relying on writing. Well done data visualizations will often have the biggest impact on an audience in a science communication context. 
+Data visualization is a critical part of the data science workflow. Through visualization we can explore and understand our own data, informing further analyses. Additionally, data visualizations are a powerful tool for communicating data and research findings to other people. Visuals can often more efficiently and more effectively tell the story of your data, rather than only relying on writing. Well done data visualizations will often have the biggest impact on an audience in a science communication context. 
 
 ![](images/tidyverse-workflow.png)
-
-
 
 In this session we have a few main goals. 
 
@@ -43,25 +45,27 @@ In this session we have a few main goals.
 
 ### Types of Data Visualization
 
-Data visualizations can be descriptive in nature, such as portraying the demographic distribution of a group people, or can represent statistical findings, such as a regression line with a confidence interval overlayed on a scatter plot of data. In certain contexts it is also common to present data and information in more easily digestible infographics (add link to examples), that enter more of a graphic design space. Different data visualizations fulfill different goals. Having a toolbox of a variety of data visualization types can help you pick the best type to fit your needs for a given project. 
+Data visualizations can be descriptive in nature, such as portraying the demographic distribution of a group people, or can represent statistical findings, such as a regression line with a confidence interval overlayed on a scatter plot of data. In certain contexts it is also common to present data and information in more easily digestible infographics ([check out some examples here](https://www.canva.com/learn/best-infographics/")), that enter more of a graphic design space. Different data visualizations fulfill different goals. Having a toolbox of a variety of data visualization types can help you pick the best type to fit your needs for a given project. 
 
 #### Table
 Tables to collect and organize data are one of the most common and basic data visualizations. But don't discount them! They can be efficient ways to convey a large amount of information about your data all at once. 
 
-ADD EXAMPLE
+![](images/day4_exampletable.png)
 
 #### Pie Chart
 A classic pie chart is useful for representing parts that add up to a whole. This also allows for comparing group sizes. Often used for demographic variables, with the whole representing the whole sample, or for representing money, with the whole representing a budget or total money spent/made. Careful to use a pie chart only when it really adds to the story. For instance, if there are only two parts to the whole, a pie chart might not convey much more information. Conversely, if there are many groups, it can become difficult to really see all of them and compare them. 
 
-ADD EXAMPLE
+![](images/day4_piechartexample.png)
 
 #### Box Plots
 Box plots (also known as box and whisker plots) are good for understanding and comparing variance between groups. They typically depict the median and min/max of each group for a certain variable. The box portion represents the 1st and 3rd quartiles of the distribution. You can also show change over time with this type of plot. 
 
 ```{r, echo = FALSE}
 ggplot(data, aes(x=as.factor(province_char), y=durSleep)) + 
-    geom_boxplot(fill="slateblue", alpha=0.2) + 
-    xlab("Province")
+    geom_boxplot(fill="#2D5E7F", alpha=0.6) + 
+    xlab("Province") +
+    ylab("Number of Minutes SLeeping") +
+ theme(text = element_text(size = 18))
 ```
 
 #### Histogram 
@@ -70,9 +74,10 @@ Histograms display the distribution of one variable. The height of the bars repr
 ``` {r, echo = FALSE}
 
 ggplot(data, aes(x=durSleep)) + 
-  geom_histogram()+
+  geom_histogram(fill = "#2D5E7F", color = "black")+
   xlab("Number of Minutes Sleeping") +
-  ylab ("Number of Participants")
+  ylab ("Number of Participants") +
+  theme(text = element_text(size = 18))
 ```
 
 #### Bar Chart 
@@ -83,8 +88,10 @@ ggplot(data, aes(x=maritalStat_char, fill = as.factor(maritalStat_char))) +
   geom_bar() + 
   xlab("Marital Status") +
   ylab ("Number of Participants") +
-  scale_fill_hue(c = 40) +
-  theme(legend.position = "none")
+  scale_fill_hue(c = 60) +
+  theme(legend.position = "none",
+        text = element_text(size = 18),
+        axis.text.x = element_text(angle = 35, hjust = 1))
 ```
 
 #### Scatter Plot 
@@ -92,18 +99,32 @@ Scatter plots include data points that are plotted along an x and y axis, showin
 
 ```{r, echo = FALSE}
 ggplot(data, aes(durWork, durSleep)) +
-  geom_point(alpha = .4) +
-  geom_smooth(method=lm, se=TRUE, alpha = .2) +
-  xlab("Duration of Work") +
-  ylab ("Duration of Sleep") +
-  labs(title = "Relationship Between Time Working and Time Sleeping")+
-  theme_bw () + guides(color = 'none')
+  geom_point(color = "#2D5E7F", alpha = .2) +
+  geom_smooth(method=lm, se=TRUE, color = "black") +
+  xlab("Minutes Spent Working") +
+  ylab ("Minutes Spent Sleeping") +
+  labs(title = "Association Between Working and Sleeping") +
+  theme(text = element_text(size = 18))
 ```
 
 #### Line Chart 
 Line charts used connected straight lines to display data. They are good for showing change over time on a continuous variable. They are often similar in purpose to bar charts, but visually simpler if there are many time points. 
 
-ADD EXAMPLE
+```{r, echo = FALSE}
+xValue <- 1:7
+yValue <- c(1303, 2127, 2597, 2789, 3741, 2958, 1875)
+plotdata <- data.frame(xValue,yValue)
+
+ggplot(plotdata, aes(x=xValue, y=yValue)) +
+  geom_line(color = "#2D5E7F") +
+  xlab("Age Groups") +
+  ylab ("Number of Participants") +
+  labs(title = "Number of Participants per Age Group") +
+  theme(text = element_text(size = 18)) +
+  scale_x_continuous(breaks = seq(1, 7, 1)) +
+  scale_y_continuous(breaks = seq(0, 4000, 500))
+
+```
 
 #### Interactive Data Visualizations 
 As research and publications move more online and away from print, this can allow for more interactive data visualizations. These are types of data visualizations that allow a person to select and change what is being shown. Check out this great example from [Gapminder](https://www.gapminder.org/tools/#$chart-type=bubbles&url=v2). The default visualization shows GDP and life expectancy over time, and by country. However, you can change the variables included to view other data. 
@@ -111,13 +132,14 @@ As research and publications move more online and away from print, this can allo
 #### So many more! 
 - Heat Map
 - Stacked Bar or Stacked Area Chart
-- Biolin Plot
+- Violin Plot
 - Gantt Chart
 - Choropleth Map
 
 ### What Makes a Good Visualization?
 There is an art to picking the best data visualization that fits your data and the story you are telling. Consider the following: 
 
+- What question are you exploring with your data and how will it inform future analyses?
 - What is your data visualization adding to your science communication? 
 - What take-away message are you conveying with the image? 
 - What type of variables to you have? Continuous? Categorical?
@@ -139,6 +161,8 @@ Once you pick the format that fits your needs best, these are some principles to
 **- Simplicity:** Aim to have uncluttered data visualization. It is easy to get excited about all you can do creatively in the world of data visualizations, but sometimes adding too much (e.g., extra colors, pictures) can actually obscure your main message. Avoid extra info that doesn't add to the story you are telling.
 
 **- Accessibility:** Consider how your data visualization design would be viewed by a variety of other people. Text font and size for legends and axis labels should be clear and not too small. Try not to rely only on color to distinguish groups (e.g., lines can be dashed or doted), or pick colors/hues that are distinguishable by people who are colorblind. Include alternative text descriptions that can be read aloud by a screen reader. 
+
+For more information on how design principles and the visual hierarchy of elements check out [this article](https://www.interaction-design.org/literature/topics/visual-hierarchy?srsltid=AfmBOooU77XPiVsXSkE7t2GqAayaOyh0VxdwGj3bJaP1Qj3xcc5A44BW) . Size, color, contrast, alignment, repetition, proximity, whitespace, and texture can all be used to draw focus to particular visual elements. 
 
 
 ### Your Turn!
@@ -174,7 +198,7 @@ If you have installed the tidyverse, then `ggplot2` is included. Otherwise you c
 
 Although there are many ways to make data visualizations in R, other approaches tend to be more automatic and consequently limit the amount you can change and adapt your visualization to your needs. However, `ggplot2` works in layers, allowing for maximum control and flexibility. There are three categories of components commonly used in `ggplot2`.
 
-1. **Geometries:** visual representations of the data. This is often lines, points, box, histograms etc.
+1. **Geometries:** Visual representations of the data. This is often lines, points, box, histograms etc.
 2. **Attributes:** Set values for the visual properties of geometries. This could include the color of bars on a bar plot or the shape of a line.
 3. **Aesthetics:** Values of visual properties of geometries that vary depending on the data. This could be the color of a line varying based on gender. 
 
@@ -204,33 +228,115 @@ Here are some of the most common layers (i.e., functions) used in `ggplot2`. Typ
 
 There are an infinite number of data visualization options in `ggplot` but to get started today we are going to focus on making a bar plot (good for categorical data) and a scatter plot (good for continuous data). 
 
-#### Making a Bar Plot
-Building from yesterday, let's see if people who feel rushed tend to work more than people who do not feel rushed. 
+### Making a Basic Bar Plot
+Building from yesterday, let's see if people who feel rushed tend to work more than people who do not feel rushed. To create a bar chart in `ggplot2` we use the function `geom_bar()`. If you want a bar chart representing the number of people in each group, you can add just one variable to the `aes()` function, and use the default `geom_bar(stat = "count")`. We include the `as.factor` function around the `isFeelRushed` variable so it is treated as a categorical variable for the box plot instead of a numeric variable. 
 
 ```{r}
-ggplot(data, aes(x = isFeelRushed, y = durWork)) +
+ggplot(data, aes(x = as.factor(isFeelRushed))) +
+  geom_bar(stat = "count") + 
+  xlab("Feeling Rushed") +
+  ylab ("Number of Participants") 
+```
+
+To represent the mean for each group on some other variable, you add both and x and a y variable to the `aes()` function and use the `geom_bar(stat = "summary")`. Note that the Y-axis scale has now adjusted to a scale that matches this the variable we are using (i.e., mean number of minutes spent working for each group). 
+
+```{r}
+ggplot(data, aes(x = as.factor(isFeelRushed), y = durWork)) +
   geom_bar(stat = "summary") + 
   xlab("Feeling Rushed") +
   ylab ("Time Working") 
 ```
 
-IMPROVE AND ADD WALKTHROUGH
+:::walkthrough
+  - Most plots will start with the `ggplot()`function
+  - You have to include object where `ggplot()` will get the information for the plot from. In this case our dataset `data`
+  - Within the `aes()` function, we identify what the x and y variables are for this plot
+  - We add layers using the `+` sign
+  - Next we tell `ggplot()` what type of plot we are making; in this case we are creating a bar plot using the function `geom_bar()`
+  - Then we add what type of statistic we want presented on the plot. Here we ask for the mean of each group for the variable durWork using the function `geom_bar(stat = "summary")`
+  - We add a label to the x-axis with `lab("Feeling Rushed")`
+  - We add the label to the y-axis with `ylab ("Time Working")`
+  
+:::
 
-#### Making a Scatter Plot
-number of hours worked and feeling rushed? or some more coninuous variable?
+### New and Improved Box Plot! 
+This plot gets the idea across, but we can add more layers and functions to make more adjustments. 
+
+```{r}
+
+plotlabels <- c("Not Rushed", "Rushed", "Did Not Respond")
+
+ggplot(data, aes(x = as.factor(isFeelRushed), y = durWork)) +
+  geom_bar(stat = "summary", fill = "#2D5E7F") + 
+  xlab("Feeling Rushed") +
+  ylab ("Time Working") +
+  labs(title = "Association Between Working and Sleeping") +
+  scale_x_discrete(labels = plotlabels) +
+  theme(text = element_text(size = 18),
+        axis.text.x = element_text(angle = 25, hjust = 1))
+  
+```
+
+:::walkthrough
+  - We can change the color of the bars using `fill = `. Here we added the specific color using a hex code. But you can also write in the names of colors such as "blue."
+  - Using `labs(title = "")` we added an overall title to the plot
+  - We probably want what each category represents, rather than the "0", "1" and "NA" labels. To add text labels, we first create an object with each of those labels in order
+(`plotlabels <- c("Not Rushed", "Rushed", "Did Not Respond")`). The in the `scale_x_discrete(labels = plotlabels)` function we call to that object we created as the labels for the x-axis. There are many other ways to adjust the labels for each axis, but this method works well for a small number of groups.
+  - In the `theme()` layer you can add many different specifications. Here we added `text = element_text(size = 18)` to make the text size bigger than the default and made the x-axis labels angled so they fit better using `axis.text.x = element_text(angle = 25, hjust = 1)`. The `hjust = ` adjust the vertical location of the axis labels so they don't overlap with the plot itself. `vjust = ` can be used to move the labels right and left. 
+  
+:::
+
+:::question
+Try manipulating this plot some. Can you change the color of the bars? What happens if you change `angle = 90`?
+:::
+
+### Making a Basic Scatter Plot
+number of hours worked and feeling rushed? or some more continuous variable?
 
 ```{r}
 ggplot(data, aes(durWork, durSleep)) +
-  geom_point(alpha = .4) +
-  geom_smooth(method=lm, se=TRUE, alpha = .2) +
+  geom_point() +
+  geom_smooth() +
   xlab("Duration of Work") +
-  ylab ("Duration of Sleep") +
-  labs(title = "Relationship Between Time Working and Time Sleeping")+
-  theme_bw () + guides(color = 'none')
+  ylab ("Duration of Sleep")
       
 ```
 
-IMPROVE AND ADD WALKTHROUGH
+:::walkthrough
+  - Again we start with the `ggplot()` function, including telling it to use the dataset `data`
+  - In the `aes()` funciton we list the x and y variables (here durWork and durSleep)
+  - The `geom_point()` funciton is what makes a scatter plot
+  - The geom_smooth() is what adds the line to the plot
+  - The `xlab()` and `ylab()` add the x-axis and y-axis labels to the plot
+  
+:::
+### New and Improved Scatter Plot!
+
+Now let's add some layers and aesthetic adjustments to improve this plot.
+
+```{r}
+ggplot(data, aes(durWork, durSleep)) +
+  geom_point(color = "#2D5E7F", alpha = .2) +
+  geom_smooth(method = lm, color = "black") +
+  xlab("Minutes Spent Working") +
+  ylab ("Minutes Spent Sleeping") +
+  scale_x_continuous(breaks = seq(0, 1500, 250)) +
+  labs(title = "Association Between Working and Sleeping") +
+  theme(text = element_text(size = 18))
+```
+
+:::walkthrough
+  - We can change the color of the data points by adding `color = "#2D5E7F"` and change the transparency of the data points (so you can see where there are overlapping clusters) with the addition of `alpha = .2`. 
+  - In the `geom_smooth()` function we changed the method for calculating the line to be linear (instead of the ggplot default) using `method = lm` and adjusted the color of the line with `color = `. Remember you can write hex code numbers or the names of colors to adjust colors. Make sure both are in quotes to avoid error messages. 
+  - We adjust the x-axis tick marks with the `scale_x_continuous(breaks = seq(0, 1500, 250))` part, which tells R to plot the x-axis on a sequence from 0 to 1500 (this captures all of the responses in our data), with labels every 250 minutes. 
+  - The `labs(title = "Association Between Working and Sleeping")` adds an overall title to the plot
+  - Lastly, `theme(text = element_text(size = 18))` adjust the text size
+  
+:::
+
+:::question
+Try manipulating this plot some. Can you make the data points more and less transparent? Can you change the color of the line? What happens if the x-axis has labels every 100 minutes?
+:::
 
 ### Your Turn!
 ::: question
