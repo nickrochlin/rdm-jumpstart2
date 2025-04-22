@@ -4,10 +4,52 @@ pagetitle: "RDM Jumpstart"
 output:
   html_document:
     includes:
-      in_header: header.html
       after_body: footer.html
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
 ---
 
-## RDM Jumpstart
+<img class="alliance-logo" src="images/Alliance_logo_Symbol.png" alt="Alliance Banner">
 
-Some Content Here.
+## Welcome
+
+Welcome to RDM Jumpstart, 2025!
+
+## Preload
+
+We have a few things to set up in advance of Monday...
+
+### Tech Setup
+
+During this workshop we will be using R, OSF, and Borealis to explore best practices in Research Data Management with a focus on reproducible workflows.
+
+We ask that you:
+
+* [Install R and RStudio on your computer](6-EXT-RRStudio.html).
+* [Create an OSF account](6-EXT-osfSetup.html).
+* [Log in to the Borealis sandbox](6-EXT-Borealis.html).
+
+### Background Reading
+
+Please briefly review:
+
+* [Tri-Agency RDM Policy](https://science.gc.ca/site/science/en/interagency-research-funding/policies-and-guidelines/research-data-management/tri-agency-research-data-management-policy-frequently-asked-questions).
+* [Guide to preparing data management plans](https://www.sshrc-crsh.gc.ca/funding-financement/apply-demande/guides/guide_preparing_data_management_plan-guide_preparation_plan_gestion_donnees-eng.aspx).
+* [The Documenation of the data set we'll be using](https://odesi.ca/en/details?id=/odesi/doi__10-5683_SP3_RDS0CK.xml).
+
+## Week Overview
+
+:::md-table
+| Session | Day 1 | Day 2 | Day 3 | Day 4 | Day 5 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Morning | Introduction to Research Data Management | RDM and Reproducibility | FAIR Data | Troubleshooting in R | Data Deposit |
+| Afteroon | Data Management Plans | Introduction to R | R Data Cleaning | Data Visualization | Wrap Up |
+:::
+
+## Contact
+
+Please refer to the email communications you've recieved to get in touch with us.
+

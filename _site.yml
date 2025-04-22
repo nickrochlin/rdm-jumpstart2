@@ -77,6 +77,12 @@ navbar:
           href: 6-EXT-RDMRoadmap.html
         - text: "Reproducible Roadmap"
           href: 6-EXT-CRRoadmap.html
+        - text: "R & RStudio Setup"
+          href: 6-EXT-RRStudio.html
+        - text: "OSF Setup"
+          href: 6-EXT-osfSetup.html
+        - text: "Borealis Setup"
+          href: 6-EXT-Borealis.html
         - text: "Contributors"
           href: contributors.html
         - text: "R Cheatsheet"

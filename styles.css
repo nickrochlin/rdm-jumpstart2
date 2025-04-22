@@ -90,13 +90,12 @@ h2, h3 {
   background-color: #fff;
 }
 
-#AllianceBanner {
-  width: 10% !important;
-  
+.alliance-logo {
+  width: 20% !important;
   display: block;
-  margin: auto;
-  padding: 30px 0px 20px 0px;
+  margin: 0;
   box-shadow: none;
+  float: right;
 }
 
 a:link, a:visited, a:hover, a:active {
@@ -153,6 +152,6 @@ img {
 }
 
 .md-table > table > tbody > tr > td {
-  padding:1em 0;
+  padding:1em 1em 0 0;
   vertical-align: top;
 }
