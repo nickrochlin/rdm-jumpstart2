@@ -7,63 +7,53 @@ navbar:
       menu:
         - text: "Day 1 Overview"      
           href: 1-Overview.html
-        - text: "Day 1 - The Importance of RDM"
+        - text: "The Importance of RDM"
           href: 1-LEC-1-ImportanceRDM.html
-        - text: "Day 1 - The Data Science Workflow"
+        - text: "The Data Science Workflow"
           href: 1-LEC-2-DataScience.html
-        - text: "Day 1 - Data Management Plans"
-          href: 1-LEC-3-DMPs.html
-        - text: "Day 1 - OSF"
+        - text: "OSF"
           href: 1-LEC-4-OSF.html
-        - text: "Day 1 - Finding Data"
-          href: 1-ACT-1-FindingData.html
+        - text: "Data Management Plans"
+          href: 1-LEC-3-DMPs.html
     - text: "Day 2"
       menu:
-        - text: "Day 2 - Overview"
+        - text: "Day 2 Overview"
           href: 2-Overview.html
-        - text: "Day 2 - Bias & Reproducibility"
+        - text: "RDM: Bias & Reproducibility"
           href: 2-LEC-1-BiasRepro.html
-        - text: "Day 2 - Licencing and Copyright"
-          href: 2-LEC-2-LicenceCopyright.html
-        - text: "Day 2 - GUI vs Scripting"
+        - text: "Computational Reproducibility: GUI vs Scripting"
           href: 2-LEC-3-GUIscript.html
-        - text: "Day 2 - Setting Up R"
+        - text: "R: Setting Up"
           href: 2-ACT-1-RSetup.html
-        - text: "Day 2 - First Steps in R"
+        - text: "R: First Steps"
           href: 2-ACT-2-FirstSteps.html
     - text: "Day 3"
       menu:
-        - text: "Day 3 - Overview"
+        - text: "Day 3 Overview"
           href: 3-Overview.html
-        - text: "Day 3 - FAIR"
-          href: 3-LEC-1-FAIR.html
-        - text: "Day 3 - Computational Literacies"
-          href: 3-LEC-2-CompLiteracies.html
-        - text: 'Day 3 - Creating a readme'
-          href: 3-ACT-1-readme.html
-        - text: "Day 3 - Data Types and Structures"
+        - text: "Computational Reproducibility: Dependencies"
+          href: 3-LEC-2-Dependencies.html
+        - text: "R: Data Types and Structures"
           href: 3-ACT-2-DataTypesStructures.html
-        - text: "Day 3 - Filter and Select"
+        - text: "R: Filter and Select"
           href: 3-ACT-3-FilterSelect.html
-        - text: "Day 3 - Extra Exercises"
+        - text: "R: Extra Exercises"
           href: 3-ExtraExercises.html
     - text: "Day 4"
       menu:
-        - text: "Day 4 - Overview"
+        - text: "Day 4 Overview"
           href: 4-Overview.html
-        - text: "Day 4 - RMarkdown, Scripts & IDEs"
-          href: 4-LEC-1-RmarkdownScripts.html
-        - text: "Day 4 - Troubleshooting"
-          href: 4-ACT-1-Troubleshooting.html
-        - text: "Day 4 - Data Visualization"
+        - text: "R: Data Visualization"
           href: 4-ACT-2-DataVisualization.html
-        - text: "Day 4 - Saving Output"
+        - text: "R: Troubleshooting"
+          href: 4-ACT-1-Troubleshooting.html
+        - text: "R: Saving Output"
           href: 4-ACT-3-SavingOutput.html
-        - text: "Day 4 - Extra Exercises"
+        - text: "R: Extra Exercises"
           href: 4-ExtraExercises.html
     - text: "Day 5"
       menu:        
-        - text: "Day 5 - Overview"
+        - text: "Day 5 Overview"
           href: 5-Overview.html
         - text: "Day 5 - Final Project"
           href: 5-ACT-1-FinalProject.html
@@ -87,6 +77,8 @@ navbar:
           href: contributors.html
         - text: "R Cheatsheet"
           href: 6-EXT-RCheatsheet.html
+        - text: "RMarkdown, Scripts & IDEs"
+          href: 6-EXT-RmarkdownScripts.html
 output:
   html_document:
     theme: flatly
