@@ -12,9 +12,9 @@ navbar:
         - text: "The Data Science Workflow"
           href: 1-LEC-2-DataScience.html
         - text: "OSF"
-          href: 1-LEC-4-OSF.html
+          href: 1-LEC-3-OSF.html
         - text: "Data Management Plans"
-          href: 1-LEC-3-DMPs.html
+          href: 1-LEC-4-DMPs.html
     - text: "Day 2"
       menu:
         - text: "Day 2 Overview"
@@ -62,23 +62,33 @@ navbar:
     - text: "Extras"
       menu:
         - text: "Resources"
-          href: resources.html
-        - text: "RDM Roadmap"
-          href: 6-EXT-RDMRoadmap.html
-        - text: "Reproducible Roadmap"
-          href: 6-EXT-CRRoadmap.html
-        - text: "R & RStudio Setup"
-          href: 6-EXT-RRStudio.html
-        - text: "OSF Setup"
-          href: 6-EXT-osfSetup.html
-        - text: "Borealis Setup"
-          href: 6-EXT-Borealis.html
+          menu:
+            - text: "R Cheatsheet"
+              href: 6-EXT-RCheatsheet.html
+        - text: "Roadmaps"
+          menu:
+            - text: "RDM Roadmap"
+              href: 6-EXT-RDMRoadmap.html
+            - text: "Reproducible Roadmap"
+              href: 6-EXT-CRRoadmap.html
+        - text: "Concetps in Reproduciblity"
+          menu:
+            - text: "Base R & Tidyverse"
+              href: 6-EXT-BaseRtidyverse.html
+            - text: "Scripts & Notebooks"
+              href: 6-EXT-ScriptsNotebooks.html
+            - text: "IDEs & Relative Paths"
+              href: 6-EXT-idePaths.html
+        - text: "Setup"
+          menu:
+            - text: "R & RStudio Setup"
+              href: 6-EXT-RRStudio.html
+            - text: "OSF Setup"
+              href: 6-EXT-osfSetup.html
+            - text: "Borealis Setup"
+              href: 6-EXT-Borealis.html
         - text: "Contributors"
           href: contributors.html
-        - text: "R Cheatsheet"
-          href: 6-EXT-RCheatsheet.html
-        - text: "RMarkdown, Scripts & IDEs"
-          href: 6-EXT-RmarkdownScripts.html
 output:
   html_document:
     theme: flatly
