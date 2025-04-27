@@ -155,3 +155,25 @@ img {
   padding:1em 1em 0 0;
   vertical-align: top;
 }
+
+.schedule-table > table > tbody > tr > td {
+  color: #FBFAFA;
+  background-color: #D6AB00;
+  border: 2px solid #FBFAFA;
+  padding:1em;
+  vertical-align: top;
+  border-radius: 5px;
+}
+
+.schedule-table > table > tbody > tr > th {
+  color: #32322F;
+  background-color: #00DBA7;
+  border: 2px solid #FBFAFA;
+  padding:1em;
+  vertical-align: top;
+  border-radius: 5px;
+}
+
+.empty-block {
+            background: repeating-linear-gradient(45deg, #ffffff, #ffffff 5px, #D6AB00 5px, #D6AB00 10px);
+        }
