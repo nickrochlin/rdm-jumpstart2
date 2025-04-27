@@ -4,7 +4,7 @@ pagetitle: "RDM Jumpstart"
 output:
   html_document:
     includes:
-      after_body: footer.html
+      after_body: [footer.html, scripts/schedule.js]
     toc: true
     toc_depth: 3
     toc_float:
@@ -40,16 +40,128 @@ Please briefly review:
 * [Guide to preparing data management plans](https://www.sshrc-crsh.gc.ca/funding-financement/apply-demande/guides/guide_preparing_data_management_plan-guide_preparation_plan_gestion_donnees-eng.aspx).
 * [The Documenation of the data set we'll be using](https://odesi.ca/en/details?id=/odesi/doi__10-5683_SP3_RDS0CK.xml).
 
-## Week Overview
+## Schedule
 
-:::md-table
-| Session | Day 1 | Day 2 | Day 3 | Day 4 | Day 5 |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Morning | Introduction to Research Data Management | RDM and Reproducibility | FAIR Data | Troubleshooting in R | Data Deposit |
-| Afteroon | Data Management Plans | Introduction to R | R Data Cleaning | Data Visualization | Wrap Up |
+<p class = "highlight">Times displayed below should update to your local time zone.</p>
+<p>Your local time zone is <span id = "timezone"></span>, and your current date and time is: <span id = "current-time"></span>.</p>
+
+:::schedule-table
+<table>
+    <tbody>
+        <tr>
+            <th>Time</th>
+            <th>Day 1</th>
+            <th>Day 2</th>
+            <th>Day 3</th>
+            <th>Day 4</th>
+            <th>Day 5</th>
+        </tr>
+        <tr>
+            <td id = "slot-0"></td>
+            <td>Introductions</td>
+            <td>Recap</td>
+            <td>Recap</td>
+            <td>Recap</td>
+            <td>Recap</td>
+        </tr>
+        <tr>
+            <td id = "slot-1"></td>
+            <td rowspan="2">What is RDM</td>
+            <td rowspan="3">RDM: Bias and Reproducibility</td>
+            <td rowspan="2">Dependencies</td>
+            <td rowspan="3">R: Data Visualizations</td>
+            <td rowspan="2">Data Deposits</td>
+        </tr>
+        <tr>
+            <td id = "slot-2"></td>
+        </tr>
+        <tr>
+            <td id = "slot-3"></td>
+            <td>Why is RDM Important</td>
+            <td rowspan="5">R: Data Structures</td>
+            <td>Borealis</td>
+        </tr>
+        <tr>
+            <td id = "slot-4"></td>
+            <td>Break</td>
+            <td>Break</td>
+            <td>Break</td>
+            <td>Break</td>
+        </tr>
+        <tr>
+            <td id = "slot-5"></td>
+            <td rowspan="2">Data Science Workflow</td>
+            <td rowspan="3">Excel and R</td>
+            <td rowspan="3">R: Data Visualization</td>
+            <td rowspan="2">Borealis Deposit</td>
+        </tr>
+        <tr>
+            <td id = "slot-6"></td>
+        </tr>
+        <tr>
+            <td id = "slot-7"></td>
+            <td rowspan="2">OSF</td>
+            <td rowspan="3">Reflection & Survey</td>
+        </tr>
+        <tr>
+            <td id = "slot-8"></td>
+            <td rowspan="4">Lunch</td>
+            <td rowspan="4">Lunch</td>
+            <td rowspan="4">Lunch</td>
+        </tr>
+        <tr>
+            <td id = "slot-9"></td>
+            <td rowspan="4">Lunch</td>
+        </tr>
+        <tr>
+            <td id = "slot-10"></td>
+            <td rowspan="11" class="empty-block"></td>
+        </tr>
+        <tr>
+            <td id = "slot-11"></td>
+        </tr>
+        <tr>
+            <td id = "slot-12"></td>
+            <td rowspan="4">R: Introduction</td>
+            <td rowspan="4">R: Filtering & Selecting</td>
+            <td rowspan="4">R: Troubleshooting</td>
+        </tr>
+        <tr>
+            <td id = "slot-13"></td>
+            <td rowspan="4">DMP Part 1</td>
+        </tr>
+        <tr>
+            <td id = "slot-14"></td>
+        </tr>
+        <tr>
+            <td id = "slot-15"></td>
+        </tr>
+        <tr>
+            <td id = "slot-16"></td>
+            <td>Break</td>
+            <td>Break</td>
+            <td>Break</td>
+        </tr>
+        <tr>
+            <td id = "slot-17"></td>
+            <td rowspan="4">DMP Part 2</td>
+            <td rowspan="4">R: First Steps</td>
+            <td rowspan="4">R: Filtering & Selecting</td>
+            <td rowspan="4">R: Saving Outputs</td>
+        </tr>
+        <tr>
+            <td id = "slot-18"></td>
+        </tr>
+        <tr>
+            <td id = "slot-19"></td>
+        </tr>
+        <tr>
+            <td id = "slot-20"></td>
+        </tr>
+    </tbody>
+</table>
 :::
 
 ## Contact
 
 Please refer to the email communications you've recieved to get in touch with us.
-
