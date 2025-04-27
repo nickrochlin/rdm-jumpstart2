@@ -14,6 +14,10 @@ output:
       smooth_scroll: false
 ---
 
+:::note
+Managing external dependecies is critical to ensuring that you can maintain computational reproducibility when you move your code to a new computer.
+:::
+
 ## Dependencies
 
 Dependencies are essentially prerequisites -- the things you need to complete a task. For example, so far, we require both R and some of the packages in `tidyverse` to run the code we've written. Dependencies -- and tracking dependencies -- are a significant issue in computationally reproducible research.
@@ -57,7 +61,7 @@ renv::init()
 renv::init()
 ```
 
-:::{.note}
+:::note
 You'll notice that we're using a different way of calling the `init()` function here, first noting the package that it's in `renv` followed by two colons `::`. Similarly to how in day 2 we loaded all of Tidyverse with `library(tidyverse)`, but on day 3 we only loaded one package from the tidyverse, `dplyr`, to trim down how much we were loading into memory, we can also load only specific functions from a package that is installed - we don't call `library()`, we just reference the installed package, and then call the function of interest.
 :::
 
