@@ -3,8 +3,6 @@ title: "RDM: Bias & Reproducibility"
 pagetitle: "RDM: Bias & Reproducibility"
 output:
   html_document:
-    code_folding: show # allows toggling of showing and hiding code. Remove if not using code.
-    code_download: true # allows the user to download the source .Rmd file. Remove if not using code.
     includes:
       after_body: footer.html # include a custom footer.
     toc: true
@@ -154,7 +152,3 @@ This is coupled with novel and statistically significant findings being favoured
 At the funging stage, replication studies are generally not favoured when compared to novel pursuits with the potential of significant near term impact. This is perhaps most evident in medical fields, where many reseach questions are never addressed or significant replication never undertaken because research funds are targetted in the direction of novel pursuits with impact that is more easily reported on. See for example *How a now-retracted study got published in the first place, leading to a $3.8 million NIH grant* reported on by [Retraction Watch](https://retractionwatch.com/2023/06/09/how-a-now-retracted-study-got-published-in-the-first-place-leading-to-a-3-8-million-nih-grant/) or the recent issues highlighted in Alzheimer research, [as reported in Science](https://www.science.org/content/article/potential-fabrication-research-images-threatens-key-theory-alzheimers-disease), *Blots on a field*.
 
 These challenges all manifest in poor documentation (documentation of decision making processes takes time, reducing number of scholarly outputs), and increased study bias (less time spent checking cognitive biases, increase in p-hacking and HARKing related practices to find significance, less attention to influence of systemic biases).
-
-## When Things Go Awry
-
-Jumping Spiders

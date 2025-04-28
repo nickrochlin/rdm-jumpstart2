@@ -12,7 +12,7 @@ output:
       smooth_scroll: false
 ---
 
-<img class="alliance-logo" src="images/Alliance_logo_Symbol.png" alt="Alliance Banner">
+<img class="alliance-logo" src="images/institutions/Alliance_logo_Symbol.png" alt="Alliance Banner">
 
 ## Welcome
 

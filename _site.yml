@@ -5,9 +5,7 @@ navbar:
   left:
     - text: "Day 1"
       menu:
-        - text: "Day 1 Overview"      
-          href: 1-Overview.html
-        - text: "The Importance of RDM"
+        - text: "RDM: Introduction"
           href: 1-LEC-1-ImportanceRDM.html
         - text: "The Data Science Workflow"
           href: 1-LEC-2-DataScience.html
@@ -17,8 +15,6 @@ navbar:
           href: 1-LEC-4-DMPs.html
     - text: "Day 2"
       menu:
-        - text: "Day 2 Overview"
-          href: 2-Overview.html
         - text: "RDM: Bias & Reproducibility"
           href: 2-LEC-1-BiasRepro.html
         - text: "Computational Reproducibility: GUI vs Scripting"
@@ -29,32 +25,22 @@ navbar:
           href: 2-ACT-2-FirstSteps.html
     - text: "Day 3"
       menu:
-        - text: "Day 3 Overview"
-          href: 3-Overview.html
         - text: "Computational Reproducibility: Dependencies"
           href: 3-LEC-2-Dependencies.html
         - text: "R: Data Types and Structures"
           href: 3-ACT-2-DataTypesStructures.html
         - text: "R: Filter and Select"
           href: 3-ACT-3-FilterSelect.html
-        - text: "R: Extra Exercises"
-          href: 3-ExtraExercises.html
     - text: "Day 4"
       menu:
-        - text: "Day 4 Overview"
-          href: 4-Overview.html
         - text: "R: Data Visualization"
           href: 4-ACT-2-DataVisualization.html
         - text: "R: Troubleshooting"
           href: 4-ACT-1-Troubleshooting.html
         - text: "R: Saving Output"
           href: 4-ACT-3-SavingOutput.html
-        - text: "R: Extra Exercises"
-          href: 4-ExtraExercises.html
     - text: "Day 5"
       menu:        
-        - text: "Day 5 Overview"
-          href: 5-Overview.html
         - text: "Day 5 - Final Project"
           href: 5-ACT-1-FinalProject.html
         - text : "Day 5 - Data Deposit on Borealis"

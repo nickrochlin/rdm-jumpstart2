@@ -12,29 +12,29 @@
 .note {
   border: 1pt solid #0d4a7b;
   background-color: #f0f7fd;
-  background-image: url("images/note.png");
+  background-image: url("images/icons/note.png");
 }
 
 .question {
   border: 1pt solid #1f7b0d;
   background-color: #f1fdf0;
-  background-image: url("images/question.png");
+  background-image: url("images/icons/question.png");
 }
 
 .flag {
   border: 1pt solid #9d0606;
   background-color: #f9f3f3;
-  background-image: url("images/flag.png");
+  background-image: url("images/icons/flag.png");
 }
 
 .walkthrough {
   border: 1pt solid #ffa600;
   background-color: #fef9e7 ;
-  background-image: url("images/walkthrough.png");
+  background-image: url("images/icons/walkthrough.png");
 }
 
 .walkthrough p, .flag p, .question p, .note p, .walkthrough ul, .flag ul, .question ul, .note ul{
-  margin-left: 50px;
+  margin-left: 52px;
 }
 
 pre {

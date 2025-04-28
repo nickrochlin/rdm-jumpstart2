@@ -1,10 +1,8 @@
 ---
-title: "Day 1 - The Importance of RDM"
-pagetitle: "Day 1 - The Importance of RDM"
+title: "RDM: Introduction"
+pagetitle: "RDM: Introduction"
 output:
   html_document:
-    code_folding: show # allows toggling of showing and hiding code. Remove if not using code.
-    code_download: true # allows the user to download the source .Rmd file. Remove if not using code.
     includes:
       after_body: footer.html # include a custom footer.
     toc: true
@@ -14,14 +12,6 @@ output:
       smooth_scroll: false
 ---
 
-## Introductions
-
 ## What is RDM?
 
 ## Why is RDM Important
-
-## The Data Science Workflow
-
-## Tools for the Week
-
-## Data Management Plans
