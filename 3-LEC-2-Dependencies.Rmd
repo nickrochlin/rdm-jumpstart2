@@ -40,7 +40,7 @@ We've talked about base R and about extending it with additional packages or lib
 
 It's important to draw a distinction here between a package and a library in R. A package is a set of functions and data. We've seen many of the functions included in the `tidyverse` set of packages. A library is a place where these packages are stored on your computer. You can see where your packages are stored with `.libPaths()`.
 
-```{r}
+```{r libpaths}
 .libPaths()
 ```
 
@@ -52,12 +52,12 @@ The easiest way to handle this, is to use the package `renv`, which keeps copies
 
 First we install, load, and initialize `renv` -- this only needs to be done once.
 
-```{r, eval=FALSE}
+```{r install-renv, eval=FALSE}
 install.packages("renv")
 renv::init()
 ```
 
-```{r, results='hide', echo=FALSE}
+```{r init-renv, results='hide', echo=FALSE}
 renv::init()
 ```
 
@@ -67,23 +67,23 @@ You'll notice that we're using a different way of calling the `init()` function 
 
 Then we install the libraries that we need for our project locally; even if we've installed these and they are present in `.libPaths()`, we need to reinstall them in our project folder, as `renv` only looks in our project folder for packages. `renv` has an install function that is more verbose than `install.packages()` from base R.
 
-```{r, eval=FALSE}
+```{r install-tv, eval=FALSE}
 renv::install("tidyverse")
 ```
 
 You then load your libraries into you .R or .Rmd files as usual:
 
-```{r, eval=FALSE}
+```{r load-tv, eval=FALSE}
 library(tidyverse)
 ```
 
 Whenever you load a new package, you want to take a `snapshot()`, which tells `renv` to document all the packages you've used in your scripts. In our case, we only need to do this once, since we're only using packages that are contained within `tidyverse`.
 
-```{r, echo=FALSE}
+```{r install-rprojroot, echo=FALSE}
 renv::install("rprojroot", prompt = FALSE)
 ```
 
-```{r}
+```{r snapshot}
 renv::snapshot()
 ```
 
@@ -91,7 +91,7 @@ renv::snapshot()
 
 This is what the `renv.lock` file looks like on the inside:
 
-```{bash echo = FALSE}
+```{bash, echo = FALSE}
 cat renv.lock | head -n 20
 ```
 
@@ -101,7 +101,7 @@ At the end of today, when we upload our data and .Rmd files to OSF, we will now 
 
 Read more about the `renv` package at [https://rstudio.github.io/renv/articles/renv.html](https://rstudio.github.io/renv/articles/renv.html)
 
-```{r, results='hide', echo=FALSE}
+```{r deactivate-renv, results='hide', echo=FALSE}
 renv::deactivate(clean = TRUE) # get rid of renv so the website builds properly
 ```
 
