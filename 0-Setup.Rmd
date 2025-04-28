@@ -1,0 +1,14 @@
+---
+title: "Installed Packages"
+output: html_document
+---
+
+```{r}
+packageList <-c("tidyverse",
+                "here",
+                "datadictionary",
+                "kableExtra",
+                "renv")
+
+install.packages(setdiff(packageList, rownames(installed.packages())))  
+```
