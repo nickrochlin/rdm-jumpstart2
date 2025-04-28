@@ -80,6 +80,10 @@ library(tidyverse)
 Whenever you load a new package, you want to take a `snapshot()`, which tells `renv` to document all the packages you've used in your scripts. In our case, we only need to do this once, since we're only using packages that are contained within `tidyverse`.
 
 ```{r}
+renv::install("rprojroot", prompt = FALSE)
+```
+
+```{r}
 renv::snapshot()
 ```
 
