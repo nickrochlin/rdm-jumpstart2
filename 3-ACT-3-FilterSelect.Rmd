@@ -23,9 +23,7 @@ output:
 
 ### Introduction
 
-:::note
-  Subsetting data is an essential part of the *data exploration* stage in the data science workflow. It involves extracting a portion of the dataset based on specific conditions.
-:::
+<h4 style="text-align:left;"><strong>Subsetting data is an essential part of the <em>tidy</em> stage in the data science workflow. It involves extracting a portion of the dataset based on specific conditions.</strong></h4>
 
 In this short tutorial, we will learn:
 
