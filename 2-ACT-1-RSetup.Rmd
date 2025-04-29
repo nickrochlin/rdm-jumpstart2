@@ -19,20 +19,18 @@ knitr::opts_chunk$set(message = FALSE, warnings = FALSE)
 
 ## Introduction
 
-:::note
-RStudio is a program that helps you write and run R code more easily, especially for working with data, making graphs, and doing statistics.
-:::
+<h4 style="text-align:center;"><strong>RStudio is a program that helps you write and run R code more easily, especially for working with data, making graphs, and doing statistics.</strong></h4>
 
 In this tutorial, we will:
 
-- Get familiarized with the R Studio interface
+- Get familiarized with the RStudio interface
 - Learn how to set the working directory
 - Understand the types of documents we can create in R Studio
 - Create an R Markdown file to start our project
 
-## R Studio Interface
+## RStudio Interface
 
-When we launch R Studio for the first time, we notice three main panels or quadrants: 
+When we launch RStudio for the first time, we notice three main panels or quadrants: 
 
 ![](images/day2_RStudio_3panel.png)
 
@@ -43,7 +41,7 @@ Once we open a document, the interface will show four main panels:
 ### 1 - Top left panel
 #### Files and scripts (source window or code editor)
 
-This is your code editor, where you write, save, and run R scripts (.R), R Markdown documents (.Rmd), or other file types.
+This is your code editor, where you write, save, and run R scripts (.R), RMarkdown documents (.Rmd), or other file types.
 
 ### 2 - Bottom left panel
 #### R console and terminal
@@ -130,30 +128,32 @@ To create an R Project, select File > New Project
 
 ![](images/day2_CreateProject.gif)
 
+
 ## Types of files in R
 
 There are two main types of files we can create in R studio to edit our code (Base R files `.R` and RMarkdown files `.Rmd`)
 
 The base R file (`.R`) is a plain text file that contains R code only. Use it when you want to write and run code line-by-line, such as for data cleaning, analysis, or function building. It's good for experimenting, scripting, and running code interactively. It's also good for sharing code with other researchers.
 
-The R Markdown file (`.Rmd`) has a mix of R code and written explanations, using Markdown formatting. Can be used to create dynamic, reproducible reports that can be knitted into HTML, PDF, or Word documents.It's great for homework, research reports, dashboards, or combining narrative with code.
+The RMarkdown file (`.Rmd`) has a mix of R code and written explanations, using Markdown formatting. Can be used to create dynamic, reproducible reports that can be knitted into HTML, PDF, or Word documents.It's great for homework, research reports, dashboards, or combining narrative with code.
 
-To create an RMarkdown file, select File > New File > R Markdown
+To create an RMarkdown file, select File > New File > RMarkdown
 
 ![](images/day2_CreateRMarkdown.gif)
 
+## Markdown
+Markdown is a simple way to format text using plain symbols and characters, without needing complex tools. It was designed to make writing easy and readable. Many websites, blogs, and online platforms use Markdown because it is quick to write and easy to convert into nice-looking documents. Learning Markdown gives you a foundation for organizing your ideas clearly, and it’s the basic language that RMarkdown builds on to create reports that combine text, code, and results all in one document.
 
 ## RMarkdown
+With RMarkdown, you can write plain text like in Markdown — but you can also insert chunks of R code that run directly inside the document. This means you can create reports that mix text, analysis, tables, and graphs all in one place. RMarkdown automatically runs the code, captures the results, and formats everything into a polished document like a PDF, Word file, or website.
 
-RMarkdown is a document format that integrates R code with formatted text, allowing users to create dynamic and reproducible reports, presentations, and documents. 
-
-The key difference between R and RMarkdown is that R is used for executing code and performing computations, whereas RMarkdown is a tool for combining R code with explanatory text in a structured document. In RMarkdown, code chunks can be embedded within a narrative, and when the document is **knit** the results (including text, tables, and plots) are automatically generated and formatted, making it ideal for creating research reports, analyses, and presentations.
+The key difference between the RScript files and RMarkdown files is that RScript is used for executing code and performing computations, whereas RMarkdown is a tool for combining R code with explanatory text in a structured document. In RMarkdown, code chunks can be embedded within a narrative, and when the document is **knit** the results (including text, tables, and plots) are automatically generated and formatted, making it ideal for creating research reports, analyses, and presentations.
 
 RMarkdown offers formatting options that help us organize the file into sections, it is a good practice to document every step taken when working with data. 
 
 ## RMarkdown structure
 
-R Markdown documents have three main parts:
+RMarkdown documents have three main parts:
 
  - **YAML header** 
  - **Markdown text** 
@@ -185,33 +185,41 @@ These are sections of code surrounded by triple backticks and {r}.This is where 
 ```
 ````
 
-For additional information, [click here](https://rmarkdown.rstudio.com/lesson-8.html)
+For additional information, visit the [RMarkdown lesson from RStudio](https://rmarkdown.rstudio.com/lesson-8.html), and the [RMarkdown definitive guide](https://bookdown.org/yihui/rmarkdown/) 
 
 ## Your Turn! 
 
-#note: this activity is still not fully done. Will edit later-
+:::question
+Create your first RProject. We will name this project `js_timeuse_2025`
+:::
 
 :::question
-Create your first RMarkdown file
+Create your first RMarkdown file. We will name this file `script_js_timeuse_2025`
 :::
 
 :::question
 In your RMarkdown file, add the following:
 :::
 
-#note: edit this with instructions of heading and description of the start of the project for the week. This is the file students will be using to follow all activities in days 2, 3 and 4. And the file they will deposit into borealis in day 5.
-
- - Level 1 heading "Learning RDM with Time Use Project"
- - Brief description of the project: 
- - Level 2 heading "My first chunk of code"
- - Insert an empty chunk of code
- - Add...
+  1. Level 1 heading "Learning RDM with Time Use Project"
+  2. Brief description of the project: 
+  3. Level 2 heading "My first chunk of code"
+  4. Insert an empty chunk of code
+  5. Inside the chunk of code, type the following: `5+3` (Yes! R can be used as a simple calculator too!)
+  6. Click the play button on the top right corner of the code chunk. This will display the result of the code chunk. 
+ 
+ Finally, lets save and visualize our work.
  
 :::question
-Finally, click the knit icon at the top of your code editor to preview your formatted file in .html
+
+-Click on the save button in the top left panel. Make sure you are in the correct folder. Save the file as '`script_js_timeuse_2025.Rmd`
+
+-Click the knit icon at the top of your code editor to preview your formatted file in .html
 :::
 
-#gif clicking the knit icon
+We will continue adding information to this RMarkdown file later today and the rest of the week.
 
-#screenshot of RMarkdown text file side by side knitted html to demonstrate how it should look
+
+
+
 
