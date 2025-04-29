@@ -157,23 +157,38 @@ img {
 }
 
 .schedule-table > table > tbody > tr > td {
-  color: #FBFAFA;
-  background-color: #D6AB00;
   border: 2px solid #FBFAFA;
   padding:1em;
   vertical-align: top;
   border-radius: 5px;
+  font-weight: bold;
+}
+
+.activity {
+  background-color:  #00DBA7;
+  color: #32322F;
+}
+
+.lecture {
+  background-color: #D6AB00;
+  color: #32322F;
+}
+
+.time {
+  color: #FBFAFA;
+  background-color: #32322F;
 }
 
 .schedule-table > table > tbody > tr > th {
-  color: #32322F;
-  background-color: #00DBA7;
+  color: #FBFAFA;
+  background-color: #32322F;
   border: 2px solid #FBFAFA;
   padding:1em;
   vertical-align: top;
   border-radius: 5px;
 }
 
-.empty-block {
-            background: repeating-linear-gradient(45deg, #ffffff, #ffffff 5px, #D6AB00 5px, #D6AB00 10px);
+.empty-block, .break {
+  background: repeating-linear-gradient(45deg, #ffffff, #ffffff 5px,#fcf3cf  5px, #fcf3cf 10px);
+  color: #32322F;
         }
