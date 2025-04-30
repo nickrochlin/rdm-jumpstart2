@@ -164,6 +164,18 @@ img {
   font-weight: bold;
 }
 
+.schedule-table > table > tbody > tr > td > a {
+  display: block;
+}
+
+.schedule-link:hover{
+  transform: scale(1.1);
+  border-radius: 10px;
+  background-color: #FBFAFA;
+  color: #32322F;
+  cursor: pointer;
+}
+
 .activity {
   background-color:  #00DBA7;
   color: #32322F;
