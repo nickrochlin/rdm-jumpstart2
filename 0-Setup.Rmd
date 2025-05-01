@@ -10,5 +10,5 @@ packageList <-c("tidyverse",
                 "kableExtra",
                 "renv")
 
-install.packages(setdiff(packageList, rownames(installed.packages())))  
+install.packages(setdiff(packageList, rownames(installed.packages())), repos = "http://cran.us.r-project.org")  
 ```
