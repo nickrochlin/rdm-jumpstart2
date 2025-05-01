@@ -19,9 +19,7 @@ knitr::opts_chunk$set(message = FALSE, warnings = FALSE)
 
 ## Introduction
 
-:::note
-Understanding and fixing errors is one of the most important (and sometimes frustrating!) parts of learning R
-:::
+<h4 style="text-align:center;"><strong>Understanding and fixing errors is one of the most important (and sometimes frustrating!) parts of learning R</strong></h4>
 
 In this tutorial, we will:
 
@@ -52,7 +50,6 @@ Keep calm!
  - Typos or mistakes in names of dataset, variables, functions
  - Calling a function of a library we forgot to install or load
  
- #note:will add examples of each
 
 ## Team Challenge (30 minutes)
 In small teams, you will work together to troubleshoot some errors in R. We've created a RMarkdown file with some code related to the same Time Use dataset we've been using this week. You will notice a lot of errors when trying to run the code. 
@@ -61,7 +58,6 @@ Take note of how many errors you encounter and what you do to solve them.
 
 Come back to the main room when you're done. 
 
-#note: working on the code for the team challege, I expect to have it done this weekend
 
 
 
