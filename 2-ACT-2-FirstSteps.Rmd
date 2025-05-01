@@ -157,7 +157,7 @@ Remember the Tidyverse Data Science Workflow? Today we will be focusing on the f
 ### Read a csv file
 To import a csv file we can use the `read_csv()` function and assign it to a new object we will call *data*. We create a new object to be able to call it in different functions later on.
 ```{r}
-data <- read_csv("data/timeuse_day1_na.csv")
+js_data <- read_csv("data/timeuse_day1_na.csv")
 ```
 
 ### Read Other Formats
@@ -176,7 +176,7 @@ There are other functions and packages that allow us to import different file ty
 ## Listing Column Names
 To ask for a list of all the column names in our dataset we can use the `names()` function.
 ```{r}
-names(data)
+names(js_data)
 ```
 
 Notice that the column names from the original dataset don't provide a clear description of what the variable is. We will change the column names later to facilitate working with our data in the future.
@@ -185,12 +185,12 @@ Notice that the column names from the original dataset don't provide a clear des
 The head function will display the top rows of the dataset. It will include information about the default data type assigned to each column. You will learn more about data types tomorrow.
 
 ```{r, data-isolation, results = FALSE}
-head(data)
+head(js_data)
 ```
 
 ```{r, echo = FALSE, message = FALSE, warning=FALSE}
 library(kableExtra)
-head(data)|>
+head(js_data)|>
   kbl() |>
   #kable_styling(bootstrap_options = "striped")
 kable_paper() %>%
@@ -200,8 +200,8 @@ kable_paper() %>%
 
 ## Viewing Data
 To visualize the full dataset we use the `View()` function. This will open our dataset in a separate window.
-```{r}
-View(data)
+```{r, eval=FALSE}
+View(js_data)
 ```
 
 
@@ -213,7 +213,7 @@ The function `rename()` is part of one of the packages that was installed with t
 :::walkthrough
 Type the following code to change the column name from "PUMFID" to "id"
 ```{r}
-data <- data |>
+js_data <- js_data |>
   rename ("id" = "PUMFID")
 ```
 Did it work?
@@ -225,7 +225,7 @@ Did it work?
 Now, to change the rest of the column names copy the following code. (click show to see the code)
 
 ```{r, class.source = 'fold-hide'}
-data <- data |>
+js_data <- js_data |>
   rename ("ageGrp" = "AGEGR10",
           "sex" = "SEX",
           "maritalStat" = "MARSTAT",
@@ -258,7 +258,7 @@ data <- data |>
 :::question
 Use the function`names(data)` to display the column names.
 ```{r}
-names(data)
+names(js_data)
 ```
 :::
 
@@ -268,11 +268,11 @@ Saving in R format (RData) will preserve data types and metadata assigned to the
 The text format (csv) will be the ideal format to share the data.
 
 ```{r}
-save(data, file="data/timeuse_day2.RData")
+save(js_data, file="data/timeuse_day2.RData")
 ```
 
 ```{r}
-save(data, file="data/timeuse_day2.csv")
+save(js_data, file="data/timeuse_day2.csv")
 ```
 
 ## Upload to OSF
