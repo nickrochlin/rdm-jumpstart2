@@ -38,7 +38,7 @@ Please briefly review:
 
 * [Tri-Agency RDM Policy](https://science.gc.ca/site/science/en/interagency-research-funding/policies-and-guidelines/research-data-management/tri-agency-research-data-management-policy-frequently-asked-questions).
 * [Guide to preparing data management plans](https://www.sshrc-crsh.gc.ca/funding-financement/apply-demande/guides/guide_preparing_data_management_plan-guide_preparation_plan_gestion_donnees-eng.aspx).
-* [The Documenation of the data set we'll be using](https://odesi.ca/en/details?id=/odesi/doi__10-5683_SP3_RDS0CK.xml).
+* [The Documentation of the data set we'll be using](https://odesi.ca/en/details?id=/odesi/doi__10-5683_SP3_RDS0CK.xml).
 
 ## Schedule
 

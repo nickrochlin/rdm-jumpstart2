@@ -1,6 +1,6 @@
 ---
-title: "Day 5 - Data Deposit on Borealis"
-pagetitle: "Day 5 - Data Deposit on Borealis"
+title: "Day 5 - Data Deposit in Borealis"
+pagetitle: "Day 5 - Data Deposit in Borealis"
 output:
   html_document:
     code_folding: show # allows toggling of showing and hiding code. Remove if not using code.
@@ -14,4 +14,4 @@ output:
       smooth_scroll: false
 ---
 
-## Data Deposit on Borealis
+## Data Deposit in Borealis
