@@ -272,7 +272,7 @@ save(js_data, file="data/timeuse_day2.RData")
 ```
 
 ```{r}
-save(js_data, file="data/timeuse_day2.csv")
+write_csv(js_data, file="data/timeuse_day2.csv")
 ```
 
 ## Upload to OSF
