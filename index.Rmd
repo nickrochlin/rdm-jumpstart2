@@ -16,7 +16,7 @@ output:
 
 ## Welcome
 
-Welcome to RDM Jumpstart, 2025!
+Welcome to RDM Jumpstart, 2025! Before going any further, [please read our code of conduct...](codeOfConduct.html)
 
 ## Preload
 
