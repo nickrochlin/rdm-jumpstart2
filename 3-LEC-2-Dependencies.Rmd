@@ -46,7 +46,7 @@ It's important to draw a distinction here between a package and a library in R. 
 
 Note that, by default, these are stored almost in the root of your operating system. So when you move your project folder, you don't also move your additional packages.
 
-The easiest way to handle this, is to use the package `renv`, which keeps copies of your packages in your project folder as well as detailed information about them so that should they need to be re-installed they can be and with the exact same version. Thus, you end up with a stable, reproducible R environment.
+The easiest way to handle this, is to use the package `renv`, which isntalls your packages in your project folder as well and maintains detailed information about them so that should they need to be re-installed they can be and with the exact same version. Thus, you end up with a stable, reproducible R environment.
 
 #### renv in Action
 
@@ -65,19 +65,34 @@ renv::init()
 You'll notice that we're using a different way of calling the `init()` function here, first noting the package that it's in `renv` followed by two colons `::`. Similarly to how in day 2 we loaded all of Tidyverse with `library(tidyverse)`, but on day 3 we only loaded one package from the tidyverse, `dplyr`, to trim down how much we were loading into memory, we can also load only specific functions from a package that is installed - we don't call `library()`, we just reference the installed package, and then call the function of interest.
 :::
 
-Then we install the libraries that we need for our project locally; even if we've installed these and they are present in `.libPaths()`, we need to reinstall them in our project folder, as `renv` only looks in our project folder for packages. `renv` has an install function that is more verbose than `install.packages()` from base R.
+The `init()` function does a couple of things. It:
+
+* populates your .Rprofile with a line to be read every time you launch your project to `activate()` `renv`
+* creates a `renv/` directory where your local libraries are installed.
+* creates a `renv.lock` file that maintains metadata about the libraries you're using in the project.
+
+In fact, if we run `.libPaths()` again, we'll see there's a second library now.
+
+```{r}
+.libPaths()
+```
+
+
+Once intialized, `renv` is ready to start installing packages locally. If you already have saved .R or .Rmd files, `init()` will attempt to locate the packages your're using and install them locally. If you're initializing `renv` before saving any files, you'll need to manually install the packages you'll be using going forward, even if we've installed these and they are present in `.libPaths()`; at this stage, `renv` only looks in our project folder for packages.
+
+`renv` has an install function that is more verbose than `install.packages()` from base R.
 
 ```{r install-tv, eval=FALSE}
 renv::install("tidyverse")
 ```
 
-You then load your libraries into you .R or .Rmd files as usual:
+Installing a package doesn't add the details of this package to your `renv.lock` file; this only happens you actively call a package in an .R or .Rmd file and instruct it to make a record of the change. First we load the newly installed package.
 
 ```{r load-tv, eval=FALSE}
 library(tidyverse)
 ```
 
-Whenever you load a new package, you want to take a `snapshot()`, which tells `renv` to document all the packages you've used in your scripts. In our case, we only need to do this once, since we're only using packages that are contained within `tidyverse`.
+Then you take a `snapshot()`, which tells `renv` to document the packages you've used in your scripts. In our case, we only need to do this once, since we're only using packages that are contained within `tidyverse`.
 
 ```{r install-rprojroot, echo=FALSE}
 renv::install("rprojroot", prompt = FALSE)
@@ -87,17 +102,24 @@ renv::install("rprojroot", prompt = FALSE)
 renv::snapshot()
 ```
 
-`renv` adds a couple of new files and folders to your R project. The one that documents your packages is called `renv.lock` and this is where `snapshot()` records its information to.
-
 This is what the `renv.lock` file looks like on the inside:
 
 ```{bash, echo = FALSE}
 cat renv.lock | head -n 20
 ```
 
-Packages can take up a lot of space, so generally, you don't share your packages, or library folder, with others when you share your R project. Instead, you just share the `renv.lock` file -- the metadata about the packages used -- and the recipient of your folder, after installing the `renv` package, runs `renv::restore()`, which rebuilds your R environment on their machine.
+Packages can take up a lot of space, so generally, you don't share your packages, or library folder, with others when you share your R project. Instead, you just share a few of the `renv` generated files, including the:
 
-At the end of today, when we upload our data and .Rmd files to OSF, we will now also include the `renv.lock` file.
+* `renv.lock` file -- the metadata about the packages used
+* `.Rprofile` file -- launches `renv/activate.R` at startup
+* `renv/activate.R` file -- checks the setup on startup and will install `renv` if it's not installed
+* `renv/settings.json` file -- settings for `renv`.
+
+This set up is intended for using a version control system like Git. We're going to simplify things for ourselves here by only using the `renv.lock` file when sharing. So, you can ignore the hidden file `.Rprofile` and the `renv/` directory.
+
+This does mean that any collaborators will need to install `renv` first on the their machines. Then, they run `renv::activate()`, which gets `renv` up and running in the project, followed by `renv::restore()`, which rebuilds your R environment on their machine.
+
+At the end of today, when we upload our data and .Rmd files to OSF, we will now also include the `renv.lock` file. We should also update our readme with the `renv` setup instructions.
 
 Read more about the `renv` package at [https://rstudio.github.io/renv/articles/renv.html](https://rstudio.github.io/renv/articles/renv.html)
 
