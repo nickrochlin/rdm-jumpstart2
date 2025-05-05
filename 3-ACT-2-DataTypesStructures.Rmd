@@ -30,6 +30,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warnings = FALSE)
 This section covers how data is organized in R and how to clean a dataset. Understanding how your data is organized and being able to adjust that organization to match your research needs is an important part of research data management. For example, you might need your data to be in a certain structure to run certain statistical analyses or you may need to transform variables into versions that are more easily understood. 
 
 ![](images/tidyverse-workflow.png)
+<a href="https://telapps.london.edu/analytics_with_R/tidyverse.html">[Source]</a>
 
 This section covers five main topics: 
 
@@ -67,9 +68,10 @@ Logical data includes `TRUE` and `FALSE` data. We can also ask R to provide us `
 ## Data Structures in R
 Data structures are how the data is organized in R. Here are the major data structures in R. There are some additional structures (e.g., matrices and arrays) that are mostly used only when doing statistical modeling. We will skip over these for now and focus on the data structures you will likely encounter in a research data management context. 
 
-#### Vectors
+#### **Vectors**
 Vectors are simplest data structure. They are essentially a list of elements of the same data type. For example, you could have a numeric vector containing the elements (10, 15, 20, 25) or a character vector containing the elements ("blue", "red", "green"). They are one dimensional, since they are just one long list. A single variable (e.g., a list of ages of all the participants) can be considered a vector. 
-#### Data Frames
+
+#### **Data Frames**
 Data frames are the most common and popular type of data structure used in R. Data frames work essentially like spreadsheets in that they are two dimensional (i.e., have columns and rows) and can store different data types in teh same data frame (i.e., numeric and character). Data frames are made up of vectors of the same length. 
 
 However, data frames do have some constraints. First, the columns and rows must be named. Second, the lists of vectors in the data frame must have equal lengths (i.e., each column needs an identical number of elements/rows). Third, all elements in a single column must be of the same data type (i.e., you can't switch between numbers and names in a single column).
@@ -78,7 +80,7 @@ You may see mention of tibbles, which are an updated version of data frames and 
 
 For this course, our data is in data frame format. 
 
-#### Lists
+#### **Lists**
 Lists are an ordered collection of elements. They can contain different data types and they are one dimensional. We don't often have data in list form, but some functions in R will output results into list format, so it is good to be aware of them. Here is an example of a list:
 
 ```{r}
@@ -119,7 +121,7 @@ Let's explore the data types in our data using the `dplyr` functions!
 
 ## Checking Data Types in Our Data
 
-First we load  the `dplyr` package (remember to install it first if you haven't yet). If you have installed the `tidyverse` package, then `dplyr` was also included. However, it is best practice to just load in the libraries you need (i.e., just `dplyr` and not all of the tidyverse packages) to save space. 
+First we load  the `dplyr` package (remember to install it first if you haven't yet). You can find more information about `dplyr` on the <a href="https://dplyr.tidyverse.org/index.html">tidyverse website</a>. If you have installed the `tidyverse` package, then `dplyr` was also included. However, it is best practice to just load in the libraries you need (i.e., just `dplyr` and not all of the tidyverse packages) to save space.
 
 We will also load in our data. Yesterday we used the `read_csv` function to read in the csv file, but now we are working with an Rdata file we saved yesterday, so we can use the `load` function. Just to reacquaint ourselves with our data, use the `head` function. 
 
@@ -143,7 +145,7 @@ kable_paper() %>%
 ```
 
 
-We can check the data type of variables using the `class()` function and calling for a specific variable from our dataset `data` using the `$` operator, followed by the name of our variable. 
+We can check the data type of variables using the `class()` function and calling for a specific variable from our dataset `js_data` using the `$` operator, followed by the name of our variable. 
 
 ```{r}
 class(js_data$province)
@@ -159,7 +161,7 @@ For some variables, we might want to change the data type based on our codebook.
 class(js_data$province)
 ```
 
-However, maybe we would prefer to have province acronyms (i.e., character data format) rather than the integer representation of them. We can re-code variables using the dplyr functions `|>` and `mutate()`. The possible integer values for the provicne variable, and what province they represent can be found in the dataset codebook. 
+However, maybe we would prefer to have province acronyms (i.e., character data format) rather than the integer representation of them. We can re-code variables using the dplyr functions `|>` and `mutate()`. The possible integer values for the province variable, and what province they represent can be found in the dataset codebook. 
 
 ```{r}
 js_data <- js_data |> mutate(province_fact = recode_factor(js_data$province, 
@@ -216,12 +218,18 @@ You may have noticed that there are some cells in the data with "NA." This repre
 In this dataset missing data had been notated with various numerical codes (you can see these in the original codebook), but we have recoded the data so that all missing data as been denoted "NA." 
 
 ### Missing Data Related Functions
-If your data contains NA values, sometimes functions will give error messages due to incomplete data. For example, if you try to get the mean of education level (eduLevel), R will not provide one because it can't calculate a mean when there are missing values. 
+If your data contains NA values, sometimes functions will give error messages due to incomplete data. For example, if you try to get the mean of education level (eduLevel), R will not provide one because it can't calculate a mean when there are missing values. Note: getting a mean for education level, which is a categorical variable, is not a meaningful number. However, it is used here to illistratue this point, given that the continuous numeric variables in this dataset do not contain missing values. 
 
 
 ```{r}
 mean(js_data$eduLevel)
 ```
+
+Let's learn more about this function to see what happened. 
+```{R}
+help(mean)
+```
+We can see that the default for `mean` is to have `na.rm = FALSE`.
 
 Instead, we tell R to ignore those missing values. Including `na.rm = TRUE` to the function will typically tell R that it should complete the function, ignoring missing values. 
 
@@ -235,7 +243,7 @@ If you want to check if a variable or data frame has missing data, you can use t
 is.na(js_data$eduLevel)
 ```
 
-If you want to know the number of cells with missing data for a given variable you can use the same function, wrapped in the `sum` function. 
+If you want to know the number of cells with missing data for a given variable you can use the same function, wrapped in the `sum` function. We can layer functions like this, with R reading the functions starting from inside the parentheses and then moving outwards. We will continue to work with syntax like this throughout the week. 
 
 ```{r}
 sum(is.na(js_data$eduLevel))
@@ -247,7 +255,7 @@ If you want to find instances where there is no missing data you can use `comple
 complete.cases(js_data)
 ```
 
-If you want to know the total number of rows (i.e., participants) with no missing data you can take the `complete.cases()` function and wrap it in the `nrow()` function. 
+If you want to know the total number of rows (i.e., participants) with no missing data you can take the `complete.cases()` function and wrap it in the `sum()` function. 
 
 ```{r}
 sum(complete.cases(js_data))
@@ -300,13 +308,17 @@ class(js_data$eduLevel_fact)
 :::question
 What data structure would you use to store the following data?
 
-a) A list of heights of movie characters
+a) The 10 most popular movies this year (10 data points)
 
-b) A list of names of characters from a movie
+b) The names of the leading actor from each of the 10 most popular movies this year (10 data points total)
 
-c) A spreadsheet with both a and b in it
+c) A collection of all of the actors in each of the 10 most popular movies this year (100 data points total)
 
-d) The data we have been working with in this workshop
+d) A combination of a and b
+
+e) A combination of a, b, and c
+
+f) The data we have been working with in this workshop
 :::
 
 :::question
