@@ -85,7 +85,7 @@ ggplot(js_data, aes(x=durSleep)) +
 Bar charts are good for representing data from groups or categories, with the bars representing different categories. The bar height usually represent a mean, a count, or a percentage, by category. These can be useful for comparing groups or showing change over time. 
 
 ``` {r, echo = FALSE}
-ggplot(js_data, aes(x=maritalStat_char, fill = as.factor(maritalStat_char))) +
+ggplot(js_data, aes(x=maritalStat_fact, fill = as.factor(maritalStat_fact))) +
   geom_bar() + 
   xlab("Marital Status") +
   ylab ("Number of Participants") +
@@ -190,7 +190,7 @@ In small groups, on either of these websites, find a data visualization example 
 
 Now that we have our data visualization imaginations going, let's get into how we can visually represent our data in R.
 
-The go-to package for data visualization in R is `ggplot2`, which is part of the tidyverse. You can find more information about `ggplot2` on the <a href="https://ggplot2.tidyverse.org/">ltidyverse website</a>.
+The go-to package for data visualization in R is `ggplot2`, which is part of the tidyverse. You can find more information about `ggplot2` on the <a href="https://ggplot2.tidyverse.org/">tidyverse website</a>.
 
 This package approaches data visualization through "a grammar of graphics." In other words, using the same syntax, you can create an infinite number of data visualizations. Although there are a lot of functions and components to learn at first, once you understand the overall structure of building graphics in `ggplot2`, you can replicate and expand on this structure to visualize data in an unlimited number of ways. 
 
@@ -298,7 +298,7 @@ ggplot(js_data, aes(x = as.factor(isFeelRushed), y = durWork)) +
   geom_bar(stat = "summary", fill = "#2D5E7F") + 
   xlab("Feeling Rushed") +
   ylab ("Time Working") +
-  labs(title = "Association Between Working and Feeling Rushed") +
+  labs(title = "Working and Feeling Rushed") +
   scale_x_discrete(labels = plotlabels) +
   theme(text = element_text(size = 18),
         axis.text.x = element_text(angle = 25, hjust = 1))
@@ -332,9 +332,9 @@ ggplot(js_data, aes(durWork, durSleep)) +
 
 :::walkthrough
   - Again we start with the `ggplot()` function, including telling it to use the dataset `data`
-  - In the `aes()` funciton we list the x and y variables (here durWork and durSleep)
-  - The `geom_point()` funciton is what makes a scatter plot
-  - The geom_smooth() is what adds the line to the plot
+  - In the `aes()` function we list the x and y variables (here durWork and durSleep)
+  - The `geom_point()` function is what makes a scatter plot
+  - The geom_smooth() is what adds the correlation line to the plot
   - The `xlab()` and `ylab()` add the x-axis and y-axis labels to the plot
   
 :::
