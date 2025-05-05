@@ -28,7 +28,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warnings = FALSE)
 load("data/timeuse_day3_2.Rdata")
 ```
 
-<h4 style="text-align:center;"><strong>Data in R can be stored as a variety of data types and organized in a variety of data structures. We can also recode data in R depending on our research needs.</strong></h4>
+<h4 style="text-align:center;"><strong>Data visualization is an important part of exploring, understanding, and sharing our data.</strong></h4>
 
 ## Data Visualization in R
 
@@ -137,7 +137,7 @@ As research and publications move more online and away from print, this can allo
 - Choropleth Map
 
 ### What Makes a Good Visualization?
-There is an art to picking the best data visualization that fits your data and the story you are telling. Consider the following: 
+There is an art to picking the best data visualization that fits your data and the story you are telling. By nature, data visualizations are abstract representations of our data, with color, shape, position representing the data points. This both hides the exact data itself, while also allowing us to highlight bigger picture ideas about the data that we choose to emphasize. Consider the following: 
 
 - What question are you exploring with your data and how will it inform future analyses?
 - What is your data visualization adding to your science communication? 
@@ -187,7 +187,7 @@ In small groups, on either of these websites, find a data visualization example 
 
 Now that we have our data visualization imaginations going, let's get into how we can visually represent our data in R.
 
-The go-to package for data visualization in R is `ggplot2`, which is part of the tidyverse. You can find more information about `ggplot2` on the [tidyverse website](https://ggplot2.tidyverse.org/)
+The go-to package for data visualization in R is `ggplot2`, which is part of the tidyverse. You can find more information about `ggplot2` on the [tidyverse website](https://ggplot2.tidyverse.org/). This package approaches data visualization through "a grammar of graphics." In other words, using the same syntax, you can create an infinite number of data visualizations. Although there are a lot of functions and components to learn at first, once you understand the overall structure of building graphics in `ggplot2`, you can replicate and expand on this structure to visualize data in an unlimited number of ways. 
 
 If you have installed the tidyverse, then `ggplot2` is included. Otherwise you can install it now. Let's also load our dataset for today.
 
@@ -206,7 +206,7 @@ Here are some of the most common layers (i.e., functions) used in `ggplot2`. Typ
 
 **- `ggplot()`:** how you will start most plots you build in `ggplot2`. The rest of the information goes within this function.
 
-**- `aes()`:** this is the aesthetic mapping function, in which you can control aesthetic components of the plot. You can add colors, axis labels, font sizes and more within this function
+**- `aes()`:** this is the aesthetic mapping function, in which you can control aesthetic components of the plot. You can add colors, axis labels, font sizes and more within this function. Color and shape can be defined both within and outside of the aesthetic funtion. 
 
 **- `geom_point()`:** used for making a scatter plot
 
@@ -228,20 +228,43 @@ Here are some of the most common layers (i.e., functions) used in `ggplot2`. Typ
 
 There are an infinite number of data visualization options in `ggplot` but to get started today we are going to focus on making a bar plot (good for categorical data) and a scatter plot (good for continuous data). 
 
-### Making a Basic Bar Plot
-Building from yesterday, let's see if people who feel rushed tend to work more than people who do not feel rushed. To create a bar chart in `ggplot2` we use the function `geom_bar()`. If you want a bar chart representing the number of people in each group, you can add just one variable to the `aes()` function, and use the default `geom_bar(stat = "count")`. We include the `as.factor` function around the `isFeelRushed` variable so it is treated as a categorical variable for the box plot instead of a numeric variable. 
+### Basic Bar Plot-Counts
+Let's make our first plot in R! We are going to slowly add layers, building up to a box plot representing the number of people in each group in the `isFeelRushed` variable. 
+
+First we create the blank plot on which we will add our data. We nearly always start with the function `ggplot` and then telling the function what dataset to use. 
 
 ```{r}
-ggplot(data, aes(x = as.factor(isFeelRushed))) +
+ggplot(js_data)
+```
+
+Next we tell ggplot what variable we want to use and put it in the `aes()` function. If you want a bar chart representing the number of people in each group, you can add just one variable to the `aes()` function. We include the `as.factor` function around the `isFeelRushed` variable so it is treated as a categorical variable for the box plot instead of a numeric variable. You will see now that the grid represents a scale relevant to that variable. 
+
+```{r}
+ggplot(js_data, aes(x = as.factor(isFeelRushed)))
+```
+
+Next, we tell ggplot what type of data visualization we want. To create a bar chart we use the function `geom_bar()`. To see how many people are in each of the `isFeelRushed` groups, we use the default `geom_bar(stat = "count")`. Rmember that we connect layers with a `+` symbol. 
+
+```{r}
+ggplot(js_data, aes(x = as.factor(isFeelRushed))) +
+  geom_bar(stat = "count")
+```
+
+Lastly, let's add some labels to the x-axis and y-axis to make it clear what is being plotted. 
+
+```{r}
+ggplot(js_data, aes(x = as.factor(isFeelRushed))) +
   geom_bar(stat = "count") + 
   xlab("Feeling Rushed") +
   ylab ("Number of Participants") 
 ```
 
-To represent the mean for each group on some other variable, you add both and x and a y variable to the `aes()` function and use the `geom_bar(stat = "summary")`. Note that the Y-axis scale has now adjusted to a scale that matches this the variable we are using (i.e., mean number of minutes spent working for each group). 
+### Basic Bar Plot-Group Means
+
+Building from yesterday, let's see if people who feel rushed tend to work more than people who do not feel rushed. To represent the mean for each group on some other variable, you add both and x and a y variable to the `aes()` function and use the `geom_bar(stat = "summary")`. Note that the Y-axis scale has now adjusted to a scale that matches this the variable we are using (i.e., mean number of minutes spent working for each group). 
 
 ```{r}
-ggplot(data, aes(x = as.factor(isFeelRushed), y = durWork)) +
+ggplot(js_data, aes(x = as.factor(isFeelRushed), y = durWork)) +
   geom_bar(stat = "summary") + 
   xlab("Feeling Rushed") +
   ylab ("Time Working") 
@@ -259,7 +282,7 @@ ggplot(data, aes(x = as.factor(isFeelRushed), y = durWork)) +
   
 :::
 
-### New and Improved Box Plot! 
+### Improved Box Plot! 
 This plot gets the idea across, but we can add more layers and functions to make more adjustments. 
 
 ```{r}
@@ -290,7 +313,7 @@ ggplot(data, aes(x = as.factor(isFeelRushed), y = durWork)) +
 Try manipulating this plot some. Can you change the color of the bars? What happens if you change `angle = 90`?
 :::
 
-### Making a Basic Scatter Plot
+### Basic Scatter Plot
 number of hours worked and feeling rushed? or some more continuous variable?
 
 ```{r}
@@ -310,7 +333,7 @@ ggplot(data, aes(durWork, durSleep)) +
   - The `xlab()` and `ylab()` add the x-axis and y-axis labels to the plot
   
 :::
-### New and Improved Scatter Plot!
+### Improved Scatter Plot!
 
 Now let's add some layers and aesthetic adjustments to improve this plot.
 

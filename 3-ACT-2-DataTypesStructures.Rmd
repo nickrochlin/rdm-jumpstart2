@@ -31,12 +31,13 @@ This section covers how data is organized in R and how to clean a dataset. Under
 
 ![](images/tidyverse-workflow.png)
 
-This section covers four main topics: 
+This section covers five main topics: 
 
 1. What data types exist in R (i.e., is your data composed of numbers, words, or both) 
-2. Dealing with missing values 
-3. Re-coding existing data into another type of data
-4. What data structures exist in R (i.e., do you have one long list of elements, a spreadsheet, or something else)
+2. What data structures exist in R (i.e., do you have one long list of elements, a spreadsheet, or something else)
+3. Introduction to the `dplyr` package
+4. Re-coding existing data into another type of data
+5. Dealing with missing values 
 
 Let's get started! 
 
@@ -53,7 +54,7 @@ This data type deals with whole numbers (i.e., no decimals) and operates similar
 Character variables are variables with words or letters. Such as names of people (Erin, Maria, Huy) or places (ON, BC, QC). Character variables usually need to be put in quotation marks in R code, so they are not confused with words that actually denote functions in R. We will create some character variables later in this section. 
 
 #### **Factors**
-Factors are how R handles categorical data. Factors can store string or integer data, because sometimes numbers do represent categories (rather than a continuous range of numbers).Factors have leveled data. For example, the variable of education may have the levels of "high school," "bachelors degree," and "masters degree." 
+Factors are how R handles categorical data. Factors can store string or integer data, because sometimes numbers do represent categories (rather than a continuous range of numbers).Factors have leveled data. For example, the variable of education may have the levels of "high school," "bachelors degree," and "masters degree." Factors can be ordered or unordered. 
 
 Factor structure is particularly useful for statistical modeling. Sometimes you might need to change an object into factor structure, so you can use the function `as.factor()` to do so. 
 
@@ -64,25 +65,24 @@ Data can also be stored in date and/or time format in R. Our data doesn't contai
 Logical data includes `TRUE` and `FALSE` data. We can also ask R to provide us `TRUE` or `FALSE` response if we ask if a condition is met. 
 
 ## Data Structures in R
-Data structures are how the data is organized in R. Here are the major data structures in R. There are some additional structures (e.g., matrices and arrays) that are mostly used only when doing statistical modeling. We will skip over these for now and focus on the data structures you will likely encounter in a research data managment context. 
+Data structures are how the data is organized in R. Here are the major data structures in R. There are some additional structures (e.g., matrices and arrays) that are mostly used only when doing statistical modeling. We will skip over these for now and focus on the data structures you will likely encounter in a research data management context. 
 
 #### Vectors
 Vectors are simplest data structure. They are essentially a list of elements of the same data type. For example, you could have a numeric vector containing the elements (10, 15, 20, 25) or a character vector containing the elements ("blue", "red", "green"). They are one dimensional, since they are just one long list. A single variable (e.g., a list of ages of all the participants) can be considered a vector. 
-
 #### Data Frames
 Data frames are the most common and popular type of data structure used in R. Data frames work essentially like spreadsheets in that they are two dimensional (i.e., have columns and rows) and can store different data types in teh same data frame (i.e., numeric and character). Data frames are made up of vectors of the same length. 
 
 However, data frames do have some constraints. First, the columns and rows must be named. Second, the lists of vectors in the data frame must have equal lengths (i.e., each column needs an identical number of elements/rows). Third, all elements in a single column must be of the same data type (i.e., you can't switch between numbers and names in a single column).
 
-You may see mention of tibbles, which are an updated version of data frames and part of the tidyverse package. They are a bit more user-friendly version of tabular data. 
+You may see mention of tibbles, which are an updated version of data frames and part of the tidyverse package, and have the same constraints as data frames. They are a bit more user-friendly version of tabular data. 
 
 For this course, our data is in data frame format. 
 
 #### Lists
-Lists are an ordered collection of elements. They can contain different data types and they are one dimensional. So, you can have a list of vectors, a list of characters etc. Here is an example of a list:
+Lists are an ordered collection of elements. They can contain different data types and they are one dimensional. We don't often have data in list form, but some functions in R will output results into list format, so it is good to be aware of them. Here is an example of a list:
 
 ```{r}
-list_example <- list("red", "blue", "skyblue", "forestgreen")
+list_example <- list("red", 400, "skyblue", "forestgreen", .333)
 list_example
 ```
 
@@ -119,7 +119,9 @@ Let's explore the data types in our data using the `dplyr` functions!
 
 ## Checking Data Types in Our Data
 
-First we load our data and the `dplyr` package (remember to install it first if you haven't yet). If you have installed the `tidyverse` package, then `dplyr` was also included. Just to reacquaint ourselves with our data, use the `head` function. 
+First we load  the `dplyr` package (remember to install it first if you haven't yet). If you have installed the `tidyverse` package, then `dplyr` was also included. However, it is best practice to just load in the libraries you need (i.e., just `dplyr` and not all of the tidyverse packages) to save space. 
+
+We will also load in our data. Yesterday we used the `read_csv` function to read in the csv file, but now we are working with an Rdata file we saved yesterday, so we can use the `load` function. Just to reacquaint ourselves with our data, use the `head` function. 
 
 ```{r, message = FALSE}
 library(dplyr)
@@ -127,12 +129,12 @@ load("data/timeuse_day2.Rdata")
 ```
 
 ```{r, data-isolation, results = FALSE}
-head(data)
+head(js_data)
 ```
 
 ```{r, echo = FALSE, message = FALSE, warning=FALSE}
 library(kableExtra)
-head(data)|>
+head(js_data)|>
   kbl() |>
   #kable_styling(bootstrap_options = "striped")
 kable_paper() %>%
@@ -144,7 +146,7 @@ kable_paper() %>%
 We can check the data type of variables using the `class()` function and calling for a specific variable from our dataset `data` using the `$` operator, followed by the name of our variable. 
 
 ```{r}
-class(data$province)
+class(js_data$province)
 ```
 
 :::question
@@ -154,13 +156,13 @@ Try exploring the data type of a few other variables on your own.
 ## Recoding Variables/Data Types
 For some variables, we might want to change the data type based on our codebook. For instance, we can see that our "province" variable is in integer format. 
 ```{r}
-class(data$province)
+class(js_data$province)
 ```
 
 However, maybe we would prefer to have province acronyms (i.e., character data format) rather than the integer representation of them. We can re-code variables using the dplyr functions `|>` and `mutate()`. The possible integer values for the provicne variable, and what province they represent can be found in the dataset codebook. 
 
 ```{r}
-data <- data |> mutate(province_char = recode_factor(data$province, 
+js_data <- js_data |> mutate(province_fact = recode_factor(js_data$province, 
                             "10" = "NL", 
                             "11" = "PEI", 
                             "12" = "NS",
@@ -174,38 +176,38 @@ data <- data |> mutate(province_char = recode_factor(data$province,
 ```
 
 :::walkthrough
-  - This code is telling R to `recode_factor()` the variable "province" from the dataset "data" into a new variable called "province_char" (you could call it anything, but make sure it is a meaningful name). We are using `recode_factor()` instead of just `recode()` to keep the data in factor structure. 
+  - This code is telling R to `recode_factor()` the variable "province" from the dataset "js_data" into a new variable called "province_fact" (you could call it anything, but make sure it is a meaningful name). We are using `recode_factor()` instead of just `recode()` to keep the data in factor structure. 
 
-  - The list outlines how each value of the current "province" variable should be recoded for the new "province_char" variable. 
+  - The list outlines how each value of the current "province" variable should be recoded for the new "province_fact" variable. 
   
-  - The `mutate()` portion tells R to create a new column called "province_char". 
+  - The `mutate()` portion tells R to create a new column called "province_fact". 
   
-  - Before the `mutate()` function this code tells R to take the "data" object (i.e., the dataset) "and then" (i.e., the pipe function) apply the following functions. 
+  - Before the `mutate()` function this code tells R to take the "js_data" object (i.e., the dataset) "and then" (i.e., the pipe function) apply the following functions. 
   
   - The pipe function (`|>`) tells R to recode all of these values all at once, rather than having to write out `mutate()` and `recode()` for each one. 
   
-  - Lastly, all of this work needs to be assigned back to our dataset "data" in order to save it using the `<-` symbol. 
+  - Lastly, all of this work needs to be assigned back to our dataset "js_data" in order to save it using the `<-` symbol. 
 :::
 
 **Note:** We did not assign this work to replace/overwrite the existing "province" variable. In order to have transparent data management and to prevent overwriting the original data in the instance that you make a mistake in your recoding, it is always best practice to keep the original variables in their original format and create new variables based on them as needed. In this way, if you ever need to reference the original data (and you definitely will need to), you still have it available to you. 
 
 Now lets check the data type of this new variable we just created. 
 ```{r}
-class(data$province_char)
+class(js_data$province_fact)
 ```
 
 Most of this dataset is in integer format, because the data does not have decimals, and that is what R defaults to. However, it also stores this data as numeric at the same time. You can see this by checking the "class" of the data and asking if the data "is.numeric".
 
 ```{r}
-class(data$durSleep)
-is.numeric(data$durSleep)
+class(js_data$durSleep)
+is.numeric(js_data$durSleep)
 
 ```
 You will see here that you get a logical operator as the output. 
 
 Sometimes you may want to change the data type without recoding all of the data. In this case a useful function is `as.numeric()`. Because this data is already stored as both integer and numeric, this function will not change the data type in this instance, but this can be helpful for other datasets you may work with in the future. Here is an example of how you would use this function. 
 ```{r, results = 'hide'}
-as.numeric(data$durSleep)
+as.numeric(js_data$durSleep)
 ```
 
 ## Missing Data
@@ -218,37 +220,37 @@ If your data contains NA values, sometimes functions will give error messages du
 
 
 ```{r}
-mean(data$eduLevel)
+mean(js_data$eduLevel)
 ```
 
 Instead, we tell R to ignore those missing values. Including `na.rm = TRUE` to the function will typically tell R that it should complete the function, ignoring missing values. 
 
 ```{r}
-mean(data$eduLevel, na.rm = TRUE)
+mean(js_data$eduLevel, na.rm = TRUE)
 ```
 
 If you want to check if a variable or data frame has missing data, you can use the function `is.na`. 
 
 ```{r, results = 'hide'}
-is.na(data$eduLevel)
+is.na(js_data$eduLevel)
 ```
 
 If you want to know the number of cells with missing data for a given variable you can use the same function, wrapped in the `sum` function. 
 
 ```{r}
-sum(is.na(data$eduLevel))
+sum(is.na(js_data$eduLevel))
 ```
 
 If you want to find instances where there is no missing data you can use `complete.cases()`. 
 
 ```{r, results = 'hide'}
-complete.cases(data)
+complete.cases(js_data)
 ```
 
-If you want to know the total number of rows (i.e., participants) with no missing data you can take the `complete.cases()` function and wrap it in the `nrow()` funciton. 
+If you want to know the total number of rows (i.e., participants) with no missing data you can take the `complete.cases()` function and wrap it in the `nrow()` function. 
 
 ```{r}
-nrow(complete.cases(data))
+sum(complete.cases(js_data))
 ```
 
 ## Your Turn!
@@ -258,7 +260,7 @@ What type of data is the variable for marital status?
 :::
 
 ```{r class.source = 'fold-hide', results = 'hide'}
-class(data$maritalStat)
+class(js_data$maritalStat)
 ```
 
 :::question
@@ -266,7 +268,7 @@ Can you re-code marital status into a character/string variable?
 :::
 
 ```{r class.source = 'fold-hide', results = 'hide'}
-data<-data |> mutate(maritalStat_char = recode_factor(data$maritalStat, 
+js_data<-js_data |> mutate(maritalStat_fact = recode_factor(js_data$maritalStat, 
                             "1" = "Married", 
                             "2" = "Living common-law", 
                             "3" = "Widowed",
@@ -274,7 +276,7 @@ data<-data |> mutate(maritalStat_char = recode_factor(data$maritalStat,
                             "5" = "Divorced", 
                             "6" = "Single, never married"))
 
-class(data$maritalStat_char)
+class(js_data$maritalStat_fact)
 ```
 
 ::: question
@@ -282,7 +284,7 @@ How about level of education?
 :::
 
 ```{r class.source = 'fold-hide', results = 'hide'}
-data <- data |> mutate(eduLevel_char = recode_factor(data$eduLevel,
+js_data <- js_data |> mutate(eduLevel_fact = recode_factor(js_data$eduLevel,
                             "1" = "Less than high school dimploma or its equivalent",
                             "2" = "High school diploma or equivalency",
                             "3" = "Trade certificate or diploma",
@@ -291,7 +293,7 @@ data <- data |> mutate(eduLevel_char = recode_factor(data$eduLevel,
                             "6" = "Bachelor's degree",
                             "7" = "University certificate, diploma, degree above the BA level"))
 
-class(data$eduLevel_char)
+class(js_data$eduLevel_fact)
 ```
 ### Check Your Knowledge
 
