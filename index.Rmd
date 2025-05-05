@@ -14,36 +14,18 @@ output:
 
 <img class="alliance-logo" src="images/institutions/Alliance_logo_Symbol.png" alt="Alliance Banner">
 
+Site last rendered `r Sys.Date()`.
+
 ## Welcome
 
 Welcome to RDM Jumpstart, 2025! Before going any further, [please read our code of conduct...](codeOfConduct.html)
-
-## Preload
-
-We have a few things to set up in advance of Monday...
-
-### Tech Setup
-
-During this workshop we will be using R, OSF, and Borealis to explore best practices in Research Data Management with a focus on reproducible workflows.
-
-We ask that you:
-
-* [Install R and RStudio on your computer](6-EXT-RRStudio.html).
-* [Create an OSF account](6-EXT-osfSetup.html).
-* [Log in to the Borealis sandbox](6-EXT-Borealis.html).
-
-### Background Reading
-
-Please briefly review:
-
-* [Tri-Agency RDM Policy](https://science.gc.ca/site/science/en/interagency-research-funding/policies-and-guidelines/research-data-management/tri-agency-research-data-management-policy-frequently-asked-questions).
-* [Guide to preparing data management plans](https://www.sshrc-crsh.gc.ca/funding-financement/apply-demande/guides/guide_preparing_data_management_plan-guide_preparation_plan_gestion_donnees-eng.aspx).
-* [The Documentation of the data set we'll be using](https://odesi.ca/en/details?id=/odesi/doi__10-5683_SP3_RDS0CK.xml).
 
 ## Schedule
 
 <p class = "highlight">Times displayed below should update to your local time zone.</p>
 <p>Your local time zone is <span id = "timezone"></span>, and your current date and time is: <span id = "current-time"></span>.</p>
+
+For individual day overviews, please refer to the 'Overview' section in each day's menu.
 
 :::schedule-table
 <table>
@@ -90,7 +72,7 @@ Please briefly review:
         <tr>
             <td id = "slot-5" class = "time"></td>
             <td rowspan="2" class = "lecture schedule-link" onclick="location.href='1-LEC-2-DataScience.html'">Data Science Workflow</td>
-            <td rowspan="4" class = "lecture schedule-link" onclick="location.href='2-LEC-3-GUIscript.html'">GUIs vs Scripting</td>
+            <td rowspan="4" class = "lecture schedule-link" onclick="location.href='2-LEC-3-GUIscript.html'">Excel vs R</td>
             <td rowspan="4" class = "activity schedule-link" onclick="location.href='4-ACT-2-DataVisualization.html'">R: Data Visualization</td>
             <td rowspan="2" class = "activity schedule-link">Borealis Deposit</td>
         </tr>

@@ -5,6 +5,8 @@ navbar:
   left:
     - text: "Day 1"
       menu:
+        - text: "Overview"
+          href: 1-Overview.html
         - text: "RDM: Introduction"
           href: 1-LEC-1-ImportanceRDM.html
         - text: "The Data Science Workflow"
@@ -15,9 +17,11 @@ navbar:
           href: 1-LEC-4-DMPs.html
     - text: "Day 2"
       menu:
+        - text: "Overview"
+          href: 2-Overview.html
         - text: "RDM: Bias & Reproducibility"
           href: 2-LEC-1-BiasRepro.html
-        - text: "Computational Reproducibility: GUI vs Scripting"
+        - text: "Computational Reproducibility: Excel vs R"
           href: 2-LEC-3-GUIscript.html
         - text: "R: Setting Up"
           href: 2-ACT-1-RSetup.html
@@ -25,6 +29,8 @@ navbar:
           href: 2-ACT-2-FirstSteps.html
     - text: "Day 3"
       menu:
+        - text: "Overview"
+          href: 3-Overview.html
         - text: "Computational Reproducibility: Dependencies"
           href: 3-LEC-2-Dependencies.html
         - text: "R: Data Types and Structures"
@@ -33,6 +39,8 @@ navbar:
           href: 3-ACT-3-FilterSelect.html
     - text: "Day 4"
       menu:
+        - text: "Overview"
+          href: 4-Overview.html
         - text: "R: Data Visualization"
           href: 4-ACT-2-DataVisualization.html
         - text: "R: Troubleshooting"
@@ -40,7 +48,9 @@ navbar:
         - text: "R: Saving Output"
           href: 4-ACT-3-SavingOutput.html
     - text: "Day 5"
-      menu:        
+      menu:  
+        - text: "Overview"
+          href: 5-Overview.html
         - text: "Day 5 - Final Project"
           href: 5-ACT-1-FinalProject.html
         - text : "Day 5 - Data Deposit on Borealis"
@@ -49,6 +59,10 @@ navbar:
       menu:
         - text: "Resources"
           menu:
+            - text: "Code of Conduct"
+              href: codeOfConduct.html
+            - text: "Project DMP"
+              href: 6-EXT-ProjectDMP.html
             - text: "R Cheatsheet"
               href: 6-EXT-RCheatsheet.html
         - text: "Roadmaps"
