@@ -127,12 +127,12 @@ load("data/timeuse_day2.Rdata")
 ```
 
 ```{r, data-isolation, results = FALSE}
-head(data)
+head(js_data)
 ```
 
 ```{r, echo = FALSE, message = FALSE, warning=FALSE}
 library(kableExtra)
-head(data)|>
+head(js_data)|>
   kbl() |>
   #kable_styling(bootstrap_options = "striped")
 kable_paper() %>%
@@ -144,7 +144,7 @@ kable_paper() %>%
 We can check the data type of variables using the `class()` function and calling for a specific variable from our dataset `data` using the `$` operator, followed by the name of our variable. 
 
 ```{r}
-class(data$province)
+class(js_data$province)
 ```
 
 :::question
@@ -154,13 +154,13 @@ Try exploring the data type of a few other variables on your own.
 ## Recoding Variables/Data Types
 For some variables, we might want to change the data type based on our codebook. For instance, we can see that our "province" variable is in integer format. 
 ```{r}
-class(data$province)
+class(js_data$province)
 ```
 
 However, maybe we would prefer to have province acronyms (i.e., character data format) rather than the integer representation of them. We can re-code variables using the dplyr functions `|>` and `mutate()`. The possible integer values for the provicne variable, and what province they represent can be found in the dataset codebook. 
 
 ```{r}
-data <- data |> mutate(province_char = recode_factor(data$province, 
+js_data <- js_data |> mutate(province_char = recode_factor(js_data$province, 
                             "10" = "NL", 
                             "11" = "PEI", 
                             "12" = "NS",
@@ -191,21 +191,21 @@ data <- data |> mutate(province_char = recode_factor(data$province,
 
 Now lets check the data type of this new variable we just created. 
 ```{r}
-class(data$province_char)
+class(js_data$province_char)
 ```
 
 Most of this dataset is in integer format, because the data does not have decimals, and that is what R defaults to. However, it also stores this data as numeric at the same time. You can see this by checking the "class" of the data and asking if the data "is.numeric".
 
 ```{r}
-class(data$durSleep)
-is.numeric(data$durSleep)
+class(js_data$durSleep)
+is.numeric(js_data$durSleep)
 
 ```
 You will see here that you get a logical operator as the output. 
 
 Sometimes you may want to change the data type without recoding all of the data. In this case a useful function is `as.numeric()`. Because this data is already stored as both integer and numeric, this function will not change the data type in this instance, but this can be helpful for other datasets you may work with in the future. Here is an example of how you would use this function. 
 ```{r, results = 'hide'}
-as.numeric(data$durSleep)
+as.numeric(js_data$durSleep)
 ```
 
 ## Missing Data
@@ -218,37 +218,37 @@ If your data contains NA values, sometimes functions will give error messages du
 
 
 ```{r}
-mean(data$eduLevel)
+mean(js_data$eduLevel)
 ```
 
 Instead, we tell R to ignore those missing values. Including `na.rm = TRUE` to the function will typically tell R that it should complete the function, ignoring missing values. 
 
 ```{r}
-mean(data$eduLevel, na.rm = TRUE)
+mean(js_data$eduLevel, na.rm = TRUE)
 ```
 
 If you want to check if a variable or data frame has missing data, you can use the function `is.na`. 
 
 ```{r, results = 'hide'}
-is.na(data$eduLevel)
+is.na(js_data$eduLevel)
 ```
 
 If you want to know the number of cells with missing data for a given variable you can use the same function, wrapped in the `sum` function. 
 
 ```{r}
-sum(is.na(data$eduLevel))
+sum(is.na(js_data$eduLevel))
 ```
 
 If you want to find instances where there is no missing data you can use `complete.cases()`. 
 
 ```{r, results = 'hide'}
-complete.cases(data)
+complete.cases(js_data)
 ```
 
 If you want to know the total number of rows (i.e., participants) with no missing data you can take the `complete.cases()` function and wrap it in the `nrow()` funciton. 
 
 ```{r}
-nrow(complete.cases(data))
+nrow(complete.cases(js_data))
 ```
 
 ## Your Turn!
@@ -258,7 +258,7 @@ What type of data is the variable for marital status?
 :::
 
 ```{r class.source = 'fold-hide', results = 'hide'}
-class(data$maritalStat)
+class(js_data$maritalStat)
 ```
 
 :::question
@@ -266,7 +266,7 @@ Can you re-code marital status into a character/string variable?
 :::
 
 ```{r class.source = 'fold-hide', results = 'hide'}
-data<-data |> mutate(maritalStat_char = recode_factor(data$maritalStat, 
+js_data<-js_data |> mutate(maritalStat_char = recode_factor(js_data$maritalStat, 
                             "1" = "Married", 
                             "2" = "Living common-law", 
                             "3" = "Widowed",
@@ -274,7 +274,7 @@ data<-data |> mutate(maritalStat_char = recode_factor(data$maritalStat,
                             "5" = "Divorced", 
                             "6" = "Single, never married"))
 
-class(data$maritalStat_char)
+class(js_data$maritalStat_char)
 ```
 
 ::: question
@@ -282,7 +282,7 @@ How about level of education?
 :::
 
 ```{r class.source = 'fold-hide', results = 'hide'}
-data <- data |> mutate(eduLevel_char = recode_factor(data$eduLevel,
+js_data <- js_data |> mutate(eduLevel_char = recode_factor(js_data$eduLevel,
                             "1" = "Less than high school dimploma or its equivalent",
                             "2" = "High school diploma or equivalency",
                             "3" = "Trade certificate or diploma",
@@ -291,7 +291,7 @@ data <- data |> mutate(eduLevel_char = recode_factor(data$eduLevel,
                             "6" = "Bachelor's degree",
                             "7" = "University certificate, diploma, degree above the BA level"))
 
-class(data$eduLevel_char)
+class(js_data$eduLevel_char)
 ```
 ### Check Your Knowledge
 
