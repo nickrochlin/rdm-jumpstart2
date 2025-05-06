@@ -47,8 +47,16 @@ Keep calm!
 
 ## Common Errors in R
  - Not closing parenthesis, curly brace, square bracket or quotation mark
+ 
+ ![](images/day4_error_incompleteexpression.png)
+ 
  - Typos or mistakes in names of dataset, variables, functions
+ 
+  ![](images/day4_error_typo.png)
+ 
  - Calling a function of a library we forgot to install or load
+ 
+  ![](images/day4_error_loadlibraries.png)
  
 
 ## Team Challenge (30 minutes)
