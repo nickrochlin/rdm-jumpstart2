@@ -18,6 +18,10 @@ output:
 Managing external dependecies is critical to ensuring that you can maintain computational reproducibility when you move your code to a new computer.
 :::
 
+> If you wish to make an apple pie from scratch, you must first invent the universe
+
+-- Carl Sagan
+
 ## Dependencies
 
 Dependencies are essentially prerequisites -- the things you need to complete a task. For example, so far, we require both R and some of the packages in `tidyverse` to run the code we've written. Dependencies -- and tracking dependencies -- are a significant issue in computationally reproducible research.
@@ -28,17 +32,54 @@ Part of good research data management when using a scripting language is finding
 * your scripting language and version
 * your extra packages or libraries and their versions.
 
+This information provides a framework for creating a computationally reproducible environment. But even this documented framework can be insufficient.
+
+## Environments
+
 We can break addressing dependencies down into three distinct categories, levels, or environments that need to be addressed:
 
 * Keeping a stable R environment
 * Maintaining relationships to external programs
 * Keeping a stable operating system environment
 
-## Stable R Environment
+### Stable R Environment
 
-We've talked about base R and about extending it with additional packages or libraries. It is very possible that an updated package or an updated version of R could break your code. But this may not happen just on your machine. If you share your R project folder with another person, on another machine, and they have a different version of a package, this could make the script inoperable on their machine. How do we solve this?
+We've talked about base R and about extending it with additional packages or libraries. It is very possible that an updated package or an updated version of R could break your code.
 
-It's important to draw a distinction here between a package and a library in R. A package is a set of functions and data. We've seen many of the functions included in the `tidyverse` set of packages. A library is a place where these packages are stored on your computer. You can see where your packages are stored with `.libPaths()`.
+Base R packages are generally quite robust to backwards compatability, but not always. For example, when R 3.6 was released, [an update to `set.seed()`](https://github.com/workflowr/workflowr/issues/215) that is used for reproducible results when random number generation is needed -- i.e. you need to take a random sample from your dataset -- broke several packages that relied on `set.seed()`. Similarily, when R 4.0 was released, [updates to the matrix object](https://journal.r-project.org/archive/2020-2/core.pdf) had it's class changed from `array` to `c("matrix", "array")` breaking any packages that relied on testing the class of this datastructure using `class()`. Finally, we've been working with factors, so another, potentially more relatable example is the change made with the update to R 4.0 to not have characters translated to factors by default on import. This change risked breaking a lot of code. [See this example from Uri Simonsohn with Data Colada](https://datacolada.org/95#footnote_0_5852):
+
+![](images/day2_dependencies.png)
+
+This kind of break is much more common with external packages. The above Data Colada article provides a few examples and links to others. But since we'll be using the `distinct()` function from the `dplyr` package that is part of the TidyVerse tomorrow, we can use that as an example, where a 2016 update to the function chagned it's default behaviour effectively reducing the number of variables preserved by the function. Running a script written with the earlier version of `distinct()` could well break under a later version of the same function. This is common enough to be a significant issue.
+
+More importantly, this may not happen just on your machine. We want to make sure that your code is transferable to another person's computer and will still run. We'll explore one solution to this in R, but first look at what happens in additional to R packages that can cause issues when code is moved to another computer.
+
+### External programs
+
+Some R functions and packages are reliant on external programs. The `knittr` package that allows RMarkdown documents to be converted between document types (producing html, pdf, etc documents), and that we will be using later in this workshop, is a good example of this. It can be challenging to ensure that over time and across systems your .Rmd files will in fact output in the way that you expect; this doesn't nullify your code, just the conversion process from .Rmd to .html or .pdf.
+
+Another example is being able to read Excel files into R. And this will lead us into the next consideration of keeping a stable system. There is more than one package available in R to load in Excel files. One, `xlsx` requires that Java, another programming language, be installed on the user's machine. Not everyone has Java, or the right version of Java, installed on their machines. `xlsx` is very prone to breaking code across machines. A second is `readxl` from the tidyverse. `readxl` uses two libraries whose licensing allows for redistribution with someone else's code, so, `readxl` includes and installs these libraries when the `readxl` package is installed. It is very robust when moved across computers and operating systems.
+
+Maintaining relationships to external programs is very challenging. If using packages external to base R and the tidyverse, you should read about these packages first and learn about their dependencies and use them only if they work with your needs as they relate to reproducibility, and, as necessary, maintain robust documentation about them.
+
+* [`xlsx` documentation page](https://cran.r-project.org/web/packages/xlsx/index.html)
+* [`readxl` documentation page](https://cran.r-project.org/web/packages/readxl/index.html)
+
+### Keeping a Stable System
+
+We mentioned above that `readxl` uses two external libraries -- this is very common in computer programs -- if one person has solved a problem, i.e. how to read in proprietary Excel files into another application, and is willing to share that solution, no one else needs to solve that same problem. However, for a variety of reasons, not all 'shared' libraries, as these are referred to, can be bundled the way they are in `readxl`. In these instances, these libraries usually sit somewhere else that is globally accessible to any application on your computer. The only way to resolve this kind of dependency is to make a copy of your entire operating system that includes any external programs and your R environment.
+
+This is far more than we cover here, but a popular option is to create a copy of your complete computing environment using an application called Docker.
+
+### Overall Considerations
+
+Consider what your specific needs are before venturing down these routes. A small project written in only base R likely needs only to record the version of R it is using. A project that uses only self contained external R packages only needs `renv`. A project that has external program dependencies may suffice to simply document what these dependencies are and what needs to be installed to resolve them. It is only in large, complex projects, and one's where a risk assessment determines that computational reproducibility is critical, that you would consider resorting to a solution like Docker.
+
+## A Reproducible R Environment
+
+So how do resolve the R dependency problem? A popular option is with the `renv` package.
+
+Before we begin, it's important to draw a distinction here between a package and a library in R. A package is a set of functions and data. We've seen many of the functions included in the `tidyverse` set of packages. A library is a place where these packages are stored on your computer. You can see where your packages are stored with `.libPaths()`.
 
 ```{r libpaths}
 .libPaths()
@@ -126,26 +167,5 @@ Read more about the `renv` package at [https://rstudio.github.io/renv/articles/r
 ```{r deactivate-renv, results='hide', echo=FALSE}
 renv::deactivate(clean = TRUE) # get rid of renv so the website builds properly
 ```
-
-## External programs
-
-Some R functions and packages are reliant on external programs. The `knittr` package that allows RMarkdown documents to be converted between document types (producing html, pdf, etc documents), and that we will be using later in this workshop, is a good example of this. It can be challenging to ensure that over time and across systems your .Rmd files will in fact output in the way that you expect; this doesn't nullify your code, just the conversion process from .Rmd to .html or .pdf.
-
-Another example is being able to read Excel files into R. And this will lead us into the next consideration of keeping a stable system. There is more than one package available in R to load in Excel files. One, `xlsx` requires that Java, another programming language, be installed on the user's machine. Not everyone has Java, or the right version of Java, installed on their machines. `xlsx` is very prone to breaking code across machines. A second is `readxl` from the tidyverse. `readxl` uses two libraries whose licensing allows for redistribution with someone else's code, so, `readxl` includes and installs these libraries when the `readxl` package is installed. It is very robust when moved across computers and operating systems.
-
-Maintaining relationships to external programs is very challenging. If using packages external to base R and the tidyverse, you should read about these packages first and learn about their dependencies and use them only if they work with your needs as they relate to reproducibility, and, as necessary, maintain robust documentation about them.
-
-* [`xlsx` documentation page](https://cran.r-project.org/web/packages/xlsx/index.html)
-* [`readxl` documentation page](https://cran.r-project.org/web/packages/readxl/index.html)
-
-## Keeping a Stable System
-
-We mentioned above that `readxl` uses two external libraries -- this is very common in computer programs -- if one person has solved a problem, i.e. how to read in proprietary Excel files into another application, and is willing to share that solution, no one else needs to solve that same problem. However, for a variety of reasons, not all 'shared' libraries, as these are referred to, can be bundled the way they are in `readxl`. In these instances, these libraries usually sit somewhere else that is globally accessible to any application on your computer. The only way to resolve this kind of dependency is to make a copy of your entire operating system that includes any external programs and your R environment.
-
-This is far more than we cover here, but a popular option is to create a copy of your complete computing environment using an application called Docker.
-
-## Overall Considerations
-
-Consider what your specific needs are before venturing down these routes. A small project written in only base R likely needs only to record the version of R it is using. A project that uses only self contained external R packages only needs `renv`. A project that has external program dependencies may suffice to simply document what these dependencies are and what needs to be installed to resolve them. It is only in large, complex projects, and one's where a risk assessment determines that computational reproducibility is critical, that you would consider resorting to a solution like Docker.
 
 <sup>1</sup> Simmons, J. P., Nelson, L. D., & Simonsohn, U. (2011). False-Positive Psychology: Undisclosed Flexibility in Data Collection and Analysis Allows Presenting Anything as Significant. Psychological Science, 22(11), 1359-1366. [https://doi.org/10.1177/0956797611417632](https://doi.org/10.1177/0956797611417632)
