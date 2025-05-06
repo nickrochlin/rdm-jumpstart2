@@ -119,7 +119,7 @@ Think of the tidyverse as a toolbox that gives you simple and readable functions
  - Working with strings (e.g., stringr) or dates (e.g., lubridate)
 
 All these packages follow the same logic and syntax, so once you learn one, the others feel familiar too.
-For additional information, visit the [tidyverse info page](https://www.tidyverse.org/)
+For additional information, visit the <a href="https://www.tidyverse.org/">tidyverse info page</a>
 
 We will be using packages from Tidyverse later today and tomorrow...
 
@@ -149,8 +149,7 @@ Libraries need to be loaded in each work session.
 Remember the Tidyverse Data Science Workflow? Today we will be focusing on the first two steps:
 
 ![](images/day2_workflow.png)
-
-[Source](https://telapps.london.edu/analytics_with_R/tidyverse.html)
+<a href="https://telapps.london.edu/analytics_with_R/tidyverse.html">Source</a>
 
 ## Read Data
 

@@ -185,7 +185,7 @@ These are sections of code surrounded by triple backticks and {r}.This is where 
 ```
 ````
 
-For additional information, visit the [RMarkdown lesson from RStudio](https://rmarkdown.rstudio.com/lesson-8.html), and the [RMarkdown definitive guide](https://bookdown.org/yihui/rmarkdown/) 
+For additional information, visit the <a href="https://rmarkdown.rstudio.com/lesson-8.html">RMarkdown lesson from RStudio</a>, and the <a href="https://bookdown.org/yihui/rmarkdown/">RMarkdown definitive guide</a> 
 
 ## Your Turn! 
 
