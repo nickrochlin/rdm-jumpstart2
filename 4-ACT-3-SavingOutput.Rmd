@@ -45,7 +45,7 @@ Now, let's save this dataset into a CSV file for sharing or reuse.
 
 
 ```{r}
-write.csv(data, "data/timeuse_day4_3.csv", row.names = FALSE)
+write.csv(js_data, "data/timeuse_day4_3.csv", row.names = FALSE)
 ```
 
 The `data` object contains the dataset we loaded from Part 1 of Day 3. In this session, we will assume that this is our final dataset to deposit into a repository such as OSF or Borealis.
@@ -62,7 +62,7 @@ Why use `.gz` specifically? The `.gz` format is widely supported, simple, and na
 
 ```{r}
 gz1 <- gzfile("data/timeuse_day4_3.csv.gz", "w")
-write.csv(data, gz1, row.names = FALSE)
+write.csv(js_data, gz1, row.names = FALSE)
 close(gz1)
 ```
 
@@ -76,7 +76,7 @@ Compression is especially helpful when sharing data through email or uploading t
 
 
 ```{r}
-save(data, file = "data/timeuse_day4_3.RData")
+save(js_data, file = "data/timeuse_day4_3.RData")
 ```
 
 Interoperability ensures that your data is accessible regardless of the software or tools used by other researchers.
@@ -113,10 +113,10 @@ Remember that we can create the `rushed` and `not_rushed` data frames by filteri
 
 
 ```{r}
-rushed <- data |> 
+rushed <- js_data |> 
   filter(isFeelRushed == 1)
 
-not_rushed <- data |> 
+not_rushed <- js_data |> 
   filter(isFeelRushed == 0)
 ```
 
@@ -127,7 +127,7 @@ And then, you can also track changes quantitatively:
 ```{r}
 summary_changes <- data.frame(
   Step = c("Original rows", "Filtered for isFeelRushed == 1", "Final rows"),
-  Count = c(nrow(data), sum(data$isFeelRushed == 1, na.rm = TRUE), nrow(rushed))
+  Count = c(nrow(js_data), sum(js_data$isFeelRushed == 1, na.rm = TRUE), nrow(rushed))
 )
 summary_changes
 ```
