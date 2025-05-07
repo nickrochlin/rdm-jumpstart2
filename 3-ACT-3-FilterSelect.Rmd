@@ -520,7 +520,7 @@ head(not_rushed_time) |>
 As we can see, our data frame resulted from using `select()` only contain 3 columns: `durSleep`, `durAlone`, and `durWork`
 
 :::note
-#### Helper Functions for `select()`
+**Helper Functions for `select()`**
 
 Suppose we want to pull out every column in `js_data` whose name refers to “duration”—for example, `durWork`, `durDriving`, `durSchoolSite`, and so on. We could manually list them in `select()`, but that quickly becomes tedious and error-prone as our data grows.
 
@@ -719,7 +719,7 @@ However, there's also a third, more elegant approach: using the `%in%` operator.
 
 :::question
 
-#### *Example Scenario*
+**Example Scenario**
 
 Remember the previous question where we're analyzing survey data on how frequently people feel rushed. The `feelRushed` variable includes values from 1 (daily) to 6 (never). We want to group respondents into two categories:
 
@@ -728,7 +728,7 @@ Remember the previous question where we're analyzing survey data on how frequent
 
 ---
 
-#### *Task Instructions*
+**Task Instructions**
 
 1. Define the sets of values that represent each group.
 2. Use the `%in%` operator inside `filter()` to create subsets.
@@ -737,7 +737,7 @@ Remember the previous question where we're analyzing survey data on how frequent
 
 ---
 
-#### *Starter Code*
+**Step 1 & 2: Define the sets and use `%in% inside `filter()`**
 
 ```{r class.source = 'fold-hide', results = 'hide'}
 # Define group levels
@@ -752,7 +752,7 @@ js_data |>
   filter(feelRushed %in% not_rushed_levels)
 ```
 
-#### *View Results*
+**Step 3a: View the first few rows of `rushed_levels`**
 
 ```{r class.source = 'fold-hide', results = 'hide'}
 js_data |> 
@@ -769,6 +769,8 @@ js_data |>
   scroll_box(width = "100%")
 ```
 
+**Step 3b: View the first few rows of `not_rushed_levels`**
+
 ```{r class.source = 'fold-hide', results = 'hide'}
 js_data |> 
   filter(feelRushed %in% not_rushed_levels) |> 
@@ -784,7 +786,7 @@ js_data |>
   scroll_box(width = "100%")
 ```
 
-#### *Check Subset Sizes*
+**Step 4: Count rows**
 
 ```{r class.source = 'fold-hide'}
 
@@ -802,7 +804,7 @@ print(paste("The number of rows in not rushed is:", not_rushed_rows))
 
 ---
 
-#### *Summary*
+**Summary**
 
 This example shows how the `%in%` operator simplifies filtering when working with categorical variables. It avoids the need to write multiple `==` and `|` conditions, making our code cleaner and easier to read.
 
@@ -818,7 +820,7 @@ This example shows how the `%in%` operator simplifies filtering when working wit
 
 Use our new filtering and selecting skills to explore how people in urban and rural areas differ in terms of time pressure, based on their reported extra time.
 
-#### *Task Instructions*
+**Task Instructions**
 
 1. Explore the `popCenter` and `extraTime` columns to understand the variable types and possible values.
 2. Filter the dataset into two groups: `urban` and `rural`.
@@ -827,7 +829,7 @@ Use our new filtering and selecting skills to explore how people in urban and ru
 
 ---
 
-#### *Step 1: Explore the Data*
+**Step 1: Explore the Data**
 
 ```{r}
 js_data |> 
@@ -852,7 +854,7 @@ kable(js_data |> count(extraTime) |> arrange(desc(n)) |> head(10)) |> kable_styl
 
 ---
 
-#### *Step 2: Filter Urban and Rural Populations*
+**Step 2: Filter Urban and Rural Populations**
 
 To filter the urban population, we use the `filter()` function to keep only rows where `popCenter` is equal to `"urban"`. Then, we use `head()` to display the first few rows of the resulted dataframe:
 
@@ -890,7 +892,7 @@ js_data |>
 
 ---
 
-#### *Step 3: Select Relevant Variables*
+**Step 3: Select Relevant Variables**
 
 We select the following variables:
 
@@ -934,7 +936,7 @@ head(rural_selected) |>
 
 ---
 
-#### *Step 4: Calculate and Compare Mean Extra Time*
+**Step 4: Calculate and Compare Mean Extra Time**
 
 To calculate the average amount of extra time reported by urban and rural respondents, we use the `summarise()` function:
 
