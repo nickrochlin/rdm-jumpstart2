@@ -57,6 +57,11 @@ pre {
     border: 1px solid #18bc9c !important;
 }
 
+.pdf {
+  width: 800px;
+  height: 600px;
+}
+
 #footer {
   margin-top: 50px;
 }
@@ -85,6 +90,20 @@ h1 {
 h2, h3 {
   margin-top: 0px;
 }
+
+.section h3, .section h2 {
+  padding: 10px !important;
+  margin-top: 50px !important;
+}
+
+.section h3 {
+  border-left: 2px solid #D6AB00;
+}
+
+.section h2 {
+  border-left: 3px solid #00DBA7;
+}
+
 
 #BannerContainer {
   background-color: #fff;
