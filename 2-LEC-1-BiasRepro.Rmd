@@ -83,13 +83,13 @@ It is becoming increasingly common for publishers to ask researchers to include 
 Some disciplines and journals are addressing this issue by hiring data editors -- people responsible for ensuring the copmutational reproducibility of a study submitted for publication. The journals of the Econometrics Society is a good example, requiring a full reproducibility package to be submitted at the time that an article is submitted for initial consideration. The full requirements of the journal can be found on their [Data Editor Website](https://www.econometricsociety.org/publications/es-data-editor-website).
 :::
 
-### Study Results Reproducibility
+### Study Results Replicability
 
 Study results reproducibility helps to address analytical choices made in the study, it works with the same data as the original study, ideally the data as collected, but runs its own analytical pipelines in pursuit of the same research question. Border line p-values and small effect sizes are often contradicted or invalidated in these replications.
 
 Validating study results requires access to their data (ideally as collected), the requisite documentation to understand this data, the hypothesis being tested, and possibly the analytical methods used.
 
-A lack of results reproducibility can call a given study into question and raise concerns about researcher bias.
+A lack of results reproducibility can call a given study into question and raise concerns about researcher bias, particularly in relation to researcher degrees of freedom.
 
 :::note
 An early example to test analytical approaches with the same data set was published in 2018 -- *Many Analysts, One Data Set: Making Transparent How Variations in Analytic Choices Affect Results*, available at [https://doi.org/10.1177/2515245917747646](https://doi.org/10.1177/2515245917747646).
@@ -97,11 +97,28 @@ An early example to test analytical approaches with the same data set was publis
 This has since been followed by similar investigations in other disciplines.
 :::
 
-### Methods reproducibility
+:::note
+Researcher degrees of freedom is a coined term referring to all the decisions a researcher is at liberty to make with their data, whether it be defining an outlier, rounding a variable, grouping variables (choosing a bin size for age ranges for example), deciding you need to collect more data after having looked at the data, etc. For further discussion, see *False-Positive Psychology: Undisclosed Flexibility in Data Collection and Analysis Allows Presenting Anything as Significant* available at [https://doi.org/10.1177/0956797611417632](https://doi.org/10.1177/0956797611417632).
+:::
 
-Methods reproducibility attempts to replicate a study as designed. It involves using the same methods, but with new data and a new sample from the same population. It helps to address choices related to study implementation including measurement error and sampling bias. This kind of reproducibility helps to address systemic bias, and is the first tool in the toolbox of science's ability to self correct. This is also what most closely aligns with 'replication'.
+### Methods Replicability
 
-Validating a study's methods requires access to the hypothesis being tested alongside detailed methods protocols; the more robust the documentation, the more closely matched the study design, the greater the homogeneity between studies, and the more utility these studies provide to systematic reviews and meta analyses, as tools to evaluate the state of evidence on a particular research question. The further utility of methods reproducibility studies is contingent on access to their data and analytical pipelines.
+Methods reproducibility attempts to replicate a study as designed. It involves using the same methods, but with new data and a new sample from the same population. It helps to address choices related to study implementation including measurement error and sampling bias. This kind of replicability helps to address systemic bias.
+
+Validating a study's methods requires access to detailed methods protocols that identify the study's:
+
+* Research question
+* Hypothesis
+* Data collection plan
+* Data analysis plan
+
+The more robust the documentation, the more closely matched the study design, the greater the homogeneity between studies, and the more utility these studies provide to systematic reviews and meta-analyses, as tools to evaluate the state of evidence on a particular research question. The further utility of methods replication studies may be contingent on access to their data and analytical pipelines.
+
+This is also a critical set of documentation in allowing the researcher and their peers to differentiate between exploratory and confirmatory research.
+
+:::note
+**Exploratory research is hypothesis generating, while confirmatory research is hypothesis testing**. It is rare that confirmatory research is every conducted fully independent of exploratory research, as confirmatory research often suggests other paths of inquiry. However, it is critical to clearly differentiate between the two and to document the two processes appropriately, generally where exploratory research is documented while doing the exploration and confirmatory research is documented in advance.
+:::
 
 The goal is to iteratively attempt to validate the significance testing and grow the body of evidence and available data addressing a specific question. An inability to conduct methods replication calls into question researcher bias (often suspected, but unable to pinpoint exactly where it is as a result of a lack of documentation). This may invalidate the original study, or worse, result in wasted research dollars and researcher time.
 
@@ -123,32 +140,20 @@ Each type of reproducibility requires increasingly robust implementation of RDM 
 
 Moving up the line to validate findings, we then need access to data as collected, to detailed protocols and methods, and version controlled records to understand when and how things changed. In addition, things like clearly articulated positionality statements help to demonstrate how much thought is put into the structural and cognitive biases that might influence their work.
 
+Capturing this as a summar table, we might suggest something like the following:
+
+:::md-table
+| Who are you? | What's you're plan | What was your final analysis plan? | Can I follow your final recipe? |
+| :--- | :--- | :--- | :--- |
+| What world view, paradigm, framework, etc. is guiding your thought and decision making processes? | What is your research question, testable hypthothesis, data collection and analysis plans? Did these change as the project unfolded, and if so, how and why? | How did you go from raw to processed data, and what decisions did you make about your data once it was in hand? | How clearly documented or reproducible is your final analysis? Was further error introduced at this stage? |
+:::
+
 ### Evaluation to Practice
 
 Just as we need this level of transparency to evaluate a given study, we should strive to provide this same level transparency for our peers and to enhance our research practices. This process begins with a protocol that details why you're doing what you're doing, and how you intend to do it - a data management plan is a key piece of this and it is where this workshop begins. It then involves updating this protocol and DMP to reflect how the process actually unfolded (we can never account for every eventuality), and once data are in hand, documenting your exploratory approaches - using R and RMarkdown for example - then scripting your analysis, and finally depositing these 'artefacts' of the final output somewhere that allows for validation.
 
-## Challenges to Good RDM Practices
+## Slides
 
-The challenges to good RDM practices are multifaceted, but deeply engrained in the reward systems of academia, the funding models of funding agencies, and the publishing model of journal publishers.
+* [Download the PowerPoint](files/day-2_session-01_bias-and-reproducibility.pptx)
 
-Begining at the undergraduate level students are often awarded on 'finding the right answer' over identifying error and bias. In an undergraduate lab where sample sizes are small and conditions are error prone, epmhasizing the 'right answer' sets the building blocks for a culture of practice that is not first and foremost geared to reducing questionable research practices, encouraging reproducible research, and championing good research data management practices.
-
-:::note
-Questionable research practices (QRPs) derive from researcher degrees of freedom and not clearly documenting the seperation between exploratory and confirmatory research.
-
-An example of the former includes p-hacking, where data are worked until statistical significance is achieved. This may be through how the data are manipulated during cleaning, how thresholds are set, deciding to collect more data after the fact etc.
-
-An example of the latter includes HARKing -- hypothesizing after the results are known. When the data collected do not support the hypothesis being tested, alternative hypotheses are tested on the data and potentially reported on as the original point of inquiry.
-:::
-
-:::note
-Researcher degrees of freedom is a coined term referring to all the decisions a researcher is at liberty to make in the process of data collection and analysis, whether it be defining an outlier, rounding a variable, grouping variables (choosing a bin size for age ranges for example), deciding to collect more data after having looked at the data, etc. See *False-Positive Psychology: Undisclosed Flexibility in Data Collection and Analysis Allows Presenting Anything as Significant* available at [https://doi.org/10.1177/0956797611417632](https://doi.org/10.1177/0956797611417632).
-:::
-
-At the graduate level and above in one's academic career, the reward system continues to emphasize outputs through publication counts, h-indexes, and impact factors -- that is, how much are you publishing, and how much is it being cited in highly cited journals. As evidenced by the few journals that employ data editors, the data -- and their veracity as demonstrated through good RDM practices -- themselves are not the primary deciding factor on publication, but rather the novelty and statistical significance of what is reported in the article. The focus on the latter is generally to the detriment of process making measuring bias and reproducibility extremely challenging. See for example *Do Pressures to Publish Increase Scientists' Bias? An Empirical Support from US States Data* available at [https://doi.org/10.1371/journal.pone.0010271](https://doi.org/10.1371/journal.pone.0010271).
-
-This is coupled with novel and statistically significant findings being favoured by publishers in general. Reporting on replication studies and publishing non-significant findings is both challenging and not as highly rewarded either by publication or ensuing citation. But the value of these activities to scientific research is significant. This practice is not equal across all fields with some disciplines being more prone to the issues than others. See for example *"Positive" Results Increase Down the Hierarchy of the Sciences* available at [https://doi.org/10.1371/journal.pone.0010068](https://doi.org/10.1371/journal.pone.0010068).
-
-At the funging stage, replication studies are generally not favoured when compared to novel pursuits with the potential of significant near term impact. This is perhaps most evident in medical fields, where many reseach questions are never addressed or significant replication never undertaken because research funds are targetted in the direction of novel pursuits with impact that is more easily reported on. See for example *How a now-retracted study got published in the first place, leading to a $3.8 million NIH grant* reported on by [Retraction Watch](https://retractionwatch.com/2023/06/09/how-a-now-retracted-study-got-published-in-the-first-place-leading-to-a-3-8-million-nih-grant/) or the recent issues highlighted in Alzheimer research, [as reported in Science](https://www.science.org/content/article/potential-fabrication-research-images-threatens-key-theory-alzheimers-disease), *Blots on a field*.
-
-These challenges all manifest in poor documentation (documentation of decision making processes takes time, reducing number of scholarly outputs), and increased study bias (less time spent checking cognitive biases, increase in p-hacking and HARKing related practices to find significance, less attention to influence of systemic biases).
+<object class = "pdf" data = "files/day-2_session-01_bias-and-reproducibility.pdf"></object>
