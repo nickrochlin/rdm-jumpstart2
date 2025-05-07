@@ -28,37 +28,47 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warnings = FALSE)
 load("data/timeuse_day3_2.Rdata")
 ```
 
-<h4 style="text-align:center;"><strong>Data visualization is an important part of exploring, understanding, and sharing our data.</strong></h4>
+
 
 ## Data Visualization in R
 
-Data visualization is a critical part of the data science workflow. Through visualization we can explore and understand our own data, informing further analyses. Additionally, data visualizations are a powerful tool for communicating data and research findings to other people. Visuals can often more efficiently and more effectively tell the story of your data, rather than only relying on writing. Well done data visualizations will often have the biggest impact on an audience in a science communication context. 
+<h4 style="text-align:center;"><strong>Data visualization is an important part of exploring, understanding, and sharing our data.</strong></h4>
+
+Data visualization is a critical part of the data science workflow. Through visualization we can explore and understand our own data, ultimately informing further analyses. Additionally, data visualizations are a powerful tool for communicating data and research findings to other people. Visuals can often more efficiently and more effectively tell the story of your data, rather than only relying on writing. Well done data visualizations will often have the biggest impact on an audience in a science communication context. 
 
 ![](images/tidyverse-workflow.png)
 [Source](https://telapps.london.edu/analytics_with_R/tidyverse.html)
 
-In this session we have a few main goals. 
+:::note
+In this session we have a few main goals:
 
 1. Introduction to types of data visualizations
+
 2. Discuss what makes a good visualization
+
 3. Review and critique some data visualization examples
+
 4. Introduction to ggplot to generate visualizations in R
+
+:::
+
+Let's get started! 
 
 ### Types of Data Visualization
 
 Data visualizations can be descriptive in nature, such as portraying the demographic distribution of a group people, or can represent statistical findings, such as a regression line with a confidence interval overlayed on a scatter plot of data. In certain contexts it is also common to present data and information in more easily digestible infographics <a href="https://coolinfographics.com/">(check out some examples here)</a>, that enter more of a graphic design space. Different data visualizations fulfill different goals. Having a toolbox of a variety of data visualization types can help you pick the best type to fit your needs for a given project. 
 
-#### Table
+#### **Table**
 Tables to collect and organize data are one of the most common and basic data visualizations. But don't discount them! They can be efficient ways to convey a large amount of information about your data all at once. 
 
 ![](images/day4_exampletable.png)
 
-#### Pie Chart
+#### **Pie Chart**
 A classic pie chart is useful for representing parts that add up to a whole. This also allows for comparing group sizes. Often used for demographic variables, with the whole representing the whole sample, or for representing money, with the whole representing a budget or total money spent/made. Careful to use a pie chart only when it really adds to the story. For instance, if there are only two parts to the whole, a pie chart might not convey much more information. Conversely, if there are many groups, it can become difficult to really see all of them and compare them. 
 
 ![](images/day4_piechartexample.png)
 
-#### Box Plots
+#### **Box Plots**
 Box plots (also known as box and whisker plots) are good for understanding and comparing variance between groups. They typically depict the median and min/max of each group for a certain variable. The box portion represents the 1st and 3rd quartiles of the distribution. You can also show change over time with this type of plot. 
 
 ```{r, echo = FALSE}
@@ -69,7 +79,7 @@ ggplot(js_data, aes(x=as.factor(province_fact), y=durSleep)) +
  theme(text = element_text(size = 18))
 ```
 
-#### Histogram 
+#### **Histogram** 
 Histograms display the distribution of one variable. The height of the bars represent how many times that value was represented in the data. This is typically what you view if you want to visually inspect if a variable in normally distributed. 
 
 ``` {r, echo = FALSE}
@@ -81,7 +91,7 @@ ggplot(js_data, aes(x=durSleep)) +
   theme(text = element_text(size = 18))
 ```
 
-#### Bar Chart 
+#### **Bar Chart** 
 Bar charts are good for representing data from groups or categories, with the bars representing different categories. The bar height usually represent a mean, a count, or a percentage, by category. These can be useful for comparing groups or showing change over time. 
 
 ``` {r, echo = FALSE}
@@ -95,8 +105,8 @@ ggplot(js_data, aes(x=maritalStat_fact, fill = as.factor(maritalStat_fact))) +
         axis.text.x = element_text(angle = 35, hjust = 1))
 ```
 
-#### Scatter Plot 
-Scatter plots include data points that are plotted along an x and y axis, showing the relationship between these two variables. Often researchers add a regression line or line of best fit to these plots to show the statistical relationship between the variables. 
+#### **Scatter Plot** 
+Scatter plots include data points that are plotted along an x and y axis, showing the relationship between these two variables. Often researchers add a line to these plots to show the statistical relationship between the variables. 
 
 ```{r, echo = FALSE}
 ggplot(js_data, aes(durWork, durSleep)) +
@@ -108,8 +118,8 @@ ggplot(js_data, aes(durWork, durSleep)) +
   theme(text = element_text(size = 18))
 ```
 
-#### Line Chart 
-Line charts used connected straight lines to display data. They are good for showing change over time on a continuous variable. They are often similar in purpose to bar charts, but visually simpler if there are many time points. 
+#### **Line Chart** 
+Line charts use connected straight lines to display data. They are good for showing change over time on a continuous variable. They are often similar in purpose to bar charts, but visually simpler if there are many time points. Plotting the various age groups here is not particularly meaningful, but is used to illustrate this type of data visualization since this data was only collected at one time point. An example of where we often see line charts used in the news is to visualize the stock market.
 
 ```{r, echo = FALSE}
 xValue <- 1:7
@@ -127,10 +137,10 @@ ggplot(plotdata, aes(x=xValue, y=yValue)) +
 
 ```
 
-#### Interactive Data Visualizations 
+#### **Interactive Data Visualizations** 
 As research and publications move more online and away from print, this can allow for more interactive data visualizations. These are types of data visualizations that allow a person to select and change what is being shown. Check out this great example from <a href="https://www.gapminder.org/tools/#$chart-type=bubbles&url=v2)">Gapminder</a>. The default visualization shows GDP and life expectancy over time, and by country. However, you can change the variables included to view other data. 
 
-#### So many more! 
+#### **So many more!** 
 - Heat Map
 - Stacked Bar or Stacked Area Chart
 - Violin Plot
@@ -138,17 +148,17 @@ As research and publications move more online and away from print, this can allo
 - Choropleth Map
 
 ### What Makes a Good Visualization?
-There is an art to picking the best data visualization that fits your data and the story you are telling. By nature, data visualizations are abstract representations of our data, with color, shape, position representing the data points. This both hides the exact data itself, while also allowing us to highlight bigger picture ideas about the data that we choose to emphasize. Consider the following: 
+There is an art to picking the best data visualization that fits your data and the story you are telling. By nature, data visualizations are abstract representations of our data, with color, shape, position representing the data points. This both hides the exact data itself, while also allowing us to highlight bigger picture ideas about the data, depending on what we choose to emphasize. When deciding on what type of data visualization to use, consider the following: 
 
 - What question are you exploring with your data and how will it inform future analyses?
 - What is your data visualization adding to your science communication? 
 - What take-away message are you conveying with the image? 
-- What type of variables to you have? Continuous? Categorical?
+- What type of variables to you have? Continuous? Categorical? And what type of abstraction (e.g., color, shape) best suits that variable?
 - Are you comparing groups?
 - Are you showing change over time?
 - Are you visualizing a relationship between variables?
 
-It can be easy to get in the habit of using the same types of data visualization over and over again. Check out this website that gives many creative data visualization options, categorized by goal:<a href="https://r-graph-gallery.com/ ">https://r-graph-gallery.com/ </a>
+It can be easy to get in the habit of using the same types of data visualization over and over again. Check out this website that gives many creative data visualization options (with R code!), categorized by goal: <a href="https://r-graph-gallery.com/ ">https://r-graph-gallery.com/ </a>
 
 #### Good Data Visualization Princicples
 Once you pick the format that fits your needs best, these are some principles to keep in mind when crafting your visualization to make sure it is clear to your audience. 
@@ -161,9 +171,9 @@ Once you pick the format that fits your needs best, these are some principles to
 
 **- Simplicity:** Aim to have uncluttered data visualization. It is easy to get excited about all you can do creatively in the world of data visualizations, but sometimes adding too much (e.g., extra colors, pictures) can actually obscure your main message. Avoid extra info that doesn't add to the story you are telling.
 
-**- Accessibility:** Consider how your data visualization design would be viewed by a variety of other people. Text font and size for legends and axis labels should be clear and not too small. Try not to rely only on color to distinguish groups (e.g., lines can be dashed or doted), or pick colors/hues that are distinguishable by people who are colorblind. Include alternative text descriptions that can be read aloud by a screen reader. 
+**- Accessibility:** Consider how your data visualization design would be viewed by a variety of people. Text font and size for legends and axis labels should be clear and not too small. Try not to rely only on color to distinguish groups (e.g., lines can be dashed or doted), or pick colors/hues that are distinguishable by people who are colorblind. Include alternative text descriptions that can be read aloud by a screen reader. 
 
-For more information on how design principles and the visual hierarchy of elements check out <a href="https://www.interaction-design.org/literature/topics/visual-hierarchy?srsltid=AfmBOooU77XPiVsXSkE7t2GqAayaOyh0VxdwGj3bJaP1Qj3xcc5A44BW>this article</a>. Size, color, contrast, alignment, repetition, proximity, whitespace, and texture can all be used to draw focus to particular visual elements. 
+For more information on how design principles and the visual hierarchy of elements check out <a href="https://www.interaction-design.org/literature/topics/visual-hierarchy?srsltid=AfmBOooU77XPiVsXSkE7t2GqAayaOyh0VxdwGj3bJaP1Qj3xcc5A44BW">this article</a>. Size, color, contrast, alignment, repetition, proximity, whitespace, and texture can all be used to draw focus to particular visual elements. 
 
 
 ### Your Turn!
@@ -178,12 +188,12 @@ includes many examples of data visualization created in R. These also include tu
 includes examples created with the platform Tableau. This is a proprietary (paid) platform which we are not using in this workshop, but this gallery still has some great examples to help inspire your data visualization creativity! 
 
 :::question
-In small groups, on either of these websites, find a data visualization example that jumps out ot you as interesting and then answer the following questions. 
+In small groups, on either of these websites, find a data visualization example that jumps out to you as interesting and then answer the following questions. 
 
 1. What captured your attention about this data visualization? The topic? The design? 
 2. What is the story this example is trying to tell? What is one of the take-away messages it is conveying?
 3. What do you like about this visualization? Does it convey information about the data in a uniquely effective way? Does it adhere to the principles we discussed? 
-4. Is there anything you find confusing about this example? Antying you think is missing or that you would change to improve it? 
+4. Is there anything you find confusing about this example? Anything you think is missing or that you would change to improve it? 
 :::
 
 ### ggplot R Package
@@ -201,17 +211,13 @@ If you have installed the tidyverse, then `ggplot2` is included. Otherwise you c
 #library(ggplot2)
 ```
 
-Although there are many ways to make data visualizations in R, other approaches tend to be more automatic and consequently limit the amount you can change and adapt your visualization to your needs. However, `ggplot2` works in layers, allowing for maximum control and flexibility. There are three categories of components commonly used in `ggplot2`.
-
-1. **Geometries:** Visual representations of the data. This is often lines, points, box, histograms etc.
-2. **Attributes:** Set values for the visual properties of geometries. This could include the color of bars on a bar plot or the shape of a line.
-3. **Aesthetics:** Values of visual properties of geometries that vary depending on the data. This could be the color of a line varying based on gender. 
+Although there are many ways to make data visualizations in R, other approaches tend to be more automatic and consequently limit the amount you can change and adapt your visualization to your needs. However, `ggplot2` works in layers, allowing for maximum control and flexibility. 
 
 Here are some of the most common layers (i.e., functions) used in `ggplot2`. Typically you connect these layers using the `+` symbol. There is often more than one way to build the same plot with the `ggplot` package. 
 
 **- `ggplot()`:** how you will start most plots you build in `ggplot2`. The rest of the information goes within this function.
 
-**- `aes()`:** this is the aesthetic mapping function, in which you can control aesthetic components of the plot. You can add colors, axis labels, font sizes and more within this function. Color and shape can be defined both within and outside of the aesthetic funtion. 
+**- `aes()`:** this is the aesthetic mapping function, in which you can control aesthetic components of the plot. You can add colors, axis labels, font sizes and more within this function. Color and shape can be defined both within and outside of the aesthetic function. 
 
 **- `geom_point()`:** used for making a scatter plot
 
@@ -231,9 +237,9 @@ Here are some of the most common layers (i.e., functions) used in `ggplot2`. Typ
 
 **- `size`:** used to set the size of part of the plot, such as how big the data points or text should be
 
-There are an infinite number of data visualization options in `ggplot` but to get started today we are going to focus on making a bar plot (good for categorical data) and a scatter plot (good for continuous data). 
+There are many more data visualization options in `ggplot` but to get started today we are going to focus on making a bar plot (good for categorical data) and a scatter plot (good for continuous data). 
 
-### Basic Bar Plot-Counts
+### Basic Bar Plot: Counts
 Let's make our first plot in R! We are going to slowly add layers, building up to a box plot representing the number of people in each group in the `isFeelRushed` variable. 
 
 First we create the blank plot on which we will add our data. We nearly always start with the function `ggplot` and then telling the function what dataset to use. 
@@ -241,12 +247,15 @@ First we create the blank plot on which we will add our data. We nearly always s
 ```{r}
 ggplot(js_data)
 ```
+This creates our blank canvas.
 
-Next we tell ggplot what variable we want to use and put it in the `aes()` function. If you want a bar chart representing the number of people in each group, you can add just one variable to the `aes()` function. We include the `as.factor` function around the `isFeelRushed` variable so it is treated as a categorical variable for the box plot instead of a numeric variable. You will see now that the grid represents a scale relevant to that variable. 
+Next we tell ggplot what variable we want to use and put it in the `aes()` function. If you want a bar chart representing the number of people in each group, you can add just one variable to the `aes()` function. We include the `as.factor` function around the `isFeelRushed` variable so it is treated as a categorical variable for the box plot instead of a numeric variable. 
 
 ```{r}
 ggplot(js_data, aes(x = as.factor(isFeelRushed)))
 ```
+
+You now see that the grid represents a scale relevant to that variable. 
 
 Next, we tell ggplot what type of data visualization we want. To create a bar chart we use the function `geom_bar()`. To see how many people are in each of the `isFeelRushed` groups, we use the default `geom_bar(stat = "count")`. Remember that we connect layers with a `+` symbol. 
 
@@ -254,6 +263,7 @@ Next, we tell ggplot what type of data visualization we want. To create a bar ch
 ggplot(js_data, aes(x = as.factor(isFeelRushed))) +
   geom_bar(stat = "count")
 ```
+We've got a bar chart!
 
 Lastly, let's add some labels to the x-axis and y-axis to make it clear what is being plotted. 
 
@@ -264,7 +274,7 @@ ggplot(js_data, aes(x = as.factor(isFeelRushed))) +
   ylab ("Number of Participants") 
 ```
 
-### Basic Bar Plot-Group Means
+### Basic Bar Plot: Group Means
 
 Building from yesterday, let's see if people who feel rushed tend to work more than people who do not feel rushed. To represent the mean for each group on some other variable, you add both and x and a y variable to the `aes()` function and use the `geom_bar(stat = "summary")`. Note that the Y-axis scale has now adjusted to a scale that matches this the variable we are using (i.e., mean number of minutes spent working for each group). 
 
@@ -272,7 +282,7 @@ Building from yesterday, let's see if people who feel rushed tend to work more t
 ggplot(js_data, aes(x = as.factor(isFeelRushed), y = durWork)) +
   geom_bar(stat = "summary") + 
   xlab("Feeling Rushed") +
-  ylab ("Time Working") 
+  ylab ("Average Minutes Working") 
 ```
 
 :::walkthrough
@@ -288,7 +298,7 @@ ggplot(js_data, aes(x = as.factor(isFeelRushed), y = durWork)) +
 :::
 
 ### Improved Box Plot! 
-This plot gets the idea across, but we can add more layers and functions to make more adjustments. 
+This plot gets the idea across, but we can add more layers and functions to make more adjustments. See the walkthrough below for how we made all these changes.
 
 ```{r}
 
@@ -297,7 +307,7 @@ plotlabels <- c("Not Rushed", "Rushed", "Did Not Respond")
 ggplot(js_data, aes(x = as.factor(isFeelRushed), y = durWork)) +
   geom_bar(stat = "summary", fill = "#2D5E7F") + 
   xlab("Feeling Rushed") +
-  ylab ("Time Working") +
+  ylab ("Average Minutes Working") +
   labs(title = "Working and Feeling Rushed") +
   scale_x_discrete(labels = plotlabels) +
   theme(text = element_text(size = 18),
@@ -319,7 +329,7 @@ Try manipulating this plot some. Can you change the color of the bars? What happ
 :::
 
 ### Basic Scatter Plot
-number of hours worked and feeling rushed? or some more continuous variable?
+Now let's make a scatter plot to visualize two continuous variables. We are going to check if it looks like there is a correlation between how much time people work (durWork) and how much the sleep (durSleep).
 
 ```{r}
 ggplot(js_data, aes(durWork, durSleep)) +
@@ -331,7 +341,7 @@ ggplot(js_data, aes(durWork, durSleep)) +
 ```
 
 :::walkthrough
-  - Again we start with the `ggplot()` function, including telling it to use the dataset `data`
+  - Again we start with the `ggplot()` function, including telling it to use the dataset `js_data`
   - In the `aes()` function we list the x and y variables (here durWork and durSleep)
   - The `geom_point()` function is what makes a scatter plot
   - The geom_smooth() is what adds the correlation line to the plot
