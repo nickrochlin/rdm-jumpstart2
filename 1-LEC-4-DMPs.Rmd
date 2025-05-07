@@ -13,3 +13,15 @@ output:
 ---
 
 ## Data Management Plans
+
+### Planning Considerations
+
+* [Download the PowerPoint](files/Day-1_AfternoonSession-Part1_Planning.pptx)
+
+<object class = "pdf" data = "files/Day-1_AfternoonSession-Part1_Planning.pdf"></object>
+
+### Putting Plans into Action
+
+* [Download the PowerPoint](files/Day-1_AfternoonSession-Part2_PlanningIntoPractice.pdf)
+
+<object class = "pdf" data = "files/Day-1_AfternoonSession-Part2_PlanningIntoPractice.pdf"></object>
