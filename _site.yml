@@ -9,7 +9,7 @@ navbar:
           href: 1-Overview.html
         - text: "RDM: Introduction"
           href: 1-LEC-1-ImportanceRDM.html
-        - text: "The Data Science Workflow"
+        - text: "Workflow for the Week"
           href: 1-LEC-2-DataScience.html
         - text: "OSF"
           href: 1-LEC-3-OSF.html
