@@ -25,7 +25,7 @@ By embedding code directly within your written explanations, RMarkdown ensures t
 
 In this short tutorial, we will learn:
 
-- How to use R code within an RMarkdown document
+- How to use R code within a RMarkdown document
 - How to import and explore our dataset
 - How to recode column names 
 
@@ -49,7 +49,9 @@ x <- 5 #x is now an object that holds the value 5
 b <- "Anna" #b is now an object that holds the character Anna
 ```
 **Notes:** 
- - Since Anna is a character, it needs to be wrapped in quotations (We will learn more about data types tomorrow).
+
+ - Since Anna is a character, it needs to be wrapped in quotations (e will learn more about data types tomorrow).
+ 
  - The symbol `#` is used within a code chunk to insert comments. Comments won't affect how the code runs, but text that is not signaled as a comment will generate errors.
 
 #### Functions
@@ -87,8 +89,11 @@ name <- "Anna" #Now name replaces the previous information and holds the string 
 ```
 
 **Why Overwriting is Useful**
+
  - As your analysis becomes more complicated, you often build your results step-by-step.
+ 
  - Instead of creating dozens of different object names, you can reuse the same object name to store updated versions of your data or results.
+ 
  - This keeps your environment clean and your code easier to read.
 
 
@@ -99,7 +104,7 @@ This is used to chain steps together in a readable way. Instead of nesting funct
 mynumbers <- (c(1,2,3)) #storing the numbers 1, 2 and 3 in the object called "mynumbers"
 mynumbers |> mean() #take the object mynumbers and pipe it into the mean function
 ```
-**Note:** In R, c() stands for “combine” or “concatenate”. The role of c() is to combine the values inside it into a vector — a basic data structure in R. It takes the individual numbers 1, 2, and 3 and creates a single vector: 1 2 3. You can think of c() as “gluing” elements together into one group. You will learn more about data types and structures tomorrow.
+**Note:** In R, `c()` stands for “combine” or “concatenate”. The role of `c()` is to combine the values inside it into a vector — a basic data structure in R. It takes the individual numbers 1, 2, and 3 and creates a single vector: 1 2 3. You can think of `c()` as “gluing” elements together into one group. You will learn more about data types and structures tomorrow.
 
 ## Packages and Libraries
 
@@ -109,7 +114,7 @@ Collections of R functions are stored in Packages. In order to use a specific fu
 
 When we talk about "Base R" we refer to the original functions and syntax included with R—no extra packages needed. Base R contains many functions like `read.csv()`, `mean()`, `subset()`, and `plot()`. It can be very powerful and flexible but sometimes it is less intuitive for beginners.
 
-We will install **Tidyverse**, which is a colection of packages designed to make data analysis easier and more consistent.
+We will install **Tidyverse**, which is a collection of packages designed to make data analysis easier and more consistent.
 
 Think of the tidyverse as a toolbox that gives you simple and readable functions for the most common steps in working with data:
 
@@ -154,7 +159,7 @@ Remember the Tidyverse Data Science Workflow? Today we will be focusing on the f
 ## Read Data
 
 ### Read a csv file
-To import a csv file we can use the `read_csv()` function and assign it to a new object we will call *data*. We create a new object to be able to call it in different functions later on.
+To import a csv file we can use the `read_csv()` function and assign it to a new object we will call *js_data*. We create a new object to be able to call it in different functions later on.
 ```{r}
 js_data <- read_csv("data/timeuse_day1_na.csv")
 ```

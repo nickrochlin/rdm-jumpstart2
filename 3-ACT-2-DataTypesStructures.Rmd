@@ -103,7 +103,7 @@ Because lists are ordered (i.e., each element in the list has a specific spot in
 list_example [3]
 ```
 
-## Introduction to dplyr Library
+## Introduction to dplyr
 In order to check and modify data types we suggest using the `dplyr` package, which is part of the tidyverse. `dplyr` is a powerful R package designed to simplify data manipulation tasks. It provides a set of intuitive functions that help with filtering, selecting, and transforming data frames. It is the go to package for data organization. We will use just a few of the functions of this package in this course, but there are many more applications of `dplyr` you can explore. You can find more information about `dplyr` on the <a href="https://dplyr.tidyverse.org/index.html">tidyverse website</a>.
 
 Here are some of the most common functions of `dplyr`. We will practice using some of these today with our dataset. 
@@ -166,7 +166,7 @@ class(js_data$durWork)
 Try exploring the data type of a few other variables on your own. 
 :::
 
-## Recoding Variables/Data Types
+## Recoding Data Types
 For some variables, we might want to change the data type based on our codebook. For instance, we can see that our "province" variable is in numeric format. 
 ```{r}
 class(js_data$province)
@@ -229,7 +229,6 @@ You may have noticed that there are some cells in the data with `NA` This repres
 
 In the original dataset, missing data had been notated with various numerical codes (you can see these in the original codebook), but we have recoded the data so that all missing data as been denoted `NA` 
 
-### Missing Data Related Functions
 If your data contains NA values, sometimes functions will give error messages due to incomplete data. For example, if you try to get the mean of education level (eduLevel), R will not provide one because it can't calculate a mean when there are missing values. 
 
 Note: getting a mean for education level, which is a categorical variable, is not a meaningful number. However, it is used here to illustrate this point, given that the continuous numeric variables in this dataset do not contain missing values. 
@@ -261,7 +260,7 @@ sum(complete.cases(js_data))
 ```
 
 ## Your Turn!
-### Changing Data Types
+### Recoding Data Types
 ::: question
 What type of data is the variable for marital status?
 :::
