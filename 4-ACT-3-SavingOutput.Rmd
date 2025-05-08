@@ -1,11 +1,38 @@
+---
+title: "Saving Outputs for Reproducible Research"
+author: "Gia-Huy Hoang"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_folding: show # allows toggling of showing and hiding code. Remove if not using code.
+    code_download: true # allows the user to download the source .Rmd file. Remove if not using code.
+    includes:
+      after_body: footer.html # include a custom footer.
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+  pdf_document:
+    toc: true              # optional: include table of contents
+    number_sections: true  # optional: number your sections
+---
+
 ## Saving Output for Reproducible Research
 
-:::note
-Saving output is a crucial part of responsible research data management and directly supports the FAIR principles: mak ing data **Findable, Accessible, Interoperable, and Reusable**.
-:::
+<h4 style="text-align:center;">
+  <strong>
+    Saving output is a crucial part of responsible research data management and directly supports the FAIR principles: making data <em>Findable, Accessible, Interoperable, and Reusable</em>.
+  </strong>
+</h4>
+
 
 In this section, we will learn how to save cleaned datasets, update metadata, export plots, and document our data processing in a transparent and accessible way. These practices support reproducibility and alignment with the FAIR principles.
 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
 
 ```{r, data-isolation-1, results = 'hide', echo=FALSE}
 library(kableExtra)
@@ -14,43 +41,40 @@ library(kableExtra)
 
 ```{r, data-isolation-2, results = 'hide'}
 library(dplyr)
-library(datadictionary)
+library(readr)
 ```
-
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
-```
-
-
+  
 ---
 
 ### Saving Cleaned Datasets
 
-Let’s return to Part 3 of this series.
-
-We’ll begin by first loading the dataset that we obtained in Day 3 of this series.
-
+For this section, you can continue from the previous section or load a backup of the dataset from the `resources` folder:
 
 ```{r}
-file_path <- "data/timeuse_day3_2.Rdata"
-load(file_path)
+Rdata_path <- "data/timeuse_day3_2.Rdata"
+load(Rdata_path)
 ```
 
 
+#### Save Datasets as CSV or TSV for __Interoperability__ and __Reusability__
 
-#### Save datasets into CSV files
+Now, let's save this dataset into a CSV (Comma-Separated Values) or TSV (Tab-Separated Values) file for sharing or reuse. Both are __non-proprietary__ formats that promote **interoperability** and **accessibility**.
 
-Now, let's save this dataset into a CSV file for sharing or reuse.
+TSV is more versatile and enhances **reusability** due to:
 
+- **CSV**: Uses commas to separate values, widely supported but may face issues if data contains commas.
+- **TSV**: Uses tabs as delimiters, avoiding comma-related problems and improving readability in text editors or spreadsheet software.
 
 ```{r}
-write.csv(js_data, "data/timeuse_day4_3.csv", row.names = FALSE)
+write_csv(js_data, "data/timeuse_day4_3_20250502.csv")
+write_tsv(js_data, "data/timeuse_day4_3_20250502.tsv")
 ```
 
-The `data` object contains the dataset we loaded from Part 1 of Day 3. In this session, we will assume that this is our final dataset to deposit into a repository such as OSF or Borealis.
+:::note
+Both `write_csv()`  and `write_tsv()` (from the tidyverse) is a fast, UTF-8 CSV writer that by default skips row names and matches `read_csv()` (also a tidyverse function) conventions, while base R’s `write.csv()` is slower and writes a row-names column unless you turn it off.
+:::
 
-Saving in `.csv` format ensures that your files are open and usable across platforms, promoting **interoperability** and **accessibility**. These formats are easily imported into other programming languages, databases, or spreadsheet software.
+The `js_data` object contains the dataset we used, transformed, and modified up to now. In this session, we will assume this is our final dataset to deposit into a repository such as OSF or Borealis. Saving in `.csv` or `.tsv` makes sure our files are open and usable across platforms, easily imported into other programming languages, databases, or spreadsheet software.
 
 
 #### Compression
@@ -61,26 +85,33 @@ Why use `.gz` specifically? The `.gz` format is widely supported, simple, and na
 
 
 ```{r}
-gz1 <- gzfile("data/timeuse_day4_3.csv.gz", "w")
-write.csv(js_data, gz1, row.names = FALSE)
-close(gz1)
+con <- gzfile("data/timeuse_day4_3_20250502.gz", "wb")
+write_csv(js_data, con)
 ```
+
+:::walkthrough
+`gzfile("…", "wb")` creates an R connection that writes directly into a gzip-compressed file, and `write_csv(js_data, con)` writes your data frame directly into that compressed CSV file.
+:::
 
 Compression is especially helpful when sharing data through email or uploading to repositories, enhancing **accessibility** by minimizing bandwidth requirements. Even though in this example we're working with a relatively small dataset, in real-world scenarios it's common to encounter CSV files containing millions of rows—potentially several gigabytes in size. In such cases, compression becomes not just helpful but essential to efficiently store, transfer, and share data files, especially when uploading to platforms like OSF or institutional repositories.
 
 
-#### Proprietary vs. Non-Proprietary Formats (Interoperability)
+#### Choosing Between Proprietary and Non-Proprietary Formats
 
-- Prefer **non-proprietary** formats like `.csv` or `.tsv` to ensure **interoperability** across systems and users.
-- Use **proprietary formats** like `.rds` or `.RData` only when data is meant to be consumed specifically within the R ecosystem.
+Following the use of non-proprietary `.csv` and `.tsv` formats for broad sharing, consider proprietary formats like `.rds` or `.RData` only when your data is intended for use within the sepecific ecosystem (in this case, it is R ecosystem). 
 
+- **Non-proprietary formats** (e.g., `.csv`, `.tsv`): Ensure **interoperability** across diverse systems and users, as discussed earlier, making data accessible to all.
+- **Proprietary formats** (e.g., `.rds`, `.RData`): Optimize **reusability** for R users by preserving R-specific data structures, but limit accessibility outside R.
+
+:::note
+In our dataset (`js_data`), variables like `isFeelRushed` (a binary factor: 1 = Yes, 0 = No) or other categorical variables (e.g., `popCenter`, or `feelRushed` might appear integer-like to read_csv(), which could misinterpret them as numeric integers instead of factors. Saving as `.RData` preserves these R-specific data types (e.g., factors, dates, or custom attributes), ensuring consistency when the data is reloaded in R across different sections of our analysis.
+:::
+
+Here, we can save the `js_data` in `.Rdata` format by using the `save()` function:
 
 ```{r}
 save(js_data, file = "data/timeuse_day4_3.RData")
 ```
-
-Interoperability ensures that your data is accessible regardless of the software or tools used by other researchers.
-
 
 ### Updating and Saving Data Dictionary
 
@@ -88,17 +119,61 @@ To enhance **Findability** and **Reusability**, metadata must be kept up to date
 
 One practical way to create and maintain metadata in R is to use a **data dictionary**. A data dictionary is a structured summary that describes each variable in a dataset, including its name, type, and label or definition.
 
-In this simple example, we use the `datadictionary` package to generate a basic data dictionary and save it alongside our dataset. This supports both human and machine readability and contributes to a dataset’s FAIRness by improving discoverability and documentation.
+#### Types of Data Dictionaries: Human-Readable vs. Machine-Readable
 
+Data dictionaries can be designed as **human-readable** or **machine-readable**, each serving distinct purposes with specific advantages and limitations. Choosing the appropriate type depends on your audience, whether it’s researchers reading documentation or systems processing metadata automatically.
 
-<!--
-filtered_dict <- create_dictionary(rushed, var_labels = labels_full)
-write.csv(filtered_dict, "data/data_dictionary_rushed_data.csv", row.names = FALSE)
-save(filtered_dict, file = "data/data_dictionary_rushed.RData")
--->
+- **Human-Readable Data Dictionary**:
+  - **Description**: A human-readable data dictionary is formatted for easy comprehension by people, typically presented as a table in a spreadsheet (e.g., Excel) or document (e.g., PDF, Word). It includes plain-language descriptions in natural language (e.g., English) and is designed to be intuitive for researchers, students, or non-technical collaborators. For example, a PDF document containing a table of variable descriptions is human-readable but often not machine-readable, as it lacks structured data that represents the relationships present in the dataset 
+  - **Example** (PDF format):
+  ![Example of a Human-Readable Data Dictionary](images/4-ACT-3-datadictionaryPDF.png)
 
-<!-- Rich metadata supports machine readability and allows datasets to be indexed and searched in repositories, directly addressing **FAIR** goals. -->
+- **Machine-Readable Data Dictionary**:
+  - **Description**: A machine-readable data dictionary uses structured formats like JSON, XML, YAML, or RDF, designed for software to parse and process automatically without human involvement. These formats align with metadata standards and are ideal for integration with data repositories or automated systems, enabling automatic data feeds and processing.
+  - **Example** (JSON format):
+  ```{json}
+    [
+    {
+      "variable": "feelRushed",
+      "type": "integer",
+      "description": "Duration - Sleeping, resting, relaxing, sick in bed",
+      "unique_responses": 274,
+      "missing": 0,
+      "count": 17390.0,
+      "mean": 522.3948246118459,
+      "std": 133.06481348435142,
+      "min": 0.0,
+      "percentile_25": 450.0,
+      "median": 510.0,
+      "percentile_75": 585.0,
+      "max": 1440.0
+    },
+    {
+      "variable": "durSleep",
+      "type": "factor",
+      "description": "General time use - Feel rushed",
+      "unique_responses": 6,
+      "missing": 62,
+      "levels": [
+        {"value": 1.0, "label": "Every day"},
+        {"value": 2.0, "label": "A few times a week"},
+        {"value": 3.0, "label": "About once a week"},
+        {"value": 4.0, "label": "About once a month"},
+        {"value": 5.0, "label": "Less than once a month"}
+        {"value": 6.0, "label": "Never"}      
+      ]
+    }
+  ]
+  ```
 
+| **Aspect** | **Human-Readable Data Dictionary** | **Machine-Readable Data Dictionary** |
+|------------|-----------------------------------|--------------------------------------|
+| **Pros** | **Accessibility**: Easy to read, supports **reusability** for non-technical users. <br>**Ease of Creation**: Manual or CSV export, minimal tools needed.<br>**Broad Usability**: Suits workshops/reports, enhances **accessibility**. | **Interoperability**: JSON/XML enable automation, repository integration.<br> **Efficiency**: Programmatic updates reduce errors for large datasets.<br> **Standardization**: Metadata standards enhance **findability**. |
+| **Cons** |  **Limited Automation**: Unstructured, hard to parse, hinders **interoperability**.<br> **Manual Maintenance**: Manual updates risk errors in large datasets.<br> **Scalability Issues**: Inefficient for many variables.<br> **Non-FAIR Compliance**: Lacks algorithmic processing, incompatible with FAIR. | **Technical Barrier**: Needs scripting, challenging for users.<br> **Reduced Accessibility**: Complex without tools.<br> **Format Dependency**: JSON/XML may lack universal support.<br> **Learning Curve**: Structured formats hard for new users. |
+
+:::note
+The human-readable PDF dictionary provided in the workshop is ideal for learning and quick reference. For long-term storage or submission to repositories like OSF or Borealis, convert it to a machine-readable format to maximize *Interoperability* and *Findability*
+:::
 
 ### Documenting What Has Been Changed
 
@@ -120,9 +195,7 @@ not_rushed <- js_data |>
   filter(isFeelRushed == 0)
 ```
 
-
 And then, you can also track changes quantitatively:
-
 
 ```{r}
 summary_changes <- data.frame(
@@ -134,18 +207,24 @@ summary_changes
 
 Such logs help other researchers understand your workflow and replicate or build upon your analysis.
 
-
 ### Saving Plots
 
 Exporting plots in multiple formats ensures your visualizations are **reusable** and **accessible** for different purposes: publication, presentation, or web display.
 
+Let's first again generate the scatterplot to show the association between sleep and work duration from previous section.
 
 ```{r, fig.width=8, fig.height=6}
 library(ggplot2)
-p <- ggplot(not_rushed, aes(x = durSleep)) +
-  geom_histogram(binwidth = 100, fill = "skyblue", color = "white") +
-  labs(title = "Distribution of Sleep Duration (Not Rushed Group)",
-       x = "Sleep Duration (minutes)", y = "Count")
+
+p <- ggplot(js_data, aes(durWork, durSleep)) +
+  geom_point(color = "#2D5E7F", alpha = .2) +
+  geom_smooth(method = lm, color = "black") +
+  xlab("Minutes Spent Working") +
+  ylab ("Minutes Spent Sleeping") +
+  scale_x_continuous(breaks = seq(0, 1500, 250)) +
+  labs(title = "Association Between Working and Sleeping") +
+  theme(text = element_text(size = 18))
+
 p
 ```
 
@@ -153,8 +232,18 @@ p
 #### Save as PNG
 
 ```{r}
-ggsave("figures/sleep_histogram_not_rushed_day4.png", plot = p, width = 8, height = 6, dpi = 300)
+ggsave(
+  filename = "outputs/association_sleep_working_day4.png", 
+  plot = p, 
+  width = 8, 
+  height = 6, 
+  dpi = 300
+  )
 ```
+
+:::walkthrough
+`ggsave()` is a `ggplot2` function that saves your last (or specified) plot to a file, automatically picking the correct format from the filename extension and letting you set size and resolution.
+:::
 
 This format is suitable for web use or slide presentations. PNG is a raster format that offers high quality and is widely supported across platforms.
 
@@ -162,7 +251,11 @@ This format is suitable for web use or slide presentations. PNG is a raster form
 #### Save as PDF
 
 ```{r}
-ggsave("figures/sleep_histogram_not_rushed_day4.pdf", plot = p, width = 8, height = 6)
+ggsave(
+  filename = "outputs/association_sleep_working_day4.pdf", 
+  plot = p, 
+  width = 8, 
+  height = 6)
 ```
 
 PDF files preserve vector graphics, which means your plot can be resized without losing quality. This is especially useful for embedding in academic papers or generating printer-friendly outputs.
@@ -171,33 +264,114 @@ PDF files preserve vector graphics, which means your plot can be resized without
 #### Save as TIFF (Use Cairo on macOS)
 
 ```{r}
-tiff("figures/sleep_histogram_not_rushed_day4.tiff", width = 8, height = 6, units = "in", res = 600, compression = "lzw", type = "cairo")
-print(p)
-dev.off()
+ggsave(
+  filename = "outputs/association_sleep_working_day4.tiff",
+  plot     = p,
+  width    = 8,
+  height   = 6,
+  dpi      = 600,
+  device   = "tiff"
+)
 ```
 
-TIFF is often requested by academic journals for its high resolution. Using LZW compression helps reduce file size without losing image quality. On macOS, using the Cairo graphics device ensures compatibility with compression options.
-
+TIFF is often requested by academic journals for its high resolution.
 
 Saving plots in appropriate formats facilitates sharing and integration in different dissemination workflows.
+
+### Exporting the Full Document as PDF or HTML
+
+Once you’ve saved individual datasets and plots, you’ll often want to bundle your *entire* analysis—code, text, figures, and tables—into a single file. You can export your RMarkdown document as a **PDF** for a polished, human-readable output or as **HTML** for a dynamic, web-friendly format. Each format has distinct advantages and limitations, depending on your needs.
+
+| **Aspect** | **PDF Output** | **HTML Output** |
+|------------|----------------|-----------------|
+| **Pros** | - Human-readable.<br>- Universally accessible.<br>- Consistent formatting.<br>- Ideal for formal distribution (e.g., publications, reports). | - Machine-readable.<br>- Supports interactivity (e.g., collapsible code).<br>- Web-friendly.<br>- Smaller file sizes. |
+| **Cons** | - Not machine-readable. <br>- Lacks interactivity. <br>- Large file sizes.<br>- Limited for web-based sharing. | - Requires web browser or specific software.<br>- Less consistent formatting across devices.<br>- May need technical setup for sharing. |
+
+In this section, we can practice to export our RMarkdown document as either PDF or HTML.
+
+#### 1. Add (or confirm) your YAML header
+
+At the very top of your `.Rmd` file, ensure you have a YAML header supporting both PDF and HTML outputs:
+
+```yaml
+---
+title: "RDM Jumpstart Workshop"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    toc: true              # optional: include table of contents
+    number_sections: true  # optional: number your sections
+  html_document:
+    toc: true              # optional: include table of contents
+    code_folding: show     # optional: toggle code visibility
+    code_download: true    # optional: allow downloading .Rmd
+---
+```
+
+This tells RMarkdown and Pandoc to produce either a PDF via LaTeX or an HTML file, depending on your knitting choice.
+
+#### 2. Install a LaTeX distribution (for PDF)
+
+R Markdown relies on LaTeX under the hood. We recommend TinyTeX:
+
+```{r}
+# install.packages("tinytex")
+# tinytex::install_tinytex()
+```
+
+TinyTeX is lightweight and will automatically pull in any missing LaTeX packages as you knit.
+
+####  3. Knit to PDF
+
+In RStudio: 
+
+- *PDF*: Click the arrow next to Knit and choose Knit to PDF (or simply hit Knit if PDF is your default).
+- *HTML*: Choose Knit to HTML for a web-friendly output with interactive features.
 
 
 ### Best Practices and Things to Consider (Aligned with FAIR)
 
-| Topic                   | Recommendation                                                                 |
+| Topic                  | Recommendation                                                                 |
 |------------------------|--------------------------------------------------------------------------------|
-| **Compression**        | Use `.csv.gz`, `.rds` for large files to reduce size and improve access speed. |
+| **Compression**        | Use `.csv.gz` or `.tsv.gz` for large files to reduce size and improve access speed. |
 | **Interoperability**   | Prefer `.csv`, `.tsv`; avoid locked-in formats to maximize cross-platform use. |
-| **Naming Conventions** | Use descriptive names with dates/versions: `timeuse_day4_3_2025_04_15.csv`.    |
+| **Naming Conventions** | Use descriptive names with dates/versions: `timeuse_day4_3_20250502.csv`.    |
 | **Transparency**       | Log all changes in RMarkdown; describe decisions in plain language.            |
-| **Metadata**           | Maintain and save an updated data dictionary with rich, structured metadata.   |
-| **Persistent IDs**     | Use repositories that assign DOIs for your datasets to ensure long-term findability. |
+| **Metadata**           | Maintain and save an updated data dictionary in human-readable (e.g., PDF) or machine-readable (e.g., JSON) formats with rich, structured metadata, enhancing **Findability** and **Interoperability**. |
 | **Plot Formats**       | Use appropriate formats (`.png`, `.pdf`, `.tiff`) based on audience/platform.  |
 | **Licensing**          | Apply open licenses (e.g., Creative Commons) to enable legal data reuse.       |
 
+### Your Turn
+
+:::question
+**Scenario 1**: You’re preparing to share your fully cleaned dataset so that collaborators using Python, SPSS, or Excel can easily load it. Which file format would you choose `.csv` or `.Rdata` to maximize **interoperability** and why?
+:::
+
+:::question
+**Scenario 2**: You’ve created a human-readable data dictionary in PDF format, describing newly created variables like `isFeelRushed`. A collaborator needs a machine-readable version, such as JSON, to share it with a data repository. Why would you choose JSON over PDF for this purpose, and how does this support **findability** and **interoperability**?
+:::
+
+:::question
+**Scenario 3**: You’ve just created a publication-quality ggplot showing the relationship between work time and sleep. For web sharing and for submission to an academic journal, which file formats would you export (PNG, PDF, TIFF) and why? 
+:::
+
+:::question
+**Scenario 4**: You need to share your RMarkdown analysis with both a journal (requiring a formal report) and an online community (preferring interactive content). Which output formats (PDF or HTML) would you choose for each, and how do these choices support **accessibility** and **reusability**?
+:::
+
+::: question
+**Challenge 1:** Revisit your RMarkdown now and improve the documentation of one of your data-cleaning, or data-transformation steps. Imagine you (or a colleague who are not familiar with the project) come back to this 6 months from now: will they understand exactly what you did and why?  
+:::
+
+::: question
+**Challenge 2:** Save all the plots you created in the visualization section using `ggsave()`. For each plot, choose an appropriate file format (e.g., PNG for web, PDF for papers, TIFF for high-res), create a descriptive file name that includes the date and plot type, and write the exact `ggsave()` command you would use.
+:::
 
 ### Wrap-Up
 
-Following these practices ensures your research outputs are understandable, reusable, and verifiable. Saving data, metadata, and visuals properly helps you, your collaborators, and future researchers reproduce and extend your work. More importantly, it aligns your workflow with the FAIR principles—making your research more open, ethical, and impactful.
+Following these practices ensures your research outputs are understandable, reusable, and verifiable. Saving data, metadata, and visuals properly helps you, your collaborators, and future researchers reproduce and extend your work. More importantly, it aligns your workflow with the FAIR principles,making your research more open, ethical, and impactful.
 
+:::note 
 Remember: every saved dataset, every labeled plot, and every comment in your RMarkdown is a contribution toward a more FAIR research ecosystem.
+:::
