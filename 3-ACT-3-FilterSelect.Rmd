@@ -21,7 +21,7 @@ output:
 ![](images/3-ACT-3-Overview.png)
 
 
-### Introduction
+## Introduction
 
 <h4 style="text-align:left;"><strong>Subsetting data is an essential part of the <em>transform</em> stage in the data science workflow. It involves extracting a portion of the dataset based on specific conditions.</strong></h4>
 
@@ -32,7 +32,7 @@ In this short tutorial, we will learn:
 
 ---
 
-### Why subsetting dataset is important?
+<h4 style="text-align:left;">Why subsetting dataset is important?</h4>
 
 :::note
   Most real-world datasets are large and complex, with many variables and thousands of records.
@@ -58,7 +58,9 @@ For the purposes of this tutorial, we are not interested in every variable. Inst
 
 ---
 
-### Framing the Guiding Question: Who Feels Rushed?
+<h4 style="text-align:left;">Framing the Guiding Question: Who Feels Rushed?</h4>
+
+<!-- ### Framing the Guiding Question: Who Feels Rushed? -->
 
 Let's return to the time usage dataset. In this section, suppose we're interested in understanding how people who feel rushed spend their time differently from those who don't. To answer this question, we don't need every single row or column, as working with the data in its original format would be unnecessarily complex. Instead, we need to "get inside" our data by subsetting: filtering the rows and selecting the columns that matter.
 
@@ -78,7 +80,8 @@ We'll focus on relevant rows and columns that answer this question.
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
 
-### Load and Understand Dataset 
+<h4 style="text-align:left;">Load and Understand Dataset</h4>
+<!-- ### Load and Understand Dataset  -->
 
 First, we need to load the necessary libraries for today.
 
@@ -139,7 +142,9 @@ Now that we understand our dataset structure, let's move on to learning how to f
 
 ---
 
-### Conditional Filtering with Boolean Operators using **dplyr**
+<h4 style="text-align:left;">Conditional Filtering with Boolean Operators using <strong>dplyr</strong></h4>
+
+<!-- ### Conditional Filtering with Boolean Operators using **dplyr** -->
 
 `dplyr` is a powerful package that lets us extract and transform data with a clear, readable syntax. In `dplyr`, we use functions like `filter()`, `select()`, and `mutate()` to work with our data. Boolean operators (`==`, `<`, `>`, `<=`, `>=`, and `!=`) are used within these functions to test conditions, and we can combine conditions with `&` (and) or `|` (or).
 
@@ -231,7 +236,9 @@ It appears that all three columns contain numeric values. However, as we look at
 
 ---
 
-### Filtering Rows with *dplyr*
+<!-- ### Filtering Rows with *dplyr* -->
+
+<h4 style="text-align:left;">Filtering Rows with <strong>dplyr</strong></h4>
 
 ![](images/3-ACT-3-Filter.png)
 
@@ -320,7 +327,9 @@ By using these boolean operators, we can chain multiple conditions together. Not
 
 ---
 
-### Complex Filtering with dyplyr: Filtering Rows for Those Who Feels Rushed
+<!-- ### Complex Filtering with dyplyr: Filtering Rows for Those Who Feels Rushed -->
+
+<h4 style="text-align:left;">Complex Filtering with <strong>dplyr</strong>: Filtering Rows for Those Who Feels Rushed</h4>
 
 Now, let's back into our main task again. 
 
@@ -455,7 +464,9 @@ Finally, we can use a third, more elegant approach using the `%in%` operator, bu
 
 ![](images/3-ACT-3-Select.png)
 
-### Selecting and Cleaning Time-Related Variables
+<h4 style="text-align:left;">Selecting and Cleaning Time-Related Variables</h4>
+
+<!-- ### Selecting and Cleaning Time-Related Variables -->
 
 Next, we'll focus on the key time allocation columns that are most relevant to our analysis: `durWork`, `durSleep`, and `durAlone`. These variables represent:
 
@@ -549,7 +560,8 @@ There are many other helpers, such as `ends_with()`, `contains()`, `matches()`, 
 
 ---
 
-### Results: Comparing Time Usage Between Groups
+<h4 style="text-align:left;">Comparing Time Usage Between Groups</h4>
+<!-- ### Results: Comparing Time Usage Between Groups -->
 
 Now that we have our cleaned datasets for both rushed and not rushed groups, we can analyze how these groups differ in their time allocation patterns. We'll calculate and compare the mean durations for sleep, work, and alone time between the two groups.
 
@@ -639,7 +651,7 @@ diff_means |>
 
 These results provide interesting insights into how feeling rushed relates to time allocation patterns. For instance, we can observe whether people who feel rushed actually spend more time working or less time sleeping than those who don't feel rushed, which might help explain their perception of time pressure.
 
-### Before moving on to the exercise: recode variable values and save the current dataset
+## Before Exercise: Recode Variables and Save Dataset
 
 In the next exercise, we need to compare the time pressure felt by respondents based on whether they live in an **urban** or **rural** area, as coded in the `popCenter` column:
 
@@ -692,9 +704,9 @@ js_data <- js_data |> mutate(
 In this code: 
 
 - We assign the result back into `js_data` so the new column is saved.
-- The if_else() function creates a new binary variable:
-  - isFeelRushed = 1 if feelRushed is 1, 2, or 3 (i.e. the respondent feels rushed)
-  - isFeelRushed = 0 otherwise (i.e. not rushed)
+- The `if_else()` function creates a new binary variable:
+  - `isFeelRushed = 1` if `feelRushed` is `1`, `2`, or `3` (i.e. the respondent feels rushed)
+  - `isFeelRushed = 0` otherwise (i.e. not rushed)
 
 :::
 
@@ -737,7 +749,7 @@ Remember the previous question where we're analyzing survey data on how frequent
 
 ---
 
-**Step 1 & 2: Define the sets and use `%in% inside `filter()`**
+**Step 1 & 2: Define the sets and use `%in%` inside `filter()`**
 
 ```{r class.source = 'fold-hide', results = 'hide'}
 # Define group levels
@@ -831,16 +843,20 @@ Use our new filtering and selecting skills to explore how people in urban and ru
 
 **Step 1: Explore the Data**
 
-```{r}
+```{r, class.source = 'fold-hide', results = 'hide'}
 js_data |> 
   distinct(popCenter)
 ```
 
+```{r, echo=FALSE}
+js_data |> 
+  distinct(popCenter) |>
+  kbl() |> 
+  kable_styling(bootstrap_options = "striped") |> 
+  scroll_box(width = "100%")
+```
 
 ```{r, class.source = 'fold-hide', results = 'hide'}
-js_data |> 
-  distinct(popCenter)
-
 js_data |> 
   count(extraTime) |> 
   arrange(desc(n)) |> 
@@ -848,8 +864,13 @@ js_data |>
 ```
 
 ```{r, echo=FALSE}
-kable(js_data |> distinct(popCenter)) |> kable_styling()
-kable(js_data |> count(extraTime) |> arrange(desc(n)) |> head(10)) |> kable_styling()
+js_data |> 
+  count(extraTime) |> 
+  arrange(desc(n)) |> 
+  head() |>
+  kbl() |> 
+  kable_styling(bootstrap_options = "striped") |> 
+  scroll_box(width = "100%")
 ```
 
 ---
