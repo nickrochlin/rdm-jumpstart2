@@ -128,7 +128,7 @@ Together, these functions in `dplyr` enable you to easily explore your data by v
 
 Let's explore the data types in our data using the `dplyr` functions!
 
-## Checking Data Types in Our Data
+## Checking Data Types
 
 First we load  the `dplyr` package (remember to install it first if you haven't yet). Y If you have installed the `tidyverse` package, then `dplyr` was also included. However, it is best practice to just load in the libraries you need (i.e., just `dplyr` and not all of the tidyverse packages) to save space.
 
@@ -225,9 +225,9 @@ as.numeric(js_data$durSleep)
 ```
 
 ## Missing Data
-You may have noticed that there are some cells in the data with "NA." This represents missing data in our dataset. Most datasets having missing data. There are many reasons for missing data and many different ways to handle missing data. These choices will depend on the context of specific research, but generally you should plan for how to approach missing data in advance. 
+You may have noticed that there are some cells in the data with `NA` This represents missing data in our dataset. Most datasets having missing data. There are many reasons for missing data and many different ways to handle missing data. These choices will depend on the context of specific research, but generally you should plan for how to approach missing data in advance. 
 
-In the original dataset, missing data had been notated with various numerical codes (you can see these in the original codebook), but we have recoded the data so that all missing data as been denoted "NA." 
+In the original dataset, missing data had been notated with various numerical codes (you can see these in the original codebook), but we have recoded the data so that all missing data as been denoted `NA` 
 
 ### Missing Data Related Functions
 If your data contains NA values, sometimes functions will give error messages due to incomplete data. For example, if you try to get the mean of education level (eduLevel), R will not provide one because it can't calculate a mean when there are missing values. 
