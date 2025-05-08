@@ -13,3 +13,7 @@ output:
 ---
 
 ## The Data Science Workflow
+
+* [Download the PowerPoint](files/Day-1_Session-04_Workflow-and-Tools.pptx)
+
+<object class = "pdf" data = "files/Day-1_Session-04_Workflow-and-Tools.pdf"></object>
