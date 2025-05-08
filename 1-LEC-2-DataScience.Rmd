@@ -1,6 +1,6 @@
 ---
-title: "The Data Science Workflow"
-pagetitle: "The Data Science Workflow"
+title: "Workflow for the Week"
+pagetitle: "Workflow for the Week"
 output:
   html_document:
     includes:
