@@ -40,7 +40,7 @@ For individual day overviews, please refer to the 'Overview' section in each day
         </tr>
         <tr>
             <td id = "slot-0" class = "time"></td>
-            <td class = "lecture">Introductions</td>
+            <td class = "lecture schedule-link" onclick="location.href='introduction.html'">RDM: Introduction</td>
             <td class = "lecture">Recap</td>
             <td class = "lecture">Recap</td>
             <td class = "lecture">Recap</td>
@@ -51,15 +51,14 @@ For individual day overviews, please refer to the 'Overview' section in each day
             <td rowspan="3" class = "lecture schedule-link" onclick="location.href='1-LEC-1-ImportanceRDM.html'">RDM: Introduction</td>
             <td rowspan="3" class = "lecture schedule-link" onclick="location.href='2-LEC-1-BiasRepro.html'">RDM: Bias and Reproducibility</td>
             <td rowspan="3" class = "activity schedule-link" onclick="location.href='3-LEC-2-Dependencies.html'">Dependencies</td>
-            <td rowspan="3" class = "activity schedule-link" onclick="location.href='4-ACT-2-DataVisualization.html'">R: Data Visualizations</td>
-            <td rowspan="2" class = "lecture schedule-link" onclick="location.href=''">Data Deposits</td>
+            <td rowspan="3" class = "activity schedule-link" onclick="location.href='4-ACT-2-DataVisualization.html'">R: Data Visualization</td>
+            <td rowspan="3" class = "lecture schedule-link" onclick="location.href='5-LEC-1-ShareDeposit.html'">Sharing & Depositing</td>
         </tr>
         <tr>
             <td id = "slot-2" class = "time"></td>
         </tr>
         <tr>
             <td id = "slot-3" class = "time"></td>
-            <td class = "lecture schedule-link" onclick="location.href='5-LEC-1-Borealis.html'">Borealis</td>
         </tr>
         <tr>
             <td id = "slot-4" class = "time"></td>
@@ -74,7 +73,7 @@ For individual day overviews, please refer to the 'Overview' section in each day
             <td rowspan="2" class = "lecture schedule-link" onclick="location.href='1-LEC-2-DataScience.html'">Workflow for the Week</td>
             <td rowspan="4" class = "lecture schedule-link" onclick="location.href='2-LEC-3-GUIscript.html'">Excel vs R</td>
             <td rowspan="4" class = "activity schedule-link" onclick="location.href='4-ACT-2-DataVisualization.html'">R: Data Visualization</td>
-            <td rowspan="2" class = "activity schedule-link">Borealis Deposit</td>
+            <td rowspan="2" class = "activity">Borealis Deposit</td>
         </tr>
         <tr>
             <td id = "slot-6" class = "time"></td>

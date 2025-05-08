@@ -51,10 +51,8 @@ navbar:
       menu:  
         - text: "Overview"
           href: 5-Overview.html
-        - text: "Day 5 - Final Project"
-          href: 5-ACT-1-FinalProject.html
-        - text : "Day 5 - Data Deposit on Borealis"
-          href: 5-LEC-1-Borealis.html
+        - text: "Day 5 - Sharing & Depositing"
+          href: 5-LEC-1-ShareDeposit.html
     - text: "Extras"
       menu:
         - text: "Resources"
