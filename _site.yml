@@ -8,7 +8,7 @@ navbar:
         - text: "Overview"
           href: 1-Overview.html
         - text: "Introduction to the RDM Jumpstart"
-          href: 1-LEC-0-Intro.html
+          href:  Introduction.html
         - text: "RDM: Introduction"
           href: 1-LEC-1-ImportanceRDM.html
         - text: "Workflow for the Week"
