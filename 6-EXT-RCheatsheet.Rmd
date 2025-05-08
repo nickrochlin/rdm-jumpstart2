@@ -21,7 +21,8 @@ output:
   - <a href="https://www.tidyverse.org/">Tidyverse documentation</a>
   - <a href="https://rstudio.github.io/renv/articles/renv.html">Introduction to renv</a>
   - <a href="https://yihui.org/tinytex/">TinyTex</a>
-  
+
+:::md-table
   
   | Command | Description | Syntax
 | :--- | :----- | :---- |
@@ -61,3 +62,5 @@ output:
 | `gzfile() ` | Used to compress/zip files in R to create a smaller file that's easier to store and share. | `gzfile("file-path/file-name.file-extension)` |
 `ggsave` | Save a ggplot graphic as a .png or .pdf file. There are many arguments that can fit into this, and you can read more in the tidyverse documentation at the top of the page| `ggsave("file-path/file-name.file-extension", arguments)` |
 `tiff` | Save a graphic as a .tiff file. Like `ggsave`, there are many arguments that can fit into `tiff`, and you can read more about in the documentation | `tiff("file-path/file-name.tiff", arguments)` |
+
+:::
