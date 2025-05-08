@@ -47,16 +47,16 @@ We've talked about base R and about extending it with additional packages or lib
 Base R packages are generally quite robust to backwards compatibility, but not always. A few examples:
 
 * When R 3.6 was released, [an update to `set.seed()`](https://github.com/workflowr/workflowr/issues/215) that is used for reproducible results when random number generation is needed -- i.e. you need to take a random sample from your dataset -- broke several packages that relied on `set.seed()`.
-* Similarly, when R 4.0 was released, [updates to the matrix object](https://journal.r-project.org/archive/2020-2/core.pdf) had it's class changed from `array` to `c("matrix", "array")` breaking any packages that relied on testing the class of this data structure using `class()`.
-* Finally, we've been working with factors, so another, potentially more relatable example is the change made with the update to R 4.0 to not have characters translated to factors by default on import. This change risked breaking a lot of code. [See this example from Uri Simonsohn with Data Colada](https://datacolada.org/95#footnote_0_5852):
+* Similarly, when R 4.0 was released, [updates to the matrix object](https://journal.r-project.org/archive/2020-2/core.pdf) had its class changed from `array` to `c("matrix", "array")` breaking any packages that relied on testing the class of this data structure using `class()`.
+* Finally, and this will be covered in more detail in the next lesson, but we will be working with factor data, so another, potentially more relatable example is the change made with the update to R 4.0 to not have characters translated to factors by default on import. This change risked breaking a lot of code. [See this example from Uri Simonsohn with Data Colada](https://datacolada.org/95#footnote_0_5852):
 
 ![](images/day2_dependencies.png)
 
 This kind of break is much more common with external packages. Even when these packages have robust compatability standards, like with TidyVerse -- [you can read about their versoin support here](https://www.TidyVerse.org/blog/2019/04/r-version-support/). Later, we'll be using the `distinct()` function from the `dplyr` package that is part of the TidyVerse. A 2016 update to the function changed its default behaviour effectively reducing the number of variables preserved by the function. Running a script written with the earlier version of `distinct()` could well break under a later version of the same function.
 
-This is kind of change with an update is common enough to be a significant issue. The above Data Colada article provides a few more examples and links to others. 
+This kind of change that comes with an update is common enough to be a significant issue. The above Data Colada article provides a few more examples and links to others. 
 
-More importantly, this may not happen just on your machine. We want to make sure that your code is transferable to another person's computer and will still run irrespective of how they have set up their R environment. We'll explore one solution to this in R, but first look at what happens external to R packages that can cause issues when code is moved to another computer.
+More importantly, this may not happen just on your machine. We want to make sure that your code is transferable to another person's computer and will still run irrespective of how they have set up their R environment. We'll explore one solution to this in R, but will first look at what happens to external R packages that can cause issues when code is moved to another computer.
 
 ### External programs
 
@@ -85,7 +85,7 @@ Consider what your specific needs are before venturing down these routes. A smal
 
 ## A Reproducible R Environment
 
-How do resolve the R dependency problem? A popular option is with the `renv` package.
+How to resolve the R dependency problem? A popular option is with the `renv` package.
 
 Before we begin, it's important to draw a distinction here between a package and a library in R. A package is a set of functions and data. We've seen many of the functions included in the `TidyVerse` set of packages. A library is a place where these packages are stored on your computer. You can see where your packages are stored with `.libPaths()`.
 
@@ -111,7 +111,7 @@ renv::init()
 ```
 
 :::note
-You'll notice that we're using a different way of calling the `init()` function here, first noting the package that it's in `renv` followed by two colons `::`. Similarly to how in day 2 we loaded all of TidyVerse with `library(TidyVerse)`, but later today we'll only loaded one package from the TidyVerse, `dplyr`, to trim down how much we're loading into memory, we can also load only specific functions from a package -- we don't call `library()`, we just reference the package, and then call the function of interest.
+You'll notice that we're using a different way of calling the `init()` function here, first noting the package that it's in `renv` followed by two colons `::`. Similarly to how in day 2 we loaded all of TidyVerse with `library(TidyVerse)`, but later today we'll only load one package from the TidyVerse, `dplyr`, to trim down how much we're loading into memory, we can also load only specific functions from a package -- we don't call `library()`, we just reference the package, and then call the function of interest.
 :::
 
 The `init()` function does a couple of things. It:
@@ -131,7 +131,7 @@ Once intialized, `renv` is ready to start installing packages locally.
 
 If you already have saved .R or .Rmd files, `init()` will attempt to locate the packages your're using and install them locally.
 
-If you're initializing `renv` before saving any files, you'll need to manually install the packages you'll be using going forward, even if you've previously installed these as at this stage, `renv` is looking in our project folder for packages.
+If you're initializing `renv` before saving any files, you'll need to manually install the packages you'll be using going forward, even if you've previously installed these by this stage, because `renv` is looking in our project folder for packages.
 
 `renv` has an install function that is more verbose than `install.packages()` from base R.
 
@@ -167,7 +167,7 @@ cat renv.lock | head -n 20
 
 ### Rebuilding Your R Environment
 
-Packages can take up a lot of space, so generally, you don't share your packages, or library folder, with others when you share your R project. Instead, you just share a few of the `renv` generated files, including the:
+Packages can take up a lot of space, so generally, you don't share your packages or library folder with others when you share your R project. Instead, you just share a few of the `renv` generated files, including the:
 
 * `renv.lock` file -- the metadata about the packages used
 * `.Rprofile` file -- launches `renv/activate.R` at startup
@@ -176,7 +176,7 @@ Packages can take up a lot of space, so generally, you don't share your packages
 
 This set up is intended for using a version control system like Git. We're going to simplify things for ourselves here by only using the `renv.lock` file when sharing. So, you can ignore the hidden file `.Rprofile` and the `renv/` directory.
 
-This does mean that any collaborators will need to install `renv` first on the their machines -- if we included the other files, on project startup, `renv` would be installed if it wasn't already. Then, they run `renv::activate()`, which gets `renv` up and running in the project, followed by `renv::restore()`, which rebuilds your R environment on their machine.
+This does mean that any collaborators will need to install `renv` first on the their machines -- if we included the other files, on project start-up `renv` would be installed if it wasn't already. Then, they run `renv::activate()`, which gets `renv` up and running in the project, followed by `renv::restore()`, which rebuilds your R environment on their machine.
 
 At the end of today, when we upload our data and .Rmd files to OSF, we will now also include the `renv.lock` file. We should also update our readme with the `renv` setup instructions.
 
