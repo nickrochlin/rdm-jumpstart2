@@ -13,9 +13,9 @@ output:
     toc_float:
       collapsed: false
       smooth_scroll: false
-  pdf_document:
-    toc: true              # optional: include table of contents
-    number_sections: true  # optional: number your sections
+  # pdf_document:
+  #   toc: true              # optional: include table of contents
+  #   number_sections: true  # optional: number your sections
 ---
 
 ## Saving Output for Reproducible Research
@@ -32,6 +32,9 @@ In this section, we will learn how to save cleaned datasets, update metadata, ex
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::knit_engines$set(json = function(options) {
+  knitr::engine_output(options, options$code, options$code)
+})
 ```
 
 ```{r, data-isolation-1, results = 'hide', echo=FALSE}
@@ -131,7 +134,8 @@ Data dictionaries can be designed as **human-readable** or **machine-readable**,
 - **Machine-Readable Data Dictionary**:
   - **Description**: A machine-readable data dictionary uses structured formats like JSON, XML, YAML, or RDF, designed for software to parse and process automatically without human involvement. These formats align with metadata standards and are ideal for integration with data repositories or automated systems, enabling automatic data feeds and processing.
   - **Example** (JSON format):
-  ```{json}
+  
+  ```{json, results = 'hide'}
     [
     {
       "variable": "feelRushed",
