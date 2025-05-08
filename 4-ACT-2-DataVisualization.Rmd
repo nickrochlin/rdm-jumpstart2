@@ -56,7 +56,7 @@ Let's get started!
 
 ### Types of Data Visualization
 
-Data visualizations can be descriptive in nature, such as portraying the demographic distribution of a group people, or can represent statistical findings, such as a regression line with a confidence interval overlaid on a scatter plot of data. In certain contexts it is also common to present data and information in more easily digestible infographics <a href="https://coolinfographics.com/">(check out some examples here)</a> that enter more of a graphic design space. Different data visualizations fulfill different goals. Having a toolbox of a variety of data visualization types can help you pick the best type to fit your needs for a given project. 
+Data visualizations can be descriptive in nature, such as portraying the demographic distribution of a group of people, or can represent statistical findings, such as a regression line with a confidence interval overlaid on a scatter plot of data. In certain contexts it is also common to present data and information in more easily digestible infographics <a href="https://coolinfographics.com/">(check out some examples here)</a> that enter more of a graphic design space. Different data visualizations fulfill different goals. Having a toolbox of a variety of data visualization types can help you pick the best type to fit your needs for a given project. 
 
 #### **Table**
 Tables to collect and organize data are one of the most common and basic data visualizations. But don't discount them! They can be efficient ways to convey a large amount of information about your data all at once. 
