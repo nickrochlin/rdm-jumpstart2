@@ -19,7 +19,7 @@ knitr::opts_chunk$set(message = FALSE, warnings = FALSE)
 
 ## Introduction
 
-<h4 style="text-align:center;"><strong>Understanding and fixing errors is one of the most important (and sometimes frustrating!) parts of learning R</strong></h4>
+<h4 style="text-align:center;"><strong>Understanding and fixing errors is one of the most important (and sometimes frustrating!) parts of learning R.</strong></h4>
 
 In this tutorial, we will:
 
@@ -30,7 +30,7 @@ In this tutorial, we will:
 
 In R, errors occur when the code you write can’t be executed due to problems like typos, missing packages, incorrect function arguments, or misused data structures. When R encounters an error, it stops running the code and shows a message that gives clues about what went wrong. These messages can seem cryptic at first, but they usually point to the exact line or object causing the issue. 
 
-Error messages are not always clear. For example, trying to use a column that doesn’t exist in a dataset will result in an error like “object not found.” 
+Error messages are not always clear. For example, trying to use a column that doesn’t exist in a dataset will result in an error like “object not found”.
 
 Learning to read and interpret these messages is a key part of becoming confident in R, as they help you troubleshoot and fix mistakes efficiently. As you gain experience, you’ll begin to recognize common patterns and learn how to resolve them quickly.
 
@@ -46,11 +46,11 @@ Keep calm!
  - Ask for help in a forum
 
 ## Common Errors in R
- - Not closing parenthesis, curly brace, square bracket or quotation mark
+ - Not including a closing parenthesis, curly brace, square bracket or quotation mark
  
  ![](images/day4_error_incompleteexpression.png)
  
- - Typos or mistakes in names of dataset, variables, functions
+ - Typos or mistakes in names of datasets, variables, or functions
  
   ![](images/day4_error_typo.png)
  
