@@ -12,7 +12,7 @@ output:
       smooth_scroll: false
 ---
 
-## GUI vs Sripting
+## Moving from Excel to Scripting
 
 * [Download the PowerPoint](files/Day-2_Session-03_GUI-vs_Scripting.pptx)
 
