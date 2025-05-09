@@ -250,6 +250,7 @@ First we create the blank plot on which we will add our data. We nearly always s
 ```{r}
 ggplot(js_data)
 ```
+
 This creates our blank canvas.
 
 Next we tell ggplot what variable we want to use and put it in the `aes()` function. If you want a bar chart representing the number of people in each group, you can add just one variable to the `aes()` function. We include the `as.factor` function around the `isFeelRushed` variable so it is treated as a categorical variable for the box plot instead of a numeric variable. 
@@ -266,6 +267,7 @@ Next, we tell ggplot what type of data visualization we want. To create a bar ch
 ggplot(js_data, aes(x = as.factor(isFeelRushed))) +
   geom_bar(stat = "count")
 ```
+
 We've got a bar chart!
 
 Lastly, let's add some labels to the x-axis and y-axis to make it clear what is being plotted. 
