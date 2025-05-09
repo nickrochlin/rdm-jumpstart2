@@ -1,6 +1,6 @@
 ---
-title: "Day 1 - OSF"
-pagetitle: "Day 1 - OSF"
+title: "OSF"
+pagetitle: "OSF"
 output:
   html_document:
     includes:

@@ -1,6 +1,6 @@
 ---
-title: "Day 1 - Data Management Plans"
-pagetitle: "Day 1 - Data Management Plans"
+title: "Data Management Plans"
+pagetitle: "Data Management Plans"
 output:
   html_document:
     includes:
