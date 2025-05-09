@@ -1,5 +1,5 @@
 ---
-title: "Day3_DataTypes_DataStructures"
+title: "Data Types and Structures in R"
 pagetitle: "Data Types and Structures in R"
 output:
   html_document:
@@ -12,7 +12,6 @@ output:
     toc_float:
       collapsed: false
       smooth_scroll: false
-date: "2025-02-28"
 ---
 
 ```{r, libraries, include = FALSE}

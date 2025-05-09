@@ -1,5 +1,5 @@
 ---
-title: "Day 3 - Part 2"
+title: "Data Filtering and Selection Techniques"
 pagetitle: "Data Filtering and Selection Techniques"
 output:
   html_document:
