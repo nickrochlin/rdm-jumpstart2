@@ -88,7 +88,7 @@ pre {
 
 .cc-licence {
   float: left;
-  margin: 0 10px 0 0;
+  margin: 0 10px 0 0 !important;
 }
 
 .uvic {
@@ -146,6 +146,10 @@ a:link, a:visited, a:hover, a:active {
 
 .navbar a:hover {
   color: #32322F !important;
+}
+
+#rmd-show-all-code, #rmd-hide-all-code, #rmd-download-source {
+  color: #ffffff !important;
 }
 
 #header {
