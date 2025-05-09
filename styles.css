@@ -37,6 +37,10 @@
   margin-left: 52px;
 }
 
+.walkthrough ul li p, .flag ul li p, .question ul li p, .note ul li p {
+  margin-left: 0px;
+}
+
 .note ol, .flag ol, .question ol, .walkthrough ol {
   margin-left: 30px;
 }
