@@ -22,11 +22,9 @@ output:
 
 ## Introduction
 
-<h4 style="text-align:left;">
-
-<strong>Subsetting data is an essential part of the <em>transform</em> stage in the data science workflow. It involves extracting a portion of the dataset based on specific conditions.</strong>
-
-</h4>
+:::intro
+Subsetting data is an essential part of the <em>transform</em> stage in the data science workflow. It involves extracting a portion of the dataset based on specific conditions.
+:::
 
 In this short tutorial, we will learn:
 

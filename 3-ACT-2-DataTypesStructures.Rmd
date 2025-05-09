@@ -26,7 +26,9 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warnings = FALSE)
 ## Data Organization in R
 
 
-<h4 style="text-align:center;"><strong>Data in R can be stored as a variety of data types and organized in a variety of data structures. We can also recode data in R depending on our research needs.</strong></h4>
+:::intro
+Data in R can be stored as a variety of data types and organized in a variety of data structures. We can also recode data in R depending on our research needs.
+:::
 
 This section covers how data is organized in R and how to clean a dataset. Understanding how your data is organized and being able to adjust that organization to match your research needs is an important part of research data management. For example, you might need your data to be in a certain structure to run certain statistical analyses or you may need to transform variables into versions that are more easily understood. 
 

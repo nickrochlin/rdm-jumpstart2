@@ -20,7 +20,9 @@ knitr::opts_chunk$set(message = FALSE, warnings = FALSE)
 
 ## Introduction
 
-<h4 style="text-align:center;"><strong>Understanding and fixing errors is one of the most important (and sometimes frustrating!) parts of learning R.</strong></h4>
+:::into
+Understanding and fixing errors is one of the most important (and sometimes frustrating!) parts of learning R.
+:::
 
 In this tutorial, we will:
 

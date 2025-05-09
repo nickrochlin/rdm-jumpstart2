@@ -32,7 +32,9 @@ load("data/timeuse_day3_2.RData")
 
 ## Data Visualization in R
 
-<h4 style="text-align:center;"><strong>Data visualization is an important part of exploring, understanding, and sharing our data.</strong></h4>
+:::intro
+Data visualization is an important part of exploring, understanding, and sharing our data.
+:::
 
 Data visualization is a critical part of the data science workflow. Through visualization we can explore and understand our own data, ultimately informing further analyses. Additionally, data visualizations are a powerful tool for communicating data and research findings to other people. Visuals can often more efficiently and more effectively tell the story of your data, rather than only relying on writing. Well done data visualizations will often have the biggest impact on an audience in a science communication context. 
 
