@@ -17,13 +17,13 @@ output:
   #   number_sections: true  # optional: number your sections
 ---
 
-<h4 style="text-align:center;"><strong>Saving output is a crucial part of responsible research data management and directly supports the FAIR principles: making data <em>Findable, Accessible, Interoperable, and Reusable</em></strong></h4>
+<h4 style="text-align:center;"><strong>Saving outputs is a crucial part of responsible research data management and directly supports the FAIR principles: making data <em>Findable, Accessible, Interoperable, and Reusable</em></strong></h4>
 
 ## FAIR
 
 Saving outputs for reproducible research is all part of supporting the FAIR principles, making sure your data is findable, accessible, interoperable, and re-usable.
 
-In this section, we will learn how to save cleaned datasets, update metadata, export plots, and document our data processing in a transparent and accessible way. These practices all support reproducibility and align with the FAIR principles.
+In this section, we will learn how to save cleaned datasets, export plots, update metadata, and document our data processing in a transparent and accessible way. These practices all support reproducibility and align with the FAIR principles.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
@@ -57,7 +57,7 @@ The `js_data` object contains the dataset we used, transformed, and modified up 
 Using `save()` to create an `.Rdata` file is great for putting together a 'reproducible package' because it stores information related to data types and data structures. For example, it retains which variables have been converted to factors or dates. However, it is a file type unique to R; considering that the data may need to be accessed by non-R users, the data should also be stored in a more interoperable and accessible format.
 
 :::note
-In our dataset (`js_data`), variables like `isFeelRushed` (a binary factor: 1 = Yes, 0 = No) or other categorical variables (e.g., `popCenter`, or `feelRushed` might appear integer-like to read_csv(), which could misinterpret them as numeric integers instead of factors. Saving as `.RData` preserves these R-specific data types (e.g., factors, dates, or custom attributes), ensuring consistency when the data is reloaded in R across different sections of our analysis.
+In our dataset (`js_data`), variables like `isFeelRushed` (a binary factor: 1 = Yes, 0 = No) or other categorical variables (e.g., `popCenter` or `feelRushed`) might appear integer-like to read_csv(), which could misinterpret them as numeric integers instead of factors. Saving as `.RData` preserves these R-specific data types (e.g., factors, dates, or custom attributes), ensuring consistency when the data is reloaded in R across different sections of our analysis.
 :::
 
 As we have seen, we can save the `js_data` in `.Rdata` format by using the `save()` function:
@@ -70,9 +70,9 @@ save(js_data, file = "data/timeuse_day4_3_20250515.RData")
 
 Now, let's save this dataset into a `csv` (comma-separated values) or `tsv` (tab-separated values) file for sharing or reuse. Both are plain text files that are __non-proprietary__ formats promoting **interoperability** and **accessibility**.
 
-While `csv` is commonly used (and what we've been using), in many respects `tsv` is more versatile and enhances **reusability** due to:
+While `csv` is commonly used (and what we've been using), in many respects `tsv` is more versatile and enhances **reusability** due to the following factors:
 
-- **csv**: Uses commas to separate values, widely supported but may face issues if data contains commas.
+- **csv**: Uses commas to separate values; it's widely supported but may face issues if data contains commas.
 - **tsv**: Uses tabs as delimiters, avoiding comma-related problems and improving readability in text editors or spreadsheet software.
 
 ```{r}
@@ -90,27 +90,26 @@ While `csv` and `tsv` are accessible and interoperable due to being plain text f
 
 ### File Compression
 
-One of the disadvantages of plain text file formats such as `csv` and `tsv` is that they are larger than their software specific, or 'binary' counterparts. In fact, if you look at the data files we've saved throughout the week, you'll notice that the `csv` versions are significantly larger. However, depending on the kind of data one is working with, even software specific formats can be quite large.
+One of the disadvantages of plain text file formats such as `csv` and `tsv` is that they are larger than their software-specific, or 'binary', counterparts. In fact, if you look at the data files we've saved throughout the week, you'll notice that the `csv` versions are significantly larger. However, depending on the kind of data one is working with, even software-specific formats can be quite large.
 
 Compression is especially helpful when sharing data through email or uploading to repositories, enhancing **accessibility** by minimizing bandwidth requirements. Even though in this example we're working with a relatively small dataset, in real-world scenarios it's common to encounter `csv` files containing millions of rows -- potentially several gigabytes in size. In such cases, compression becomes not just helpful but essential to efficiently store, transfer, and share data files, especially when uploading to platforms like OSF or institutional repositories, such as Borealis.
 
-Here, we'll use a `.gz` compression format.
+Here, we'll use the `.gz` compression format, which compresses a single file at a time.
 
 ```{r}
 con <- gzfile("data/timeuse_day4_3_20250515.gz", "wb")
 write_csv(js_data, con)
 ```
 
-Also, To bundle multiple files or folders (e.g., datasets, plots, and dictionaries), you can use `ZIP` compression. A `.zip` file combines several items into a single compressed archive, which help simply storage and make sharing easier among collaborators or repositories. 
-
 :::walkthrough
 `gzfile("…", "wb")` creates an R connection that writes directly into a gzip-compressed file, and `write_csv(js_data, con)` writes your data frame directly into that compressed CSV file.
 :::
 
 :::note
-Why use `.gz` specifically? The `.gz` format is widely supported, simple, and natively handled by R through the `gzfile()` function. It's also compatible with most data repositories and file-sharing platforms. Unlike `.zip`, which can hold multiple files, `.gz` compresses a single file.
+Why use `.gz` specifically? The `.gz` format is widely supported, simple, and natively handled by R through the `gzfile()` function. It's also compatible with most data repositories and file-sharing platforms. 
 :::
 
+To bundle multiple files or folders (e.g., datasets, plots, and dictionaries), you can use `ZIP` compression. A `.zip` file combines several items into a single compressed archive, which help simplify storage and make sharing easier among collaborators or repositories. 
 
 ## Saving Plots
 
@@ -186,17 +185,17 @@ ggsave(
 
 ### Data Dictionaries
 
-To enhance **Findability** and **Reusability**, metadata must be kept up to date. Metadata provides context about the data -- what each variable means, how values were are, and how data were collected. This makes it easier for others (including your future self!) to interpret and reuse your data.
+To enhance **Findability** and **Reusability**, metadata must be kept up to date. Metadata provides context about the data -- what each variable means, what values are allowed and how they are determined, and how data were collected. This makes it easier for others (including your future self!) to interpret and reuse your data.
 
 One practical way to create and maintain metadata is to use a **data dictionary**. A data dictionary is, ideally, a structured summary that describes each variable in a dataset, including its name, type, and label or definition.
 
 #### Human-Readable vs. Machine-Readable
 
-Data dictionaries can be designed as **human-readable** or **machine-readable**, each serving distinct purposes with specific advantages and limitations. Choosing the appropriate type depends on your audience, whether it’s researchers reading documentation or systems processing metadata automatically.
+Data dictionaries can be designed to be **human-readable** or **machine-readable**, each serving distinct purposes with specific advantages and limitations. Choosing the appropriate type depends on your audience, whether it’s researchers reading documentation or systems processing metadata automatically.
 
 **Human-Readable Data Dictionary**
 
-* **Description**: A human-readable data dictionary is formatted for easy comprehension by people, typically presented as a table in a spreadsheet (e.g., Excel) or document (e.g., PDF, Word). It includes plain-language descriptions in natural language (e.g., English) and is designed to be intuitive for researchers, students, or non-technical collaborators. For example, a PDF document containing a table of variable descriptions is human-readable but often not machine-readable, as it lacks structured data that represents the relationships present in the dataset 
+* **Description**: A human-readable data dictionary is formatted for easy comprehension by people, and is typically presented as a table in a spreadsheet (e.g., Excel) or document (e.g., PDF, Word). It includes plain-language descriptions in natural language (e.g., English) and is designed to be intuitive for researchers, students, or non-technical collaborators. For example, a PDF document containing a table of variable descriptions is human-readable but often not machine-readable, as it lacks structured data that represents the relationships present in the dataset 
 * **Example** (PDF format):
   ![Example of a Human-Readable Data Dictionary](images/4-ACT-3-datadictionaryPDF.png)
 
@@ -249,12 +248,12 @@ Data dictionaries can be designed as **human-readable** or **machine-readable**,
 :::
 
 :::note
-The human-readable PDF dictionary provided in the workshop is ideal for learning and quick reference. For long-term storage or submission to repositories like OSF or Borealis, convert it to a machine-readable format to maximize *Interoperability* and *Findability*
+The human-readable PDF dictionary provided in the workshop is ideal for learning and quick reference. For long-term storage or submission to repositories like OSF or Borealis, you might want to convert it to a machine-readable format to maximize *Interoperability* and *Findability*
 :::
 
 ### Documenting Changes
 
-One of the most important pieces of RDM is documentation and a key piece of documentation is the process of decision making in how one works through their data whether that be in the cleaning or analysis stage of the process. As such, you should use your RMarkdown file as a living logbook. Write clear descriptions of how your data has been transformed, which variables have been changed, removed, or created. This documentation improves **transparency**, promotes **reusability**.
+One of the most important pieces of RDM is documentation and a key element of documentation is the process of decision making in how one works through their data, whether that be in the cleaning or analysis stage of the process. To this end, you should use your RMarkdown file as a living logbook. Write clear descriptions of how your data has been transformed, and which variables have been changed, removed, or created. This documentation improves **transparency** and promotes **reusability**.
 
 Example explanation:
 
@@ -272,7 +271,7 @@ not_rushed <- js_data |>
   filter(isFeelRushed == 0)
 ```
 
-And then, you can also track changes quantitatively:
+You can also track changes quantitatively:
 
 ```{r}
 summary_changes <- data.frame(
@@ -295,7 +294,7 @@ Once you've saved individual datasets and plots, you'll often want to bundle you
 | **Cons** | - Not machine-readable. <br>- Lacks interactivity. <br>- Large file sizes.<br>- Limited for web-based sharing. | - Requires web browser or specific software.<br>- Less consistent formatting across devices.<br>- May need technical setup for sharing. |
 :::
 
-In this section, we can practice to export our RMarkdown document as either PDF or HTML.
+In this section, we can practice exporting our RMarkdown document as either PDF or HTML.
 
 #### Update your YAML
 
@@ -317,7 +316,7 @@ output:
 ---
 ```
 
-This tells RMarkdown and Pandoc to produce either a PDF via LaTeX or an HTML file, depending on your knitting choice.
+This tells RMarkdown to produce either a PDF via LaTeX or an HTML file, depending on your knitting choice.
 
 #### Install TinyTex
 
@@ -342,16 +341,16 @@ In RStudio:
 | Topic                  | Recommendation                                                                 |
 | :--------------------- | :------------------------------------------------------------------------------ |
 | **Compression**        | Use `.csv.gz` or `.tsv.gz` for large files to reduce size and improve access speed. |
-| **Interoperability**   | Prefer `.csv`, `.tsv`; avoid locked-in formats to maximize cross-platform use. |
+| **Interoperability**   | Prefer `.csv` or `.tsv`; avoid locked-in formats to maximize cross-platform use. |
 | **Naming Conventions** | Use descriptive names with dates/versions: `timeuse_day4_3_20250515.csv`.    |
 | **Transparency**       | Log all changes in RMarkdown; describe decisions in plain language.            |
-| **Metadata**           | Maintain and save an updated data dictionary in human-readable (e.g., PDF) or machine-readable (e.g., JSON) formats with rich, structured metadata, enhancing **Findability** and **Interoperability**. |
-| **Plot Formats**       | Use appropriate formats (`.png`, `.pdf`, `.tiff`) based on audience/platform.  |
+| **Metadata**           | Maintain and save an updated data dictionary in human-readable (e.g., PDF) or machine-readable (e.g., JSON) formats with rich, structured metadata, enhancing **findability** and **interoperability**. |
+| **Plot Formats**       | Use appropriate formats (`.png`, `.pdf`, `.tiff`) based on audience and/or platform.  |
 
 ## Your Turn
 
 :::question
-**Scenario 1**: You’re preparing to share your fully cleaned dataset so that collaborators using Python, SPSS, or Excel can easily load it. Which file format would you choose `.csv` or `.Rdata` to maximize **interoperability** and why?
+**Scenario 1**: You’re preparing to share your fully cleaned dataset so that collaborators using Python, SPSS, or Excel can easily load it. Would you choose `.csv` or `.Rdata` to maximize **interoperability** and why?
 :::
 
 :::question
