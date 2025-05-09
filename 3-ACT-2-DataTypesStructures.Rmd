@@ -39,15 +39,10 @@ This section covers how data is organized in R and how to clean a dataset. Under
 This section covers five main topics:
 
 1. What data types exist in R
-
 2. What data structures exist in R
-
 3. Introduction to the `dplyr` package
-
 4. Recoding existing data into another type of data
-
 5. Dealing with missing values
-
 :::
 
 Let's get started! 
