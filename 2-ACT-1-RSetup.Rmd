@@ -19,7 +19,9 @@ knitr::opts_chunk$set(message = FALSE, warnings = FALSE)
 
 ## Introduction
 
-<h4 style="text-align:center;"><strong>RStudio is a program that helps you write and run R code more easily, especially for working with data, making graphs, and doing statistics.</strong></h4>
+:::intro
+RStudio is a program that helps you write and run R code more easily, especially for working with data, making graphs, and doing statistics.
+:::
 
 In this tutorial, we will:
 

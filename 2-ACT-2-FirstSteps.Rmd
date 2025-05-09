@@ -19,7 +19,9 @@ knitr::opts_chunk$set(message = FALSE, warnings = FALSE)
 
 ## Introduction
 
-<h4 style="text-align:center;"><strong>RMarkdown lets you combine R code and text in one document to create dynamic, reproducible reports.</strong></h4>
+:::ibntro
+RMarkdown lets you combine R code and text in one document to create dynamic, reproducible reports.
+:::
 
 By embedding code directly within your written explanations, RMarkdown ensures that your analysis, results, and visuals are automatically updated if the data or code changes—making it easy for others (and your future self!) to understand, verify, and rerun your work exactly as it was done.
 

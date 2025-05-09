@@ -12,7 +12,7 @@ output:
       smooth_scroll: false
 ---
 
-::: note
+:::intro
 A key question in evaluating a given study is, "How do I establish trust in the validity of a finding?" Good RDM practices can help to address this question.
 :::
 
