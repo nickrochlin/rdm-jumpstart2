@@ -1,6 +1,6 @@
 ---
-title: "Introduction"
-pagetitle: "Introduction"
+title: "Jumpstart Introduction"
+pagetitle: "Jumpstart Introduction"
 output:
   html_document:
     includes:
@@ -12,4 +12,8 @@ output:
       smooth_scroll: false
 ---
 
-## Introduction
+## Jumpstart Introduction
+
+* [Download the PowerPoint](files/Day-1_Session-01_Intro.pdf)
+
+<object class = "pdf" data = "files/Day-1_Session-01_Intro.pdf"></object>
