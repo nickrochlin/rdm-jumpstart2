@@ -285,7 +285,10 @@ write_csv(js_data, file="data/timeuse_day2.csv")
 ```
 
 ## Upload to OSF
+
 At the end of each work session, remember to save your data as .RData and .csv, and also your RMarkdown file (.Rmd). We will upload those files to OSF.
+
+![](images/osf/osfUpload.gif)
 
 
 
