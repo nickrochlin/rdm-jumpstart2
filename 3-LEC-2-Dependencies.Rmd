@@ -12,7 +12,7 @@ output:
       smooth_scroll: false
 ---
 
-:::note
+:::intro
 Managing external dependencies is critical to ensuring that you can maintain computational reproducibility when you move your code to a new computer.
 :::
 
