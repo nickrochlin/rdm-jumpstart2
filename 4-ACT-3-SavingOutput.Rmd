@@ -17,9 +17,7 @@ output:
   #   number_sections: true  # optional: number your sections
 ---
 
-:::note
-Saving output is a crucial part of responsible research data management and directly supports the FAIR principles: making data **Findable, Accessible, Interoperable, and Reusable**.
-:::
+<h4 style="text-align:center;"><strong>Saving output is a crucial part of responsible research data management and directly supports the FAIR principles: making data <em>Findable, Accessible, Interoperable, and Reusable</em></strong></h4>
 
 ## FAIR
 
@@ -65,7 +63,7 @@ In our dataset (`js_data`), variables like `isFeelRushed` (a binary factor: 1 = 
 As we have seen, we can save the `js_data` in `.Rdata` format by using the `save()` function:
 
 ```{r}
-save(js_data, file = "data/timeuse_day4_3.RData")
+save(js_data, file = "data/timeuse_day4_3_20250515.RData")
 ```
 
 ### Interoperability and Reusability
@@ -74,12 +72,12 @@ Now, let's save this dataset into a `csv` (comma-separated values) or `tsv` (tab
 
 While `csv` is commonly used (and what we've been using), in many respects `tsv` is more versatile and enhances **reusability** due to:
 
-- **csv**: Uses commas to separate values, widely supported but may face issues if data contains commas, which is common outside of North America.
+- **csv**: Uses commas to separate values, widely supported but may face issues if data contains commas.
 - **tsv**: Uses tabs as delimiters, avoiding comma-related problems and improving readability in text editors or spreadsheet software.
 
 ```{r}
-write_csv(js_data, "data/timeuse_day4_3_20250502.csv")
-write_tsv(js_data, "data/timeuse_day4_3_20250502.tsv")
+write_csv(js_data, "data/timeuse_day4_3_20250515.csv")
+write_tsv(js_data, "data/timeuse_day4_3_20250515.tsv")
 ```
 
 :::note
@@ -99,9 +97,11 @@ Compression is especially helpful when sharing data through email or uploading t
 Here, we'll use a `.gz` compression format.
 
 ```{r}
-con <- gzfile("data/timeuse_day4_3_20250502.gz", "wb")
+con <- gzfile("data/timeuse_day4_3_20250515.gz", "wb")
 write_csv(js_data, con)
 ```
+
+Also, To bundle multiple files or folders (e.g., datasets, plots, and dictionaries), you can use `ZIP` compression. A `.zip` file combines several items into a single compressed archive, which help simply storage and make sharing easier among collaborators or repositories. 
 
 :::walkthrough
 `gzfile("…", "wb")` creates an R connection that writes directly into a gzip-compressed file, and `write_csv(js_data, con)` writes your data frame directly into that compressed CSV file.
@@ -110,6 +110,79 @@ write_csv(js_data, con)
 :::note
 Why use `.gz` specifically? The `.gz` format is widely supported, simple, and natively handled by R through the `gzfile()` function. It's also compatible with most data repositories and file-sharing platforms. Unlike `.zip`, which can hold multiple files, `.gz` compresses a single file.
 :::
+
+
+## Saving Plots
+
+Exporting plots in multiple formats ensures your visualizations are **reusable** and **accessible** for different purposes: publication, presentation, or web display.
+
+Let's first again generate the scatterplot to show the association between sleep and work duration from previous section.
+
+```{r, fig.width=8, fig.height=6}
+library(ggplot2)
+
+p <- ggplot(js_data, aes(durWork, durSleep)) +
+  geom_point(color = "#2D5E7F", alpha = .2) +
+  geom_smooth(method = lm, color = "black") +
+  xlab("Minutes Spent Working") +
+  ylab ("Minutes Spent Sleeping") +
+  scale_x_continuous(breaks = seq(0, 1500, 250)) +
+  labs(title = "Association Between Working and Sleeping") +
+  theme(text = element_text(size = 18))
+
+p
+```
+
+
+### PNG
+
+**PNG** format is suitable for web use or slide presentations. **PNG** is a raster format that offers high quality and is widely supported across platforms.
+
+
+```{r}
+ggsave(
+  filename = "outputs/association_sleep_working_day4.png", 
+  plot = p, 
+  width = 8, 
+  height = 6, 
+  dpi = 300
+  )
+```
+
+:::walkthrough
+`ggsave()` is a `ggplot2` function that saves your last (or specified) plot to a file, automatically picking the correct format from the filename extension and letting you set size and resolution.
+:::
+
+### PDF
+
+If you want your plots to be resizable without losing quality, you can use **PDF** files, as they preserve vector graphics. This is especially useful for embedding in academic papers or generating print-friendly outputs.
+
+```{r}
+ggsave(
+  filename = "outputs/association_sleep_working_day4.pdf", 
+  plot = p, 
+  width = 8, 
+  height = 6)
+```
+
+
+### TIFF
+
+You can save images as **TIFF** format, as some academic journals request or prefer TIFF for its high resolution. This format ensures sharp, detailed visuals suitable for professional publication requirements.
+
+```{r}
+ggsave(
+  filename = "outputs/association_sleep_working_day4.tiff",
+  plot     = p,
+  width    = 8,
+  height   = 6,
+  dpi      = 600,
+  device   = "tiff"
+)
+```
+
+
+## Saving Documentation
 
 ### Data Dictionaries
 
@@ -179,78 +252,7 @@ Data dictionaries can be designed as **human-readable** or **machine-readable**,
 The human-readable PDF dictionary provided in the workshop is ideal for learning and quick reference. For long-term storage or submission to repositories like OSF or Borealis, convert it to a machine-readable format to maximize *Interoperability* and *Findability*
 :::
 
-## Saving Plots
-
-Exporting plots in multiple formats ensures your visualizations are **reusable** and **accessible** for different purposes: publication, presentation, or web display.
-
-Let's first again generate the scatterplot to show the association between sleep and work duration from previous section.
-
-```{r, fig.width=8, fig.height=6}
-library(ggplot2)
-
-p <- ggplot(js_data, aes(durWork, durSleep)) +
-  geom_point(color = "#2D5E7F", alpha = .2) +
-  geom_smooth(method = lm, color = "black") +
-  xlab("Minutes Spent Working") +
-  ylab ("Minutes Spent Sleeping") +
-  scale_x_continuous(breaks = seq(0, 1500, 250)) +
-  labs(title = "Association Between Working and Sleeping") +
-  theme(text = element_text(size = 18))
-
-p
-```
-
-
-### PNG
-
-```{r}
-ggsave(
-  filename = "outputs/association_sleep_working_day4.png", 
-  plot = p, 
-  width = 8, 
-  height = 6, 
-  dpi = 300
-  )
-```
-
-:::walkthrough
-`ggsave()` is a `ggplot2` function that saves your last (or specified) plot to a file, automatically picking the correct format from the filename extension and letting you set size and resolution.
-:::
-
-This format is suitable for web use or slide presentations. PNG is a raster format that offers high quality and is widely supported across platforms.
-
-
-### PDF
-
-```{r}
-ggsave(
-  filename = "outputs/association_sleep_working_day4.pdf", 
-  plot = p, 
-  width = 8, 
-  height = 6)
-```
-
-PDF files preserve vector graphics, which means your plot can be resized without losing quality. This is especially useful for embedding in academic papers or generating printer-friendly outputs.
-
-
-### TIFF (Cairo on macOS)
-
-```{r}
-ggsave(
-  filename = "outputs/association_sleep_working_day4.tiff",
-  plot     = p,
-  width    = 8,
-  height   = 6,
-  dpi      = 600,
-  device   = "tiff"
-)
-```
-
-TIFF is often requested by academic journals for its high resolution.
-
-Saving plots in appropriate formats facilitates sharing and integration in different dissemination workflows.
-
-## Documenting Changes
+### Documenting Changes
 
 One of the most important pieces of RDM is documentation and a key piece of documentation is the process of decision making in how one works through their data whether that be in the cleaning or analysis stage of the process. As such, you should use your RMarkdown file as a living logbook. Write clear descriptions of how your data has been transformed, which variables have been changed, removed, or created. This documentation improves **transparency**, promotes **reusability**.
 
@@ -282,7 +284,7 @@ summary_changes
 
 Such logs help other researchers understand your workflow and replicate or build upon your analysis.
 
-## Saving Documents to PDF
+### Saving Documents to PDF
 
 Once you've saved individual datasets and plots, you'll often want to bundle your *entire* analysis -- code, text, figures, and tables -- into a single file. You can export your RMarkdown document as a **PDF** for a polished, human-readable output or as **HTML** for a dynamic, web-friendly format. Each format has distinct advantages and limitations, depending on your needs.
 
@@ -295,7 +297,7 @@ Once you've saved individual datasets and plots, you'll often want to bundle you
 
 In this section, we can practice to export our RMarkdown document as either PDF or HTML.
 
-### Update your YAML
+#### Update your YAML
 
 At the very top of your `.Rmd` file, ensure you have a YAML header supporting both PDF and HTML outputs:
 
@@ -317,7 +319,7 @@ output:
 
 This tells RMarkdown and Pandoc to produce either a PDF via LaTeX or an HTML file, depending on your knitting choice.
 
-### Install TinyTex
+#### Install TinyTex
 
 R Markdown relies on LaTeX under the hood. We recommend TinyTeX as a simple solution. TinyTeX is lightweight and will automatically pull in any missing LaTeX packages as you knit.
 
@@ -327,7 +329,7 @@ install.packages("tinytex")
 tinytex::install_tinytex()
 ```
 
-### Knit
+#### Knit
 
 In RStudio: 
 
@@ -341,11 +343,10 @@ In RStudio:
 | :--------------------- | :------------------------------------------------------------------------------ |
 | **Compression**        | Use `.csv.gz` or `.tsv.gz` for large files to reduce size and improve access speed. |
 | **Interoperability**   | Prefer `.csv`, `.tsv`; avoid locked-in formats to maximize cross-platform use. |
-| **Naming Conventions** | Use descriptive names with dates/versions: `timeuse_day4_3_20250502.csv`.    |
+| **Naming Conventions** | Use descriptive names with dates/versions: `timeuse_day4_3_20250515.csv`.    |
 | **Transparency**       | Log all changes in RMarkdown; describe decisions in plain language.            |
 | **Metadata**           | Maintain and save an updated data dictionary in human-readable (e.g., PDF) or machine-readable (e.g., JSON) formats with rich, structured metadata, enhancing **Findability** and **Interoperability**. |
 | **Plot Formats**       | Use appropriate formats (`.png`, `.pdf`, `.tiff`) based on audience/platform.  |
-| **Licensing**          | Apply open licenses (e.g., Creative Commons) to enable legal data reuse.       |
 
 ## Your Turn
 
@@ -366,11 +367,11 @@ In RStudio:
 :::
 
 ::: question
-**Challenge 1:** Revisit your RMarkdown now and improve the documentation of one of your data-cleaning, or data-transformation steps. Imagine you (or a colleague who are not familiar with the project) come back to this 6 months from now: will they understand exactly what you did and why?  
+**Challenge 1**: Select one plot you created in the visualization section and save it using `ggsave()`. Choose an appropriate file format (e.g., PNG for web, PDF for papers, TIFF for high-res), create a descriptive filename that includes the date and plot type, and write the exact `ggsave()` command you would use. Experiment with parameters like resolution (`dpi`) or dimensions (`width`, `height`) to optimize the output.
 :::
-
+  
 ::: question
-**Challenge 2:** Save all the plots you created in the visualization section using `ggsave()`. For each plot, choose an appropriate file format (e.g., PNG for web, PDF for papers, TIFF for high-res), create a descriptive file name that includes the date and plot type, and write the exact `ggsave()` command you would use.
+**Challenge 2:** Revisit your RMarkdown now and improve the documentation of one of your data-cleaning, or data-transformation steps. Imagine you (or a colleague who are not familiar with the project) come back to this 6 months from now: will they understand exactly what you did and why?  
 :::
 
 ## Wrap-Up
