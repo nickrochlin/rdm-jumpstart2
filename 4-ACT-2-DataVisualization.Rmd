@@ -1,6 +1,6 @@
 ---
-title: "Day 4 - Part 2"
-pagetitle: "Data Visualization"
+title: "R: Data Visualization"
+pagetitle: "R: Data Visualization"
 output:
   html_document:
     code_folding: show # allows toggling of showing and hiding code. Remove if not using code.

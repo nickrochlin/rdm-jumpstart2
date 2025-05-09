@@ -1,7 +1,6 @@
 ---
 title: "Saving Outputs for Reproducible Research"
-author: "Gia-Huy Hoang"
-date: "`r Sys.Date()`"
+pagetitle: "Saving Outputs for Reproducible Research"
 output:
   html_document:
     code_folding: show # allows toggling of showing and hiding code. Remove if not using code.

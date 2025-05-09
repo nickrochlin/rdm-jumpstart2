@@ -1,5 +1,5 @@
 ---
-title: "Day 4 - Troubleshooting"
+title: "Troubleshooting errors in R"
 pagetitle: "Troubleshooting errors in R"
 output:
   html_document:
@@ -13,6 +13,7 @@ output:
       collapsed: false
       smooth_scroll: false
 ---
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(message = FALSE, warnings = FALSE)
 ```
