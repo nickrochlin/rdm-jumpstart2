@@ -37,7 +37,7 @@
   margin-left: 52px;
 }
 
-.walkthrough ul li p, .flag ul li p, .question ul li p, .note ul li p {
+.walkthrough ul li p, .flag ul li p, .question ul li p, .note ul li p, .walkthrough ol li p, .flag ol li p, .question ol li p, .note ol li p {
   margin-left: 0px;
 }
 
@@ -187,6 +187,10 @@ img {
 .md-table > table > tbody > tr > td {
   padding:1em 1em 0 0;
   vertical-align: top;
+}
+
+.md-table > table > colgroup > col{
+  width: auto;
 }
 
 .schedule-table > table > tbody > tr > td {
