@@ -203,14 +203,17 @@ Create your first RMarkdown file. We will name this file `script_js_timeuse_2025
 In your RMarkdown file, add the following:
 :::
 
-  1. Level 1 heading "Learning RDM with Time Use Project"
-  2. Brief description of the project: 
-  3. Level 2 heading "My first chunk of code"
-  4. Insert an empty chunk of code
-  5. Inside the chunk of code, type the following: `5+3` (Yes! R can be used as a simple calculator too!)
-  6. Click the play button on the top right corner of the code chunk. This will display the result of the code chunk. 
+
+````markdown
+1. Level 1 heading "Learning RDM with Time Use Project"
+2. Brief description of the project: 
+3. Level 2 heading "My first chunk of code"
+4. Insert an empty chunk of code
+5. Inside the chunk of code, type the following: `5+3` (Yes! R can be used as a simple calculator too!)
+6. Click the play button on the top right corner of the code chunk. This will display the result of the code chunk. 
  
- Finally, lets save and visualize our work.
+Finally, lets save and visualize our work.
+````
  
 :::question
 
