@@ -16,8 +16,6 @@ output:
 
 ## Overview
 
-------------------------------------------------------------------------
-
 ![](images/3-ACT-3-Overview.png)
 
 ## Introduction
@@ -31,13 +29,7 @@ In this short tutorial, we will learn:
 1.  What subsetting means and why it is crucial
 2.  How to perform subsetting using conditional operators and the dplyr functions `filter()` and `select()`
 
-------------------------------------------------------------------------
-
-<h4 style="text-align:left;">
-
-Why is subsetting a dataset important?
-
-</h4>
+#### Why is subsetting a dataset important?
 
 ::: note
 Most real-world datasets are large and complex, with many variables and thousands of records.
@@ -60,14 +52,7 @@ The dataset we have used in previous sessions originated from the [General Socia
 
 For the purposes of this tutorial, we are not interested in every variable. Instead, we are working with a **subset** of this dataset: 29 variables focused mainly on time durations and key demographic characteristics. This makes the data more manageable and relevant for our exploration of time use and perceptions of time pressure.
 
-------------------------------------------------------------------------
-
-<h4 style="text-align:left;">
-
-Framing the Guiding Question: Who Feels Rushed?
-
-</h4>
-
+#### Framing the Guiding Question: Who Feels Rushed?
 <!-- ### Framing the Guiding Question: Who Feels Rushed? -->
 
 Let's return to the time usage dataset. In this section, suppose we're interested in understanding how people who feel rushed spend their time differently from those who don't. To answer this question, we don't need every single row or column, as working with the data in its original format would be unnecessarily complex. Instead, we need to "get inside" our data by subsetting: filtering the rows and selecting the columns that matter.
@@ -78,21 +63,16 @@ We will explore our dataset through one guiding question:
 
 We'll focus on the relevant rows and columns that answer this question.
 
-------------------------------------------------------------------------
+## Step by Step
 
-## Step 0: Setup and Load the Data
+### 0: Setup and Load the Data
 
-------------------------------------------------------------------------
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
 
-<h4 style="text-align:left;">
-
-Load and Understand the Dataset
-
-</h4>
+#### Load and Understand the Dataset
 
 <!-- ### Load and Understand the Dataset  -->
 
@@ -148,17 +128,10 @@ These columns provide information on demographics, time usage, and time percepti
 
 Now that we understand our dataset structure, let's move on to learning how to filter and manipulate this data effectively using Boolean operators in `dplyr`.
 
-------------------------------------------------------------------------
 
-## Step 1: Learning About Filtering
+### 1: Learning About Filtering
 
-------------------------------------------------------------------------
-
-<h4 style="text-align:left;">
-
-Conditional Filtering with Boolean Operators using <strong>dplyr</strong>
-
-</h4>
+#### Conditional Filtering with Boolean Operators using <strong>dplyr</strong>
 
 <!-- ### Conditional Filtering with Boolean Operators using **dplyr** -->
 
@@ -166,10 +139,11 @@ Conditional Filtering with Boolean Operators using <strong>dplyr</strong>
 
 Let's start by understanding the basic comparison operators that will help us create filtering conditions.
 
-#### **Comparison Operators**
+**Comparison Operators**
 
 Comparison operators allow us to check conditions within our dataset. These return `TRUE` or `FALSE` based on whether the condition is met.
 
+:::md-table
 | Operator | Meaning                  | Example  | Result |
 |----------|--------------------------|----------|--------|
 | `==`     | Equal to                 | `5 == 5` | `TRUE` |
@@ -178,18 +152,21 @@ Comparison operators allow us to check conditions within our dataset. These retu
 | `>`      | Greater than             | `5 > 3`  | `TRUE` |
 | `<=`     | Less than or equal to    | `3 <= 3` | `TRUE` |
 | `>=`     | Greater than or equal to | `5 >= 3` | `TRUE` |
+:::
 
 Once we understand these basic comparison operators, we can combine them using logical operators to create more complex filtering conditions.
 
-#### **Logical Operators**
+**Logical Operators**
 
 Logical operators allow us to filter data based on multiple conditions.
 
+:::md-table
 | Operator | Meaning                                          | Example             | Result  |
 |-------------|---------------------------------|--------------|-------------|
 | `&`      | Logical AND (Both conditions must be TRUE)       | `(5 > 3) & (4 < 6)` | `TRUE`  |
 | `|`      | Logical OR (At least one condition must be TRUE) | `(5 > 3) | (4 > 6)` | `TRUE`  |
 | `!`      | Logical NOT (Reverses TRUE/FALSE)                | `!(5 > 3)`          | `FALSE` |
+:::
 
 Let's try using these logical operators to filter the rows in the following example.
 
@@ -237,6 +214,7 @@ This quick overview helps us understand typical time allocation patterns for sle
 
 It appears that all the columns contain numeric values. However, as we look at the data dictionary, we'll see that only `durWork`, `durSleep` and `durAlone` have numeric values that represent real quantities (minutes of work, sleep or time alone in a day). In contrast, the values in the `feelRushed` column have a different meaning.
 
+:::md-tabel
 | Code | Value            |
 |------|------------------|
 | 1    | daily            |
@@ -245,20 +223,13 @@ It appears that all the columns contain numeric values. However, as we look at t
 | 4    | once a Month     |
 | 5    | less a Month     |
 | 6    | never            |
+:::
 
-------------------------------------------------------------------------
-
-## Step 2: Apply Basic Filtering
-
-------------------------------------------------------------------------
+### 2: Apply Basic Filtering
 
 <!-- ### Filtering Rows with *dplyr* -->
 
-<h4 style="text-align:left;">
-
-Filtering Rows with <strong>dplyr</strong>
-
-</h4>
+#### Filtering Rows with <strong>dplyr</strong>
 
 ![](images/3-ACT-3-Filter.png)
 
@@ -341,19 +312,11 @@ In this example:
 
 Here we've used the `&` operator for "and" conditions, but we can also use the `|` operator to specify "or" conditions. By using these boolean operators, we can chain multiple conditions together. 
 
-------------------------------------------------------------------------
-
-## Step 3: Apply Complex Filtering
-
-------------------------------------------------------------------------
+### 3: Apply Complex Filtering
 
 <!-- ### Complex Filtering with dplyr: Filtering Rows for Those Who Feel Rushed -->
 
-<h4 style="text-align:left;">
-
-Complex Filtering with <strong>dplyr</strong>: Filtering Rows for Those Who Feel Rushed
-
-</h4>
+#### Complex Filtering with <strong>dplyr</strong>: Filtering Rows for Those Who Feel Rushed
 
 Now, let's perform a more complex filtering. Suppose we want to capture respondents who feel rushed frequently---that is, those whose `feelRushed` value is either `1`, `2`, or `3`---and those who do not feel rushed frequently, meaning those whose `feelRushed` value is either `4`, `5`, or `6`.
 
@@ -478,19 +441,11 @@ As we can see, looking at the remain rows after filtering, it produces the same 
 
 There is also a third, more elegant approach using the `%in%` operator, but we will explore this method in the exercises at the end of this session.
 
-------------------------------------------------------------------------
-
-## Step 4: Select Relevant Variables
-
-------------------------------------------------------------------------
+### 4: Select Relevant Variables
 
 ![](images/3-ACT-3-Select.png)
 
-<h4 style="text-align:left;">
-
-Selecting and Cleaning Time-Related Variables
-
-</h4>
+#### Selecting and Cleaning Time-Related Variables
 
 <!-- ### Selecting and Cleaning Time-Related Variables -->
 
@@ -579,17 +534,9 @@ js_data |>
 There are many other helpers, such as `ends_with()`, `contains()`, `matches()`, and more, which let us build clean, flexible code without having to spell out every variable name. We can check the select [reference](https://dplyr.tidyverse.org/reference/select.html) in tidyverse for more information.
 :::
 
-------------------------------------------------------------------------
+### 5: Compare Time Use
 
-## Step 5: Compare Time Use Between Groups
-
-------------------------------------------------------------------------
-
-<h4 style="text-align:left;">
-
-Comparing Time Usage Between Groups
-
-</h4>
+#### Comparing Time Usage Between Groups
 
 <!-- ### Results: Comparing Time Usage Between Groups -->
 
@@ -679,7 +626,7 @@ Positive values in the difference calculation indicate that rushed individuals s
 
 These results provide interesting insights into how feeling rushed relates to time allocation patterns. For instance, we can observe whether people who feel rushed actually spend more time working or less time sleeping than those who don't feel rushed, which might help explain their perception of time pressure.
 
-## Before the Next Exercise: Recode Variables and Save Dataset
+## Recode & Save
 
 In the next exercise, we will compare the time pressure felt by respondents based on whether they live in an **urban** or **rural** area, as coded in the `popCenter` column:
 
@@ -690,11 +637,13 @@ js_data |>
 
 According to the data dictionary, these numeric codes mean:
 
+:::md-table
 | value | label                                                 |
 |-------|-------------------------------------------------------|
 | 1     | Larger urban population centres (CMA/CA)              |
 | 2     | Rural areas and small population centres (non CMA/CA) |
 | 3     | Prince Edward Island                                  |
+:::
 
 We can use **dplyr**'s `mutate()` along with `if_else()` to turn those numbers into descriptive labels:
 
@@ -739,19 +688,13 @@ Finally, save the recoded dataset so it's ready for the next steps:
 save(js_data, file = "data/time_use_day3_2.RData")
 ```
 
-------------------------------------------------------------------------
-
 ## Exercises: Time for Practice!
 
-------------------------------------------------------------------------
-
-### Optional Exercise 1: Using `%in%` Operator
+### Using `%in%` Operator
 
 In the previous sections, we learned that we can filter respondents who feel rushed or not by either using a range comparison (e.g., `feelRushed <= 3`) or by chaining multiple conditions with logical operators (e.g., `feelRushed == 1 | feelRushed == 2 | feelRushed == 3`).
 
 However, there's also a third, more elegant approach: using the `%in%` operator. This method is especially helpful when we want to filter a dataset based on multiple specific values of a variable, making our code shorter and easier to read.
-
-------------------------------------------------------------------------
 
 ::: question
 **Example Scenario**
@@ -837,18 +780,12 @@ print(paste("The number of rows in rushed is:", rushed_rows))
 print(paste("The number of rows in not rushed is:", not_rushed_rows))
 ```
 
-------------------------------------------------------------------------
-
 **Summary**
 
 This example shows how the `%in%` operator simplifies filtering when working with categorical variables. It avoids the need to write multiple `==` and `|` conditions, making our code cleaner and easier to read.
 :::
 
-------------------------------------------------------------------------
-
-### Optional Exercise 2: Urban vs Rural Time Pressure Analysis
-
-------------------------------------------------------------------------
+### Time Pressure Analysis
 
 ::: walkthrough
 Let's use our new filtering and selecting skills to explore how people in urban and rural areas differ in terms of time pressure, based on their reported extra time.
@@ -859,8 +796,6 @@ Let's use our new filtering and selecting skills to explore how people in urban 
 2.  Filter the dataset into two groups: `urban` and `rural`.
 3.  Select the relevant variables: `popCenter`, `extraTime`, `durWork`, and `durSleep`.
 4.  Calculate and compare the average `extraTime` between the two groups.
-
-------------------------------------------------------------------------
 
 **Step 1: Explore the Data**
 
@@ -893,8 +828,6 @@ js_data |>
   kable_styling(bootstrap_options = "striped") |> 
   scroll_box(width = "100%")
 ```
-
-------------------------------------------------------------------------
 
 **Step 2: Filter Urban and Rural Populations**
 
@@ -931,8 +864,6 @@ js_data |>
   kable_styling(bootstrap_options = "striped") |> 
   scroll_box(width = "100%")
 ```
-
-------------------------------------------------------------------------
 
 **Step 3: Select Relevant Variables**
 
@@ -976,8 +907,6 @@ head(rural_selected) |>
   scroll_box(width = "100%")
 ```
 
-------------------------------------------------------------------------
-
 **Step 4: Calculate and Compare Mean Extra Time**
 
 To calculate the average amount of extra time reported by urban and rural respondents, we use the `summarise()` function:
@@ -1000,8 +929,6 @@ mean_rural |> kbl() |> kable_styling()
 It seems that, on average, respondents residing in rural areas have more `extraTime`. Higher values in `extraTime` indicate greater availability of free time.
 :::
 
-------------------------------------------------------------------------
-
 ## Takeaway
 
 In this session, we learned how to filter rows and select specific columns to create a smaller, cleaner dataset that helps us answer our guiding question more efficiently. Using functions from the `dplyr` package like `filter()`, `select()`, and `mutate()`, we practiced how to:
@@ -1013,4 +940,3 @@ In this session, we learned how to filter rows and select specific columns to cr
 
 These techniques help us zoom in on the parts of the data that matter most and prepare for deeper exploration in the next sessions.
 
-------------------------------------------------------------------------
