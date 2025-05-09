@@ -40,7 +40,7 @@ For individual day overviews, please refer to the 'Overview' section in each day
         </tr>
         <tr>
             <td id = "slot-0" class = "time"></td>
-            <td class = "lecture schedule-link" onclick="location.href='introduction.html'">RDM: Introduction</td>
+            <td class = "lecture schedule-link" onclick="location.href='introduction.html'">Jumpstart Introduction</td>
             <td class = "lecture">Recap</td>
             <td class = "lecture">Recap</td>
             <td class = "lecture">Recap</td>
