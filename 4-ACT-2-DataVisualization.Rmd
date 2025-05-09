@@ -163,17 +163,18 @@ There is an art to picking the best data visualization that fits your data and t
 It can be easy to get in the habit of using the same types of data visualization over and over again. Check out this website that gives many creative data visualization options (with R code!), categorized by goal: <a href="https://r-graph-gallery.com/ ">https://r-graph-gallery.com/ </a>
 
 #### Good Data Visualization Princicples
-Once you pick the format that fits your needs best, these are some principles to keep in mind when crafting your visualization to make sure it is clear to your audience. 
 
-**- Clear Data:** Consider the format of your data when you include it. Your data needs to be unambiguously communicated to your audience. For instance, do you have so many groups that they are difficult to differentiate? Are your data points stacked on the same spot so the audience can't see the density of your data points?
+Once you pick the format that fits your needs best, these are some principles to keep in mind when crafting your visualization to make sure it is clear to your audience.
 
-**- Clear Labels:** All data visualizations need labels. This may be the axis on a scatter plot, legends for your bar graph, or percentages on your pie chart. You must tell the audience what they are looking at. If different colors are used, they should represent some aspect of the data and be clearly labeled. 
-
-**- Clear Scales**: Clear and consistent scales are important to avoid misinterpretation of your data visualization. An axis should be clearly labeled and include the full scale range. Make it clear if the scale does not start at 0. Scales should be consistent across visualizations to allow for comparisons. 
-
-**- Simplicity:** Aim to have uncluttered data visualizations. It is easy to get excited about all you can do creatively in the world of data visualizations, but sometimes adding too much (e.g., extra colors, pictures) can actually obscure your main message. Avoid extra info that doesn't add to the story you are telling.
-
-**- Accessibility:** Consider how your data visualization design would be viewed by a variety of people. Text font and size for legends and axis labels should be clear and not too small. Try not to rely only on color to distinguish groups (e.g., lines can be dashed or dotted), or pick colors/hues that are distinguishable by people who are colorblind. Include alternative text descriptions that can be read aloud by a screen reader. 
+:::md-table
+| Principle | Considerations |
+| :--- | :--- |
+| Clear Data | Consider the format of your data when you include it. Your data needs to be unambiguously communicated to your audience. For instance, do you have so many groups that they are difficult to differentiate? Are your data points stacked on the same spot so the audience can't see the density of your data points? |
+| Clear Labels | All data visualizations need labels. This may be the axis on a scatter plot, legends for your bar graph, or percentages on your pie chart. You must tell the audience what they are looking at. If different colors are used, they should represent some aspect of the data and be clearly labeled. |
+| Clear Scales | Clear and consistent scales are important to avoid misinterpretation of your data visualization. An axis should be clearly labeled and include the full scale range. Make it clear if the scale does not start at 0. Scales should be consistent across visualizations to allow for comparisons. |
+| Simplicity | Aim to have uncluttered data visualizations. It is easy to get excited about all you can do creatively in the world of data visualizations, but sometimes adding too much (e.g., extra colors, pictures) can actually obscure your main message. Avoid extra info that doesn't add to the story you are telling. |
+| Accessibility | Consider how your data visualization design would be viewed by a variety of people. Text font and size for legends and axis labels should be clear and not too small. Try not to rely only on color to distinguish groups (e.g., lines can be dashed or dotted), or pick colors/hues that are distinguishable by people who are colorblind. Include alternative text descriptions that can be read aloud by a screen reader. |
+:::
 
 For more information on design principles and the visual hierarchy of elements, check out <a href="https://www.interaction-design.org/literature/topics/visual-hierarchy?srsltid=AfmBOooU77XPiVsXSkE7t2GqAayaOyh0VxdwGj3bJaP1Qj3xcc5A44BW">this article</a>. Size, color, contrast, alignment, repetition, proximity, whitespace, and texture can all be used to draw focus to particular visual elements. 
 
