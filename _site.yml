@@ -1,5 +1,5 @@
 name: "RDM Jumpstart"
-output_dir: "website"
+output_dir: "docs"
 navbar:
   title: "RDM Jumpstart"
   left:
