@@ -1,6 +1,6 @@
 ---
-title: "Day 5 - Data Deposit in Borealis"
-pagetitle: "Day 5 - Data Deposit in Borealis"
+title: "Sharing & Deposit"
+pagetitle: "Sharing & Deposit"
 output:
   html_document:
     code_folding: show # allows toggling of showing and hiding code. Remove if not using code.
@@ -14,4 +14,8 @@ output:
       smooth_scroll: false
 ---
 
-## Data Deposit in Borealis
+## Sharing & Deposit
+
+* [Download the PowerPoint](files/Day-5_Session-01_SharingDepositBorealis.pptx)
+
+<object class = "pdf" data = "files/Day-5_Session-01_SharingDepositBorealis.pdf"></object>
