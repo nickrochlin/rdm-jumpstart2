@@ -1,5 +1,5 @@
 ---
-title: "Day 2 - Setting up R"
+title: "Setting up R"
 pagetitle: "Setting up R"
 output:
   html_document:
