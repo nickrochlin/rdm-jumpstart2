@@ -28,6 +28,8 @@ Erin McCoy is a PhD Candidate in Social Psychology at Carleton University. Her r
 **Gia-Huy Hoang**  
 Research Assistant, University of Calgary
 
+Gia-Huy Hoang is a second-year Master’s student in Neuroscience from University of Calgary. His research is on machine learning models using psychosocial and neuroimaging data to predict the first onset of anxiety and depression in high-risk adolescents, using data from the large Adolescent Brain Cognitive Development (ABCD) study.
+
 **Jane Fry**  
 Data Services Librarian, Carleton University
 

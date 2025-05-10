@@ -13,7 +13,7 @@
 
 <title>RDM Jumpstart</title>
 
-<script src="site_libs/header-attrs-2.26/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -335,6 +335,21 @@ div.tocify {
     <li>
       <a href="1-Overview.html">Overview</a>
     </li>
+    <li>
+      <a href="Introduction.html">Introduction to the RDM Jumpstart</a>
+    </li>
+    <li>
+      <a href="1-LEC-1-ImportanceRDM.html">RDM: Introduction</a>
+    </li>
+    <li>
+      <a href="1-LEC-2-DataScience.html">Workflow for the Week</a>
+    </li>
+    <li>
+      <a href="1-LEC-3-OSF.html">OSF</a>
+    </li>
+    <li>
+      <a href="1-LEC-4-DMPs.html">Data Management Plans</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -346,6 +361,18 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="2-Overview.html">Overview</a>
+    </li>
+    <li>
+      <a href="2-LEC-1-BiasRepro.html">RDM: Bias &amp; Reproducibility</a>
+    </li>
+    <li>
+      <a href="2-LEC-3-GUIscript.html">Computational Reproducibility: Excel vs R</a>
+    </li>
+    <li>
+      <a href="2-ACT-1-RSetup.html">R: Setting Up</a>
+    </li>
+    <li>
+      <a href="2-ACT-2-FirstSteps.html">R: First Steps</a>
     </li>
   </ul>
 </li>
@@ -359,6 +386,15 @@ div.tocify {
     <li>
       <a href="3-Overview.html">Overview</a>
     </li>
+    <li>
+      <a href="3-LEC-2-Dependencies.html">Computational Reproducibility: Dependencies</a>
+    </li>
+    <li>
+      <a href="3-ACT-2-DataTypesStructures.html">R: Data Types and Structures</a>
+    </li>
+    <li>
+      <a href="3-ACT-3-FilterSelect.html">R: Filter and Select</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -371,6 +407,15 @@ div.tocify {
     <li>
       <a href="4-Overview.html">Overview</a>
     </li>
+    <li>
+      <a href="4-ACT-2-DataVisualization.html">R: Data Visualization</a>
+    </li>
+    <li>
+      <a href="4-ACT-1-Troubleshooting.html">R: Troubleshooting</a>
+    </li>
+    <li>
+      <a href="4-ACT-3-SavingOutput.html">R: Saving Output</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -382,6 +427,9 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="5-Overview.html">Overview</a>
+    </li>
+    <li>
+      <a href="5-LEC-1-ShareDeposit.html">Day 5 - Sharing &amp; Depositing</a>
     </li>
   </ul>
 </li>
@@ -453,7 +501,7 @@ div.tocify {
 
 
 <p><img class="alliance-logo" src="images/institutions/Alliance_logo_Symbol.png" alt="Alliance Banner"></p>
-<p>Site last rendered 2025-05-05.</p>
+<p>Site last rendered 2025-05-10.</p>
 <div id="welcome" class="section level2">
 <h2>Welcome</h2>
 <p>Welcome to RDM Jumpstart, 2025! Before going any further, <a
@@ -496,8 +544,8 @@ Day 5
 <tr>
 <td id="slot-0" class="time">
 </td>
-<td class="lecture">
-Introductions
+<td class="lecture schedule-link" onclick="location.href=&#39;introduction.html&#39;">
+Jumpstart Introduction
 </td>
 <td class="lecture">
 Recap
@@ -515,11 +563,21 @@ Recap
 <tr>
 <td id="slot-1" class="time">
 </td>
-<td rowspan="3" class = "lecture schedule-link" on.click="location.href='1-LEC-1-ImportanceRDM.html'">RDM: Introduction</td>
-<td rowspan="3" class = "lecture schedule-link" on.click="location.href='2-LEC-1-BiasRepro.html'">RDM: Bias and Reproducibility</td>
-<td rowspan="3" class = "activity schedule-link" on.click="location.href='3-LEC-2-Dependencies.html'">Dependencies</td>
-<td rowspan="3" class = "activity schedule-link" on.click="location.href='4-ACT-2-DataVisualization.html'">R: Data Visualizations</td>
-<td rowspan="2" class = "lecture schedule-link" on.click="location.href=''">Data Deposits</td>
+<td rowspan="3" class="lecture schedule-link" onclick="location.href=&#39;1-LEC-1-ImportanceRDM.html&#39;">
+RDM: Introduction
+</td>
+<td rowspan="3" class="lecture schedule-link" onclick="location.href=&#39;2-LEC-1-BiasRepro.html&#39;">
+RDM: Bias and Reproducibility
+</td>
+<td rowspan="3" class="activity schedule-link" onclick="location.href=&#39;3-LEC-2-Dependencies.html&#39;">
+Dependencies
+</td>
+<td rowspan="3" class="activity schedule-link" onclick="location.href=&#39;4-ACT-2-DataVisualization.html&#39;">
+R: Data Visualization
+</td>
+<td rowspan="3" class="lecture schedule-link" onclick="location.href=&#39;5-LEC-1-ShareDeposit.html&#39;">
+Sharing &amp; Depositing
+</td>
 </tr>
 <tr>
 <td id="slot-2" class="time">
@@ -528,7 +586,6 @@ Recap
 <tr>
 <td id="slot-3" class="time">
 </td>
-<td class = "lecture schedule-link" on.click="location.href='5-LEC-1-Borealis.html'">Borealis</td>
 </tr>
 <tr>
 <td id="slot-4" class="time">
@@ -539,7 +596,9 @@ Break
 <td class="break">
 Break
 </td>
-<td rowspan="5" class = "activity schedule-link" on.click="location.href='3-ACT-2-DataTypesStructures.html'">R: Data Structures</td>
+<td rowspan="5" class="activity schedule-link" onclick="location.href=&#39;3-ACT-2-DataTypesStructures.html&#39;">
+R: Data Structures
+</td>
 <td class="break">
 Break
 </td>
@@ -550,10 +609,16 @@ Break
 <tr>
 <td id="slot-5" class="time">
 </td>
-<td rowspan="2" class = "lecture schedule-link" on.click="location.href='1-LEC-2-DataScience.html'">Data Science Workflow</td>
-<td rowspan="4" class = "lecture schedule-link" on.click="location.href='2-LEC-3-GUIscript.html'">GUIs vs Scripting</td>
-<td rowspan="4" class = "activity schedule-link" on.click="location.href='4-ACT-2-DataVisualization.html'">R: Data Visualization</td>
-<td rowspan="2" class="activity schedule-link">
+<td rowspan="2" class="lecture schedule-link" onclick="location.href=&#39;1-LEC-2-DataScience.html&#39;">
+Workflow for the Week
+</td>
+<td rowspan="4" class="lecture schedule-link" onclick="location.href=&#39;2-LEC-3-GUIscript.html&#39;">
+Excel vs R
+</td>
+<td rowspan="4" class="activity schedule-link" onclick="location.href=&#39;4-ACT-2-DataVisualization.html&#39;">
+R: Data Visualization
+</td>
+<td rowspan="2" class="activity">
 Borealis Deposit
 </td>
 </tr>
@@ -564,7 +629,9 @@ Borealis Deposit
 <tr>
 <td id="slot-7" class="time">
 </td>
-<td rowspan="3" class = "activity schedule-link" on.click="location.href='1-LEC-3-OSF.html'">OSF</td>
+<td rowspan="3" class="activity schedule-link" onclick="location.href=&#39;1-LEC-3-OSF.html&#39;">
+OSF
+</td>
 <td rowspan="3" class="activity">
 Reflection &amp; Survey
 </td>
@@ -602,14 +669,22 @@ Break
 <tr>
 <td id="slot-12" class="time">
 </td>
-<td rowspan="4" class = "activity schedule-link" on.click="location.href='2-ACT-1-RSetup.html'">R: Introduction</td>
-<td rowspan="4" class = "activity schedule-link" on.click="location.href='3-ACT-3-FilterSelect.html'">R: Filtering & Selecting</td>
-<td rowspan="4" class = "activity schedule-link" on.click="location.href='4-ACT-1-Troubleshooting.html'">R: Troubleshooting</td>
+<td rowspan="4" class="activity schedule-link" onclick="location.href=&#39;2-ACT-1-RSetup.html&#39;">
+R: Introduction
+</td>
+<td rowspan="4" class="activity schedule-link" onclick="location.href=&#39;3-ACT-3-FilterSelect.html&#39;">
+R: Filtering &amp; Selecting
+</td>
+<td rowspan="4" class="activity schedule-link" onclick="location.href=&#39;4-ACT-1-Troubleshooting.html&#39;">
+R: Troubleshooting
+</td>
 </tr>
 <tr>
 <td id="slot-13" class="time">
 </td>
-<td rowspan="4" class = "lecture schedule-link" on.click="location.href='1-LEC-4-DMPs.html'">DMP Part 1</td>
+<td rowspan="4" class="lecture schedule-link" onclick="location.href=&#39;1-LEC-4-DMPs.html&#39;">
+DMP Part 1
+</td>
 </tr>
 <tr>
 <td id="slot-14" class="time">
@@ -635,10 +710,18 @@ Break
 <tr>
 <td id="slot-17" class="time">
 </td>
-<td rowspan="4" class = "lecture schedule-link" on.click="location.href='1-LEC-4-DMPs.html'">DMP Part 2</td>
-<td rowspan="4" class = "activity schedule-link" on.click="location.href='2-ACT-2-FirstSteps.html'">R: First Steps</td>
-<td rowspan="4" class = "activity schedule-link" on.click="location.href='3-ACT-3-FilterSelect.html'">R: Filtering & Selecting</td>
-<td rowspan="4" class = "activity schedule-link" on.click="location.href='4-ACT-3-SavingOutput.html'">R: Saving Outputs</td>
+<td rowspan="4" class="lecture schedule-link" onclick="location.href=&#39;1-LEC-4-DMPs.html&#39;">
+DMP Part 2
+</td>
+<td rowspan="4" class="activity schedule-link" onclick="location.href=&#39;2-ACT-2-FirstSteps.html&#39;">
+R: First Steps
+</td>
+<td rowspan="4" class="activity schedule-link" onclick="location.href=&#39;3-ACT-3-FilterSelect.html&#39;">
+R: Filtering &amp; Selecting
+</td>
+<td rowspan="4" class="activity schedule-link" onclick="location.href=&#39;4-ACT-3-SavingOutput.html&#39;">
+R: Saving Outputs
+</td>
 </tr>
 <tr>
 <td id="slot-18" class="time">
@@ -670,7 +753,14 @@ touch with us.</p>
       <img src="images/institutions/ubc.png" />
       <img class="uvic"  src="images/institutions/uvic.png" />
     </div>
-    <p>Built and rendered curtousy of <a href="https://rmarkdown.rstudio.com/index.html" target ="blank">RMarkdown from RStudio</a></p>
+
+<br>
+    <div>
+      <img class = "cc-licence" src="images/institutions/CC-License.png" />
+      <p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc/4.0/" target ="blank">Creative Commons Attribution-NonCommercial 4.0 International License</p>
+</div>
+<br>
+Built and rendered courtesy of <a href="https://rmarkdown.rstudio.com/index.html" target ="blank">RMarkdown from RStudio</a></p>
 </div>
 
 <script>

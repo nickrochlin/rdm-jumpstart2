@@ -37,6 +37,20 @@
   margin-left: 52px;
 }
 
+.walkthrough ul li p, .flag ul li p, .question ul li p, .note ul li p, .walkthrough ol li p, .flag ol li p, .question ol li p, .note ol li p {
+  margin-left: 0px;
+}
+
+.note ol, .flag ol, .question ol, .walkthrough ol {
+  margin-left: 30px;
+}
+
+.intro {
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.15em;
+}
+
 pre {
     color: #000000 !important;
     border: none !important;
@@ -57,6 +71,11 @@ pre {
     border: 1px solid #18bc9c !important;
 }
 
+.pdf {
+  width: 800px;
+  height: 600px;
+}
+
 #footer {
   margin-top: 50px;
 }
@@ -65,6 +84,11 @@ pre {
   box-shadow: none;
   margin: 20px auto 0 auto;
   max-width: 150px;
+}
+
+.cc-licence {
+  float: left;
+  margin: 0 10px 0 0 !important;
 }
 
 .uvic {
@@ -85,6 +109,20 @@ h1 {
 h2, h3 {
   margin-top: 0px;
 }
+
+.section h3, .section h2 {
+  padding: 10px !important;
+  margin-top: 50px !important;
+}
+
+.section h3 {
+  border-left: 2px solid #D6AB00;
+}
+
+.section h2 {
+  border-left: 3px solid #00DBA7;
+}
+
 
 #BannerContainer {
   background-color: #fff;
@@ -108,6 +146,10 @@ a:link, a:visited, a:hover, a:active {
 
 .navbar a:hover {
   color: #32322F !important;
+}
+
+#rmd-show-all-code, #rmd-hide-all-code, #rmd-download-source {
+  color: #ffffff !important;
 }
 
 #header {
@@ -154,6 +196,10 @@ img {
 .md-table > table > tbody > tr > td {
   padding:1em 1em 0 0;
   vertical-align: top;
+}
+
+.md-table > table > colgroup > col{
+  width: auto;
 }
 
 .schedule-table > table > tbody > tr > td {
