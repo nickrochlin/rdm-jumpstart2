@@ -44,8 +44,8 @@ output:
 | `is.na()` | Display when a variable or dataframe has missing values, presented as TRUE/FALSE. | `is.na(data$variable)` |
 | `complete.cases()` | Display when a row has no missing values, presented as TRUE/FALSE | `complete.cases(data)` |
 | `class()` | Returns the class of an object to indicate the data structure. | `class(data)` |
-| `recode()` | Change data format of variables or re-categorizing certain values in a variable as some other value.  Often used in conjunction with `mutate` (see below for example). |
-| `mutate()` | Create new columns based on values in existing columns. | `data <- data |> mutate(new-variable-name = recode(data$old-variable, "old-value" = "new-value))` |
+| `recode()` | Change data format of variables or re-categorize certain values in a variable as some other value.  Often used in conjunction with `mutate` (see below for example). |
+| `mutate()` | Create new columns based on values in existing columns. | `data <- data |> mutate(new-variable-name = recode(data$old-variable, "old-value" = "new-value"))` |
 | `class()` | Prints the data type of a variable, or the structure of a dataset. | `class(object-of-interest)` |
 | `is.numeric` | Check to see is the data is of a numeric class, which will return a TRUE/FALSE response. `is.numeric(data)` |
 | `as.numeric()` | Converts alternative data types into numeric values. | `as.numeric(data)` |
