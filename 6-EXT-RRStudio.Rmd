@@ -23,6 +23,6 @@ We will be using R and RStudio to handle data manipulation and exploration, and 
 
 Link to download R and RStudio (download R first, then RStudio): [https://posit.co/download/rstudio-desktop/](https://posit.co/download/rstudio-desktop/)
 
-##Installation Instructions
+## Installation Instructions
 
 For detailed instructions providing video walkthroughs of how to download R and RStudio for both Mac and Windows, you can connect to the follow page produced by the UVic Digital Scholarship Commons: [https://uviclibraries.github.io/rstudio/pre-workshop.html](https://uviclibraries.github.io/rstudio/pre-workshop.html)
