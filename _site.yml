@@ -81,6 +81,10 @@ navbar:
         #       href: 6-EXT-idePaths.html
         #     - text: "Challenges to Good RDM Practices"
         #       href: 6-EXT-ChallengesToRDM.html
+        - text: "Additional Content"
+          menu:
+            - text: "osfr"
+              href: 6-EXT-osfR.html
         - text: "Setup"
           menu:
             - text: "R & RStudio Setup"
