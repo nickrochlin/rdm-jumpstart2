@@ -103,6 +103,7 @@ output:
   html_document:
     theme: flatly
     highlight: textmate
-    include:
+    includes:
+      in_header: ga.html
       after_body: footer.html
     css: styles.css
