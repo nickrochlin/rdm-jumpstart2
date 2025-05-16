@@ -11,7 +11,7 @@
 
 
 
-<title>Installing R and RStudio</title>
+<title>Directories and Files</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -530,35 +530,49 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Installing R and RStudio</h1>
+<h1 class="title toc-ignore">Directories and Files</h1>
 
 </div>
 
 
-<div id="introduction" class="section level2">
-<h2>Introduction</h2>
-<p>We will be using R and RStudio to handle data manipulation and
-exploration, and the first step is going to be getting these tools setup
-on your computer. It can be a bit confusing at first (we’ll cover this
-more in the Jumpstart courses!), but R is the coding language that we’ll
-be using, and RStudio is a piece of software that makes running R much
-more friendly. In order for everything to work correctly, you will need
-to download both separately:</p>
-</div>
-<div id="downloading-r-and-rstudio" class="section level2">
-<h2>Downloading R and RStudio</h2>
-<p>Link to download R and RStudio (download R first, then RStudio): <a
-href="https://posit.co/download/rstudio-desktop/">https://posit.co/download/rstudio-desktop/</a></p>
-</div>
-<div id="installation-instructions" class="section level2">
-<h2>Installation Instructions</h2>
-<p>For detailed instructions providing video walkthroughs of how to
-download R and RStudio for both Mac and Windows, you can connect to the
-follow page produced by the UVic Digital Scholarship Commons: <a
-href="https://uviclibraries.github.io/rstudio/pre-workshop.html">https://uviclibraries.github.io/rstudio/pre-workshop.html</a></p>
+<div id="directories-and-files" class="section level2">
+<h2>Directories and Files</h2>
+<p>From within R, we can interact with the file system. We can use this
+to our advantage to quickly and repeatedly, set up a project
+structure.</p>
+<p>We’ll assume you want to use an RPoject, so set that up first using
+RStudio in a new directory. Open that project, and proceed as
+follows.</p>
+<pre class="r"><code># name your directories
+dirs &lt;- c(&quot;docs&quot;, &quot;scripts&quot;, &quot;data&quot;, &quot;output&quot;, &quot;tmp&quot;)
+
+# generate some base line metadata
+yourName &lt;- &quot;Mathew Vis-Dunbar&quot;
+author &lt;- paste0(&quot;Author: &quot;, yourName, &quot;\n&quot;)
+createDate &lt;- paste0(&quot;Created: &quot;, format(Sys.Date()), &quot;\n\n&quot;)
+projectDescripion &lt;- &quot;Write some text here!&quot;
+
+# create the directories
+sapply(dirs, function(x) dir.create(path = x, showWarnings = TRUE))
+
+# create a route directory readme
+writeLines(paste0(author, createDate, projectDescripion), &quot;./readme.md&quot;)
+
+# create content for readmes -- in order of `dirs`
+readmes &lt;- c(
+  &#39;This folder contains all documentation for this project&#39;,
+  &#39;This folder contains all scripts used in this project.&#39;,
+  &#39;This folder contains all data used in this project.&#39;,
+  &#39;This folder contains all (relevant) figures and other outputs created for this project.&#39;,
+  &#39;This folder houses ephemeral materials for this project.&#39;)
+
+# create the subdirectory readmes
+for(i in 1:length(dirs)){
+  writeLines(paste0(author, createDate, readmes[i], &quot;\n&quot;), paste0(dirs[i], &quot;/readme.md&quot;))
+}</code></pre>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiSW5zdGFsbGluZyBSIGFuZCBSU3R1ZGlvIgpwYWdldGl0bGU6ICJJbnN0YWxsaW5nIFIgYW5kIFJTdHVkaW8iCm91dHB1dDoKICBodG1sX2RvY3VtZW50OgogICAgY29kZV9mb2xkaW5nOiBzaG93ICMgYWxsb3dzIHRvZ2dsaW5nIG9mIHNob3dpbmcgYW5kIGhpZGluZyBjb2RlLiBSZW1vdmUgaWYgbm90IHVzaW5nIGNvZGUuCiAgICBjb2RlX2Rvd25sb2FkOiB0cnVlICMgYWxsb3dzIHRoZSB1c2VyIHRvIGRvd25sb2FkIHRoZSBzb3VyY2UgLlJtZCBmaWxlLiBSZW1vdmUgaWYgbm90IHVzaW5nIGNvZGUuCiAgICBpbmNsdWRlczoKICAgICAgYWZ0ZXJfYm9keTogZm9vdGVyLmh0bWwgIyBpbmNsdWRlIGEgY3VzdG9tIGZvb3Rlci4KICAgIHRvYzogdHJ1ZQogICAgdG9jX2RlcHRoOiAzCiAgICB0b2NfZmxvYXQ6CiAgICAgIGNvbGxhcHNlZDogZmFsc2UKICAgICAgc21vb3RoX3Njcm9sbDogZmFsc2UKLS0tCgojIyBJbnRyb2R1Y3Rpb24gCgpXZSB3aWxsIGJlIHVzaW5nIFIgYW5kIFJTdHVkaW8gdG8gaGFuZGxlIGRhdGEgbWFuaXB1bGF0aW9uIGFuZCBleHBsb3JhdGlvbiwgYW5kIHRoZSBmaXJzdCBzdGVwIGlzIGdvaW5nIHRvIGJlIGdldHRpbmcgdGhlc2UgdG9vbHMgc2V0dXAgb24geW91ciBjb21wdXRlci4gSXQgY2FuIGJlIGEgYml0IGNvbmZ1c2luZyBhdCBmaXJzdCAod2XigJlsbCBjb3ZlciB0aGlzIG1vcmUgaW4gdGhlIEp1bXBzdGFydCBjb3Vyc2VzISksIGJ1dCBSIGlzIHRoZSBjb2RpbmcgbGFuZ3VhZ2UgdGhhdCB3ZeKAmWxsIGJlIHVzaW5nLCBhbmQgUlN0dWRpbyBpcyBhIHBpZWNlIG9mIHNvZnR3YXJlIHRoYXQgbWFrZXMgcnVubmluZyBSIG11Y2ggbW9yZSBmcmllbmRseS4gSW4gb3JkZXIgZm9yIGV2ZXJ5dGhpbmcgdG8gd29yayBjb3JyZWN0bHksIHlvdSB3aWxsIG5lZWQgdG8gZG93bmxvYWQgYm90aCBzZXBhcmF0ZWx5OgoKIyMgRG93bmxvYWRpbmcgUiBhbmQgUlN0dWRpbwoKTGluayB0byBkb3dubG9hZCBSIGFuZCBSU3R1ZGlvIChkb3dubG9hZCBSIGZpcnN0LCB0aGVuIFJTdHVkaW8pOiBbaHR0cHM6Ly9wb3NpdC5jby9kb3dubG9hZC9yc3R1ZGlvLWRlc2t0b3AvXShodHRwczovL3Bvc2l0LmNvL2Rvd25sb2FkL3JzdHVkaW8tZGVza3RvcC8pCgojIyBJbnN0YWxsYXRpb24gSW5zdHJ1Y3Rpb25zCgpGb3IgZGV0YWlsZWQgaW5zdHJ1Y3Rpb25zIHByb3ZpZGluZyB2aWRlbyB3YWxrdGhyb3VnaHMgb2YgaG93IHRvIGRvd25sb2FkIFIgYW5kIFJTdHVkaW8gZm9yIGJvdGggTWFjIGFuZCBXaW5kb3dzLCB5b3UgY2FuIGNvbm5lY3QgdG8gdGhlIGZvbGxvdyBwYWdlIHByb2R1Y2VkIGJ5IHRoZSBVVmljIERpZ2l0YWwgU2Nob2xhcnNoaXAgQ29tbW9uczogW2h0dHBzOi8vdXZpY2xpYnJhcmllcy5naXRodWIuaW8vcnN0dWRpby9wcmUtd29ya3Nob3AuaHRtbF0oaHR0cHM6Ly91dmljbGlicmFyaWVzLmdpdGh1Yi5pby9yc3R1ZGlvL3ByZS13b3Jrc2hvcC5odG1sKQo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGlyZWN0b3JpZXMgYW5kIEZpbGVzIgpwYWdldGl0bGU6ICJEaXJlY3RvcmllcyBhbmQgRmlsZXMiCm91dHB1dDoKICBodG1sX2RvY3VtZW50OgogICAgY29kZV9mb2xkaW5nOiBzaG93ICMgYWxsb3dzIHRvZ2dsaW5nIG9mIHNob3dpbmcgYW5kIGhpZGluZyBjb2RlLiBSZW1vdmUgaWYgbm90IHVzaW5nIGNvZGUuCiAgICBjb2RlX2Rvd25sb2FkOiB0cnVlICMgYWxsb3dzIHRoZSB1c2VyIHRvIGRvd25sb2FkIHRoZSBzb3VyY2UgLlJtZCBmaWxlLiBSZW1vdmUgaWYgbm90IHVzaW5nIGNvZGUuCiAgICBpbmNsdWRlczoKICAgICAgYWZ0ZXJfYm9keTogZm9vdGVyLmh0bWwgIyBpbmNsdWRlIGEgY3VzdG9tIGZvb3Rlci4KICAgIHRvYzogdHJ1ZQogICAgdG9jX2RlcHRoOiAzCiAgICB0b2NfZmxvYXQ6CiAgICAgIGNvbGxhcHNlZDogZmFsc2UKICAgICAgc21vb3RoX3Njcm9sbDogZmFsc2UKLS0tCgojIyBEaXJlY3RvcmllcyBhbmQgRmlsZXMgCgpGcm9tIHdpdGhpbiBSLCB3ZSBjYW4gaW50ZXJhY3Qgd2l0aCB0aGUgZmlsZSBzeXN0ZW0uIFdlIGNhbiB1c2UgdGhpcyB0byBvdXIgYWR2YW50YWdlIHRvIHF1aWNrbHkgYW5kIHJlcGVhdGVkbHksIHNldCB1cCBhIHByb2plY3Qgc3RydWN0dXJlLgoKV2UnbGwgYXNzdW1lIHlvdSB3YW50IHRvIHVzZSBhbiBSUG9qZWN0LCBzbyBzZXQgdGhhdCB1cCBmaXJzdCB1c2luZyBSU3R1ZGlvIGluIGEgbmV3IGRpcmVjdG9yeS4gT3BlbiB0aGF0IHByb2plY3QsIGFuZCBwcm9jZWVkIGFzIGZvbGxvd3MuCgpgYGB7ciwgZXZhbCA9IEZBTFNFfQojIG5hbWUgeW91ciBkaXJlY3RvcmllcwpkaXJzIDwtIGMoImRvY3MiLCAic2NyaXB0cyIsICJkYXRhIiwgIm91dHB1dCIsICJ0bXAiKQoKIyBnZW5lcmF0ZSBzb21lIGJhc2UgbGluZSBtZXRhZGF0YQp5b3VyTmFtZSA8LSAiTWF0aGV3IFZpcy1EdW5iYXIiCmF1dGhvciA8LSBwYXN0ZTAoIkF1dGhvcjogIiwgeW91ck5hbWUsICJcbiIpCmNyZWF0ZURhdGUgPC0gcGFzdGUwKCJDcmVhdGVkOiAiLCBmb3JtYXQoU3lzLkRhdGUoKSksICJcblxuIikKcHJvamVjdERlc2NyaXBpb24gPC0gIldyaXRlIHNvbWUgdGV4dCBoZXJlISIKCiMgY3JlYXRlIHRoZSBkaXJlY3RvcmllcwpzYXBwbHkoZGlycywgZnVuY3Rpb24oeCkgZGlyLmNyZWF0ZShwYXRoID0geCwgc2hvd1dhcm5pbmdzID0gVFJVRSkpCgojIGNyZWF0ZSBhIHJvdXRlIGRpcmVjdG9yeSByZWFkbWUKd3JpdGVMaW5lcyhwYXN0ZTAoYXV0aG9yLCBjcmVhdGVEYXRlLCBwcm9qZWN0RGVzY3JpcGlvbiksICIuL3JlYWRtZS5tZCIpCgojIGNyZWF0ZSBjb250ZW50IGZvciByZWFkbWVzIC0tIGluIG9yZGVyIG9mIGBkaXJzYApyZWFkbWVzIDwtIGMoCiAgJ1RoaXMgZm9sZGVyIGNvbnRhaW5zIGFsbCBkb2N1bWVudGF0aW9uIGZvciB0aGlzIHByb2plY3QnLAogICdUaGlzIGZvbGRlciBjb250YWlucyBhbGwgc2NyaXB0cyB1c2VkIGluIHRoaXMgcHJvamVjdC4nLAogICdUaGlzIGZvbGRlciBjb250YWlucyBhbGwgZGF0YSB1c2VkIGluIHRoaXMgcHJvamVjdC4nLAogICdUaGlzIGZvbGRlciBjb250YWlucyBhbGwgKHJlbGV2YW50KSBmaWd1cmVzIGFuZCBvdGhlciBvdXRwdXRzIGNyZWF0ZWQgZm9yIHRoaXMgcHJvamVjdC4nLAogICdUaGlzIGZvbGRlciBob3VzZXMgZXBoZW1lcmFsIG1hdGVyaWFscyBmb3IgdGhpcyBwcm9qZWN0LicpCgojIGNyZWF0ZSB0aGUgc3ViZGlyZWN0b3J5IHJlYWRtZXMKZm9yKGkgaW4gMTpsZW5ndGgoZGlycykpewogIHdyaXRlTGluZXMocGFzdGUwKGF1dGhvciwgY3JlYXRlRGF0ZSwgcmVhZG1lc1tpXSwgIlxuIiksIHBhc3RlMChkaXJzW2ldLCAiL3JlYWRtZS5tZCIpKQp9CmBgYAoK</div>
 <div id="footer">
     <hr />
     <div class = "inst-logos">
@@ -614,7 +628,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("6-EXT-RRStudio.Rmd");
+  window.initializeSourceEmbed("6-EXT-dirsFiles.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

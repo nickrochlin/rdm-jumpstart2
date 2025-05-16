@@ -87,6 +87,8 @@ navbar:
               href: 6-EXT-osfR.html
             - text: "Creating a data dictionary"
               href: 6-EXT-dd.html
+            - text: "Directories and files"
+              href: 6-EXT-dirsFiles.html
         - text: "Setup"
           menu:
             - text: "R & RStudio Setup"
