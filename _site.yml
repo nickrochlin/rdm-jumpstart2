@@ -33,8 +33,6 @@ navbar:
       menu:
         - text: "Overview"
           href: 3-Overview.html
-        - text: "Computational Reproducibility: Dependencies"
-          href: 3-LEC-2-Dependencies.html
         - text: "R: Data Types and Structures"
           href: 3-ACT-2-DataTypesStructures.html
         - text: "R: Filter and Select"
@@ -92,8 +90,6 @@ navbar:
         #       href: 6-EXT-ChallengesToRDM.html
         - text: "Additional Content"
           menu:
-            - text: "osfr"
-              href: 6-EXT-osfR.html
             - text: "Creating a data dictionary"
               href: 6-EXT-dd.html
             - text: "Directories and files"
