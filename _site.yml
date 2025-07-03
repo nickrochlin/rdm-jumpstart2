@@ -3,7 +3,7 @@ output_dir: "docs"
 navbar:
   title: "RDM Jumpstart"
   left:
-    - text: "Day 1"
+    - text: "Block 1"
       menu:
         - text: "Overview"
           href: 1-Overview.html
@@ -17,7 +17,7 @@ navbar:
           href: 1-LEC-3-OSF.html
         - text: "Data Management Plans"
           href: 1-LEC-4-DMPs.html
-    - text: "Day 2"
+    - text: "Block 2"
       menu:
         - text: "Overview"
           href: 2-Overview.html
@@ -29,7 +29,7 @@ navbar:
           href: 2-ACT-1-RSetup.html
         - text: "R: First Steps"
           href: 2-ACT-2-FirstSteps.html
-    - text: "Day 3"
+    - text: "Block 3"
       menu:
         - text: "Overview"
           href: 3-Overview.html
@@ -39,7 +39,7 @@ navbar:
           href: 3-ACT-2-DataTypesStructures.html
         - text: "R: Filter and Select"
           href: 3-ACT-3-FilterSelect.html
-    - text: "Day 4"
+    - text: "Block 4"
       menu:
         - text: "Overview"
           href: 4-Overview.html
@@ -49,12 +49,21 @@ navbar:
           href: 4-ACT-1-Troubleshooting.html
         - text: "R: Saving Output"
           href: 4-ACT-3-SavingOutput.html
-    - text: "Day 5"
+    - text: "Block 5"
       menu:  
         - text: "Overview"
           href: 5-Overview.html
         - text: "Day 5 - Sharing & Depositing"
           href: 5-LEC-1-ShareDeposit.html
+    - text: "Block 6"
+      menu:
+        - text: "Overview"
+    - text: "Block 7"
+      menu:
+        - text: "Overview"
+    - text: "Block 8"
+      menu:
+        - text: "Overview"
     - text: "Extras"
       menu:
         - text: "Resources"
