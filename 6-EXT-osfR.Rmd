@@ -70,13 +70,13 @@ You should get the above output, indicating that `osfr` has successfully found y
 
 Next, we download the metadata associated with our OSF project. You'll need the url from the landing page of your OSF project.
 
-```{r}
+```{r, eval = FALSE}
 jumpstart_project <- osf_retrieve_node("https://osf.io/uha5g/")
 ```
 
 Then, we look at the list of files in our project:
 
-```{r}
+```{r, eval = FALSE}
 js_files <- osf_ls_files(jumpstart_project)
 js_files
 ```
@@ -85,7 +85,7 @@ A small caveat here, this works more easily with files than directories, so we'l
 
 The `meta` column is a list of metadata associate with each file -- we need to access the unique id of the file we want to download before we can download it. This is the same 5 digit alphanumeric code that we would see if we loaded the file for viewing within OSF. So, you could access it that way too.
 
-```{r}
+```{r, eval = FALSE}
 readmeFile <- js_files$meta[[6]]$attributes$guid
 readmeFile
 ```
