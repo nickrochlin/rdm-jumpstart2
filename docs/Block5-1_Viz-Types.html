@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Types of Visualizations</title>
+
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSGZ4ESKQ3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  
+  gtag('config', 'G-KSGZ4ESKQ3');
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">RDM Jumpstart</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Block 1
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Block1_Overview.html">Overview</a>
+    </li>
+    <li>
+      <a href="Block1-1_Intro-RDM.html">Introduction to Research Data Management</a>
+    </li>
+    <li>
+      <a href="Block1-2_Intro-DMP-html">Introduction to Data Management Plans</a>
+    </li>
+    <li>
+      <a href="Block1-3_OSF.html">OSF &amp; File Overview</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Block 2
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Block2_Overview.html">Overview</a>
+    </li>
+    <li>
+      <a href="Block2-1_Files-and-Folders.html">Organizing Files and Folders</a>
+    </li>
+    <li>
+      <a href="Block2-2_Naming-Conventions.html">Naming Conventions and Folder Structure</a>
+    </li>
+    <li>
+      <a href="Block2-3_Documentation.html">Documentation</a>
+    </li>
+    <li>
+      <a href="Block2-4_Documentation-in-Action.html">Documentation in Action</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Block 3
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Block3_Overview.html">Overview</a>
+    </li>
+    <li>
+      <a href="Block3-1_Excel-to-R.html">Reproducible Research and Moving from Excel to Scripting</a>
+    </li>
+    <li>
+      <a href="Block3-2_Intro-to-R.html">Introduction to R</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Block 4
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Block4_Overview.html">Overview</a>
+    </li>
+    <li>
+      <a href="Block4-1_First-Steps.html">First Steps in R</a>
+    </li>
+    <li>
+      <a href="Block4-2_Data-Types.html">Data Types and Structures in R</a>
+    </li>
+    <li>
+      <a href="Block4-3_Updating-Documentation.html">Updating Documentation</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Block 5
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Block5_Overview.html">Overview</a>
+    </li>
+    <li>
+      <a href="Block5-1_Viz-Types.html">Types of Visualizations</a>
+    </li>
+    <li>
+      <a href="Block5-2_ggplot.html">Visualizations with ggplot</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Block 6
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Block6_Overview.html">Overview</a>
+    </li>
+    <li>
+      <a href="Block6-1_Sharing-and-Deposit.html">Sharing and Depositing Data</a>
+    </li>
+    <li>
+      <a href="Block6-2_DMP-wrap.html">DMP Wrap-Up</a>
+    </li>
+    <li>
+      <a href="Block6-3_Borealis.html">Borealis Deposit</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Extras
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Resources</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="codeOfConduct.html">Code of Conduct</a>
+        </li>
+        <li>
+          <a href="Block7_EXT-ProjectDMP.html">Project DMP</a>
+        </li>
+        <li>
+          <a href="Block7_EXT-RCheatsheet.html">R Cheatsheet</a>
+        </li>
+      </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Roadmaps</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="Block7_EXT-RDMRoadmap.html">RDM Roadmap</a>
+        </li>
+        <li>
+          <a href="Block7_-CRRoadmap.html">Reproducible Roadmap</a>
+        </li>
+      </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Concetps in Reproduciblity</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="Block7_EXT-BaseRtidyverse.html">Base R &amp; Tidyverse</a>
+        </li>
+        <li>
+          <a href="Block7_EXT-ScriptsNotebooks.html">Scripts &amp; Notebooks</a>
+        </li>
+        <li>
+          <a href="Block7_EXT-idePaths.html">IDEs &amp; Relative Paths</a>
+        </li>
+        <li>
+          <a href="Block7_EXT-ChallengesToRDM.html">Challenges to Good RDM Practices</a>
+        </li>
+      </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Additional Content</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="Block7_EXT-dd.html">Creating a data dictionary</a>
+        </li>
+        <li>
+          <a href="Block7_EXT-dirsFiles.html">Directories and files</a>
+        </li>
+      </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Setup</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="Block7_EXT-RRStudio.html">R &amp; RStudio Setup</a>
+        </li>
+        <li>
+          <a href="Block7_EXT-osfSetup.html">OSF Setup</a>
+        </li>
+        <li>
+          <a href="Block7_EXT-Borealis.html">Borealis Setup</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="contributors.html">Contributors</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Types of Visualizations</h1>
+
+</div>
+
+
+<div id="data-visualization-in-r" class="section level2">
+<h2>Data Visualization in R</h2>
+<div class="intro">
+<p>Data visualization is an important part of exploring, understanding,
+and sharing our data.</p>
+</div>
+<p>Data visualization is a critical part of the data science workflow.
+Through visualization we can explore and understand our own data,
+ultimately informing further analyses. Additionally, data visualizations
+are a powerful tool for communicating data and research findings to
+other people. Visuals can often more efficiently and more effectively
+tell the story of your data, rather than only relying on writing. Well
+done data visualizations will often have the biggest impact on an
+audience in a science communication context.</p>
+<p><img src="images/tidyverse-workflow.png" /> <a
+href="https://telapps.london.edu/analytics_with_R/tidyverse.html">Source</a></p>
+<div class="note">
+<p>In this session we have a few main goals:</p>
+<ol style="list-style-type: decimal">
+<li><p>Introduction to types of data visualizations</p></li>
+<li><p>Discussion of what makes a good visualization</p></li>
+<li><p>Review and critique some data visualization examples</p></li>
+<li><p>Introduction to ggplot to generate visualizations in R</p></li>
+</ol>
+</div>
+<p>Let’s get started!</p>
+<div id="types-of-data-visualization" class="section level3">
+<h3>Types of Data Visualization</h3>
+<p>Data visualizations can be descriptive in nature, such as portraying
+the demographic distribution of a group of people, or can represent
+statistical findings, such as a regression line with a confidence
+interval overlaid on a scatter plot of data. In certain contexts it is
+also common to present data and information in more easily digestible
+infographics <a href="https://coolinfographics.com/">(check out some
+examples here)</a> that enter more of a graphic design space. Different
+data visualizations fulfill different goals. Having a toolbox of a
+variety of data visualization types can help you pick the best type to
+fit your needs for a given project.</p>
+<div id="table" class="section level4">
+<h4><strong>Table</strong></h4>
+<p>Tables to collect and organize data are one of the most common and
+basic data visualizations. But don’t discount them! They can be
+efficient ways to convey a large amount of information about your data
+all at once.</p>
+<p><img src="images/day4_exampletable.png" /></p>
+</div>
+<div id="pie-chart" class="section level4">
+<h4><strong>Pie Chart</strong></h4>
+<p>A classic pie chart is useful for representing parts that add up to a
+whole. This also allows for comparing group sizes. They are often used
+for demographic variables, with the whole representing the whole sample,
+or for representing money, with the whole representing a budget or total
+money spent/made. Be careful to use a pie chart only when it really adds
+to the story. For instance, if there are only two parts to the whole, a
+pie chart might not convey much more information. Conversely, if there
+are many groups, it can become difficult to really see all of them and
+compare them.</p>
+<p><img src="images/day4_piechartexample.png" /></p>
+</div>
+<div id="box-plots" class="section level4">
+<h4><strong>Box Plots</strong></h4>
+<p>Box plots (also known as box and whisker plots) are good for
+understanding and comparing variance between groups. They typically
+depict the median and minimum/maximum of each group for a certain
+variable. The box portion represents the 1st and 3rd quartiles of the
+distribution. You can also show change over time with this type of
+plot.</p>
+<p><img src="Block5-1_Viz-Types_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="histogram" class="section level4">
+<h4><strong>Histogram</strong></h4>
+<p>Histograms display the distribution of one variable. The height of
+the bar represents how many times that value was represented in the
+data. This is typically what you view if you want to visually inspect if
+a variable is normally distributed.</p>
+<p><img src="Block5-1_Viz-Types_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="bar-chart" class="section level4">
+<h4><strong>Bar Chart</strong></h4>
+<p>Bar charts are good for representing data from groups or categories,
+with the bars representing different categories. The bar height usually
+represent a mean, a count, or a percentage, by category. These can be
+useful for comparing groups or showing change over time.</p>
+<p><img src="Block5-1_Viz-Types_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="scatter-plot" class="section level4">
+<h4><strong>Scatter Plot</strong></h4>
+<p>Scatter plots include data points that are plotted along an x and y
+axis, showing the relationship between these two variables. Often
+researchers add a line to these plots to show the statistical
+relationship between the variables.</p>
+<p><img src="Block5-1_Viz-Types_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="line-chart" class="section level4">
+<h4><strong>Line Chart</strong></h4>
+<p>Line charts use connected straight lines to display data. They are
+good for showing change over time on a continuous variable. They are
+often similar in purpose to bar charts, but visually simpler if there
+are many time points. An example of where we often see line charts used
+in the news is to visualize the stock market. (Plotting the various age
+groups here is not particularly meaningful since this data was only
+collected at one time point, but is used to illustrate this type of data
+visualization.)</p>
+<p><img src="Block5-1_Viz-Types_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="interactive-data-visualizations" class="section level4">
+<h4><strong>Interactive Data Visualizations</strong></h4>
+<p>As research and publications move more online and away from print,
+this can allow for more interactive data visualizations. These are types
+of data visualizations that allow a person to select and change what is
+being shown. Check out this great example from
+<a href="https://www.gapminder.org/tools/#$chart-type=bubbles&url=v2)">Gapminder</a>.
+The default visualization shows GDP and life expectancy over time, and
+by country. However, you can change the variables included to view other
+data.</p>
+</div>
+<div id="so-many-more" class="section level4">
+<h4><strong>So many more!</strong></h4>
+<ul>
+<li>Heat Map</li>
+<li>Stacked Bar or Stacked Area Chart</li>
+<li>Violin Plot</li>
+<li>Gantt Chart</li>
+<li>Choropleth Map</li>
+</ul>
+</div>
+</div>
+<div id="what-makes-a-good-visualization" class="section level3">
+<h3>What Makes a Good Visualization?</h3>
+<p>There is an art to picking the best data visualization that fits your
+data and the story you are telling. By nature, data visualizations are
+abstract representations of our data, with color, shape, and position
+representing the data points. This both hides the exact data itself,
+while also allowing us to highlight bigger picture ideas about the data,
+depending on what we choose to emphasize. When deciding on what type of
+data visualization to use, consider the following:</p>
+<ul>
+<li>What question are you exploring with your data and how will it
+inform future analyses?</li>
+<li>What is your data visualization adding to your science
+communication?</li>
+<li>What take-away message are you conveying with the image?</li>
+<li>What type of variables do you have? Continuous? Categorical? And
+what type of abstraction (e.g., color, shape) best suits that
+variable?</li>
+<li>Are you comparing groups?</li>
+<li>Are you showing change over time?</li>
+<li>Are you visualizing a relationship between variables?</li>
+</ul>
+<p>It can be easy to get in the habit of using the same types of data
+visualization over and over again. Check out this website that gives
+many creative data visualization options (with R code!), categorized by
+goal:
+<a href="https://r-graph-gallery.com/ ">https://r-graph-gallery.com/
+</a></p>
+<div id="good-data-visualization-princicples" class="section level4">
+<h4>Good Data Visualization Princicples</h4>
+<p>Once you pick the format that fits your needs best, these are some
+principles to keep in mind when crafting your visualization to make sure
+it is clear to your audience.</p>
+<div class="md-table">
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Principle</th>
+<th align="left">Considerations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Clear Data</td>
+<td align="left">Consider the format of your data when you include it.
+Your data needs to be unambiguously communicated to your audience. For
+instance, do you have so many groups that they are difficult to
+differentiate? Are your data points stacked on the same spot so the
+audience can’t see the density of your data points?</td>
+</tr>
+<tr class="even">
+<td align="left">Clear Labels</td>
+<td align="left">All data visualizations need labels. This may be the
+axis on a scatter plot, legends for your bar graph, or percentages on
+your pie chart. You must tell the audience what they are looking at. If
+different colors are used, they should represent some aspect of the data
+and be clearly labeled.</td>
+</tr>
+<tr class="odd">
+<td align="left">Clear Scales</td>
+<td align="left">Clear and consistent scales are important to avoid
+misinterpretation of your data visualization. An axis should be clearly
+labeled and include the full scale range. Make it clear if the scale
+does not start at 0. Scales should be consistent across visualizations
+to allow for comparisons.</td>
+</tr>
+<tr class="even">
+<td align="left">Simplicity</td>
+<td align="left">Aim to have uncluttered data visualizations. It is easy
+to get excited about all you can do creatively in the world of data
+visualizations, but sometimes adding too much (e.g., extra colors,
+pictures) can actually obscure your main message. Avoid extra info that
+doesn’t add to the story you are telling.</td>
+</tr>
+<tr class="odd">
+<td align="left">Accessibility</td>
+<td align="left">Consider how your data visualization design would be
+viewed by a variety of people. Text font and size for legends and axis
+labels should be clear and not too small. Try not to rely only on color
+to distinguish groups (e.g., lines can be dashed or dotted), or pick
+colors/hues that are distinguishable by people who are colorblind.
+Include alternative text descriptions that can be read aloud by a screen
+reader.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For more information on design principles and the visual hierarchy of
+elements, check out
+<a href="https://www.interaction-design.org/literature/topics/visual-hierarchy?srsltid=AfmBOooU77XPiVsXSkE7t2GqAayaOyh0VxdwGj3bJaP1Qj3xcc5A44BW">this
+article</a>. Size, color, contrast, alignment, repetition, proximity,
+whitespace, and texture can all be used to draw focus to particular
+visual elements.</p>
+</div>
+</div>
+<div id="your-turn" class="section level3">
+<h3>Your Turn!</h3>
+<p>One of the best ways to get into data visualization is to get
+inspired from some of the amazing data visualizations that already
+exist!</p>
+<p>We have two websites with a variety of data visualization
+examples.</p>
+<ul>
+<li><p><a href="https://r-graph-gallery.com/best-r-chart-examples">R
+Graph Gallery</a> Includes many examples of data visualizations created
+in R. These also include tutorials/R Code used to make them. These
+examples go beyond what we will cover in this workshop, but serve as
+great inspiration for how much you can do in R!</p></li>
+<li><p><a href="https://www.tableau.com/viz-gallery">Tableau Viz
+Gallery</a> Includes examples created with the platform Tableau. This is
+a proprietary (paid) platform which we are not using in this workshop,
+but this gallery still has some great examples to help inspire your data
+visualization creativity!</p></li>
+</ul>
+<div class="question">
+<p>In small groups, on either of these websites, find a data
+visualization example that jumps out to you as interesting and then
+answer the following questions.</p>
+<ol style="list-style-type: decimal">
+<li>What captured your attention about this data visualization? The
+topic? The design?</li>
+<li>What is the story this example is trying to tell? What is one of the
+take-away messages it is conveying?</li>
+<li>What do you like about this visualization? Does it convey
+information about the data in a uniquely effective way? Does it adhere
+to the principles we discussed?</li>
+<li>Is there anything you find confusing about this example? Anything
+you think is missing or that you would change to improve it?</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiVHlwZXMgb2YgVmlzdWFsaXphdGlvbnMiCnBhZ2V0aXRsZTogIlR5cGVzIG9mIFZpc3VhbGl6YXRpb25zIgpvdXRwdXQ6CiAgaHRtbF9kb2N1bWVudDoKICAgIGNvZGVfZm9sZGluZzogc2hvdyAjIGFsbG93cyB0b2dnbGluZyBvZiBzaG93aW5nIGFuZCBoaWRpbmcgY29kZS4gUmVtb3ZlIGlmIG5vdCB1c2luZyBjb2RlLgogICAgY29kZV9kb3dubG9hZDogdHJ1ZSAjIGFsbG93cyB0aGUgdXNlciB0byBkb3dubG9hZCB0aGUgc291cmNlIC5SbWQgZmlsZS4gUmVtb3ZlIGlmIG5vdCB1c2luZyBjb2RlLgogICAgaW5jbHVkZXM6CiAgICAgIGFmdGVyX2JvZHk6IGZvb3Rlci5odG1sICMgaW5jbHVkZSBhIGN1c3RvbSBmb290ZXIuCiAgICB0b2M6IHRydWUKICAgIHRvY19kZXB0aDogMwogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IGZhbHNlCiAgICAgIHNtb290aF9zY3JvbGw6IGZhbHNlCi0tLQoKYGBge3IsIGxpYnJhcmllcywgaW5jbHVkZSA9IEZBTFNFfQpsaWJyYXJ5KGthYmxlRXh0cmEpCmxpYnJhcnkoZ2dwbG90MikKbGlicmFyeShkcGx5cikKYGBgCgpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFLCBtZXNzYWdlID0gRkFMU0UsIHdhcm5pbmdzID0gRkFMU0UpCmBgYAoKYGBge3IsIGluY2x1ZGUgPSBGQUxTRX0KbG9hZCgiZGF0YS90aW1ldXNlX2RheTNfMi5SRGF0YSIpCmBgYAoKCgojIyBEYXRhIFZpc3VhbGl6YXRpb24gaW4gUgoKOjo6aW50cm8KRGF0YSB2aXN1YWxpemF0aW9uIGlzIGFuIGltcG9ydGFudCBwYXJ0IG9mIGV4cGxvcmluZywgdW5kZXJzdGFuZGluZywgYW5kIHNoYXJpbmcgb3VyIGRhdGEuCjo6OgoKRGF0YSB2aXN1YWxpemF0aW9uIGlzIGEgY3JpdGljYWwgcGFydCBvZiB0aGUgZGF0YSBzY2llbmNlIHdvcmtmbG93LiBUaHJvdWdoIHZpc3VhbGl6YXRpb24gd2UgY2FuIGV4cGxvcmUgYW5kIHVuZGVyc3RhbmQgb3VyIG93biBkYXRhLCB1bHRpbWF0ZWx5IGluZm9ybWluZyBmdXJ0aGVyIGFuYWx5c2VzLiBBZGRpdGlvbmFsbHksIGRhdGEgdmlzdWFsaXphdGlvbnMgYXJlIGEgcG93ZXJmdWwgdG9vbCBmb3IgY29tbXVuaWNhdGluZyBkYXRhIGFuZCByZXNlYXJjaCBmaW5kaW5ncyB0byBvdGhlciBwZW9wbGUuIFZpc3VhbHMgY2FuIG9mdGVuIG1vcmUgZWZmaWNpZW50bHkgYW5kIG1vcmUgZWZmZWN0aXZlbHkgdGVsbCB0aGUgc3Rvcnkgb2YgeW91ciBkYXRhLCByYXRoZXIgdGhhbiBvbmx5IHJlbHlpbmcgb24gd3JpdGluZy4gV2VsbCBkb25lIGRhdGEgdmlzdWFsaXphdGlvbnMgd2lsbCBvZnRlbiBoYXZlIHRoZSBiaWdnZXN0IGltcGFjdCBvbiBhbiBhdWRpZW5jZSBpbiBhIHNjaWVuY2UgY29tbXVuaWNhdGlvbiBjb250ZXh0LiAKCiFbXShpbWFnZXMvdGlkeXZlcnNlLXdvcmtmbG93LnBuZykKW1NvdXJjZV0oaHR0cHM6Ly90ZWxhcHBzLmxvbmRvbi5lZHUvYW5hbHl0aWNzX3dpdGhfUi90aWR5dmVyc2UuaHRtbCkKCjo6Om5vdGUKSW4gdGhpcyBzZXNzaW9uIHdlIGhhdmUgYSBmZXcgbWFpbiBnb2FsczoKCjEuIEludHJvZHVjdGlvbiB0byB0eXBlcyBvZiBkYXRhIHZpc3VhbGl6YXRpb25zCgoyLiBEaXNjdXNzaW9uIG9mIHdoYXQgbWFrZXMgYSBnb29kIHZpc3VhbGl6YXRpb24KCjMuIFJldmlldyBhbmQgY3JpdGlxdWUgc29tZSBkYXRhIHZpc3VhbGl6YXRpb24gZXhhbXBsZXMKCjQuIEludHJvZHVjdGlvbiB0byBnZ3Bsb3QgdG8gZ2VuZXJhdGUgdmlzdWFsaXphdGlvbnMgaW4gUgoKOjo6CgpMZXQncyBnZXQgc3RhcnRlZCEgCgojIyMgVHlwZXMgb2YgRGF0YSBWaXN1YWxpemF0aW9uCgpEYXRhIHZpc3VhbGl6YXRpb25zIGNhbiBiZSBkZXNjcmlwdGl2ZSBpbiBuYXR1cmUsIHN1Y2ggYXMgcG9ydHJheWluZyB0aGUgZGVtb2dyYXBoaWMgZGlzdHJpYnV0aW9uIG9mIGEgZ3JvdXAgb2YgcGVvcGxlLCBvciBjYW4gcmVwcmVzZW50IHN0YXRpc3RpY2FsIGZpbmRpbmdzLCBzdWNoIGFzIGEgcmVncmVzc2lvbiBsaW5lIHdpdGggYSBjb25maWRlbmNlIGludGVydmFsIG92ZXJsYWlkIG9uIGEgc2NhdHRlciBwbG90IG9mIGRhdGEuIEluIGNlcnRhaW4gY29udGV4dHMgaXQgaXMgYWxzbyBjb21tb24gdG8gcHJlc2VudCBkYXRhIGFuZCBpbmZvcm1hdGlvbiBpbiBtb3JlIGVhc2lseSBkaWdlc3RpYmxlIGluZm9ncmFwaGljcyA8YSBocmVmPSJodHRwczovL2Nvb2xpbmZvZ3JhcGhpY3MuY29tLyI+KGNoZWNrIG91dCBzb21lIGV4YW1wbGVzIGhlcmUpPC9hPiB0aGF0IGVudGVyIG1vcmUgb2YgYSBncmFwaGljIGRlc2lnbiBzcGFjZS4gRGlmZmVyZW50IGRhdGEgdmlzdWFsaXphdGlvbnMgZnVsZmlsbCBkaWZmZXJlbnQgZ29hbHMuIEhhdmluZyBhIHRvb2xib3ggb2YgYSB2YXJpZXR5IG9mIGRhdGEgdmlzdWFsaXphdGlvbiB0eXBlcyBjYW4gaGVscCB5b3UgcGljayB0aGUgYmVzdCB0eXBlIHRvIGZpdCB5b3VyIG5lZWRzIGZvciBhIGdpdmVuIHByb2plY3QuIAoKIyMjIyAqKlRhYmxlKioKVGFibGVzIHRvIGNvbGxlY3QgYW5kIG9yZ2FuaXplIGRhdGEgYXJlIG9uZSBvZiB0aGUgbW9zdCBjb21tb24gYW5kIGJhc2ljIGRhdGEgdmlzdWFsaXphdGlvbnMuIEJ1dCBkb24ndCBkaXNjb3VudCB0aGVtISBUaGV5IGNhbiBiZSBlZmZpY2llbnQgd2F5cyB0byBjb252ZXkgYSBsYXJnZSBhbW91bnQgb2YgaW5mb3JtYXRpb24gYWJvdXQgeW91ciBkYXRhIGFsbCBhdCBvbmNlLiAKCiFbXShpbWFnZXMvZGF5NF9leGFtcGxldGFibGUucG5nKQoKIyMjIyAqKlBpZSBDaGFydCoqCkEgY2xhc3NpYyBwaWUgY2hhcnQgaXMgdXNlZnVsIGZvciByZXByZXNlbnRpbmcgcGFydHMgdGhhdCBhZGQgdXAgdG8gYSB3aG9sZS4gVGhpcyBhbHNvIGFsbG93cyBmb3IgY29tcGFyaW5nIGdyb3VwIHNpemVzLiBUaGV5IGFyZSBvZnRlbiB1c2VkIGZvciBkZW1vZ3JhcGhpYyB2YXJpYWJsZXMsIHdpdGggdGhlIHdob2xlIHJlcHJlc2VudGluZyB0aGUgd2hvbGUgc2FtcGxlLCBvciBmb3IgcmVwcmVzZW50aW5nIG1vbmV5LCB3aXRoIHRoZSB3aG9sZSByZXByZXNlbnRpbmcgYSBidWRnZXQgb3IgdG90YWwgbW9uZXkgc3BlbnQvbWFkZS4gQmUgY2FyZWZ1bCB0byB1c2UgYSBwaWUgY2hhcnQgb25seSB3aGVuIGl0IHJlYWxseSBhZGRzIHRvIHRoZSBzdG9yeS4gRm9yIGluc3RhbmNlLCBpZiB0aGVyZSBhcmUgb25seSB0d28gcGFydHMgdG8gdGhlIHdob2xlLCBhIHBpZSBjaGFydCBtaWdodCBub3QgY29udmV5IG11Y2ggbW9yZSBpbmZvcm1hdGlvbi4gQ29udmVyc2VseSwgaWYgdGhlcmUgYXJlIG1hbnkgZ3JvdXBzLCBpdCBjYW4gYmVjb21lIGRpZmZpY3VsdCB0byByZWFsbHkgc2VlIGFsbCBvZiB0aGVtIGFuZCBjb21wYXJlIHRoZW0uIAoKIVtdKGltYWdlcy9kYXk0X3BpZWNoYXJ0ZXhhbXBsZS5wbmcpCgojIyMjICoqQm94IFBsb3RzKioKQm94IHBsb3RzIChhbHNvIGtub3duIGFzIGJveCBhbmQgd2hpc2tlciBwbG90cykgYXJlIGdvb2QgZm9yIHVuZGVyc3RhbmRpbmcgYW5kIGNvbXBhcmluZyB2YXJpYW5jZSBiZXR3ZWVuIGdyb3Vwcy4gVGhleSB0eXBpY2FsbHkgZGVwaWN0IHRoZSBtZWRpYW4gYW5kIG1pbmltdW0vbWF4aW11bSBvZiBlYWNoIGdyb3VwIGZvciBhIGNlcnRhaW4gdmFyaWFibGUuIFRoZSBib3ggcG9ydGlvbiByZXByZXNlbnRzIHRoZSAxc3QgYW5kIDNyZCBxdWFydGlsZXMgb2YgdGhlIGRpc3RyaWJ1dGlvbi4gWW91IGNhbiBhbHNvIHNob3cgY2hhbmdlIG92ZXIgdGltZSB3aXRoIHRoaXMgdHlwZSBvZiBwbG90LiAKCmBgYHtyLCBlY2hvID0gRkFMU0V9CmdncGxvdChqc19kYXRhLCBhZXMoeD1hcy5mYWN0b3IocHJvdmluY2VfZmFjdCksIHk9ZHVyU2xlZXApKSArIAogICAgZ2VvbV9ib3hwbG90KGZpbGw9IiMyRDVFN0YiLCBhbHBoYT0wLjYpICsgCiAgICB4bGFiKCJQcm92aW5jZSIpICsKICAgIHlsYWIoIk1pbnV0ZXMgU2xlZXBpbmciKSArCiB0aGVtZSh0ZXh0ID0gZWxlbWVudF90ZXh0KHNpemUgPSAxOCkpCmBgYAoKIyMjIyAqKkhpc3RvZ3JhbSoqIApIaXN0b2dyYW1zIGRpc3BsYXkgdGhlIGRpc3RyaWJ1dGlvbiBvZiBvbmUgdmFyaWFibGUuIFRoZSBoZWlnaHQgb2YgdGhlIGJhciByZXByZXNlbnRzIGhvdyBtYW55IHRpbWVzIHRoYXQgdmFsdWUgd2FzIHJlcHJlc2VudGVkIGluIHRoZSBkYXRhLiBUaGlzIGlzIHR5cGljYWxseSB3aGF0IHlvdSB2aWV3IGlmIHlvdSB3YW50IHRvIHZpc3VhbGx5IGluc3BlY3QgaWYgYSB2YXJpYWJsZSBpcyBub3JtYWxseSBkaXN0cmlidXRlZC4gCgpgYGAge3IsIGVjaG8gPSBGQUxTRX0KCmdncGxvdChqc19kYXRhLCBhZXMoeD1kdXJTbGVlcCkpICsgCiAgZ2VvbV9oaXN0b2dyYW0oZmlsbCA9ICIjMkQ1RTdGIiwgY29sb3IgPSAiYmxhY2siKSsKICB4bGFiKCJOdW1iZXIgb2YgTWludXRlcyBTbGVlcGluZyIpICsKICB5bGFiICgiTnVtYmVyIG9mIFBhcnRpY2lwYW50cyIpICsKICB0aGVtZSh0ZXh0ID0gZWxlbWVudF90ZXh0KHNpemUgPSAxOCkpCmBgYAoKIyMjIyAqKkJhciBDaGFydCoqIApCYXIgY2hhcnRzIGFyZSBnb29kIGZvciByZXByZXNlbnRpbmcgZGF0YSBmcm9tIGdyb3VwcyBvciBjYXRlZ29yaWVzLCB3aXRoIHRoZSBiYXJzIHJlcHJlc2VudGluZyBkaWZmZXJlbnQgY2F0ZWdvcmllcy4gVGhlIGJhciBoZWlnaHQgdXN1YWxseSByZXByZXNlbnQgYSBtZWFuLCBhIGNvdW50LCBvciBhIHBlcmNlbnRhZ2UsIGJ5IGNhdGVnb3J5LiBUaGVzZSBjYW4gYmUgdXNlZnVsIGZvciBjb21wYXJpbmcgZ3JvdXBzIG9yIHNob3dpbmcgY2hhbmdlIG92ZXIgdGltZS4gCgpgYGAge3IsIGVjaG8gPSBGQUxTRX0KZ2dwbG90KGpzX2RhdGEsIGFlcyh4PW1hcml0YWxTdGF0X2ZhY3QsIGZpbGwgPSBhcy5mYWN0b3IobWFyaXRhbFN0YXRfZmFjdCkpKSArCiAgZ2VvbV9iYXIoKSArIAogIHhsYWIoIk1hcml0YWwgU3RhdHVzIikgKwogIHlsYWIgKCJOdW1iZXIgb2YgUGFydGljaXBhbnRzIikgKwogIHNjYWxlX2ZpbGxfaHVlKGMgPSA2MCkgKwogIHRoZW1lKGxlZ2VuZC5wb3NpdGlvbiA9ICJub25lIiwKICAgICAgICB0ZXh0ID0gZWxlbWVudF90ZXh0KHNpemUgPSAxOCksCiAgICAgICAgYXhpcy50ZXh0LnggPSBlbGVtZW50X3RleHQoYW5nbGUgPSAzNSwgaGp1c3QgPSAxKSkKYGBgCgojIyMjICoqU2NhdHRlciBQbG90KiogClNjYXR0ZXIgcGxvdHMgaW5jbHVkZSBkYXRhIHBvaW50cyB0aGF0IGFyZSBwbG90dGVkIGFsb25nIGFuIHggYW5kIHkgYXhpcywgc2hvd2luZyB0aGUgcmVsYXRpb25zaGlwIGJldHdlZW4gdGhlc2UgdHdvIHZhcmlhYmxlcy4gT2Z0ZW4gcmVzZWFyY2hlcnMgYWRkIGEgbGluZSB0byB0aGVzZSBwbG90cyB0byBzaG93IHRoZSBzdGF0aXN0aWNhbCByZWxhdGlvbnNoaXAgYmV0d2VlbiB0aGUgdmFyaWFibGVzLiAKCmBgYHtyLCBlY2hvID0gRkFMU0V9CmdncGxvdChqc19kYXRhLCBhZXMoZHVyV29yaywgZHVyU2xlZXApKSArCiAgZ2VvbV9wb2ludChjb2xvciA9ICIjMkQ1RTdGIiwgYWxwaGEgPSAuMikgKwogIGdlb21fc21vb3RoKG1ldGhvZD1sbSwgc2U9VFJVRSwgY29sb3IgPSAiYmxhY2siKSArCiAgeGxhYigiTWludXRlcyBTcGVudCBXb3JraW5nIikgKwogIHlsYWIgKCJNaW51dGVzIFNwZW50IFNsZWVwaW5nIikgKwogIGxhYnModGl0bGUgPSAiQXNzb2NpYXRpb24gQmV0d2VlbiBXb3JraW5nIGFuZCBTbGVlcGluZyIpICsKICB0aGVtZSh0ZXh0ID0gZWxlbWVudF90ZXh0KHNpemUgPSAxOCkpCmBgYAoKIyMjIyAqKkxpbmUgQ2hhcnQqKiAKTGluZSBjaGFydHMgdXNlIGNvbm5lY3RlZCBzdHJhaWdodCBsaW5lcyB0byBkaXNwbGF5IGRhdGEuIFRoZXkgYXJlIGdvb2QgZm9yIHNob3dpbmcgY2hhbmdlIG92ZXIgdGltZSBvbiBhIGNvbnRpbnVvdXMgdmFyaWFibGUuIFRoZXkgYXJlIG9mdGVuIHNpbWlsYXIgaW4gcHVycG9zZSB0byBiYXIgY2hhcnRzLCBidXQgdmlzdWFsbHkgc2ltcGxlciBpZiB0aGVyZSBhcmUgbWFueSB0aW1lIHBvaW50cy4gQW4gZXhhbXBsZSBvZiB3aGVyZSB3ZSBvZnRlbiBzZWUgbGluZSBjaGFydHMgdXNlZCBpbiB0aGUgbmV3cyBpcyB0byB2aXN1YWxpemUgdGhlIHN0b2NrIG1hcmtldC4gKFBsb3R0aW5nIHRoZSB2YXJpb3VzIGFnZSBncm91cHMgaGVyZSBpcyBub3QgcGFydGljdWxhcmx5IG1lYW5pbmdmdWwgc2luY2UgdGhpcyBkYXRhIHdhcyBvbmx5IGNvbGxlY3RlZCBhdCBvbmUgdGltZSBwb2ludCwgYnV0IGlzIHVzZWQgdG8gaWxsdXN0cmF0ZSB0aGlzIHR5cGUgb2YgZGF0YSB2aXN1YWxpemF0aW9uLikKCmBgYHtyLCBlY2hvID0gRkFMU0V9CnhWYWx1ZSA8LSAxOjcKeVZhbHVlIDwtIGMoMTMwMywgMjEyNywgMjU5NywgMjc4OSwgMzc0MSwgMjk1OCwgMTg3NSkKcGxvdGRhdGEgPC0gZGF0YS5mcmFtZSh4VmFsdWUseVZhbHVlKQoKZ2dwbG90KHBsb3RkYXRhLCBhZXMoeD14VmFsdWUsIHk9eVZhbHVlKSkgKwogIGdlb21fbGluZShjb2xvciA9ICIjMkQ1RTdGIikgKwogIHhsYWIoIkFnZSBHcm91cHMiKSArCiAgeWxhYiAoIk51bWJlciBvZiBQYXJ0aWNpcGFudHMiKSArCiAgbGFicyh0aXRsZSA9ICJOdW1iZXIgb2YgUGFydGljaXBhbnRzIHBlciBBZ2UgR3JvdXAiKSArCiAgdGhlbWUodGV4dCA9IGVsZW1lbnRfdGV4dChzaXplID0gMTgpKSArCiAgc2NhbGVfeF9jb250aW51b3VzKGJyZWFrcyA9IHNlcSgxLCA3LCAxKSkgKwogIHNjYWxlX3lfY29udGludW91cyhicmVha3MgPSBzZXEoMCwgNDAwMCwgNTAwKSkKCmBgYAoKIyMjIyAqKkludGVyYWN0aXZlIERhdGEgVmlzdWFsaXphdGlvbnMqKiAKQXMgcmVzZWFyY2ggYW5kIHB1YmxpY2F0aW9ucyBtb3ZlIG1vcmUgb25saW5lIGFuZCBhd2F5IGZyb20gcHJpbnQsIHRoaXMgY2FuIGFsbG93IGZvciBtb3JlIGludGVyYWN0aXZlIGRhdGEgdmlzdWFsaXphdGlvbnMuIFRoZXNlIGFyZSB0eXBlcyBvZiBkYXRhIHZpc3VhbGl6YXRpb25zIHRoYXQgYWxsb3cgYSBwZXJzb24gdG8gc2VsZWN0IGFuZCBjaGFuZ2Ugd2hhdCBpcyBiZWluZyBzaG93bi4gQ2hlY2sgb3V0IHRoaXMgZ3JlYXQgZXhhbXBsZSBmcm9tIDxhIGhyZWY9Imh0dHBzOi8vd3d3LmdhcG1pbmRlci5vcmcvdG9vbHMvIyRjaGFydC10eXBlPWJ1YmJsZXMmdXJsPXYyKSI+R2FwbWluZGVyPC9hPi4gVGhlIGRlZmF1bHQgdmlzdWFsaXphdGlvbiBzaG93cyBHRFAgYW5kIGxpZmUgZXhwZWN0YW5jeSBvdmVyIHRpbWUsIGFuZCBieSBjb3VudHJ5LiBIb3dldmVyLCB5b3UgY2FuIGNoYW5nZSB0aGUgdmFyaWFibGVzIGluY2x1ZGVkIHRvIHZpZXcgb3RoZXIgZGF0YS4gCgojIyMjICoqU28gbWFueSBtb3JlISoqIAotIEhlYXQgTWFwCi0gU3RhY2tlZCBCYXIgb3IgU3RhY2tlZCBBcmVhIENoYXJ0Ci0gVmlvbGluIFBsb3QKLSBHYW50dCBDaGFydAotIENob3JvcGxldGggTWFwCgojIyMgV2hhdCBNYWtlcyBhIEdvb2QgVmlzdWFsaXphdGlvbj8KVGhlcmUgaXMgYW4gYXJ0IHRvIHBpY2tpbmcgdGhlIGJlc3QgZGF0YSB2aXN1YWxpemF0aW9uIHRoYXQgZml0cyB5b3VyIGRhdGEgYW5kIHRoZSBzdG9yeSB5b3UgYXJlIHRlbGxpbmcuIEJ5IG5hdHVyZSwgZGF0YSB2aXN1YWxpemF0aW9ucyBhcmUgYWJzdHJhY3QgcmVwcmVzZW50YXRpb25zIG9mIG91ciBkYXRhLCB3aXRoIGNvbG9yLCBzaGFwZSwgYW5kIHBvc2l0aW9uIHJlcHJlc2VudGluZyB0aGUgZGF0YSBwb2ludHMuIFRoaXMgYm90aCBoaWRlcyB0aGUgZXhhY3QgZGF0YSBpdHNlbGYsIHdoaWxlIGFsc28gYWxsb3dpbmcgdXMgdG8gaGlnaGxpZ2h0IGJpZ2dlciBwaWN0dXJlIGlkZWFzIGFib3V0IHRoZSBkYXRhLCBkZXBlbmRpbmcgb24gd2hhdCB3ZSBjaG9vc2UgdG8gZW1waGFzaXplLiBXaGVuIGRlY2lkaW5nIG9uIHdoYXQgdHlwZSBvZiBkYXRhIHZpc3VhbGl6YXRpb24gdG8gdXNlLCBjb25zaWRlciB0aGUgZm9sbG93aW5nOiAKCi0gV2hhdCBxdWVzdGlvbiBhcmUgeW91IGV4cGxvcmluZyB3aXRoIHlvdXIgZGF0YSBhbmQgaG93IHdpbGwgaXQgaW5mb3JtIGZ1dHVyZSBhbmFseXNlcz8KLSBXaGF0IGlzIHlvdXIgZGF0YSB2aXN1YWxpemF0aW9uIGFkZGluZyB0byB5b3VyIHNjaWVuY2UgY29tbXVuaWNhdGlvbj8gCi0gV2hhdCB0YWtlLWF3YXkgbWVzc2FnZSBhcmUgeW91IGNvbnZleWluZyB3aXRoIHRoZSBpbWFnZT8gCi0gV2hhdCB0eXBlIG9mIHZhcmlhYmxlcyBkbyB5b3UgaGF2ZT8gQ29udGludW91cz8gQ2F0ZWdvcmljYWw/IEFuZCB3aGF0IHR5cGUgb2YgYWJzdHJhY3Rpb24gKGUuZy4sIGNvbG9yLCBzaGFwZSkgYmVzdCBzdWl0cyB0aGF0IHZhcmlhYmxlPwotIEFyZSB5b3UgY29tcGFyaW5nIGdyb3Vwcz8KLSBBcmUgeW91IHNob3dpbmcgY2hhbmdlIG92ZXIgdGltZT8KLSBBcmUgeW91IHZpc3VhbGl6aW5nIGEgcmVsYXRpb25zaGlwIGJldHdlZW4gdmFyaWFibGVzPwoKSXQgY2FuIGJlIGVhc3kgdG8gZ2V0IGluIHRoZSBoYWJpdCBvZiB1c2luZyB0aGUgc2FtZSB0eXBlcyBvZiBkYXRhIHZpc3VhbGl6YXRpb24gb3ZlciBhbmQgb3ZlciBhZ2Fpbi4gQ2hlY2sgb3V0IHRoaXMgd2Vic2l0ZSB0aGF0IGdpdmVzIG1hbnkgY3JlYXRpdmUgZGF0YSB2aXN1YWxpemF0aW9uIG9wdGlvbnMgKHdpdGggUiBjb2RlISksIGNhdGVnb3JpemVkIGJ5IGdvYWw6IDxhIGhyZWY9Imh0dHBzOi8vci1ncmFwaC1nYWxsZXJ5LmNvbS8gIj5odHRwczovL3ItZ3JhcGgtZ2FsbGVyeS5jb20vIDwvYT4KCiMjIyMgR29vZCBEYXRhIFZpc3VhbGl6YXRpb24gUHJpbmNpY3BsZXMKCk9uY2UgeW91IHBpY2sgdGhlIGZvcm1hdCB0aGF0IGZpdHMgeW91ciBuZWVkcyBiZXN0LCB0aGVzZSBhcmUgc29tZSBwcmluY2lwbGVzIHRvIGtlZXAgaW4gbWluZCB3aGVuIGNyYWZ0aW5nIHlvdXIgdmlzdWFsaXphdGlvbiB0byBtYWtlIHN1cmUgaXQgaXMgY2xlYXIgdG8geW91ciBhdWRpZW5jZS4KCjo6Om1kLXRhYmxlCnwgUHJpbmNpcGxlIHwgQ29uc2lkZXJhdGlvbnMgfAp8IDotLS0gfCA6LS0tIHwKfCBDbGVhciBEYXRhIHwgQ29uc2lkZXIgdGhlIGZvcm1hdCBvZiB5b3VyIGRhdGEgd2hlbiB5b3UgaW5jbHVkZSBpdC4gWW91ciBkYXRhIG5lZWRzIHRvIGJlIHVuYW1iaWd1b3VzbHkgY29tbXVuaWNhdGVkIHRvIHlvdXIgYXVkaWVuY2UuIEZvciBpbnN0YW5jZSwgZG8geW91IGhhdmUgc28gbWFueSBncm91cHMgdGhhdCB0aGV5IGFyZSBkaWZmaWN1bHQgdG8gZGlmZmVyZW50aWF0ZT8gQXJlIHlvdXIgZGF0YSBwb2ludHMgc3RhY2tlZCBvbiB0aGUgc2FtZSBzcG90IHNvIHRoZSBhdWRpZW5jZSBjYW4ndCBzZWUgdGhlIGRlbnNpdHkgb2YgeW91ciBkYXRhIHBvaW50cz8gfAp8IENsZWFyIExhYmVscyB8IEFsbCBkYXRhIHZpc3VhbGl6YXRpb25zIG5lZWQgbGFiZWxzLiBUaGlzIG1heSBiZSB0aGUgYXhpcyBvbiBhIHNjYXR0ZXIgcGxvdCwgbGVnZW5kcyBmb3IgeW91ciBiYXIgZ3JhcGgsIG9yIHBlcmNlbnRhZ2VzIG9uIHlvdXIgcGllIGNoYXJ0LiBZb3UgbXVzdCB0ZWxsIHRoZSBhdWRpZW5jZSB3aGF0IHRoZXkgYXJlIGxvb2tpbmcgYXQuIElmIGRpZmZlcmVudCBjb2xvcnMgYXJlIHVzZWQsIHRoZXkgc2hvdWxkIHJlcHJlc2VudCBzb21lIGFzcGVjdCBvZiB0aGUgZGF0YSBhbmQgYmUgY2xlYXJseSBsYWJlbGVkLiB8CnwgQ2xlYXIgU2NhbGVzIHwgQ2xlYXIgYW5kIGNvbnNpc3RlbnQgc2NhbGVzIGFyZSBpbXBvcnRhbnQgdG8gYXZvaWQgbWlzaW50ZXJwcmV0YXRpb24gb2YgeW91ciBkYXRhIHZpc3VhbGl6YXRpb24uIEFuIGF4aXMgc2hvdWxkIGJlIGNsZWFybHkgbGFiZWxlZCBhbmQgaW5jbHVkZSB0aGUgZnVsbCBzY2FsZSByYW5nZS4gTWFrZSBpdCBjbGVhciBpZiB0aGUgc2NhbGUgZG9lcyBub3Qgc3RhcnQgYXQgMC4gU2NhbGVzIHNob3VsZCBiZSBjb25zaXN0ZW50IGFjcm9zcyB2aXN1YWxpemF0aW9ucyB0byBhbGxvdyBmb3IgY29tcGFyaXNvbnMuIHwKfCBTaW1wbGljaXR5IHwgQWltIHRvIGhhdmUgdW5jbHV0dGVyZWQgZGF0YSB2aXN1YWxpemF0aW9ucy4gSXQgaXMgZWFzeSB0byBnZXQgZXhjaXRlZCBhYm91dCBhbGwgeW91IGNhbiBkbyBjcmVhdGl2ZWx5IGluIHRoZSB3b3JsZCBvZiBkYXRhIHZpc3VhbGl6YXRpb25zLCBidXQgc29tZXRpbWVzIGFkZGluZyB0b28gbXVjaCAoZS5nLiwgZXh0cmEgY29sb3JzLCBwaWN0dXJlcykgY2FuIGFjdHVhbGx5IG9ic2N1cmUgeW91ciBtYWluIG1lc3NhZ2UuIEF2b2lkIGV4dHJhIGluZm8gdGhhdCBkb2Vzbid0IGFkZCB0byB0aGUgc3RvcnkgeW91IGFyZSB0ZWxsaW5nLiB8CnwgQWNjZXNzaWJpbGl0eSB8IENvbnNpZGVyIGhvdyB5b3VyIGRhdGEgdmlzdWFsaXphdGlvbiBkZXNpZ24gd291bGQgYmUgdmlld2VkIGJ5IGEgdmFyaWV0eSBvZiBwZW9wbGUuIFRleHQgZm9udCBhbmQgc2l6ZSBmb3IgbGVnZW5kcyBhbmQgYXhpcyBsYWJlbHMgc2hvdWxkIGJlIGNsZWFyIGFuZCBub3QgdG9vIHNtYWxsLiBUcnkgbm90IHRvIHJlbHkgb25seSBvbiBjb2xvciB0byBkaXN0aW5ndWlzaCBncm91cHMgKGUuZy4sIGxpbmVzIGNhbiBiZSBkYXNoZWQgb3IgZG90dGVkKSwgb3IgcGljayBjb2xvcnMvaHVlcyB0aGF0IGFyZSBkaXN0aW5ndWlzaGFibGUgYnkgcGVvcGxlIHdobyBhcmUgY29sb3JibGluZC4gSW5jbHVkZSBhbHRlcm5hdGl2ZSB0ZXh0IGRlc2NyaXB0aW9ucyB0aGF0IGNhbiBiZSByZWFkIGFsb3VkIGJ5IGEgc2NyZWVuIHJlYWRlci4gfAo6OjoKCkZvciBtb3JlIGluZm9ybWF0aW9uIG9uIGRlc2lnbiBwcmluY2lwbGVzIGFuZCB0aGUgdmlzdWFsIGhpZXJhcmNoeSBvZiBlbGVtZW50cywgY2hlY2sgb3V0IDxhIGhyZWY9Imh0dHBzOi8vd3d3LmludGVyYWN0aW9uLWRlc2lnbi5vcmcvbGl0ZXJhdHVyZS90b3BpY3MvdmlzdWFsLWhpZXJhcmNoeT9zcnNsdGlkPUFmbUJPb29VNzdYUGlWc1hTa0U3dDJHcUFheWFPeWgwVnhkd0dqM2JKYVAxUWozeGNjNUE0NEJXIj50aGlzIGFydGljbGU8L2E+LiBTaXplLCBjb2xvciwgY29udHJhc3QsIGFsaWdubWVudCwgcmVwZXRpdGlvbiwgcHJveGltaXR5LCB3aGl0ZXNwYWNlLCBhbmQgdGV4dHVyZSBjYW4gYWxsIGJlIHVzZWQgdG8gZHJhdyBmb2N1cyB0byBwYXJ0aWN1bGFyIHZpc3VhbCBlbGVtZW50cy4gCgoKIyMjIFlvdXIgVHVybiEKT25lIG9mIHRoZSBiZXN0IHdheXMgdG8gZ2V0IGludG8gZGF0YSB2aXN1YWxpemF0aW9uIGlzIHRvIGdldCBpbnNwaXJlZCBmcm9tIHNvbWUgb2YgdGhlIGFtYXppbmcgZGF0YSB2aXN1YWxpemF0aW9ucyB0aGF0IGFscmVhZHkgZXhpc3QhIAoKV2UgaGF2ZSB0d28gd2Vic2l0ZXMgd2l0aCBhIHZhcmlldHkgb2YgZGF0YSB2aXN1YWxpemF0aW9uIGV4YW1wbGVzLiAKCi0gPGEgaHJlZj0iaHR0cHM6Ly9yLWdyYXBoLWdhbGxlcnkuY29tL2Jlc3Qtci1jaGFydC1leGFtcGxlcyI+UiBHcmFwaCBHYWxsZXJ5PC9hPgpJbmNsdWRlcyBtYW55IGV4YW1wbGVzIG9mIGRhdGEgdmlzdWFsaXphdGlvbnMgY3JlYXRlZCBpbiBSLiBUaGVzZSBhbHNvIGluY2x1ZGUgdHV0b3JpYWxzL1IgQ29kZSB1c2VkIHRvIG1ha2UgdGhlbS4gVGhlc2UgZXhhbXBsZXMgZ28gYmV5b25kIHdoYXQgd2Ugd2lsbCBjb3ZlciBpbiB0aGlzIHdvcmtzaG9wLCBidXQgc2VydmUgYXMgZ3JlYXQgaW5zcGlyYXRpb24gZm9yIGhvdyBtdWNoIHlvdSBjYW4gZG8gaW4gUiEKCi0gPGEgaHJlZj0iaHR0cHM6Ly93d3cudGFibGVhdS5jb20vdml6LWdhbGxlcnkiPlRhYmxlYXUgVml6IEdhbGxlcnk8L2E+CkluY2x1ZGVzIGV4YW1wbGVzIGNyZWF0ZWQgd2l0aCB0aGUgcGxhdGZvcm0gVGFibGVhdS4gVGhpcyBpcyBhIHByb3ByaWV0YXJ5IChwYWlkKSBwbGF0Zm9ybSB3aGljaCB3ZSBhcmUgbm90IHVzaW5nIGluIHRoaXMgd29ya3Nob3AsIGJ1dCB0aGlzIGdhbGxlcnkgc3RpbGwgaGFzIHNvbWUgZ3JlYXQgZXhhbXBsZXMgdG8gaGVscCBpbnNwaXJlIHlvdXIgZGF0YSB2aXN1YWxpemF0aW9uIGNyZWF0aXZpdHkhIAoKOjo6cXVlc3Rpb24KSW4gc21hbGwgZ3JvdXBzLCBvbiBlaXRoZXIgb2YgdGhlc2Ugd2Vic2l0ZXMsIGZpbmQgYSBkYXRhIHZpc3VhbGl6YXRpb24gZXhhbXBsZSB0aGF0IGp1bXBzIG91dCB0byB5b3UgYXMgaW50ZXJlc3RpbmcgYW5kIHRoZW4gYW5zd2VyIHRoZSBmb2xsb3dpbmcgcXVlc3Rpb25zLiAKCjEuIFdoYXQgY2FwdHVyZWQgeW91ciBhdHRlbnRpb24gYWJvdXQgdGhpcyBkYXRhIHZpc3VhbGl6YXRpb24/IFRoZSB0b3BpYz8gVGhlIGRlc2lnbj8gCjIuIFdoYXQgaXMgdGhlIHN0b3J5IHRoaXMgZXhhbXBsZSBpcyB0cnlpbmcgdG8gdGVsbD8gV2hhdCBpcyBvbmUgb2YgdGhlIHRha2UtYXdheSBtZXNzYWdlcyBpdCBpcyBjb252ZXlpbmc/CjMuIFdoYXQgZG8geW91IGxpa2UgYWJvdXQgdGhpcyB2aXN1YWxpemF0aW9uPyBEb2VzIGl0IGNvbnZleSBpbmZvcm1hdGlvbiBhYm91dCB0aGUgZGF0YSBpbiBhIHVuaXF1ZWx5IGVmZmVjdGl2ZSB3YXk/IERvZXMgaXQgYWRoZXJlIHRvIHRoZSBwcmluY2lwbGVzIHdlIGRpc2N1c3NlZD8gCjQuIElzIHRoZXJlIGFueXRoaW5nIHlvdSBmaW5kIGNvbmZ1c2luZyBhYm91dCB0aGlzIGV4YW1wbGU/IEFueXRoaW5nIHlvdSB0aGluayBpcyBtaXNzaW5nIG9yIHRoYXQgeW91IHdvdWxkIGNoYW5nZSB0byBpbXByb3ZlIGl0PyAKOjo6Cg==</div>
+<div id="footer">
+    <hr />
+    <div class = "inst-logos">
+      <img src="images/institutions/carleton.png" />
+      <img src="images/institutions/calgary.png" />
+      <img src="images/institutions/ubc.png" />
+      <img class="uvic"  src="images/institutions/uvic.png" />
+    </div>
+
+<br>
+    <div>
+      <img class = "cc-licence" src="images/institutions/CC-License.png" />
+      <p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc/4.0/" target ="blank">Creative Commons Attribution-NonCommercial 4.0 International License</p>
+</div>
+<br>
+Built and rendered courtesy of <a href="https://rmarkdown.rstudio.com/index.html" target ="blank">RMarkdown from RStudio</a></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("Block5-1_Viz-Types.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = false;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

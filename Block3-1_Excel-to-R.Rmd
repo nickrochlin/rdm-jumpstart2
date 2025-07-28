@@ -1,0 +1,19 @@
+---
+title: "Reproducible Research and Moving from Excel to Scripting"
+pagetitle: "Reproducible Research and Moving from Excel to Scripting"
+output:
+  html_document:
+    includes:
+      after_body: footer.html # include a custom footer.
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+---
+
+## Moving from Excel to Scripting
+
+* [Download the PowerPoint](files/Day-2_Session-03_GUI-vs_Scripting.pptx)
+
+<object class = "pdf" data = "files/Day-2_Session-03_GUI-vs_Scripting.pdf"></object>

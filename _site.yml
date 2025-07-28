@@ -6,62 +6,61 @@ navbar:
     - text: "Block 1"
       menu:
         - text: "Overview"
-          href: 1-Overview.html
-        - text: "Introduction to the RDM Jumpstart"
-          href:  introduction.html
-        - text: "RDM: Introduction"
-          href: 1-LEC-1-ImportanceRDM.html
-        - text: "Workflow for the Week"
-          href: 1-LEC-2-DataScience.html
-        - text: "OSF"
-          href: 1-LEC-3-OSF.html
-        - text: "Data Management Plans"
-          href: 1-LEC-4-DMPs.html
+          href: Block1_Overview.html
+        - text: "Introduction to Research Data Management"
+          href:  Block1-1_Intro-RDM.html
+        - text: "Introduction to Data Management Plans"
+          href: Block1-2_Intro-DMP-html
+        - text: "OSF & File Overview"
+          href: Block1-3_OSF.html
     - text: "Block 2"
       menu:
         - text: "Overview"
-          href: 2-Overview.html
-        - text: "RDM: Bias & Reproducibility"
-          href: 2-LEC-1-BiasRepro.html
-        - text: "Computational Reproducibility: Excel vs R"
-          href: 2-LEC-3-GUIscript.html
-        - text: "R: Setting Up"
-          href: 2-ACT-1-RSetup.html
-        - text: "R: First Steps"
-          href: 2-ACT-2-FirstSteps.html
+          href: Block2_Overview.html
+        - text: "Organizing Files and Folders"
+          href: Block2-1_Files-and-Folders.html
+        - text: "Naming Conventions and Folder Structure"
+          href: Block2-2_Naming-Conventions.html
+        - text: "Documentation"
+          href: Block2-3_Documentation.html
+        - text: "Documentation in Action"
+          href: Block2-4_Documentation-in-Action.html
     - text: "Block 3"
       menu:
         - text: "Overview"
-          href: 3-Overview.html
-        - text: "R: Data Types and Structures"
-          href: 3-ACT-2-DataTypesStructures.html
-        - text: "R: Filter and Select"
-          href: 3-ACT-3-FilterSelect.html
+          href: Block3_Overview.html
+        - text: "Reproducible Research and Moving from Excel to Scripting"
+          href: Block3-1_Excel-to-R.html
+        - text: "Introduction to R"
+          href: Block3-2_Intro-to-R.html
     - text: "Block 4"
       menu:
         - text: "Overview"
-          href: 4-Overview.html
-        - text: "R: Data Visualization"
-          href: 4-ACT-2-DataVisualization.html
-        - text: "R: Troubleshooting"
-          href: 4-ACT-1-Troubleshooting.html
-        - text: "R: Saving Output"
-          href: 4-ACT-3-SavingOutput.html
+          href: Block4_Overview.html
+        - text: "First Steps in R"
+          href: Block4-1_First-Steps.html
+        - text: "Data Types and Structures in R"
+          href: Block4-2_Data-Types.html
+        - text: "Updating Documentation"
+          href: Block4-3_Updating-Documentation.html
     - text: "Block 5"
       menu:  
         - text: "Overview"
-          href: 5-Overview.html
-        - text: "Day 5 - Sharing & Depositing"
-          href: 5-LEC-1-ShareDeposit.html
+          href: Block5_Overview.html
+        - text: "Types of Visualizations"
+          href: Block5-1_Viz-Types.html
+        - text: "Visualizations with ggplot"
+          href: Block5-2_ggplot.html
     - text: "Block 6"
       menu:
         - text: "Overview"
-    - text: "Block 7"
-      menu:
-        - text: "Overview"
-    - text: "Block 8"
-      menu:
-        - text: "Overview"
+          href: Block6_Overview.html
+        - text: "Sharing and Depositing Data"
+          href: Block6-1_Sharing-and-Deposit.html
+        - text: "DMP Wrap-Up"
+          href: Block6-2_DMP-wrap.html
+        - text: "Borealis Deposit"
+          href: Block6-3_Borealis.html
     - text: "Extras"
       menu:
         - text: "Resources"
@@ -69,39 +68,39 @@ navbar:
             - text: "Code of Conduct"
               href: codeOfConduct.html
             - text: "Project DMP"
-              href: 6-EXT-ProjectDMP.html
+              href: Block7_EXT-ProjectDMP.html
             - text: "R Cheatsheet"
-              href: 6-EXT-RCheatsheet.html
+              href: Block7_EXT-RCheatsheet.html
         - text: "Roadmaps"
           menu:
             - text: "RDM Roadmap"
-              href: 6-EXT-RDMRoadmap.html
+              href: Block7_EXT-RDMRoadmap.html
             - text: "Reproducible Roadmap"
-              href: 6-EXT-CRRoadmap.html
-        # - text: "Concetps in Reproduciblity"
-        #   menu:
-        #     - text: "Base R & Tidyverse"
-        #       href: 6-EXT-BaseRtidyverse.html
-        #     - text: "Scripts & Notebooks"
-        #       href: 6-EXT-ScriptsNotebooks.html
-        #     - text: "IDEs & Relative Paths"
-        #       href: 6-EXT-idePaths.html
-        #     - text: "Challenges to Good RDM Practices"
-        #       href: 6-EXT-ChallengesToRDM.html
+              href: Block7_-CRRoadmap.html
+        - text: "Concetps in Reproduciblity"
+          menu:
+            - text: "Base R & Tidyverse"
+              href: Block7_EXT-BaseRtidyverse.html
+            - text: "Scripts & Notebooks"
+              href: Block7_EXT-ScriptsNotebooks.html
+            - text: "IDEs & Relative Paths"
+              href: Block7_EXT-idePaths.html
+            - text: "Challenges to Good RDM Practices"
+              href: Block7_EXT-ChallengesToRDM.html
         - text: "Additional Content"
           menu:
             - text: "Creating a data dictionary"
-              href: 6-EXT-dd.html
+              href: Block7_EXT-dd.html
             - text: "Directories and files"
-              href: 6-EXT-dirsFiles.html
+              href: Block7_EXT-dirsFiles.html
         - text: "Setup"
           menu:
             - text: "R & RStudio Setup"
-              href: 6-EXT-RRStudio.html
+              href: Block7_EXT-RRStudio.html
             - text: "OSF Setup"
-              href: 6-EXT-osfSetup.html
+              href: Block7_EXT-osfSetup.html
             - text: "Borealis Setup"
-              href: 6-EXT-Borealis.html
+              href: Block7_EXT-Borealis.html
         - text: "Contributors"
           href: contributors.html
 output:

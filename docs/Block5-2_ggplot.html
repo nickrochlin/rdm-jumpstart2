@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Visualization with ggplot</title>
+
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSGZ4ESKQ3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  
+  gtag('config', 'G-KSGZ4ESKQ3');
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">RDM Jumpstart</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Block 1
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Block1_Overview.html">Overview</a>
+    </li>
+    <li>
+      <a href="Block1-1_Intro-RDM.html">Introduction to Research Data Management</a>
+    </li>
+    <li>
+      <a href="Block1-2_Intro-DMP-html">Introduction to Data Management Plans</a>
+    </li>
+    <li>
+      <a href="Block1-3_OSF.html">OSF &amp; File Overview</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Block 2
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Block2_Overview.html">Overview</a>
+    </li>
+    <li>
+      <a href="Block2-1_Files-and-Folders.html">Organizing Files and Folders</a>
+    </li>
+    <li>
+      <a href="Block2-2_Naming-Conventions.html">Naming Conventions and Folder Structure</a>
+    </li>
+    <li>
+      <a href="Block2-3_Documentation.html">Documentation</a>
+    </li>
+    <li>
+      <a href="Block2-4_Documentation-in-Action.html">Documentation in Action</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Block 3
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Block3_Overview.html">Overview</a>
+    </li>
+    <li>
+      <a href="Block3-1_Excel-to-R.html">Reproducible Research and Moving from Excel to Scripting</a>
+    </li>
+    <li>
+      <a href="Block3-2_Intro-to-R.html">Introduction to R</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Block 4
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Block4_Overview.html">Overview</a>
+    </li>
+    <li>
+      <a href="Block4-1_First-Steps.html">First Steps in R</a>
+    </li>
+    <li>
+      <a href="Block4-2_Data-Types.html">Data Types and Structures in R</a>
+    </li>
+    <li>
+      <a href="Block4-3_Updating-Documentation.html">Updating Documentation</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Block 5
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Block5_Overview.html">Overview</a>
+    </li>
+    <li>
+      <a href="Block5-1_Viz-Types.html">Types of Visualizations</a>
+    </li>
+    <li>
+      <a href="Block5-2_ggplot.html">Visualizations with ggplot</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Block 6
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Block6_Overview.html">Overview</a>
+    </li>
+    <li>
+      <a href="Block6-1_Sharing-and-Deposit.html">Sharing and Depositing Data</a>
+    </li>
+    <li>
+      <a href="Block6-2_DMP-wrap.html">DMP Wrap-Up</a>
+    </li>
+    <li>
+      <a href="Block6-3_Borealis.html">Borealis Deposit</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Extras
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Resources</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="codeOfConduct.html">Code of Conduct</a>
+        </li>
+        <li>
+          <a href="Block7_EXT-ProjectDMP.html">Project DMP</a>
+        </li>
+        <li>
+          <a href="Block7_EXT-RCheatsheet.html">R Cheatsheet</a>
+        </li>
+      </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Roadmaps</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="Block7_EXT-RDMRoadmap.html">RDM Roadmap</a>
+        </li>
+        <li>
+          <a href="Block7_-CRRoadmap.html">Reproducible Roadmap</a>
+        </li>
+      </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Concetps in Reproduciblity</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="Block7_EXT-BaseRtidyverse.html">Base R &amp; Tidyverse</a>
+        </li>
+        <li>
+          <a href="Block7_EXT-ScriptsNotebooks.html">Scripts &amp; Notebooks</a>
+        </li>
+        <li>
+          <a href="Block7_EXT-idePaths.html">IDEs &amp; Relative Paths</a>
+        </li>
+        <li>
+          <a href="Block7_EXT-ChallengesToRDM.html">Challenges to Good RDM Practices</a>
+        </li>
+      </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Additional Content</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="Block7_EXT-dd.html">Creating a data dictionary</a>
+        </li>
+        <li>
+          <a href="Block7_EXT-dirsFiles.html">Directories and files</a>
+        </li>
+      </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Setup</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="Block7_EXT-RRStudio.html">R &amp; RStudio Setup</a>
+        </li>
+        <li>
+          <a href="Block7_EXT-osfSetup.html">OSF Setup</a>
+        </li>
+        <li>
+          <a href="Block7_EXT-Borealis.html">Borealis Setup</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="contributors.html">Contributors</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Visualization with ggplotlot</h1>
+
+</div>
+
+
+<div id="visualizations-with-ggplot2" class="section level3">
+<h3>Visualizations with ggplot2</h3>
+<p>Now that we have our data visualization imaginations going, let’s get
+into how we can visually represent our data in R.</p>
+<p>The go-to package for data visualization in R is
+<code>ggplot2</code>, which is part of the tidyverse. You can find more
+information about <code>ggplot2</code> on the
+<a href="https://ggplot2.tidyverse.org/">tidyverse website</a>.</p>
+<p>This package approaches data visualization through “a grammar of
+graphics.” In other words, using the same syntax, you can create an
+infinite number of data visualizations. Although there are a lot of
+functions and components to learn at first, once you understand the
+overall structure of building graphics in <code>ggplot2</code>, you can
+replicate and expand on this structure to visualize data in an unlimited
+number of ways.</p>
+<p>If you have installed the tidyverse, then <code>ggplot2</code> is
+included. Otherwise you can install it now. Let’s also load our dataset
+for today.</p>
+<pre class="r"><code>#install.packages(&quot;ggplot2&quot;)
+#library(ggplot2)</code></pre>
+<p>There are many ways to make data visualizations in R; however, other
+approaches tend to be more automatic and consequently limit the amount
+you can change and adapt your visualization to your needs.
+<code>ggplot2</code> works in layers, allowing for maximum control and
+flexibility.</p>
+<p>Here are some of the most common layers (i.e., functions) used in
+<code>ggplot2</code>. Typically you connect these layers using the
+<code>+</code> symbol. There is often more than one way to build the
+same plot with the <code>ggplot</code> package.</p>
+<p><strong>- <code>ggplot()</code>:</strong> how you will start most
+plots you build in <code>ggplot2</code>. The rest of the information
+goes within this function.</p>
+<p><strong>- <code>aes()</code>:</strong> this is the aesthetic mapping
+function, in which you can control aesthetic components of the plot. You
+can add colors, axis labels, font sizes and more within this function.
+Color and shape can be defined both within and outside of the aesthetic
+function.</p>
+<p><strong>- <code>geom_point()</code>:</strong> used for making a
+scatter plot</p>
+<p><strong>- <code>geom_line()</code>:</strong> used for adding a line
+to a plot</p>
+<p><strong>- <code>geom_histogram()</code>:</strong> used for making a
+histogram</p>
+<p><strong>- <code>geom_col()</code>:</strong> used for making a bar
+plot</p>
+<p><strong>- <code>xlab</code>, <code>ylab</code>, and
+<code>labs(title = )</code>:</strong> used for adding axis labels and an
+overall title to plots</p>
+<p><strong>- <code>color</code>:</strong> assigns a color to part of the
+plot, such as different groups or the data points</p>
+<p><strong>- <code>fill</code>:</strong> assigns the interior color of
+part of the plot, such as a confidence band or the bars in bar plots</p>
+<p><strong>- <code>alpha</code>:</strong> used to change the
+transparency of a component of the plot. Useful if you lots of have
+overlapping data points or distributions from multiple groups.</p>
+<p><strong>- <code>size</code>:</strong> used to set the size of part of
+the plot, such as how big the data points or text should be</p>
+<p>There are many more data visualization options in <code>ggplot</code>
+but to get started today we are going to focus on making a bar plot
+(good for categorical data) and a scatter plot (good for continuous
+data).</p>
+</div>
+<div id="basic-bar-plot-counts" class="section level3">
+<h3>Basic Bar Plot: Counts</h3>
+<p>Let’s make our first plot in R! We are going to slowly add layers,
+building up to a box plot representing the number of people in each
+group in the <code>isFeelRushed</code> variable.</p>
+<p>First we create the blank plot on which we will add our data. We
+nearly always start with the function <code>ggplot</code> and then
+telling the function what dataset to use.</p>
+<pre class="r"><code>ggplot(js_data)</code></pre>
+<p><img src="Block5-2_ggplot_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>This creates our blank canvas.</p>
+<p>Next we tell ggplot what variable we want to use and put it in the
+<code>aes()</code> function. If you want a bar chart representing the
+number of people in each group, you can add just one variable to the
+<code>aes()</code> function. We include the <code>as.factor</code>
+function around the <code>isFeelRushed</code> variable so it is treated
+as a categorical variable for the box plot instead of a numeric
+variable.</p>
+<pre class="r"><code>ggplot(js_data, aes(x = as.factor(isFeelRushed)))</code></pre>
+<p><img src="Block5-2_ggplot_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>You now see that the grid represents a scale relevant to that
+variable.</p>
+<p>Next, we tell ggplot what type of data visualization we want. To
+create a bar chart we use the function <code>geom_bar()</code>. To see
+how many people are in each of the <code>isFeelRushed</code> groups, we
+use the default <code>geom_bar(stat = "count")</code>. Remember that we
+connect layers with a <code>+</code> symbol.</p>
+<pre class="r"><code>ggplot(js_data, aes(x = as.factor(isFeelRushed))) +
+  geom_bar(stat = &quot;count&quot;)</code></pre>
+<p><img src="Block5-2_ggplot_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>We’ve got a bar chart!</p>
+<p>Lastly, let’s add some labels to the x-axis and y-axis to make it
+clear what is being plotted.</p>
+<pre class="r"><code>ggplot(js_data, aes(x = as.factor(isFeelRushed))) +
+  geom_bar(stat = &quot;count&quot;) + 
+  xlab(&quot;Feeling Rushed&quot;) +
+  ylab (&quot;Number of Participants&quot;) </code></pre>
+<p><img src="Block5-2_ggplot_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="basic-bar-plot-group-means" class="section level3">
+<h3>Basic Bar Plot: Group Means</h3>
+<p>Building from yesterday, let’s see if people who feel rushed tend to
+work more than people who do not feel rushed. To represent the mean for
+each group or some other variable, you add both an x and a y variable to
+the <code>aes()</code> function and use the
+<code>geom_bar(stat = "summary")</code>. Note that the Y-axis scale has
+now adjusted to a scale that matches the variable we are using (i.e.,
+mean number of minutes spent working for each group).</p>
+<pre class="r"><code>ggplot(js_data, aes(x = as.factor(isFeelRushed), y = durWork)) +
+  geom_bar(stat = &quot;summary&quot;) + 
+  xlab(&quot;Feeling Rushed&quot;) +
+  ylab (&quot;Average Minutes Working&quot;) </code></pre>
+<p><img src="Block5-2_ggplot_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="walkthrough">
+<ul>
+<li>Most plots will start with the <code>ggplot()</code>function</li>
+<li>You have to include the object where <code>ggplot()</code> will get
+the information for the plot from. In this case, it’s our dataset
+<code>js_data</code></li>
+<li>Within the <code>aes()</code> function, we identify what the x and y
+variables are for this plot</li>
+<li>We add layers using the <code>+</code> sign</li>
+<li>Next we tell <code>ggplot()</code> what type of plot we are making;
+in this case we are creating a bar plot using the function
+<code>geom_bar()</code></li>
+<li>Then we add what type of statistic we want presented on the plot.
+Here we ask for the mean of each group for the variable durWork using
+the function <code>geom_bar(stat = "summary")</code></li>
+<li>We add a label to the x-axis with
+<code>lab("Feeling Rushed")</code></li>
+<li>We add the label to the y-axis with
+<code>ylab ("Time Working")</code></li>
+</ul>
+</div>
+</div>
+<div id="improved-box-plot" class="section level3">
+<h3>Improved Box Plot!</h3>
+<p>This plot gets the idea across, but we can add more layers and
+functions to make more adjustments. See the walkthrough below for how we
+made all these changes.</p>
+<pre class="r"><code>plotlabels &lt;- c(&quot;Not Rushed&quot;, &quot;Rushed&quot;, &quot;Did Not Respond&quot;)
+
+ggplot(js_data, aes(x = as.factor(isFeelRushed), y = durWork)) +
+  geom_bar(stat = &quot;summary&quot;, fill = &quot;#2D5E7F&quot;) + 
+  xlab(&quot;Feeling Rushed&quot;) +
+  ylab (&quot;Average Minutes Working&quot;) +
+  labs(title = &quot;Working and Feeling Rushed&quot;) +
+  scale_x_discrete(labels = plotlabels) +
+  theme(text = element_text(size = 18),
+        axis.text.x = element_text(angle = 25, hjust = 1))</code></pre>
+<p><img src="Block5-2_ggplot_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="walkthrough">
+<ul>
+<li>We can change the color of the bars using <code>fill =</code>. Here
+we added the specific color using a hex code. But you can also write in
+the names of colors such as “blue”.</li>
+<li>Using <code>labs(title = "")</code> we added an overall title to the
+plot</li>
+<li>We probably want to indicate what each category represents, rather
+than the “0”, “1” and “NA” labels. To add text labels, we first create
+an object with each of those labels in order
+(<code>plotlabels &lt;- c("Not Rushed", "Rushed", "Did Not Respond")</code>).
+Then in the <code>scale_x_discrete(labels = plotlabels)</code> function
+we call to that object we created as the labels for the x-axis. There
+are many other ways to adjust the labels for each axis, but this method
+works well for a small number of groups.</li>
+<li>In the <code>theme()</code> layer you can add many different
+specifications. Here we added
+<code>text = element_text(size = 18)</code> to make the text size bigger
+than the default and made the x-axis labels angled so they fit better
+using <code>axis.text.x = element_text(angle = 25, hjust = 1)</code>.
+The <code>hjust =</code> adjusts the vertical location of the axis
+labels so they don’t overlap with the plot itself. <code>vjust =</code>
+can be used to move the labels right and left.</li>
+</ul>
+</div>
+<div class="question">
+<p>Try manipulating this plot in some way. Can you change the color of
+the bars? What happens if you change <code>angle = 90</code>?</p>
+</div>
+</div>
+<div id="basic-scatter-plot" class="section level3">
+<h3>Basic Scatter Plot</h3>
+<p>Now let’s make a scatter plot to visualize two continuous variables.
+We are going to check if it looks like there is a correlation between
+how much time people work (durWork) and how much they sleep
+(durSleep).</p>
+<pre class="r"><code>ggplot(js_data, aes(durWork, durSleep)) +
+  geom_point() +
+  geom_smooth() +
+  xlab(&quot;Minutes Spent Working&quot;) +
+  ylab (&quot;Minutes Spent Sleeping&quot;)</code></pre>
+<p><img src="Block5-2_ggplot_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="walkthrough">
+<ul>
+<li>Again we start with the <code>ggplot()</code> function, including
+telling it to use the dataset <code>js_data</code></li>
+<li>In the <code>aes()</code> function we list the x and y variables
+(here durWork and durSleep)</li>
+<li>The <code>geom_point()</code> function is what makes a scatter
+plot</li>
+<li>The geom_smooth() is what adds the correlation line to the plot</li>
+<li>The <code>xlab()</code> and <code>ylab()</code> add the x-axis and
+y-axis labels to the plot</li>
+</ul>
+</div>
+</div>
+<div id="improved-scatter-plot" class="section level3">
+<h3>Improved Scatter Plot!</h3>
+<p>Now let’s add some layers and aesthetic adjustments to improve this
+plot.</p>
+<pre class="r"><code>ggplot(js_data, aes(durWork, durSleep)) +
+  geom_point(color = &quot;#2D5E7F&quot;, alpha = .2) +
+  geom_smooth(method = lm, color = &quot;black&quot;) +
+  xlab(&quot;Minutes Spent Working&quot;) +
+  ylab (&quot;Minutes Spent Sleeping&quot;) +
+  scale_x_continuous(breaks = seq(0, 1500, 250)) +
+  labs(title = &quot;Association Between Working and Sleeping&quot;) +
+  theme(text = element_text(size = 18))</code></pre>
+<p><img src="Block5-2_ggplot_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="walkthrough">
+<ul>
+<li>We can change the color of the data points by adding
+<code>color = "#2D5E7F"</code> and change the transparency of the data
+points (so you can see where there are overlapping clusters) with the
+addition of <code>alpha = .2</code>.</li>
+<li>In the <code>geom_smooth()</code> function we changed the method for
+calculating the line to be linear (instead of the ggplot default) using
+<code>method = lm</code> and adjusted the color of the line with
+<code>color =</code>. Remember that you can write hex code numbers or
+the names of colors to adjust colors. Make sure both are in quotes to
+avoid error messages.</li>
+<li>We adjust the x-axis tick marks with the
+<code>scale_x_continuous(breaks = seq(0, 1500, 250))</code> part, which
+tells R to plot the x-axis on a sequence from 0 to 1500 (this captures
+all of the responses in our data), with labels every 250 minutes.</li>
+<li>The
+<code>labs(title = "Association Between Working and Sleeping")</code>
+adds an overall title to the plot</li>
+<li>Lastly, <code>theme(text = element_text(size = 18))</code> adjust
+the text size</li>
+</ul>
+</div>
+<div class="question">
+<p>Try manipulating this plot in some way. Can you make the data points
+more and less transparent? Can you change the color of the line? What
+happens if the x-axis has labels every 100 minutes?</p>
+</div>
+</div>
+<div id="your-turn" class="section level3">
+<h3>Your Turn!</h3>
+<div class="question">
+<p>Take a look at our data set and make two new plots.</p>
+<ol style="list-style-type: decimal">
+<li><p>Make a plot comparing groups (i.e., a categorical variable) on
+one of the duration variables (i.e., a continuous variable).</p></li>
+<li><p>Make a plot comparing two continuous variables.</p></li>
+</ol>
+</div>
+<div class="question">
+<p><strong>Challenge:</strong> What is one component of your plot you
+would like to change? Can you look up a solution?</p>
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiVmlzdWFsaXphdGlvbiB3aXRoIGdncGxvdGxvdCIKcGFnZXRpdGxlOiAiVmlzdWFsaXphdGlvbiB3aXRoIGdncGxvdCIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICBjb2RlX2ZvbGRpbmc6IHNob3cgIyBhbGxvd3MgdG9nZ2xpbmcgb2Ygc2hvd2luZyBhbmQgaGlkaW5nIGNvZGUuIFJlbW92ZSBpZiBub3QgdXNpbmcgY29kZS4KICAgIGNvZGVfZG93bmxvYWQ6IHRydWUgIyBhbGxvd3MgdGhlIHVzZXIgdG8gZG93bmxvYWQgdGhlIHNvdXJjZSAuUm1kIGZpbGUuIFJlbW92ZSBpZiBub3QgdXNpbmcgY29kZS4KICAgIGluY2x1ZGVzOgogICAgICBhZnRlcl9ib2R5OiBmb290ZXIuaHRtbCAjIGluY2x1ZGUgYSBjdXN0b20gZm9vdGVyLgogICAgdG9jOiB0cnVlCiAgICB0b2NfZGVwdGg6IDMKICAgIHRvY19mbG9hdDoKICAgICAgY29sbGFwc2VkOiBmYWxzZQogICAgICBzbW9vdGhfc2Nyb2xsOiBmYWxzZQotLS0KCmBgYHtyLCBsaWJyYXJpZXMsIGluY2x1ZGUgPSBGQUxTRX0KbGlicmFyeShrYWJsZUV4dHJhKQpsaWJyYXJ5KGdncGxvdDIpCmxpYnJhcnkoZHBseXIpCmBgYAoKYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9CmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSwgbWVzc2FnZSA9IEZBTFNFLCB3YXJuaW5ncyA9IEZBTFNFKQpgYGAKCmBgYHtyLCBpbmNsdWRlID0gRkFMU0V9CmxvYWQoImRhdGEvdGltZXVzZV9kYXkzXzIuUkRhdGEiKQpgYGAKCiMjIyBWaXN1YWxpemF0aW9ucyB3aXRoIGdncGxvdDIKCk5vdyB0aGF0IHdlIGhhdmUgb3VyIGRhdGEgdmlzdWFsaXphdGlvbiBpbWFnaW5hdGlvbnMgZ29pbmcsIGxldCdzIGdldCBpbnRvIGhvdyB3ZSBjYW4gdmlzdWFsbHkgcmVwcmVzZW50IG91ciBkYXRhIGluIFIuCgpUaGUgZ28tdG8gcGFja2FnZSBmb3IgZGF0YSB2aXN1YWxpemF0aW9uIGluIFIgaXMgYGdncGxvdDJgLCB3aGljaCBpcyBwYXJ0IG9mIHRoZSB0aWR5dmVyc2UuIFlvdSBjYW4gZmluZCBtb3JlIGluZm9ybWF0aW9uIGFib3V0IGBnZ3Bsb3QyYCBvbiB0aGUgPGEgaHJlZj0iaHR0cHM6Ly9nZ3Bsb3QyLnRpZHl2ZXJzZS5vcmcvIj50aWR5dmVyc2Ugd2Vic2l0ZTwvYT4uCgpUaGlzIHBhY2thZ2UgYXBwcm9hY2hlcyBkYXRhIHZpc3VhbGl6YXRpb24gdGhyb3VnaCAiYSBncmFtbWFyIG9mIGdyYXBoaWNzLiIgSW4gb3RoZXIgd29yZHMsIHVzaW5nIHRoZSBzYW1lIHN5bnRheCwgeW91IGNhbiBjcmVhdGUgYW4gaW5maW5pdGUgbnVtYmVyIG9mIGRhdGEgdmlzdWFsaXphdGlvbnMuIEFsdGhvdWdoIHRoZXJlIGFyZSBhIGxvdCBvZiBmdW5jdGlvbnMgYW5kIGNvbXBvbmVudHMgdG8gbGVhcm4gYXQgZmlyc3QsIG9uY2UgeW91IHVuZGVyc3RhbmQgdGhlIG92ZXJhbGwgc3RydWN0dXJlIG9mIGJ1aWxkaW5nIGdyYXBoaWNzIGluIGBnZ3Bsb3QyYCwgeW91IGNhbiByZXBsaWNhdGUgYW5kIGV4cGFuZCBvbiB0aGlzIHN0cnVjdHVyZSB0byB2aXN1YWxpemUgZGF0YSBpbiBhbiB1bmxpbWl0ZWQgbnVtYmVyIG9mIHdheXMuIAoKSWYgeW91IGhhdmUgaW5zdGFsbGVkIHRoZSB0aWR5dmVyc2UsIHRoZW4gYGdncGxvdDJgIGlzIGluY2x1ZGVkLiBPdGhlcndpc2UgeW91IGNhbiBpbnN0YWxsIGl0IG5vdy4gTGV0J3MgYWxzbyBsb2FkIG91ciBkYXRhc2V0IGZvciB0b2RheS4KCmBgYHtyfQojaW5zdGFsbC5wYWNrYWdlcygiZ2dwbG90MiIpCiNsaWJyYXJ5KGdncGxvdDIpCmBgYAoKVGhlcmUgYXJlIG1hbnkgd2F5cyB0byBtYWtlIGRhdGEgdmlzdWFsaXphdGlvbnMgaW4gUjsgaG93ZXZlciwgb3RoZXIgYXBwcm9hY2hlcyB0ZW5kIHRvIGJlIG1vcmUgYXV0b21hdGljIGFuZCBjb25zZXF1ZW50bHkgbGltaXQgdGhlIGFtb3VudCB5b3UgY2FuIGNoYW5nZSBhbmQgYWRhcHQgeW91ciB2aXN1YWxpemF0aW9uIHRvIHlvdXIgbmVlZHMuIGBnZ3Bsb3QyYCB3b3JrcyBpbiBsYXllcnMsIGFsbG93aW5nIGZvciBtYXhpbXVtIGNvbnRyb2wgYW5kIGZsZXhpYmlsaXR5LiAKCkhlcmUgYXJlIHNvbWUgb2YgdGhlIG1vc3QgY29tbW9uIGxheWVycyAoaS5lLiwgZnVuY3Rpb25zKSB1c2VkIGluIGBnZ3Bsb3QyYC4gVHlwaWNhbGx5IHlvdSBjb25uZWN0IHRoZXNlIGxheWVycyB1c2luZyB0aGUgYCtgIHN5bWJvbC4gVGhlcmUgaXMgb2Z0ZW4gbW9yZSB0aGFuIG9uZSB3YXkgdG8gYnVpbGQgdGhlIHNhbWUgcGxvdCB3aXRoIHRoZSBgZ2dwbG90YCBwYWNrYWdlLiAKCioqLSBgZ2dwbG90KClgOioqIGhvdyB5b3Ugd2lsbCBzdGFydCBtb3N0IHBsb3RzIHlvdSBidWlsZCBpbiBgZ2dwbG90MmAuIFRoZSByZXN0IG9mIHRoZSBpbmZvcm1hdGlvbiBnb2VzIHdpdGhpbiB0aGlzIGZ1bmN0aW9uLgoKKiotIGBhZXMoKWA6KiogdGhpcyBpcyB0aGUgYWVzdGhldGljIG1hcHBpbmcgZnVuY3Rpb24sIGluIHdoaWNoIHlvdSBjYW4gY29udHJvbCBhZXN0aGV0aWMgY29tcG9uZW50cyBvZiB0aGUgcGxvdC4gWW91IGNhbiBhZGQgY29sb3JzLCBheGlzIGxhYmVscywgZm9udCBzaXplcyBhbmQgbW9yZSB3aXRoaW4gdGhpcyBmdW5jdGlvbi4gQ29sb3IgYW5kIHNoYXBlIGNhbiBiZSBkZWZpbmVkIGJvdGggd2l0aGluIGFuZCBvdXRzaWRlIG9mIHRoZSBhZXN0aGV0aWMgZnVuY3Rpb24uIAoKKiotIGBnZW9tX3BvaW50KClgOioqIHVzZWQgZm9yIG1ha2luZyBhIHNjYXR0ZXIgcGxvdAoKKiotIGBnZW9tX2xpbmUoKWA6KiogdXNlZCBmb3IgYWRkaW5nIGEgbGluZSB0byBhIHBsb3QKCioqLSBgZ2VvbV9oaXN0b2dyYW0oKWA6KiogdXNlZCBmb3IgbWFraW5nIGEgaGlzdG9ncmFtCgoqKi0gYGdlb21fY29sKClgOioqIHVzZWQgZm9yIG1ha2luZyBhIGJhciBwbG90CgoqKi0gYHhsYWJgLCBgeWxhYmAsIGFuZCBgbGFicyh0aXRsZSA9IClgOioqIHVzZWQgZm9yIGFkZGluZyBheGlzIGxhYmVscyBhbmQgYW4gb3ZlcmFsbCB0aXRsZSB0byBwbG90cwoKKiotIGBjb2xvcmA6KiogYXNzaWducyBhIGNvbG9yIHRvIHBhcnQgb2YgdGhlIHBsb3QsIHN1Y2ggYXMgZGlmZmVyZW50IGdyb3VwcyBvciB0aGUgZGF0YSBwb2ludHMKCioqLSBgZmlsbGA6KiogYXNzaWducyB0aGUgaW50ZXJpb3IgY29sb3Igb2YgcGFydCBvZiB0aGUgcGxvdCwgc3VjaCBhcyBhIGNvbmZpZGVuY2UgYmFuZCBvciB0aGUgYmFycyBpbiBiYXIgcGxvdHMKCioqLSBgYWxwaGFgOioqIHVzZWQgdG8gY2hhbmdlIHRoZSB0cmFuc3BhcmVuY3kgb2YgYSBjb21wb25lbnQgb2YgdGhlIHBsb3QuIFVzZWZ1bCBpZiB5b3UgbG90cyBvZiBoYXZlIG92ZXJsYXBwaW5nIGRhdGEgcG9pbnRzIG9yIGRpc3RyaWJ1dGlvbnMgZnJvbSBtdWx0aXBsZSBncm91cHMuIAoKKiotIGBzaXplYDoqKiB1c2VkIHRvIHNldCB0aGUgc2l6ZSBvZiBwYXJ0IG9mIHRoZSBwbG90LCBzdWNoIGFzIGhvdyBiaWcgdGhlIGRhdGEgcG9pbnRzIG9yIHRleHQgc2hvdWxkIGJlCgpUaGVyZSBhcmUgbWFueSBtb3JlIGRhdGEgdmlzdWFsaXphdGlvbiBvcHRpb25zIGluIGBnZ3Bsb3RgIGJ1dCB0byBnZXQgc3RhcnRlZCB0b2RheSB3ZSBhcmUgZ29pbmcgdG8gZm9jdXMgb24gbWFraW5nIGEgYmFyIHBsb3QgKGdvb2QgZm9yIGNhdGVnb3JpY2FsIGRhdGEpIGFuZCBhIHNjYXR0ZXIgcGxvdCAoZ29vZCBmb3IgY29udGludW91cyBkYXRhKS4gCgojIyMgQmFzaWMgQmFyIFBsb3Q6IENvdW50cwpMZXQncyBtYWtlIG91ciBmaXJzdCBwbG90IGluIFIhIFdlIGFyZSBnb2luZyB0byBzbG93bHkgYWRkIGxheWVycywgYnVpbGRpbmcgdXAgdG8gYSBib3ggcGxvdCByZXByZXNlbnRpbmcgdGhlIG51bWJlciBvZiBwZW9wbGUgaW4gZWFjaCBncm91cCBpbiB0aGUgYGlzRmVlbFJ1c2hlZGAgdmFyaWFibGUuIAoKRmlyc3Qgd2UgY3JlYXRlIHRoZSBibGFuayBwbG90IG9uIHdoaWNoIHdlIHdpbGwgYWRkIG91ciBkYXRhLiBXZSBuZWFybHkgYWx3YXlzIHN0YXJ0IHdpdGggdGhlIGZ1bmN0aW9uIGBnZ3Bsb3RgIGFuZCB0aGVuIHRlbGxpbmcgdGhlIGZ1bmN0aW9uIHdoYXQgZGF0YXNldCB0byB1c2UuIAoKYGBge3J9CmdncGxvdChqc19kYXRhKQpgYGAKClRoaXMgY3JlYXRlcyBvdXIgYmxhbmsgY2FudmFzLgoKTmV4dCB3ZSB0ZWxsIGdncGxvdCB3aGF0IHZhcmlhYmxlIHdlIHdhbnQgdG8gdXNlIGFuZCBwdXQgaXQgaW4gdGhlIGBhZXMoKWAgZnVuY3Rpb24uIElmIHlvdSB3YW50IGEgYmFyIGNoYXJ0IHJlcHJlc2VudGluZyB0aGUgbnVtYmVyIG9mIHBlb3BsZSBpbiBlYWNoIGdyb3VwLCB5b3UgY2FuIGFkZCBqdXN0IG9uZSB2YXJpYWJsZSB0byB0aGUgYGFlcygpYCBmdW5jdGlvbi4gV2UgaW5jbHVkZSB0aGUgYGFzLmZhY3RvcmAgZnVuY3Rpb24gYXJvdW5kIHRoZSBgaXNGZWVsUnVzaGVkYCB2YXJpYWJsZSBzbyBpdCBpcyB0cmVhdGVkIGFzIGEgY2F0ZWdvcmljYWwgdmFyaWFibGUgZm9yIHRoZSBib3ggcGxvdCBpbnN0ZWFkIG9mIGEgbnVtZXJpYyB2YXJpYWJsZS4gCgpgYGB7cn0KZ2dwbG90KGpzX2RhdGEsIGFlcyh4ID0gYXMuZmFjdG9yKGlzRmVlbFJ1c2hlZCkpKQpgYGAKCllvdSBub3cgc2VlIHRoYXQgdGhlIGdyaWQgcmVwcmVzZW50cyBhIHNjYWxlIHJlbGV2YW50IHRvIHRoYXQgdmFyaWFibGUuIAoKTmV4dCwgd2UgdGVsbCBnZ3Bsb3Qgd2hhdCB0eXBlIG9mIGRhdGEgdmlzdWFsaXphdGlvbiB3ZSB3YW50LiBUbyBjcmVhdGUgYSBiYXIgY2hhcnQgd2UgdXNlIHRoZSBmdW5jdGlvbiBgZ2VvbV9iYXIoKWAuIFRvIHNlZSBob3cgbWFueSBwZW9wbGUgYXJlIGluIGVhY2ggb2YgdGhlIGBpc0ZlZWxSdXNoZWRgIGdyb3Vwcywgd2UgdXNlIHRoZSBkZWZhdWx0IGBnZW9tX2JhcihzdGF0ID0gImNvdW50IilgLiBSZW1lbWJlciB0aGF0IHdlIGNvbm5lY3QgbGF5ZXJzIHdpdGggYSBgK2Agc3ltYm9sLiAKCmBgYHtyfQpnZ3Bsb3QoanNfZGF0YSwgYWVzKHggPSBhcy5mYWN0b3IoaXNGZWVsUnVzaGVkKSkpICsKICBnZW9tX2JhcihzdGF0ID0gImNvdW50IikKYGBgCgpXZSd2ZSBnb3QgYSBiYXIgY2hhcnQhCgpMYXN0bHksIGxldCdzIGFkZCBzb21lIGxhYmVscyB0byB0aGUgeC1heGlzIGFuZCB5LWF4aXMgdG8gbWFrZSBpdCBjbGVhciB3aGF0IGlzIGJlaW5nIHBsb3R0ZWQuIAoKYGBge3J9CmdncGxvdChqc19kYXRhLCBhZXMoeCA9IGFzLmZhY3Rvcihpc0ZlZWxSdXNoZWQpKSkgKwogIGdlb21fYmFyKHN0YXQgPSAiY291bnQiKSArIAogIHhsYWIoIkZlZWxpbmcgUnVzaGVkIikgKwogIHlsYWIgKCJOdW1iZXIgb2YgUGFydGljaXBhbnRzIikgCmBgYAoKIyMjIEJhc2ljIEJhciBQbG90OiBHcm91cCBNZWFucwoKQnVpbGRpbmcgZnJvbSB5ZXN0ZXJkYXksIGxldCdzIHNlZSBpZiBwZW9wbGUgd2hvIGZlZWwgcnVzaGVkIHRlbmQgdG8gd29yayBtb3JlIHRoYW4gcGVvcGxlIHdobyBkbyBub3QgZmVlbCBydXNoZWQuIFRvIHJlcHJlc2VudCB0aGUgbWVhbiBmb3IgZWFjaCBncm91cCBvciBzb21lIG90aGVyIHZhcmlhYmxlLCB5b3UgYWRkIGJvdGggYW4geCBhbmQgYSB5IHZhcmlhYmxlIHRvIHRoZSBgYWVzKClgIGZ1bmN0aW9uIGFuZCB1c2UgdGhlIGBnZW9tX2JhcihzdGF0ID0gInN1bW1hcnkiKWAuIE5vdGUgdGhhdCB0aGUgWS1heGlzIHNjYWxlIGhhcyBub3cgYWRqdXN0ZWQgdG8gYSBzY2FsZSB0aGF0IG1hdGNoZXMgdGhlIHZhcmlhYmxlIHdlIGFyZSB1c2luZyAoaS5lLiwgbWVhbiBudW1iZXIgb2YgbWludXRlcyBzcGVudCB3b3JraW5nIGZvciBlYWNoIGdyb3VwKS4gCgpgYGB7cn0KZ2dwbG90KGpzX2RhdGEsIGFlcyh4ID0gYXMuZmFjdG9yKGlzRmVlbFJ1c2hlZCksIHkgPSBkdXJXb3JrKSkgKwogIGdlb21fYmFyKHN0YXQgPSAic3VtbWFyeSIpICsgCiAgeGxhYigiRmVlbGluZyBSdXNoZWQiKSArCiAgeWxhYiAoIkF2ZXJhZ2UgTWludXRlcyBXb3JraW5nIikgCmBgYAoKOjo6d2Fsa3Rocm91Z2gKICAtIE1vc3QgcGxvdHMgd2lsbCBzdGFydCB3aXRoIHRoZSBgZ2dwbG90KClgZnVuY3Rpb24KICAtIFlvdSBoYXZlIHRvIGluY2x1ZGUgdGhlIG9iamVjdCB3aGVyZSBgZ2dwbG90KClgIHdpbGwgZ2V0IHRoZSBpbmZvcm1hdGlvbiBmb3IgdGhlIHBsb3QgZnJvbS4gSW4gdGhpcyBjYXNlLCBpdCdzIG91ciBkYXRhc2V0IGBqc19kYXRhYAogIC0gV2l0aGluIHRoZSBgYWVzKClgIGZ1bmN0aW9uLCB3ZSBpZGVudGlmeSB3aGF0IHRoZSB4IGFuZCB5IHZhcmlhYmxlcyBhcmUgZm9yIHRoaXMgcGxvdAogIC0gV2UgYWRkIGxheWVycyB1c2luZyB0aGUgYCtgIHNpZ24KICAtIE5leHQgd2UgdGVsbCBgZ2dwbG90KClgIHdoYXQgdHlwZSBvZiBwbG90IHdlIGFyZSBtYWtpbmc7IGluIHRoaXMgY2FzZSB3ZSBhcmUgY3JlYXRpbmcgYSBiYXIgcGxvdCB1c2luZyB0aGUgZnVuY3Rpb24gYGdlb21fYmFyKClgCiAgLSBUaGVuIHdlIGFkZCB3aGF0IHR5cGUgb2Ygc3RhdGlzdGljIHdlIHdhbnQgcHJlc2VudGVkIG9uIHRoZSBwbG90LiBIZXJlIHdlIGFzayBmb3IgdGhlIG1lYW4gb2YgZWFjaCBncm91cCBmb3IgdGhlIHZhcmlhYmxlIGR1cldvcmsgdXNpbmcgdGhlIGZ1bmN0aW9uIGBnZW9tX2JhcihzdGF0ID0gInN1bW1hcnkiKWAKICAtIFdlIGFkZCBhIGxhYmVsIHRvIHRoZSB4LWF4aXMgd2l0aCBgbGFiKCJGZWVsaW5nIFJ1c2hlZCIpYAogIC0gV2UgYWRkIHRoZSBsYWJlbCB0byB0aGUgeS1heGlzIHdpdGggYHlsYWIgKCJUaW1lIFdvcmtpbmciKWAKICAKOjo6CgojIyMgSW1wcm92ZWQgQm94IFBsb3QhIApUaGlzIHBsb3QgZ2V0cyB0aGUgaWRlYSBhY3Jvc3MsIGJ1dCB3ZSBjYW4gYWRkIG1vcmUgbGF5ZXJzIGFuZCBmdW5jdGlvbnMgdG8gbWFrZSBtb3JlIGFkanVzdG1lbnRzLiBTZWUgdGhlIHdhbGt0aHJvdWdoIGJlbG93IGZvciBob3cgd2UgbWFkZSBhbGwgdGhlc2UgY2hhbmdlcy4KCmBgYHtyfQoKcGxvdGxhYmVscyA8LSBjKCJOb3QgUnVzaGVkIiwgIlJ1c2hlZCIsICJEaWQgTm90IFJlc3BvbmQiKQoKZ2dwbG90KGpzX2RhdGEsIGFlcyh4ID0gYXMuZmFjdG9yKGlzRmVlbFJ1c2hlZCksIHkgPSBkdXJXb3JrKSkgKwogIGdlb21fYmFyKHN0YXQgPSAic3VtbWFyeSIsIGZpbGwgPSAiIzJENUU3RiIpICsgCiAgeGxhYigiRmVlbGluZyBSdXNoZWQiKSArCiAgeWxhYiAoIkF2ZXJhZ2UgTWludXRlcyBXb3JraW5nIikgKwogIGxhYnModGl0bGUgPSAiV29ya2luZyBhbmQgRmVlbGluZyBSdXNoZWQiKSArCiAgc2NhbGVfeF9kaXNjcmV0ZShsYWJlbHMgPSBwbG90bGFiZWxzKSArCiAgdGhlbWUodGV4dCA9IGVsZW1lbnRfdGV4dChzaXplID0gMTgpLAogICAgICAgIGF4aXMudGV4dC54ID0gZWxlbWVudF90ZXh0KGFuZ2xlID0gMjUsIGhqdXN0ID0gMSkpCiAgCmBgYAoKOjo6d2Fsa3Rocm91Z2gKICAtIFdlIGNhbiBjaGFuZ2UgdGhlIGNvbG9yIG9mIHRoZSBiYXJzIHVzaW5nIGBmaWxsID0gYC4gSGVyZSB3ZSBhZGRlZCB0aGUgc3BlY2lmaWMgY29sb3IgdXNpbmcgYSBoZXggY29kZS4gQnV0IHlvdSBjYW4gYWxzbyB3cml0ZSBpbiB0aGUgbmFtZXMgb2YgY29sb3JzIHN1Y2ggYXMgImJsdWUiLgogIC0gVXNpbmcgYGxhYnModGl0bGUgPSAiIilgIHdlIGFkZGVkIGFuIG92ZXJhbGwgdGl0bGUgdG8gdGhlIHBsb3QKICAtIFdlIHByb2JhYmx5IHdhbnQgdG8gaW5kaWNhdGUgd2hhdCBlYWNoIGNhdGVnb3J5IHJlcHJlc2VudHMsIHJhdGhlciB0aGFuIHRoZSAiMCIsICIxIiBhbmQgIk5BIiBsYWJlbHMuIFRvIGFkZCB0ZXh0IGxhYmVscywgd2UgZmlyc3QgY3JlYXRlIGFuIG9iamVjdCB3aXRoIGVhY2ggb2YgdGhvc2UgbGFiZWxzIGluIG9yZGVyIChgcGxvdGxhYmVscyA8LSBjKCJOb3QgUnVzaGVkIiwgIlJ1c2hlZCIsICJEaWQgTm90IFJlc3BvbmQiKWApLiBUaGVuIGluIHRoZSBgc2NhbGVfeF9kaXNjcmV0ZShsYWJlbHMgPSBwbG90bGFiZWxzKWAgZnVuY3Rpb24gd2UgY2FsbCB0byB0aGF0IG9iamVjdCB3ZSBjcmVhdGVkIGFzIHRoZSBsYWJlbHMgZm9yIHRoZSB4LWF4aXMuIFRoZXJlIGFyZSBtYW55IG90aGVyIHdheXMgdG8gYWRqdXN0IHRoZSBsYWJlbHMgZm9yIGVhY2ggYXhpcywgYnV0IHRoaXMgbWV0aG9kIHdvcmtzIHdlbGwgZm9yIGEgc21hbGwgbnVtYmVyIG9mIGdyb3Vwcy4KICAtIEluIHRoZSBgdGhlbWUoKWAgbGF5ZXIgeW91IGNhbiBhZGQgbWFueSBkaWZmZXJlbnQgc3BlY2lmaWNhdGlvbnMuIEhlcmUgd2UgYWRkZWQgYHRleHQgPSBlbGVtZW50X3RleHQoc2l6ZSA9IDE4KWAgdG8gbWFrZSB0aGUgdGV4dCBzaXplIGJpZ2dlciB0aGFuIHRoZSBkZWZhdWx0IGFuZCBtYWRlIHRoZSB4LWF4aXMgbGFiZWxzIGFuZ2xlZCBzbyB0aGV5IGZpdCBiZXR0ZXIgdXNpbmcgYGF4aXMudGV4dC54ID0gZWxlbWVudF90ZXh0KGFuZ2xlID0gMjUsIGhqdXN0ID0gMSlgLiBUaGUgYGhqdXN0ID0gYCBhZGp1c3RzIHRoZSB2ZXJ0aWNhbCBsb2NhdGlvbiBvZiB0aGUgYXhpcyBsYWJlbHMgc28gdGhleSBkb24ndCBvdmVybGFwIHdpdGggdGhlIHBsb3QgaXRzZWxmLiBgdmp1c3QgPSBgIGNhbiBiZSB1c2VkIHRvIG1vdmUgdGhlIGxhYmVscyByaWdodCBhbmQgbGVmdC4gCiAgCjo6OgoKOjo6cXVlc3Rpb24KVHJ5IG1hbmlwdWxhdGluZyB0aGlzIHBsb3QgaW4gc29tZSB3YXkuIENhbiB5b3UgY2hhbmdlIHRoZSBjb2xvciBvZiB0aGUgYmFycz8gV2hhdCBoYXBwZW5zIGlmIHlvdSBjaGFuZ2UgYGFuZ2xlID0gOTBgPwo6OjoKCiMjIyBCYXNpYyBTY2F0dGVyIFBsb3QKTm93IGxldCdzIG1ha2UgYSBzY2F0dGVyIHBsb3QgdG8gdmlzdWFsaXplIHR3byBjb250aW51b3VzIHZhcmlhYmxlcy4gV2UgYXJlIGdvaW5nIHRvIGNoZWNrIGlmIGl0IGxvb2tzIGxpa2UgdGhlcmUgaXMgYSBjb3JyZWxhdGlvbiBiZXR3ZWVuIGhvdyBtdWNoIHRpbWUgcGVvcGxlIHdvcmsgKGR1cldvcmspIGFuZCBob3cgbXVjaCB0aGV5IHNsZWVwIChkdXJTbGVlcCkuCgpgYGB7cn0KZ2dwbG90KGpzX2RhdGEsIGFlcyhkdXJXb3JrLCBkdXJTbGVlcCkpICsKICBnZW9tX3BvaW50KCkgKwogIGdlb21fc21vb3RoKCkgKwogIHhsYWIoIk1pbnV0ZXMgU3BlbnQgV29ya2luZyIpICsKICB5bGFiICgiTWludXRlcyBTcGVudCBTbGVlcGluZyIpCiAgICAgIApgYGAKCjo6OndhbGt0aHJvdWdoCiAgLSBBZ2FpbiB3ZSBzdGFydCB3aXRoIHRoZSBgZ2dwbG90KClgIGZ1bmN0aW9uLCBpbmNsdWRpbmcgdGVsbGluZyBpdCB0byB1c2UgdGhlIGRhdGFzZXQgYGpzX2RhdGFgCiAgLSBJbiB0aGUgYGFlcygpYCBmdW5jdGlvbiB3ZSBsaXN0IHRoZSB4IGFuZCB5IHZhcmlhYmxlcyAoaGVyZSBkdXJXb3JrIGFuZCBkdXJTbGVlcCkKICAtIFRoZSBgZ2VvbV9wb2ludCgpYCBmdW5jdGlvbiBpcyB3aGF0IG1ha2VzIGEgc2NhdHRlciBwbG90CiAgLSBUaGUgZ2VvbV9zbW9vdGgoKSBpcyB3aGF0IGFkZHMgdGhlIGNvcnJlbGF0aW9uIGxpbmUgdG8gdGhlIHBsb3QKICAtIFRoZSBgeGxhYigpYCBhbmQgYHlsYWIoKWAgYWRkIHRoZSB4LWF4aXMgYW5kIHktYXhpcyBsYWJlbHMgdG8gdGhlIHBsb3QKICAKOjo6CiMjIyBJbXByb3ZlZCBTY2F0dGVyIFBsb3QhCgpOb3cgbGV0J3MgYWRkIHNvbWUgbGF5ZXJzIGFuZCBhZXN0aGV0aWMgYWRqdXN0bWVudHMgdG8gaW1wcm92ZSB0aGlzIHBsb3QuCgpgYGB7cn0KZ2dwbG90KGpzX2RhdGEsIGFlcyhkdXJXb3JrLCBkdXJTbGVlcCkpICsKICBnZW9tX3BvaW50KGNvbG9yID0gIiMyRDVFN0YiLCBhbHBoYSA9IC4yKSArCiAgZ2VvbV9zbW9vdGgobWV0aG9kID0gbG0sIGNvbG9yID0gImJsYWNrIikgKwogIHhsYWIoIk1pbnV0ZXMgU3BlbnQgV29ya2luZyIpICsKICB5bGFiICgiTWludXRlcyBTcGVudCBTbGVlcGluZyIpICsKICBzY2FsZV94X2NvbnRpbnVvdXMoYnJlYWtzID0gc2VxKDAsIDE1MDAsIDI1MCkpICsKICBsYWJzKHRpdGxlID0gIkFzc29jaWF0aW9uIEJldHdlZW4gV29ya2luZyBhbmQgU2xlZXBpbmciKSArCiAgdGhlbWUodGV4dCA9IGVsZW1lbnRfdGV4dChzaXplID0gMTgpKQpgYGAKCjo6OndhbGt0aHJvdWdoCiAgLSBXZSBjYW4gY2hhbmdlIHRoZSBjb2xvciBvZiB0aGUgZGF0YSBwb2ludHMgYnkgYWRkaW5nIGBjb2xvciA9ICIjMkQ1RTdGImAgYW5kIGNoYW5nZSB0aGUgdHJhbnNwYXJlbmN5IG9mIHRoZSBkYXRhIHBvaW50cyAoc28geW91IGNhbiBzZWUgd2hlcmUgdGhlcmUgYXJlIG92ZXJsYXBwaW5nIGNsdXN0ZXJzKSB3aXRoIHRoZSBhZGRpdGlvbiBvZiBgYWxwaGEgPSAuMmAuIAogIC0gSW4gdGhlIGBnZW9tX3Ntb290aCgpYCBmdW5jdGlvbiB3ZSBjaGFuZ2VkIHRoZSBtZXRob2QgZm9yIGNhbGN1bGF0aW5nIHRoZSBsaW5lIHRvIGJlIGxpbmVhciAoaW5zdGVhZCBvZiB0aGUgZ2dwbG90IGRlZmF1bHQpIHVzaW5nIGBtZXRob2QgPSBsbWAgYW5kIGFkanVzdGVkIHRoZSBjb2xvciBvZiB0aGUgbGluZSB3aXRoIGBjb2xvciA9IGAuIFJlbWVtYmVyIHRoYXQgeW91IGNhbiB3cml0ZSBoZXggY29kZSBudW1iZXJzIG9yIHRoZSBuYW1lcyBvZiBjb2xvcnMgdG8gYWRqdXN0IGNvbG9ycy4gTWFrZSBzdXJlIGJvdGggYXJlIGluIHF1b3RlcyB0byBhdm9pZCBlcnJvciBtZXNzYWdlcy4gCiAgLSBXZSBhZGp1c3QgdGhlIHgtYXhpcyB0aWNrIG1hcmtzIHdpdGggdGhlIGBzY2FsZV94X2NvbnRpbnVvdXMoYnJlYWtzID0gc2VxKDAsIDE1MDAsIDI1MCkpYCBwYXJ0LCB3aGljaCB0ZWxscyBSIHRvIHBsb3QgdGhlIHgtYXhpcyBvbiBhIHNlcXVlbmNlIGZyb20gMCB0byAxNTAwICh0aGlzIGNhcHR1cmVzIGFsbCBvZiB0aGUgcmVzcG9uc2VzIGluIG91ciBkYXRhKSwgd2l0aCBsYWJlbHMgZXZlcnkgMjUwIG1pbnV0ZXMuIAogIC0gVGhlIGBsYWJzKHRpdGxlID0gIkFzc29jaWF0aW9uIEJldHdlZW4gV29ya2luZyBhbmQgU2xlZXBpbmciKWAgYWRkcyBhbiBvdmVyYWxsIHRpdGxlIHRvIHRoZSBwbG90CiAgLSBMYXN0bHksIGB0aGVtZSh0ZXh0ID0gZWxlbWVudF90ZXh0KHNpemUgPSAxOCkpYCBhZGp1c3QgdGhlIHRleHQgc2l6ZQogIAo6OjoKCjo6OnF1ZXN0aW9uClRyeSBtYW5pcHVsYXRpbmcgdGhpcyBwbG90IGluIHNvbWUgd2F5LiBDYW4geW91IG1ha2UgdGhlIGRhdGEgcG9pbnRzIG1vcmUgYW5kIGxlc3MgdHJhbnNwYXJlbnQ/IENhbiB5b3UgY2hhbmdlIHRoZSBjb2xvciBvZiB0aGUgbGluZT8gV2hhdCBoYXBwZW5zIGlmIHRoZSB4LWF4aXMgaGFzIGxhYmVscyBldmVyeSAxMDAgbWludXRlcz8KOjo6CgojIyMgWW91ciBUdXJuIQo6OjogcXVlc3Rpb24KVGFrZSBhIGxvb2sgYXQgb3VyIGRhdGEgc2V0IGFuZCBtYWtlIHR3byBuZXcgcGxvdHMuIAoKMS4gTWFrZSBhIHBsb3QgY29tcGFyaW5nIGdyb3VwcyAoaS5lLiwgYSBjYXRlZ29yaWNhbCB2YXJpYWJsZSkgb24gb25lIG9mIHRoZSBkdXJhdGlvbiB2YXJpYWJsZXMgKGkuZS4sIGEgY29udGludW91cyB2YXJpYWJsZSkuCgoyLiBNYWtlIGEgcGxvdCBjb21wYXJpbmcgdHdvIGNvbnRpbnVvdXMgdmFyaWFibGVzLiAKOjo6Cgo6OjogcXVlc3Rpb24KCioqQ2hhbGxlbmdlOioqIFdoYXQgaXMgb25lIGNvbXBvbmVudCBvZiB5b3VyIHBsb3QgeW91IHdvdWxkIGxpa2UgdG8gY2hhbmdlPyBDYW4geW91IGxvb2sgdXAgYSBzb2x1dGlvbj8gCjo6OgoK</div>
+<div id="footer">
+    <hr />
+    <div class = "inst-logos">
+      <img src="images/institutions/carleton.png" />
+      <img src="images/institutions/calgary.png" />
+      <img src="images/institutions/ubc.png" />
+      <img class="uvic"  src="images/institutions/uvic.png" />
+    </div>
+
+<br>
+    <div>
+      <img class = "cc-licence" src="images/institutions/CC-License.png" />
+      <p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc/4.0/" target ="blank">Creative Commons Attribution-NonCommercial 4.0 International License</p>
+</div>
+<br>
+Built and rendered courtesy of <a href="https://rmarkdown.rstudio.com/index.html" target ="blank">RMarkdown from RStudio</a></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("Block5-2_ggplot.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = false;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
