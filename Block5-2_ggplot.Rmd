@@ -71,6 +71,7 @@ Here are some of the most common layers (i.e., functions) used in `ggplot2`. Typ
 
 There are many more data visualization options in `ggplot` but to get started today we are going to focus on making a bar plot (good for categorical data) and a scatter plot (good for continuous data). 
 
+
 ### Basic Bar Plot: Counts
 Let's make our first plot in R! We are going to slowly add layers, building up to a box plot representing the number of people in each group in the `isFeelRushed` variable. 
 
@@ -222,4 +223,51 @@ Take a look at our data set and make two new plots.
 
 **Challenge:** What is one component of your plot you would like to change? Can you look up a solution? 
 :::
+
+:::question
+See if you can recreate the plot below.  
+<br>
+**Hint:** To remove `NA` values from the plot, you will need to use both the `na.omit` and the `na.rm = TRUE` commands.
+
+
+```{r echo=FALSE, fig.align='center'}
+knitr::include_graphics("images/block5-2_time-alone.png")
+```
+
+```{r class.source = 'fold-hide', results = 'hide'}
+time_alone_plot <- ggplot(na.omit(js_data), aes(x = factor(timeWantAlone), y = durAlone)) +
+  geom_boxplot(fill = "blue", na.rm = TRUE) +
+  scale_x_discrete(labels = c(
+    "1" = "Would like more time alone",
+    "2" = "Do not want more time alone"
+  )) +
+  labs(
+    title = "Distribution of Time Spent Alone by Desire to Be Alone",
+    x = "Desire to Spend Time Alone",
+    y = "Duration Spent Alone - Minutes"
+  )
+```
+
+:::
+
+:::question
+See if you can recreate the plot below.
+<br>
+**Hint:** This type of chart is called a "proportional bar chart", and search engines are your best friend!
+
+```{r echo=FALSE, fig.align='center'}
+knitr::include_graphics("images/block5-2_prov-edu.png")
+```
+
+```{r class.source = 'fold-hide', results = 'hide'}
+prov_edu_plot <- ggplot(js_data, aes(x = province_fact, fill = eduLevel_fact)) +
+  geom_bar(position = "fill") +
+  labs(
+    title = "Proportion of Education Levels by Province",
+    x = "Province",
+    y = "Proportion",
+    fill = "Education Level"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
 

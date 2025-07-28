@@ -53,6 +53,16 @@ As mentioned in the session **"Reproducible Research: Moving From Excel to Scrip
 
 Let's take a closer look!  [Tidyverse](https://www.tidyverse.org/packages/)
 
+<br>
+
+## Let's get started!
+
+First, let's create a new R script.
+
+To create an R script file, select File > New File > R Script
+
+![](images/block3_create-r-script.gif)
+
 
 ### Install Package
 To install a package we use the function `install.packages()`. 
@@ -90,7 +100,7 @@ In order to start working with a dataset in R, we first need to import, or "read
 ### Read a csv file
 To import a csv file we can use the `read_csv()` function and assign it to a new object we will call *js_data*. We create a new object to be able to call it in different functions later on.
 ```{r}
-js_data <- read_csv("data/timeuse_day1_na.csv")
+js_data <- read_csv("data/timeuse_block-4-first-steps.csv")
 ```
 
 ### Read Other Formats
@@ -219,9 +229,39 @@ js_data <- js_data |>
 
 :::
 
+## Save Your Work
 
 
+Now that we've created a dataset that has some significant changes, it can be helpful to save this as a version that we can easily return to.  Much like we did with reading `.csv` data into R, there is a similar command to save, or "write" `.csv` data back to your computer called `write_csv()`.  The syntax is as follows:
 
+`write_csv(data-object-name, file="file-path/datafile-name.csv")`
+
+The file name below is for example purposes, and feel free to use a file naming convention that you developed:
+
+```{r}
+write_csv(js_data, file="data/timeuse_clean-cols.csv")
+```
+
+<br>
+
+An additional way to save data files in R is as an `.Rdata` file.  Unlike a simple `.csv` file, `.RData` files are designed to store R objects and your entire R workspace, while maintain their data types and structures (covered in the next session!).  This allows you to return to your R environment exactly as you left it when you reload the file, and allows others opening your files to have that environment as well, acting as a great way to faciliate reproducibility.
+
+The syntax is similar is the same as `write_csv`, but uses the function `save()`:
+
+```{r}
+save(js_data, file="data/timeuse_clean-cols.RData")
+```
+
+<br>
+
+:::note
+When opening an `.RData` file, instead of using `read_csv()`, you use the `load()` command.  The syntax is the same, and to reopen the file you just saved would look like this:
+```{r, eval = FALSE}
+`load("data/timeuse_clean-cols.RData")`
+```
+
+
+:::
 
 
 

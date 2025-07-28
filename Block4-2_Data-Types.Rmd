@@ -132,11 +132,10 @@ Let's explore the data types in our data using the `dplyr` functions!
 
 First we load  the `dplyr` package (remember to install it first if you haven't yet). Y If you have installed the `tidyverse` package, then `dplyr` was also included. However, it is best practice to just load in the libraries you need (i.e., just `dplyr` and not all of the tidyverse packages) to save space.
 
-We will also load in our data. Yesterday we used the `read_csv` function to read in the csv file, but now we are working with an Rdata file we saved yesterday, so we can use the `load` function. 
 
 ```{r, message = FALSE}
 library(dplyr)
-load("data/timeuse_day2.Rdata")
+load("data/timeuse_clean-cols.RData")
 ```
 
 Just to reacquaint ourselves with our data, use the `head` function to peak at the first 6 rows of our data. 
@@ -176,7 +175,10 @@ However, maybe we would prefer to have province acronyms (i.e., factor format) r
 
 <br>
 
-![](./images/Block4-2_Dictionary.pdf){width=95%}
+```{r, echo=FALSE, out.width="95%", out.height="500in"}
+    knitr::include_graphics("images/Block4-2_Dictionary.pdf")
+```
+
 
 <br>
 
@@ -280,7 +282,9 @@ class(js_data$maritalStat)
 
 For these next questions, you will need to take another look at the data dictionary:
 
-![](./images/Block4-2_Dictionary.pdf){width=95%}
+```{r, echo=FALSE, out.width="95%", out.height="500in"}
+    knitr::include_graphics("images/Block4-2_Dictionary.pdf")
+```
 
 <br>
 
@@ -328,16 +332,31 @@ Saving in R format (RData) will preserve data types and metadata assigned to the
 The text format (csv) will be the ideal format to share the data.
 
 ```{r}
-save(js_data, file="data/timeuse_day2.RData")
+save(js_data, file="data/timeuse_clean-cols_recoded.RData")
 ```
 
 
 ```{r}
-write_csv(js_data, file="data/timeuse_day2.csv")
+write_csv(js_data, file="data/timeuse_clean-cols_recoded.csv")
 ```
 
 ## Upload to OSF
 
-At the end of each work session, remember to save your data as .RData and .csv, and also your RMarkdown file (.Rmd). We will upload those files to OSF.
+Remember to save your data as .RData and .csv, and also your R script (.R). We will upload those files to OSF.
 
 ![](images/osf/osfUpload.gif)
+
+:::note
+If you're interested in taking your R skills further, checkout this session on [R: Filter and Select](https://alliance-rdm-gdr.github.io/rdm-jumpstart/3-ACT-3-FilterSelect.html) to see how you can start drilling down into the data and starting to ask questions from  it.  You will be able to star the **Filter and Select** session with the dataset you generated in this session
+:::
+
+
+
+
+
+
+
+
+
+
+

@@ -378,11 +378,15 @@ Now that we've established some best practices in literate programming, go throu
 
 You can save your script by selecting `file > save` or by clicking the flopping disk icon in the top navigation pane.
 
+Name your script in line with your naming convention / how you see fit.
+
 <br>
 
 ## Backup to OSF
 
+At the end of each work session, remember to save your data as .RData and .csv, and also your RMarkdown file (.Rmd). We will upload those files to OSF.
 
+![](images/osf/osfUpload.gif)
 
 
 

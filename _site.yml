@@ -10,7 +10,7 @@ navbar:
         - text: "Introduction to Research Data Management"
           href:  Block1-1_Intro-RDM.html
         - text: "Introduction to Data Management Plans"
-          href: Block1-2_Intro-DMP-html
+          href: Block1-2_Intro-DMP.html
         - text: "OSF & File Overview"
           href: Block1-3_OSF.html
     - text: "Block 2"
@@ -76,7 +76,7 @@ navbar:
             - text: "RDM Roadmap"
               href: Block7_EXT-RDMRoadmap.html
             - text: "Reproducible Roadmap"
-              href: Block7_-CRRoadmap.html
+              href: Block7_EXT-CRRoadmap.html
         - text: "Concetps in Reproduciblity"
           menu:
             - text: "Base R & Tidyverse"
