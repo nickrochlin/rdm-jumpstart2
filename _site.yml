@@ -61,6 +61,14 @@ navbar:
           href: Block6-2_DMP-wrap.html
         - text: "Borealis Deposit"
           href: Block6-3_Borealis.html
+    - text: "Bonus Blocks"
+      menu:
+        - text: "R: Filter and Select"
+          href: Block7_Bonus_Filter-and-Select.html
+        - text: "R: Saving Outputs"
+          href: Block7_Bonus_Saving-Output.html
+        - text: "R: Troubleshooting"
+          href: Block7_Bonus_Troubleshooting.html
     - text: "Extras"
       menu:
         - text: "Resources"

@@ -24,9 +24,6 @@ library(dplyr)
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warnings = FALSE)
 ```
 
-```{r, include = FALSE}
-load("data/timeuse_day3_2.RData")
-```
 
 ### Visualizations with ggplot2
 
@@ -41,6 +38,15 @@ If you have installed the tidyverse, then `ggplot2` is included. Otherwise you c
 ```{r}
 #install.packages("ggplot2")
 #library(ggplot2)
+```
+
+:::note
+Let's also load our dataset.  For this exercise, we are using a dataset that is exactly the same as the one that was produced in the session **Data Types and Structures**, but that has one extra variable added called `isFeelRushed`.  This variable is derived from the `feelRushed` variable, with the number `1` indicating that somebody feels rushed, and `0` indicating they do not feel rushed.  For more information on this variable and how it was created, see the session [R: Filter and Select](https://alliance-rdm-gdr.github.io/rdm-jumpstart/3-ACT-3-FilterSelect.html)
+
+:::
+
+```{r}
+load("data/timeuse_block-5_visualization.RData")
 ```
 
 There are many ways to make data visualizations in R; however, other approaches tend to be more automatic and consequently limit the amount you can change and adapt your visualization to your needs. `ggplot2` works in layers, allowing for maximum control and flexibility. 
@@ -211,6 +217,18 @@ Try manipulating this plot in some way. Can you make the data points more and le
 :::
 
 ### Your Turn!
+
+:::note
+
+For the following questions, the goal is to get you thinking about the building blocks that go into making a visual.  Don't get too focused on the finished product right away, and try to think about the individual steps needed to get you to there.  As with any coding task, it can be very helpful to think of or write each of the steps down in plain English, then work through each one.  
+
+As a final note, a **huge** part of learning how to code is using search engines, and there is a ton of documentation out there to help you.  This also relates back to putting things into plain-language steps, because being able to clearly articulate your goals is synonymous with using good search terms.
+
+Good luck!
+
+:::
+
+
 ::: question
 Take a look at our data set and make two new plots. 
 
@@ -224,10 +242,11 @@ Take a look at our data set and make two new plots.
 **Challenge:** What is one component of your plot you would like to change? Can you look up a solution? 
 :::
 
+
 :::question
 See if you can recreate the plot below.  
 <br>
-**Hint:** To remove `NA` values from the plot, you will need to use both the `na.omit` and the `na.rm = TRUE` commands.
+**Hint:** First try to recreate the plot with NA values.  Then, to remove `NA` values from the plot, you will need to use both the `na.omit` and the `na.rm = TRUE` commands.
 
 
 ```{r echo=FALSE, fig.align='center'}
@@ -252,7 +271,9 @@ time_alone_plot <- ggplot(na.omit(js_data), aes(x = factor(timeWantAlone), y = d
 
 :::question
 See if you can recreate the plot below.
+
 <br>
+
 **Hint:** This type of chart is called a "proportional bar chart", and search engines are your best friend!
 
 ```{r echo=FALSE, fig.align='center'}

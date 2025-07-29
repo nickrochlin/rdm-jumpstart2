@@ -24,11 +24,6 @@ library(dplyr)
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warnings = FALSE)
 ```
 
-```{r, include = FALSE}
-load("data/timeuse_day3_2.RData")
-```
-
-
 
 ## Data Visualization in R
 
