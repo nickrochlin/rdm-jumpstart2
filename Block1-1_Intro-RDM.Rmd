@@ -12,7 +12,7 @@ output:
       smooth_scroll: false
 ---
 
-## RDM: Introduction
+## Introduction to Research Data Management (RDM)
 
 * [Download the PowerPoint](files/Block1-1_Intro-RDM.pptx)
 

@@ -12,6 +12,15 @@ output:
       smooth_scroll: false
 ---
 
+## Introduction to the Open Science Framework (OSF)
+
+* [Download the PowerPoint](files/Block1-3_OSF.pptx)
+
+<object class = "pdf" data = "files/Block1-3_OSF.pdf"></object>
+
+<br>
+
+
 ## OSF
 
 OSF is an online data storage platform that supports good research data management practices and facilitates collaboration, transparency, and reproducibility in research. It achieves this through provisioning descriptive metadata, version control, access permissions, persistent identifiers, and regional cloud storage options.

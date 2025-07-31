@@ -1,6 +1,6 @@
 ---
-title: "RDM: Introduction"
-pagetitle: "RDM: Introduction"
+title: "Introduction to Data Management Plans (DMPs)"
+pagetitle: "Introduction to Data Management Plans (DMPs)"
 output:
   html_document:
     includes:
@@ -12,8 +12,32 @@ output:
       smooth_scroll: false
 ---
 
-## RDM: Introduction
+## Introduction to Data Management Plans (DMPs)
 
-* [Download the PowerPoint](files/Day-1_IntroToRDM_2025-05-12.pptx)
+* [Download the PowerPoint](files/Block1-2_Intro-DMP.pptx)
 
-<object class = "pdf" data = "files/Day-1_IntroToRDM_2025-05-12.pdf"></object>
+<object class = "pdf" data = "files/Block1-2_Intro-DMP.pdf"></object>
+
+
+## Introduction to the DMP Assistant
+
+Now that we've gone through the basic structure and questions of a DMP, we're now going to do a walk through of the DMP Assistant, which we'll be using throughout the program.  
+
+<a href="https://dmp-pgd.ca/">DMP Assistant</a>
+
+
+In this tutorial, we'll cover the following:
+
+* Create a new DMP using the UVic template
+* Explore the various functions of the DMP Assistant, including:
+    * Project details
+    * Sharing and adding contributors
+    * Linking a DMP to research outputs
+    * Downloading the final document
+    * Writing the plan
+
+
+
+
+
+

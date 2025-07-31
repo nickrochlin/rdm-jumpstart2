@@ -11,7 +11,7 @@ navbar:
           href:  Block1-1_Intro-RDM.html
         - text: "Introduction to Data Management Plans"
           href: Block1-2_Intro-DMP.html
-        - text: "OSF & File Overview"
+        - text: "Introduction to OSF"
           href: Block1-3_OSF.html
     - text: "Block 2"
       menu:
@@ -103,10 +103,12 @@ navbar:
               href: Block7_EXT-dirsFiles.html
         - text: "Setup"
           menu:
-            - text: "R & RStudio Setup"
-              href: Block7_EXT-RRStudio.html
+            - text: "DMP Assistant Setup"
+              href: Block7_EXT-DMP-setup.html
             - text: "OSF Setup"
               href: Block7_EXT-osfSetup.html
+            - text: "R & RStudio Setup"
+              href: Block7_EXT-RRStudio.html
             - text: "Borealis Setup"
               href: Block7_EXT-Borealis.html
         - text: "Contributors"

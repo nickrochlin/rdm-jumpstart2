@@ -27,7 +27,7 @@ library(tidyverse)
 ```
 
 
-## Data Organization in R
+## Data Types and Structures in R
 
 
 :::intro

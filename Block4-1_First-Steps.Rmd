@@ -100,7 +100,7 @@ In order to start working with a dataset in R, we first need to import, or "read
 ### Read a csv file
 To import a csv file we can use the `read_csv()` function and assign it to a new object we will call *js_data*. We create a new object to be able to call it in different functions later on.
 ```{r}
-js_data <- read_csv("data/timeuse_block-4-first-steps.csv")
+js_data <- read_csv("data/timeuse_block-4_first-steps.csv")
 ```
 
 ### Read Other Formats

@@ -362,7 +362,7 @@ div.tocify {
       <a href="Block1-2_Intro-DMP.html">Introduction to Data Management Plans</a>
     </li>
     <li>
-      <a href="Block1-3_OSF.html">OSF &amp; File Overview</a>
+      <a href="Block1-3_OSF.html">Introduction to OSF</a>
     </li>
   </ul>
 </li>
@@ -550,10 +550,13 @@ div.tocify {
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Setup</a>
       <ul class="dropdown-menu" role="menu">
         <li>
-          <a href="Block7_EXT-RRStudio.html">R &amp; RStudio Setup</a>
+          <a href="Block7_EXT-DMP-setup.html">DMP Assistant Setup</a>
         </li>
         <li>
           <a href="Block7_EXT-osfSetup.html">OSF Setup</a>
+        </li>
+        <li>
+          <a href="Block7_EXT-RRStudio.html">R &amp; RStudio Setup</a>
         </li>
         <li>
           <a href="Block7_EXT-Borealis.html">Borealis Setup</a>
@@ -600,16 +603,15 @@ demonstration of a data deposit using the demo instance of the Borealis
 data repository. In order to do this, you’ll need to create an account
 on the demo instance:</p>
 <ol style="list-style-type: decimal">
-<li>Go to this website: <a
-href="https://demo.borealisdata.ca/dataverse.xhtml">https://demo.borealisdata.ca/dataverse.xhtml</a></li>
-<li>Follow the steps in this document, which will walk you through how
-to do this based on whether your institution is a participating member
-of Borealis or not: <a
-href="https://learn.scholarsportal.info/all-guides/borealis/user-accounts/">https://learn.scholarsportal.info/all-guides/borealis/user-accounts/</a></li>
+<li><p>Go to this website:
+<a href="https://demo.borealisdata.ca/dataverse.xhtml">https://demo.borealisdata.ca/dataverse.xhtml</a></p></li>
+<li><p>Follow the steps in this document, which will walk you through
+how to do this. Select UVic as your institutuion:
+<a href="https://learn.scholarsportal.info/all-guides/borealis/user-accounts/">https://learn.scholarsportal.info/all-guides/borealis/user-accounts/</a></p></li>
 </ol>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlNldHRpbmcgdXAgQm9yZWFsaXMiDQpwYWdldGl0bGU6ICJTZXR0aW5nIHVwIEJvcmVhbGlzIg0Kb3V0cHV0Og0KICBodG1sX2RvY3VtZW50Og0KICAgIGNvZGVfZm9sZGluZzogc2hvdyAjIGFsbG93cyB0b2dnbGluZyBvZiBzaG93aW5nIGFuZCBoaWRpbmcgY29kZS4gUmVtb3ZlIGlmIG5vdCB1c2luZyBjb2RlLg0KICAgIGNvZGVfZG93bmxvYWQ6IHRydWUgIyBhbGxvd3MgdGhlIHVzZXIgdG8gZG93bmxvYWQgdGhlIHNvdXJjZSAuUm1kIGZpbGUuIFJlbW92ZSBpZiBub3QgdXNpbmcgY29kZS4NCiAgICBpbmNsdWRlczoNCiAgICAgIGFmdGVyX2JvZHk6IGZvb3Rlci5odG1sICMgaW5jbHVkZSBhIGN1c3RvbSBmb290ZXIuDQogICAgdG9jOiB0cnVlDQogICAgdG9jX2RlcHRoOiAzDQogICAgdG9jX2Zsb2F0Og0KICAgICAgY29sbGFwc2VkOiBmYWxzZQ0KICAgICAgc21vb3RoX3Njcm9sbDogZmFsc2UNCmRhdGU6ICIyMDI1LTAyLTI4Ig0KLS0tDQoNCiMjIEludHJvZHVjdGlvbg0KDQpPbiB0aGUgZmluYWwgZGF5IG9mIHRoZSBKdW1wc3RhcnQsIHdlIHdpbGwgYmUgZG9pbmcgYSBoYW5kcy1vbiBkZW1vbnN0cmF0aW9uIG9mIGEgZGF0YSBkZXBvc2l0IHVzaW5nIHRoZSBkZW1vIGluc3RhbmNlIG9mIHRoZSBCb3JlYWxpcyBkYXRhIHJlcG9zaXRvcnkuIEluIG9yZGVyIHRvIGRvIHRoaXMsIHlvdeKAmWxsIG5lZWQgdG8gY3JlYXRlIGFuIGFjY291bnQgb24gdGhlIGRlbW8gaW5zdGFuY2U6DQoNCjEuIEdvIHRvIHRoaXMgd2Vic2l0ZTogW2h0dHBzOi8vZGVtby5ib3JlYWxpc2RhdGEuY2EvZGF0YXZlcnNlLnhodG1sXShodHRwczovL2RlbW8uYm9yZWFsaXNkYXRhLmNhL2RhdGF2ZXJzZS54aHRtbCkgDQoyLiBGb2xsb3cgdGhlIHN0ZXBzIGluIHRoaXMgZG9jdW1lbnQsIHdoaWNoIHdpbGwgd2FsayB5b3UgdGhyb3VnaCBob3cgdG8gZG8gdGhpcyBiYXNlZCBvbiB3aGV0aGVyIHlvdXIgaW5zdGl0dXRpb24gaXMgYSBwYXJ0aWNpcGF0aW5nIG1lbWJlciBvZiBCb3JlYWxpcyBvciBub3Q6IFtodHRwczovL2xlYXJuLnNjaG9sYXJzcG9ydGFsLmluZm8vYWxsLWd1aWRlcy9ib3JlYWxpcy91c2VyLWFjY291bnRzL10oaHR0cHM6Ly9sZWFybi5zY2hvbGFyc3BvcnRhbC5pbmZvL2FsbC1ndWlkZXMvYm9yZWFsaXMvdXNlci1hY2NvdW50cy8pDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlNldHRpbmcgdXAgQm9yZWFsaXMiDQpwYWdldGl0bGU6ICJTZXR0aW5nIHVwIEJvcmVhbGlzIg0Kb3V0cHV0Og0KICBodG1sX2RvY3VtZW50Og0KICAgIGNvZGVfZm9sZGluZzogc2hvdyAjIGFsbG93cyB0b2dnbGluZyBvZiBzaG93aW5nIGFuZCBoaWRpbmcgY29kZS4gUmVtb3ZlIGlmIG5vdCB1c2luZyBjb2RlLg0KICAgIGNvZGVfZG93bmxvYWQ6IHRydWUgIyBhbGxvd3MgdGhlIHVzZXIgdG8gZG93bmxvYWQgdGhlIHNvdXJjZSAuUm1kIGZpbGUuIFJlbW92ZSBpZiBub3QgdXNpbmcgY29kZS4NCiAgICBpbmNsdWRlczoNCiAgICAgIGFmdGVyX2JvZHk6IGZvb3Rlci5odG1sICMgaW5jbHVkZSBhIGN1c3RvbSBmb290ZXIuDQogICAgdG9jOiB0cnVlDQogICAgdG9jX2RlcHRoOiAzDQogICAgdG9jX2Zsb2F0Og0KICAgICAgY29sbGFwc2VkOiBmYWxzZQ0KICAgICAgc21vb3RoX3Njcm9sbDogZmFsc2UNCmRhdGU6ICIyMDI1LTAyLTI4Ig0KLS0tDQoNCiMjIEludHJvZHVjdGlvbg0KDQpPbiB0aGUgZmluYWwgZGF5IG9mIHRoZSBKdW1wc3RhcnQsIHdlIHdpbGwgYmUgZG9pbmcgYSBoYW5kcy1vbiBkZW1vbnN0cmF0aW9uIG9mIGEgZGF0YSBkZXBvc2l0IHVzaW5nIHRoZSBkZW1vIGluc3RhbmNlIG9mIHRoZSBCb3JlYWxpcyBkYXRhIHJlcG9zaXRvcnkuIEluIG9yZGVyIHRvIGRvIHRoaXMsIHlvdeKAmWxsIG5lZWQgdG8gY3JlYXRlIGFuIGFjY291bnQgb24gdGhlIGRlbW8gaW5zdGFuY2U6DQoNCjEuIEdvIHRvIHRoaXMgd2Vic2l0ZTogPGEgaHJlZj0iaHR0cHM6Ly9kZW1vLmJvcmVhbGlzZGF0YS5jYS9kYXRhdmVyc2UueGh0bWwiPmh0dHBzOi8vZGVtby5ib3JlYWxpc2RhdGEuY2EvZGF0YXZlcnNlLnhodG1sPC9hPg0KDQoyLiBGb2xsb3cgdGhlIHN0ZXBzIGluIHRoaXMgZG9jdW1lbnQsIHdoaWNoIHdpbGwgd2FsayB5b3UgdGhyb3VnaCBob3cgdG8gZG8gdGhpcy4gU2VsZWN0IFVWaWMgYXMgeW91ciBpbnN0aXR1dHVpb246DQo8YSBocmVmPSJodHRwczovL2xlYXJuLnNjaG9sYXJzcG9ydGFsLmluZm8vYWxsLWd1aWRlcy9ib3JlYWxpcy91c2VyLWFjY291bnRzLyI+aHR0cHM6Ly9sZWFybi5zY2hvbGFyc3BvcnRhbC5pbmZvL2FsbC1ndWlkZXMvYm9yZWFsaXMvdXNlci1hY2NvdW50cy88L2E+DQoNCg0K</div>
 <div id="footer">
     <hr />
     <div class = "inst-logos">

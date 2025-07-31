@@ -1,6 +1,6 @@
 ---
-title: "Workflow for the Week"
-pagetitle: "Workflow for the Week"
+title: "Organizing Files and Folders"
+pagetitle: "Organizing Files and Folders"
 output:
   html_document:
     includes:
@@ -12,8 +12,8 @@ output:
       smooth_scroll: false
 ---
 
-## Workflow for the Week
+## Organizing Files and Folders
 
-* [Download the PowerPoint](files/Day-1_Session-04_Workflow-and-Tools.pptx)
+* [Download the PowerPoint](files/Block2-1_Files-and-Folders.pptx)
 
-<object class = "pdf" data = "files/Day-1_Session-04_Workflow-and-Tools.pdf"></object>
+<object class = "pdf" data = "files/Block2-1_Files-and-Folders.pdf"></object>

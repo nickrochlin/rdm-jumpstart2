@@ -11,7 +11,7 @@
 
 
 
-<title>Data Management Plans</title>
+<title>Naming Conventions and Folder Structure</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -351,7 +351,7 @@ div.tocify {
       <a href="Block1-2_Intro-DMP.html">Introduction to Data Management Plans</a>
     </li>
     <li>
-      <a href="Block1-3_OSF.html">OSF &amp; File Overview</a>
+      <a href="Block1-3_OSF.html">Introduction to OSF</a>
     </li>
   </ul>
 </li>
@@ -539,10 +539,13 @@ div.tocify {
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Setup</a>
       <ul class="dropdown-menu" role="menu">
         <li>
-          <a href="Block7_EXT-RRStudio.html">R &amp; RStudio Setup</a>
+          <a href="Block7_EXT-DMP-setup.html">DMP Assistant Setup</a>
         </li>
         <li>
           <a href="Block7_EXT-osfSetup.html">OSF Setup</a>
+        </li>
+        <li>
+          <a href="Block7_EXT-RRStudio.html">R &amp; RStudio Setup</a>
         </li>
         <li>
           <a href="Block7_EXT-Borealis.html">Borealis Setup</a>
@@ -566,31 +569,86 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Data Management Plans</h1>
+<h1 class="title toc-ignore">Naming Conventions and Folder
+Structure</h1>
 
 </div>
 
 
-<div id="data-management-plans" class="section level2">
-<h2>Data Management Plans</h2>
-<div id="planning-considerations" class="section level3">
-<h3>Planning Considerations</h3>
-<ul>
-<li><a href="files/Day-1_AfternoonSession-Part1_Planning.pptx">Download
-the PowerPoint</a></li>
-</ul>
-<object class="pdf" data="files/Day-1_AfternoonSession-Part1_Planning.pdf">
+<div id="naming-conventions-and-folder-structure-for-the-project"
+class="section level2">
+<h2>Naming Conventions and Folder Structure for the Project</h2>
+<p>Now that we’ve learned some of the principles of RDM and file and
+folder organization, let’s put these theories to work!</p>
+<p>First, let’s open up the OSF repository for the UVic RDM Jumpstart.
+If you haven’t yet done this, see the session on <strong>“Introduction
+to OSF”</strong>, or talk to your instructor.</p>
+<p>Now, let’s start by looking at the README file that is embedded in
+the repository wiki, which describes all the files that we have, as well
+as how the files are organized in OSF storage.</p>
+<object class="pdf" data="images/Block2-2_OSF-readme.pdf">
 </object>
-</div>
-<div id="putting-plans-into-action" class="section level3">
-<h3>Putting Plans into Action</h3>
+<p><br></p>
+<div id="activity" class="section level3">
+<h3>Activity</h3>
+<p>Looking at the file list, and how the files are organized, you might
+think that it’s a bit messy - which it is! While we all want to avoid a
+mess in our work, it’s very common for things to become a bit unweildy
+throughout the course of a project. The goal of this activities is to
+use the theories that were discussed in the session on
+<strong>“Organizing Files and Folders”</strong>, and to apply this
+knowledge to cleaning up these files.</p>
+<p>Let’s try to approach this challenge in the following way:</p>
+<ol style="list-style-type: decimal">
+<li><p>First, look through the files try to determine what they are, and
+classify them based on their role/type/function:</p>
 <ul>
-<li><a
-href="files/Day-1_AfternoonSession-Part2_PlanningIntoPractice.pdf">Download
-the PowerPoint</a></li>
-</ul>
-<object class="pdf" data="files/Day-1_AfternoonSession-Part2_PlanningIntoPractice.pdf">
-</object>
+<li>Are they data files?</li>
+<li>Are they coding scripts?</li>
+<li>Are they administrative documents?</li>
+<li>Something else?</li>
+</ul></li>
+<li><p>After you feel that you’ve got a decent grasp on the files we
+have, the next step is to develop a folder hierarchy (if you think it
+needs one) to help organize the files. There is no
+<strong>“right”</strong> way to do this, as long as you follow the
+principles that were discussed in the previous session and follow best
+practices in naming. The goal of this is to think about how you will
+interact and access the files, and what might be the easiest way to
+facilitate this.</p></li>
+<li><p>The next step is to determine what kind of naming convention you
+want to use. Again, there is no <strong>“right”</strong> way to do this,
+as long as you follow the principles of file naming discussed in the
+previous session. Think about the idea of applying conceptual elements
+to a naming convention, and what elements you think would be best to
+organize this file list. Document your naming convention, but don’t
+rename the files just yet!</p></li>
+<li><p>Now that you have a folder hierarchy and file naming convention,
+here comes the fun part… Let’s delete all the files in the OSF repo
+<strong>except for the following files</strong>: <br></p>
+<ul>
+<li>GSS29_PUMF_main_v3.pdf</li>
+<li>license.txt</li>
+<li>README-template.txt</li>
+<li>timeuse_block-4_first-steps.csv</li>
+<li>timeuse_block-5_visualization.csv</li>
+<li>timeuse_block-5_visualization.RData</li>
+<li>timeuse_data-dictionary.md</li>
+<li>timeuse_data-dictionary.pdf</li>
+</ul></li>
+</ol>
+<p>If you’ve done this successfully, you will have these remaining 8
+files in your repo. If you did make a mistake, you can easily retrieve
+the files from the original repo, or talk to your instructor.</p>
+<p>This might seem like a brash move to delete all these files, but in a
+real research project, you don’t get the ability to see all the files
+you will generate at the onset. This exercise was meant to give you a
+sense of what can be generated in a project and how to think about
+setting up your work, but now that you’ve done so, let’s ground
+ourselves in reality and start back at square 1!</p>
+<p><strong>Keep your naming convention handy</strong>, as we’ll return
+to it in a little while, but first let’s move onto the next session to
+learn a bit about documentation.</p>
 </div>
 </div>
 
