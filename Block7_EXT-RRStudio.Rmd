@@ -14,7 +14,7 @@ output:
       smooth_scroll: false
 ---
 
-## Introduction 
+## R and RStudio Setup
 
 We will be using R and RStudio to handle data manipulation and exploration, and the first step is going to be getting these tools setup on your computer. It can be a bit confusing at first (we’ll cover this more in the Jumpstart courses!), but R is the coding language that we’ll be using, and RStudio is a piece of software that makes running R much more friendly. In order for everything to work correctly, you will need to download both separately:
 

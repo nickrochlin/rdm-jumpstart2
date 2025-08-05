@@ -31,19 +31,21 @@ A few things to note:
 ### Let's Get Started!
 
 
-## Wrap-Up
+:::question
 
-Once you have finished completing as much of the README as you can at this point, return to the DMP you created in the DMP Assistant and updated the following questions:
+Once you have finished completing as much of the README as you can at this point, return to the <a href="https://dmp-pgd.ca/">DMP Assistant</a> and updated the following questions:
 
-* **Section 1**: 
+* **Section 1: Data Collection** 
     * Does the data you will be working with contain sensitive information that requires data protection considerations? For example: (Select all that apply)
     
-* **Section 2**:
+* **Section 2: Documentation and Metadata**
     * What documentation will be created for the data to be read and interpreted correctly in the future?
+    * How will you make sure that documentation is created or captured consistently throughout your project?
     * Do you plan to use a metadata standard and/or tools to document and describe your data? If so, please list here.
     
 * **Section 7: Sensitive Data and Legal Compliance**
     
+:::
     
     
     

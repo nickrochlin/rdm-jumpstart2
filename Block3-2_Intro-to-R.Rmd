@@ -17,11 +17,14 @@ output:
 knitr::opts_chunk$set(message = FALSE, warnings = FALSE)
 ```
 
-## Introduction
+## Introduction to R
 
 :::intro
 RStudio is a program that helps you write and run R code more easily, especially for working with data, making graphs, and doing statistics.
 :::
+
+You will have hopefully already downloaded R and RStudio.  If not, follow the instructions on this page: <a href="Block7_EXT-RRStudio.html">R and RStudio setup</a>
+
 
 In this tutorial, we will:
 
@@ -372,6 +375,18 @@ Much like file naming, the following parameters apply:
 Now that we've established some best practices in literate programming, go through the script that you have current created, and utilizing commented code and object naming, try to make it easily interpretable and reusuable for others!
 
 :::
+
+
+:::question
+
+Let's now go to the <a href="https://dmp-pgd.ca/">DMP Assistant</a> and updated the following questions:
+
+* **Section 1: Data Collection**
+  * What file formats will your data be collected and saved in?  Select all that apply.
+  * Describe related tools and software needed to access, manipulate, and analyze the data.
+
+::: 
+
 
 
 ## Save Your Work

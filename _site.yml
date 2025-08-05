@@ -59,7 +59,7 @@ navbar:
           href: Block6_Overview.html
         - text: "Sharing and Depositing Data"
           href: Block6-1_Sharing-and-Deposit.html
-        - text: "DMP Wrap-Up"
+        - text: "DMP and Project Wrap-Up"
           href: Block6-2_DMP-wrap.html
         - text: "Borealis Deposit"
           href: Block6-3_Borealis.html
@@ -77,8 +77,6 @@ navbar:
           menu:
             - text: "Code of Conduct"
               href: codeOfConduct.html
-            - text: "Project DMP"
-              href: Block7_EXT-ProjectDMP.html
             - text: "R Cheatsheet"
               href: Block7_EXT-RCheatsheet.html
         - text: "Roadmaps"

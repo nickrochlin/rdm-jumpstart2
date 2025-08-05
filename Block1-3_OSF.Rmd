@@ -33,7 +33,7 @@ Storage solutions that are supported by your institution will generally come wit
 
 ### Setup
 
-You will have hopefully already set up an account on OSF. If not, [you can follow the instructions here](6-EXT-osfSetup.html).
+You will have hopefully already set up an account on OSF. If not, follow the instructions on this page: <a href="Block7_EXT-osfSetup.html">OSF Setup</a>
 
 For this workshop, we have set up a template that we will have you fork -- or copy. This template can be found at [https://osf.io/3efyh/](https://osf.io/3efyh/)
 
@@ -115,3 +115,25 @@ Files uploaded to OSF are accessible through the files navigation tab.
 Files can be downloaded invidually, or as a zipped folder.
 
 ![](images/osf/osfDownload.gif)
+
+<br>
+
+
+
+:::question
+
+Now that we've got some sense of what we'll be working with, let's go to the <a href="https://dmp-pgd.ca/">DMP Assistant</a> and start filling in the following sections/questions:
+
+* **Section 1: Data Collection**
+
+  * Question 1: What types of research data will you collect, create, link to, acquire, and/or record?
+  
+* **Section 3: Storage and Backup**
+
+:::
+
+
+
+
+
+

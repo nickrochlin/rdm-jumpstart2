@@ -14,13 +14,11 @@ output:
 
 <img class="alliance-logo" src="images/institutions/Alliance_logo_Symbol.png" alt="Alliance Banner">
 
-Site last rendered `r Sys.Date()`.
-
 ## Welcome
 
-Welcome to RDM Jumpstart, 2025! Before going any further, [please read our code of conduct...](codeOfConduct.html)
+Welcome to UVic RDM Jumpstart, 2025! Before going any further, [please read our code of conduct...](codeOfConduct.html)
 
 
 ## Contact
 
-Please refer to the email communications you've received to get in touch with us.
+Please reach out to Nick Rochlin if you need to get in touch or have questions about the program.

@@ -1,6 +1,6 @@
 ---
-title: "Day 2 - Moving from Excel to Scripting"
-pagetitle: "Day 2 - GUI vs Sripting"
+title: "Borealis Deposit"
+pagetitle: "Borealis Deposit"
 output:
   html_document:
     includes:
@@ -12,8 +12,10 @@ output:
       smooth_scroll: false
 ---
 
-## Moving from Excel to Scripting
+## Borealis Deposit
 
-* [Download the PowerPoint](files/Day-2_Session-03_GUI-vs_Scripting.pptx)
+For this session, we'll be doing a hands-on data deposit in the Borealis Demo instance.  You can follow this link to get to the Borealis Demo site, and your instructor will take it from there!: <a href="https://demo.borealisdata.ca/dataverse.xhtml">Borealis Demo site</a>
 
-<object class = "pdf" data = "files/Day-2_Session-03_GUI-vs_Scripting.pdf"></object>
+<br>
+
+If you have not yet signed up for a Borealis account, follow this link to do so: <a href="Block7_EXT-Borealis.html">Borealis setup</a>

@@ -1,6 +1,6 @@
 ---
-title: "Day 4 Overview"
-pagetitle: "Day 4 Overview"
+title: "Updating Documentation"
+pagetitle: "Updating Documentation"
 output:
   html_document:
     includes:
@@ -12,12 +12,17 @@ output:
       smooth_scroll: false
 ---
 
-## Day 4
+## Updating Documentation
 
-Today we’re really going to jump into R! We start with an introduction to creating data visualizations in R. We then work through a series of activities to address how to resolve errors encountered in R. We wrap up with exporting from R.
+:::question
 
-By the end of today, you will be able to:
+Now that we've covered some decent ground in R, let's return to our README file and see if there's anything that needs to be updated.
 
-* Build common visualizations in R.
-* Identify common errors in R and how to get help resolving them.
-* Save and export content generated in R.
+Things to consider:
+
+* We've changed all the column names from our original dataset, and have created a new file to reflect the cleaned column names.
+* We also recoded a few variables and have created another new file that has the cleaned column names and the recoded variables.
+
+**Question:** How do we want to record these changes in our documentation?
+
+:::

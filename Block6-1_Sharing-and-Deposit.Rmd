@@ -1,6 +1,6 @@
 ---
-title: "Day 2 - Moving from Excel to Scripting"
-pagetitle: "Day 2 - GUI vs Sripting"
+title: "Sharing and Depositing Data"
+pagetitle: "Sharing and Depositing Data"
 output:
   html_document:
     includes:
@@ -12,8 +12,8 @@ output:
       smooth_scroll: false
 ---
 
-## Moving from Excel to Scripting
+## Sharing and Depositing Data
 
-* [Download the PowerPoint](files/Day-2_Session-03_GUI-vs_Scripting.pptx)
+* [Download the PowerPoint](files/Block6-1_Sharing-Deposit.pptx)
 
-<object class = "pdf" data = "files/Day-2_Session-03_GUI-vs_Scripting.pdf"></object>
+<object class = "pdf" data = "files/Block6-1_Sharing-Deposit.pdf"></object>

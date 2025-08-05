@@ -12,10 +12,9 @@ output:
     toc_float:
       collapsed: false
       smooth_scroll: false
-date: "2025-02-28"
 ---
 
-## Introduction 
+## OSF Setup 
 
 OSF will be a platform that we use to share project files with you, and that you will use to backup that work that you do throughout the week. While OSF is web-based and doesn’t require any downloading, we ask that you create an OSF account:
 

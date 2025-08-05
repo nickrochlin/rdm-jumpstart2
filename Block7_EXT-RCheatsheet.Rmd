@@ -14,7 +14,7 @@ output:
     smooth_scroll: false
 ---
   
-  ## R Cheatsheet
+## R Cheatsheet
   
   Below are all the commands that are used in the RDM Jumpstart for quick access.  In addition to this cheatsheet, you can find more detailed documentation online (a quick search of a function will usually guide you in the right direction), but the following documentaion sites are valuable references as you continue to grow your R skills:
   

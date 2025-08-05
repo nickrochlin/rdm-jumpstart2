@@ -10,11 +10,10 @@
 
 
 
-<meta name="date" content="2025-02-28" />
 
 <title>Roadmap to RDM</title>
 
-<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -464,7 +463,7 @@ div.tocify {
       <a href="Block6-1_Sharing-and-Deposit.html">Sharing and Depositing Data</a>
     </li>
     <li>
-      <a href="Block6-2_DMP-wrap.html">DMP Wrap-Up</a>
+      <a href="Block6-2_DMP-wrap.html">DMP and Project Wrap-Up</a>
     </li>
     <li>
       <a href="Block6-3_Borealis.html">Borealis Deposit</a>
@@ -501,9 +500,6 @@ div.tocify {
       <ul class="dropdown-menu" role="menu">
         <li>
           <a href="codeOfConduct.html">Code of Conduct</a>
-        </li>
-        <li>
-          <a href="Block7_EXT-ProjectDMP.html">Project DMP</a>
         </li>
         <li>
           <a href="Block7_EXT-RCheatsheet.html">R Cheatsheet</a>
@@ -594,7 +590,6 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Roadmap to RDM</h1>
-<h4 class="date">2025-02-28</h4>
 
 </div>
 
@@ -663,7 +658,7 @@ and / or publisher requirements.</td>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUm9hZG1hcCB0byBSRE0iCnBhZ2V0aXRsZTogIlJvYWRtYXAgdG8gUkRNIgpvdXRwdXQ6CiAgaHRtbF9kb2N1bWVudDoKICAgIGNvZGVfZm9sZGluZzogc2hvdyAjIGFsbG93cyB0b2dnbGluZyBvZiBzaG93aW5nIGFuZCBoaWRpbmcgY29kZS4gUmVtb3ZlIGlmIG5vdCB1c2luZyBjb2RlLgogICAgY29kZV9kb3dubG9hZDogdHJ1ZSAjIGFsbG93cyB0aGUgdXNlciB0byBkb3dubG9hZCB0aGUgc291cmNlIC5SbWQgZmlsZS4gUmVtb3ZlIGlmIG5vdCB1c2luZyBjb2RlLgogICAgaW5jbHVkZXM6CiAgICAgIGFmdGVyX2JvZHk6IGZvb3Rlci5odG1sICMgaW5jbHVkZSBhIGN1c3RvbSBmb290ZXIuCiAgICB0b2M6IHRydWUKICAgIHRvY19kZXB0aDogMwogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IGZhbHNlCiAgICAgIHNtb290aF9zY3JvbGw6IGZhbHNlCmRhdGU6ICIyMDI1LTAyLTI4IgotLS0KCiMjIEEgUm9hZG1hcCB0byBSRE0KCjo6Om1kLXRhYmxlCnwgQ29uY2VwdCB8IFJlYXNvbiB8CnwgOi0tLSB8IDotLS0gfAp8IE1ha2UgYSBwbGFuLiB8IFJlc2VhcmNoIHdpdGhvdXQgYSBwbGFuIGlzIHJpcGUgZm9yIGJpYXMgYW5kIGhlYWRhY2hlcy4gfAp8IFVwZGF0ZSB5b3VyIHBsYW4gYXMgeW91IGdvLiB8IFRoaW5ncyBjaGFuZ2UsIGtlZXAgdHJhY2sgb2YgdGhlc2UgY2hhbmdlcy4gfAp8IENvbmR1Y3QgYSByaXNrIGFzc2Vzc21lbnQgb2YgeW91ciBkYXRhLiB8IFVuZGVyc3RhbmQgYW5kIGNvbW11bmljYXRlIHRoZSB0aGUgaW1wYWN0cyBvZiByZWxlYXNlIG9mIHlvdXIgZGF0YS4gfAp8IERvY3VtZW50IHRoZSBmaWxlIHR5cGVzLCBkYXRhIHR5cGVzLCBhbmQgYXBwbGljYXRpb25zIHlvdSBpbnRlbmQgdG8gdXNlLiB8IFByZXBhcmUgZm9yLCBhbmQgc2VsZWN0LCB0aGUgJ2Jlc3QnIG9wdGlvbnMgZm9yIHlvdXIgcHJvamVjdC4gfAp8IFNlbGVjdCBhbiBhcHByb3ByaWF0ZSBzdG9yYWdlIGxvY2F0aW9uIGZvciB5b3UgZGF0YS4gfCBUaGlzIHNob3VsZCBhbGlnbiB3aXRoIGFueSBhbmQgb3IgYWxsIG9mOiBhKSB5b3VyIHJpc2sgYXNzZXNzbWVudDsgYikgcGFydGljaXBhbnQgY29uc2VudCBmb3JtczsgYykgZXRoaWNzIHJldmlldzsgZCkgZGF0YSBzaGFyaW5nIGFncmVlbWVudHM7IGUpIGRhdGEgbGljZW5jZXM7IGYpIGZ1bmRlciByZXF1aXJlbWVudHMuIHwKfCBLZWVwIGJhY2t1cHMuIHwgRG9uJ3QgbG9zZSBhbGwgb2YgeW91ciBoYXJkIHdvcmsuIHwKfCBNYWludGFpbiByb2J1c3QgZG9jdW1lbnRhdGlvbiBhbmQgbWV0YWRhdGEuIHwgRG9jdW1lbnQgdGFjaXQga25vd2xlZGdlLiB8CnwgRXN0YWJsaXNoIGEgcmV0ZW50aW9uIHNjaGVkdWxlLiB8IERvbid0IGtlZXAgdGhpbmdzIGZvciBsb25nZXIgdGhhbiB5b3UgbmVlZC4gfAp8IERlcG9zaXQgeW91ciBkYXRhLiB8IEVuc3VyZSB0cmFuc3BhcmVuY3kgYW5kIGFkaGVyZSB0byBpbnNpdHV0aW9uYWwsIGZ1bmRlciwgYW5kIC8gb3IgcHVibGlzaGVyIHJlcXVpcmVtZW50cy4gfAo6OjoKCgo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlJvYWRtYXAgdG8gUkRNIg0KcGFnZXRpdGxlOiAiUm9hZG1hcCB0byBSRE0iDQpvdXRwdXQ6DQogIGh0bWxfZG9jdW1lbnQ6DQogICAgY29kZV9mb2xkaW5nOiBzaG93ICMgYWxsb3dzIHRvZ2dsaW5nIG9mIHNob3dpbmcgYW5kIGhpZGluZyBjb2RlLiBSZW1vdmUgaWYgbm90IHVzaW5nIGNvZGUuDQogICAgY29kZV9kb3dubG9hZDogdHJ1ZSAjIGFsbG93cyB0aGUgdXNlciB0byBkb3dubG9hZCB0aGUgc291cmNlIC5SbWQgZmlsZS4gUmVtb3ZlIGlmIG5vdCB1c2luZyBjb2RlLg0KICAgIGluY2x1ZGVzOg0KICAgICAgYWZ0ZXJfYm9keTogZm9vdGVyLmh0bWwgIyBpbmNsdWRlIGEgY3VzdG9tIGZvb3Rlci4NCiAgICB0b2M6IHRydWUNCiAgICB0b2NfZGVwdGg6IDMNCiAgICB0b2NfZmxvYXQ6DQogICAgICBjb2xsYXBzZWQ6IGZhbHNlDQogICAgICBzbW9vdGhfc2Nyb2xsOiBmYWxzZQ0KLS0tDQoNCiMjIEEgUm9hZG1hcCB0byBSRE0NCg0KOjo6bWQtdGFibGUNCnwgQ29uY2VwdCB8IFJlYXNvbiB8DQp8IDotLS0gfCA6LS0tIHwNCnwgTWFrZSBhIHBsYW4uIHwgUmVzZWFyY2ggd2l0aG91dCBhIHBsYW4gaXMgcmlwZSBmb3IgYmlhcyBhbmQgaGVhZGFjaGVzLiB8DQp8IFVwZGF0ZSB5b3VyIHBsYW4gYXMgeW91IGdvLiB8IFRoaW5ncyBjaGFuZ2UsIGtlZXAgdHJhY2sgb2YgdGhlc2UgY2hhbmdlcy4gfA0KfCBDb25kdWN0IGEgcmlzayBhc3Nlc3NtZW50IG9mIHlvdXIgZGF0YS4gfCBVbmRlcnN0YW5kIGFuZCBjb21tdW5pY2F0ZSB0aGUgdGhlIGltcGFjdHMgb2YgcmVsZWFzZSBvZiB5b3VyIGRhdGEuIHwNCnwgRG9jdW1lbnQgdGhlIGZpbGUgdHlwZXMsIGRhdGEgdHlwZXMsIGFuZCBhcHBsaWNhdGlvbnMgeW91IGludGVuZCB0byB1c2UuIHwgUHJlcGFyZSBmb3IsIGFuZCBzZWxlY3QsIHRoZSAnYmVzdCcgb3B0aW9ucyBmb3IgeW91ciBwcm9qZWN0LiB8DQp8IFNlbGVjdCBhbiBhcHByb3ByaWF0ZSBzdG9yYWdlIGxvY2F0aW9uIGZvciB5b3UgZGF0YS4gfCBUaGlzIHNob3VsZCBhbGlnbiB3aXRoIGFueSBhbmQgb3IgYWxsIG9mOiBhKSB5b3VyIHJpc2sgYXNzZXNzbWVudDsgYikgcGFydGljaXBhbnQgY29uc2VudCBmb3JtczsgYykgZXRoaWNzIHJldmlldzsgZCkgZGF0YSBzaGFyaW5nIGFncmVlbWVudHM7IGUpIGRhdGEgbGljZW5jZXM7IGYpIGZ1bmRlciByZXF1aXJlbWVudHMuIHwNCnwgS2VlcCBiYWNrdXBzLiB8IERvbid0IGxvc2UgYWxsIG9mIHlvdXIgaGFyZCB3b3JrLiB8DQp8IE1haW50YWluIHJvYnVzdCBkb2N1bWVudGF0aW9uIGFuZCBtZXRhZGF0YS4gfCBEb2N1bWVudCB0YWNpdCBrbm93bGVkZ2UuIHwNCnwgRXN0YWJsaXNoIGEgcmV0ZW50aW9uIHNjaGVkdWxlLiB8IERvbid0IGtlZXAgdGhpbmdzIGZvciBsb25nZXIgdGhhbiB5b3UgbmVlZC4gfA0KfCBEZXBvc2l0IHlvdXIgZGF0YS4gfCBFbnN1cmUgdHJhbnNwYXJlbmN5IGFuZCBhZGhlcmUgdG8gaW5zaXR1dGlvbmFsLCBmdW5kZXIsIGFuZCAvIG9yIHB1Ymxpc2hlciByZXF1aXJlbWVudHMuIHwNCjo6Og0KDQoNCg==</div>
 <div id="footer">
     <hr />
     <div class = "inst-logos">

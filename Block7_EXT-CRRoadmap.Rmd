@@ -12,7 +12,6 @@ output:
     toc_float:
       collapsed: false
       smooth_scroll: false
-date: "2025-02-28"
 ---
 
 ## A Roadmap to (Computational) Reproducibility

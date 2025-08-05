@@ -25,6 +25,8 @@ Now that we've gone through the basic structure and questions of a DMP, we're no
 
 <a href="https://dmp-pgd.ca/">DMP Assistant</a>
 
+If you haven't yet signed up for a DMP Assistant account, follow the instructions on this page: <a href="Block7_EXT-DMP-setup.html">DMP Assistant Setup</a>
+
 
 In this tutorial, we'll cover the following:
 
@@ -35,6 +37,19 @@ In this tutorial, we'll cover the following:
     * Linking a DMP to research outputs
     * Downloading the final document
     * Writing the plan
+
+<br>
+
+:::question
+
+Let's go to the <a href="https://dmp-pgd.ca/">DMP Assistant</a> and keep filling in the questions:
+
+* **Section 1: Data Collection**
+  
+  * Describe how you will organize, name, and version-control your files to help you and others understand your data.
+  
+:::
+
 
 
 

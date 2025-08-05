@@ -12,10 +12,9 @@ output:
     toc_float:
       collapsed: false
       smooth_scroll: false
-date: "2025-02-28"
 ---
 
-## Introduction
+## DMP Assistant Setup
 
 The DMP Assistant is a platform that we will use to create a data management plan (DMP) for the series, which will begin in Block 1 and will continue throughout the program.  To use the DMP Assistant, you'll need to create an account by following the steps below:
 

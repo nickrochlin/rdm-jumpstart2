@@ -12,10 +12,9 @@ output:
     toc_float:
       collapsed: false
       smooth_scroll: false
-date: "2025-02-28"
 ---
 
-## Introduction
+## Borealis Setup
 
 On the final day of the Jumpstart, we will be doing a hands-on demonstration of a data deposit using the demo instance of the Borealis data repository. In order to do this, you’ll need to create an account on the demo instance:
 

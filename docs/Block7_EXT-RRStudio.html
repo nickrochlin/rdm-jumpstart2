@@ -13,7 +13,7 @@
 
 <title>Installing R and RStudio</title>
 
-<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -463,7 +463,7 @@ div.tocify {
       <a href="Block6-1_Sharing-and-Deposit.html">Sharing and Depositing Data</a>
     </li>
     <li>
-      <a href="Block6-2_DMP-wrap.html">DMP Wrap-Up</a>
+      <a href="Block6-2_DMP-wrap.html">DMP and Project Wrap-Up</a>
     </li>
     <li>
       <a href="Block6-3_Borealis.html">Borealis Deposit</a>
@@ -500,9 +500,6 @@ div.tocify {
       <ul class="dropdown-menu" role="menu">
         <li>
           <a href="codeOfConduct.html">Code of Conduct</a>
-        </li>
-        <li>
-          <a href="Block7_EXT-ProjectDMP.html">Project DMP</a>
         </li>
         <li>
           <a href="Block7_EXT-RCheatsheet.html">R Cheatsheet</a>
@@ -597,8 +594,8 @@ div.tocify {
 </div>
 
 
-<div id="introduction" class="section level2">
-<h2>Introduction</h2>
+<div id="r-and-rstudio-setup" class="section level2">
+<h2>R and RStudio Setup</h2>
 <p>We will be using R and RStudio to handle data manipulation and
 exploration, and the first step is going to be getting these tools setup
 on your computer. It can be a bit confusing at first (we’ll cover this
@@ -620,7 +617,7 @@ follow page produced by the UVic Digital Scholarship Commons: <a
 href="https://uviclibraries.github.io/rstudio/pre-workshop.html">https://uviclibraries.github.io/rstudio/pre-workshop.html</a></p>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiSW5zdGFsbGluZyBSIGFuZCBSU3R1ZGlvIgpwYWdldGl0bGU6ICJJbnN0YWxsaW5nIFIgYW5kIFJTdHVkaW8iCm91dHB1dDoKICBodG1sX2RvY3VtZW50OgogICAgY29kZV9mb2xkaW5nOiBzaG93ICMgYWxsb3dzIHRvZ2dsaW5nIG9mIHNob3dpbmcgYW5kIGhpZGluZyBjb2RlLiBSZW1vdmUgaWYgbm90IHVzaW5nIGNvZGUuCiAgICBjb2RlX2Rvd25sb2FkOiB0cnVlICMgYWxsb3dzIHRoZSB1c2VyIHRvIGRvd25sb2FkIHRoZSBzb3VyY2UgLlJtZCBmaWxlLiBSZW1vdmUgaWYgbm90IHVzaW5nIGNvZGUuCiAgICBpbmNsdWRlczoKICAgICAgYWZ0ZXJfYm9keTogZm9vdGVyLmh0bWwgIyBpbmNsdWRlIGEgY3VzdG9tIGZvb3Rlci4KICAgIHRvYzogdHJ1ZQogICAgdG9jX2RlcHRoOiAzCiAgICB0b2NfZmxvYXQ6CiAgICAgIGNvbGxhcHNlZDogZmFsc2UKICAgICAgc21vb3RoX3Njcm9sbDogZmFsc2UKLS0tCgojIyBJbnRyb2R1Y3Rpb24gCgpXZSB3aWxsIGJlIHVzaW5nIFIgYW5kIFJTdHVkaW8gdG8gaGFuZGxlIGRhdGEgbWFuaXB1bGF0aW9uIGFuZCBleHBsb3JhdGlvbiwgYW5kIHRoZSBmaXJzdCBzdGVwIGlzIGdvaW5nIHRvIGJlIGdldHRpbmcgdGhlc2UgdG9vbHMgc2V0dXAgb24geW91ciBjb21wdXRlci4gSXQgY2FuIGJlIGEgYml0IGNvbmZ1c2luZyBhdCBmaXJzdCAod2XigJlsbCBjb3ZlciB0aGlzIG1vcmUgaW4gdGhlIEp1bXBzdGFydCBjb3Vyc2VzISksIGJ1dCBSIGlzIHRoZSBjb2RpbmcgbGFuZ3VhZ2UgdGhhdCB3ZeKAmWxsIGJlIHVzaW5nLCBhbmQgUlN0dWRpbyBpcyBhIHBpZWNlIG9mIHNvZnR3YXJlIHRoYXQgbWFrZXMgcnVubmluZyBSIG11Y2ggbW9yZSBmcmllbmRseS4gSW4gb3JkZXIgZm9yIGV2ZXJ5dGhpbmcgdG8gd29yayBjb3JyZWN0bHksIHlvdSB3aWxsIG5lZWQgdG8gZG93bmxvYWQgYm90aCBzZXBhcmF0ZWx5OgoKIyMgRG93bmxvYWRpbmcgUiBhbmQgUlN0dWRpbwoKTGluayB0byBkb3dubG9hZCBSIGFuZCBSU3R1ZGlvIChkb3dubG9hZCBSIGZpcnN0LCB0aGVuIFJTdHVkaW8pOiBbaHR0cHM6Ly9wb3NpdC5jby9kb3dubG9hZC9yc3R1ZGlvLWRlc2t0b3AvXShodHRwczovL3Bvc2l0LmNvL2Rvd25sb2FkL3JzdHVkaW8tZGVza3RvcC8pCgojIyBJbnN0YWxsYXRpb24gSW5zdHJ1Y3Rpb25zCgpGb3IgZGV0YWlsZWQgaW5zdHJ1Y3Rpb25zIHByb3ZpZGluZyB2aWRlbyB3YWxrdGhyb3VnaHMgb2YgaG93IHRvIGRvd25sb2FkIFIgYW5kIFJTdHVkaW8gZm9yIGJvdGggTWFjIGFuZCBXaW5kb3dzLCB5b3UgY2FuIGNvbm5lY3QgdG8gdGhlIGZvbGxvdyBwYWdlIHByb2R1Y2VkIGJ5IHRoZSBVVmljIERpZ2l0YWwgU2Nob2xhcnNoaXAgQ29tbW9uczogW2h0dHBzOi8vdXZpY2xpYnJhcmllcy5naXRodWIuaW8vcnN0dWRpby9wcmUtd29ya3Nob3AuaHRtbF0oaHR0cHM6Ly91dmljbGlicmFyaWVzLmdpdGh1Yi5pby9yc3R1ZGlvL3ByZS13b3Jrc2hvcC5odG1sKQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkluc3RhbGxpbmcgUiBhbmQgUlN0dWRpbyINCnBhZ2V0aXRsZTogIkluc3RhbGxpbmcgUiBhbmQgUlN0dWRpbyINCm91dHB1dDoNCiAgaHRtbF9kb2N1bWVudDoNCiAgICBjb2RlX2ZvbGRpbmc6IHNob3cgIyBhbGxvd3MgdG9nZ2xpbmcgb2Ygc2hvd2luZyBhbmQgaGlkaW5nIGNvZGUuIFJlbW92ZSBpZiBub3QgdXNpbmcgY29kZS4NCiAgICBjb2RlX2Rvd25sb2FkOiB0cnVlICMgYWxsb3dzIHRoZSB1c2VyIHRvIGRvd25sb2FkIHRoZSBzb3VyY2UgLlJtZCBmaWxlLiBSZW1vdmUgaWYgbm90IHVzaW5nIGNvZGUuDQogICAgaW5jbHVkZXM6DQogICAgICBhZnRlcl9ib2R5OiBmb290ZXIuaHRtbCAjIGluY2x1ZGUgYSBjdXN0b20gZm9vdGVyLg0KICAgIHRvYzogdHJ1ZQ0KICAgIHRvY19kZXB0aDogMw0KICAgIHRvY19mbG9hdDoNCiAgICAgIGNvbGxhcHNlZDogZmFsc2UNCiAgICAgIHNtb290aF9zY3JvbGw6IGZhbHNlDQotLS0NCg0KIyMgUiBhbmQgUlN0dWRpbyBTZXR1cA0KDQpXZSB3aWxsIGJlIHVzaW5nIFIgYW5kIFJTdHVkaW8gdG8gaGFuZGxlIGRhdGEgbWFuaXB1bGF0aW9uIGFuZCBleHBsb3JhdGlvbiwgYW5kIHRoZSBmaXJzdCBzdGVwIGlzIGdvaW5nIHRvIGJlIGdldHRpbmcgdGhlc2UgdG9vbHMgc2V0dXAgb24geW91ciBjb21wdXRlci4gSXQgY2FuIGJlIGEgYml0IGNvbmZ1c2luZyBhdCBmaXJzdCAod2XigJlsbCBjb3ZlciB0aGlzIG1vcmUgaW4gdGhlIEp1bXBzdGFydCBjb3Vyc2VzISksIGJ1dCBSIGlzIHRoZSBjb2RpbmcgbGFuZ3VhZ2UgdGhhdCB3ZeKAmWxsIGJlIHVzaW5nLCBhbmQgUlN0dWRpbyBpcyBhIHBpZWNlIG9mIHNvZnR3YXJlIHRoYXQgbWFrZXMgcnVubmluZyBSIG11Y2ggbW9yZSBmcmllbmRseS4gSW4gb3JkZXIgZm9yIGV2ZXJ5dGhpbmcgdG8gd29yayBjb3JyZWN0bHksIHlvdSB3aWxsIG5lZWQgdG8gZG93bmxvYWQgYm90aCBzZXBhcmF0ZWx5Og0KDQojIyBEb3dubG9hZGluZyBSIGFuZCBSU3R1ZGlvDQoNCkxpbmsgdG8gZG93bmxvYWQgUiBhbmQgUlN0dWRpbyAoZG93bmxvYWQgUiBmaXJzdCwgdGhlbiBSU3R1ZGlvKTogW2h0dHBzOi8vcG9zaXQuY28vZG93bmxvYWQvcnN0dWRpby1kZXNrdG9wL10oaHR0cHM6Ly9wb3NpdC5jby9kb3dubG9hZC9yc3R1ZGlvLWRlc2t0b3AvKQ0KDQojIyBJbnN0YWxsYXRpb24gSW5zdHJ1Y3Rpb25zDQoNCkZvciBkZXRhaWxlZCBpbnN0cnVjdGlvbnMgcHJvdmlkaW5nIHZpZGVvIHdhbGt0aHJvdWdocyBvZiBob3cgdG8gZG93bmxvYWQgUiBhbmQgUlN0dWRpbyBmb3IgYm90aCBNYWMgYW5kIFdpbmRvd3MsIHlvdSBjYW4gY29ubmVjdCB0byB0aGUgZm9sbG93IHBhZ2UgcHJvZHVjZWQgYnkgdGhlIFVWaWMgRGlnaXRhbCBTY2hvbGFyc2hpcCBDb21tb25zOiBbaHR0cHM6Ly91dmljbGlicmFyaWVzLmdpdGh1Yi5pby9yc3R1ZGlvL3ByZS13b3Jrc2hvcC5odG1sXShodHRwczovL3V2aWNsaWJyYXJpZXMuZ2l0aHViLmlvL3JzdHVkaW8vcHJlLXdvcmtzaG9wLmh0bWwpDQo=</div>
 <div id="footer">
     <hr />
     <div class = "inst-logos">
