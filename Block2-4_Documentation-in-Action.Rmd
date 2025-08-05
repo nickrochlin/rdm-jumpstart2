@@ -1,6 +1,6 @@
 ---
-title: "Day 2 - Moving from Excel to Scripting"
-pagetitle: "Day 2 - GUI vs Sripting"
+title: "Documentation in Action"
+pagetitle: "Documentation in Action"
 output:
   html_document:
     includes:
@@ -12,8 +12,59 @@ output:
       smooth_scroll: false
 ---
 
-## Moving from Excel to Scripting
+## Documentation in Action
 
-* [Download the PowerPoint](files/Day-2_Session-03_GUI-vs_Scripting.pptx)
+Now that we've gotten a sense of how documentation looks in the wild, we can now start completing a README for the project that we'll be working on throughout the program.  We'll begin by opening the `README-template.txt` document that was downloaded from OSF.  If you haven't yet done this, or are having issues finding it, please see the session `"Block 1 - Introduction to OSF"`, for instructions, or ask your program instructor.  
 
-<object class = "pdf" data = "files/Day-2_Session-03_GUI-vs_Scripting.pdf"></object>
+
+### Quick Link to README Template
+Here is a quick link to the template for you to quickly download, if needed: [README template](https://ecommons.cornell.edu/items/7dc55694-0131-499b-8df1-fa676c2589e6)
+
+
+A few things to note:
+
+* You may notice that the document looks a bit jittery and isn't the friendliest thing to read.  This is because it is a **plain text document**, meaning that it has none of the formatting of a Microsoft Word document, but can be open by any operating system.  It might take a little bit of getting used to, but if you look at the `*Note` at the top of the document, it says that any text in `[square brackets]` should be changed to specific information for your project, and that text that `*begin with asterisks` and offers guidance can be deleted after completion.
+
+* It's also possible that you might not be able to complete every section of a README at the start of a project - and that's ok!  This *should* be a living document that is regularly updated, and it's good to think of how you might implement an update schedule, either by yourself or among your project collaborators.
+
+
+### Let's Get Started!
+
+
+## Wrap-Up
+
+Once you have finished completing as much of the README as you can at this point, return to the DMP you created in the DMP Assistant and updated the following questions:
+
+* **Section 1**: 
+    * Does the data you will be working with contain sensitive information that requires data protection considerations? For example: (Select all that apply)
+    
+* **Section 2**:
+    * What documentation will be created for the data to be read and interpreted correctly in the future?
+    * Do you plan to use a metadata standard and/or tools to document and describe your data? If so, please list here.
+    
+* **Section 7: Sensitive Data and Legal Compliance**
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

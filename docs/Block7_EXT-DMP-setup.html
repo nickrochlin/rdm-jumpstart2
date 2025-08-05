@@ -14,7 +14,7 @@
 
 <title>Setting up DMP Assistant</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -419,13 +419,16 @@ div.tocify {
       <a href="Block4_Overview.html">Overview</a>
     </li>
     <li>
-      <a href="Block4-1_First-Steps.html">First Steps in R</a>
+      <a href="Block4-1_File-Paths.html">File and Directory Paths</a>
     </li>
     <li>
-      <a href="Block4-2_Data-Types.html">Data Types and Structures in R</a>
+      <a href="Block4-2_First-Steps.html">First Steps in R</a>
     </li>
     <li>
-      <a href="Block4-3_Updating-Documentation.html">Updating Documentation</a>
+      <a href="Block4-3_Data-Types.html">Data Types and Structures in R</a>
+    </li>
+    <li>
+      <a href="Block4-4_Updating-Documentation.html">Updating Documentation</a>
     </li>
   </ul>
 </li>
@@ -614,7 +617,7 @@ to go!</p></li>
 program organizer for assistance.</p>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlNldHRpbmcgdXAgRE1QIEFzc2lzdGFudCINCnBhZ2V0aXRsZTogIlNldHRpbmcgdXAgRE1QIEFzc2lzdGFudCINCm91dHB1dDoNCiAgaHRtbF9kb2N1bWVudDoNCiAgICBjb2RlX2ZvbGRpbmc6IHNob3cgIyBhbGxvd3MgdG9nZ2xpbmcgb2Ygc2hvd2luZyBhbmQgaGlkaW5nIGNvZGUuIFJlbW92ZSBpZiBub3QgdXNpbmcgY29kZS4NCiAgICBjb2RlX2Rvd25sb2FkOiB0cnVlICMgYWxsb3dzIHRoZSB1c2VyIHRvIGRvd25sb2FkIHRoZSBzb3VyY2UgLlJtZCBmaWxlLiBSZW1vdmUgaWYgbm90IHVzaW5nIGNvZGUuDQogICAgaW5jbHVkZXM6DQogICAgICBhZnRlcl9ib2R5OiBmb290ZXIuaHRtbCAjIGluY2x1ZGUgYSBjdXN0b20gZm9vdGVyLg0KICAgIHRvYzogdHJ1ZQ0KICAgIHRvY19kZXB0aDogMw0KICAgIHRvY19mbG9hdDoNCiAgICAgIGNvbGxhcHNlZDogZmFsc2UNCiAgICAgIHNtb290aF9zY3JvbGw6IGZhbHNlDQpkYXRlOiAiMjAyNS0wMi0yOCINCi0tLQ0KDQojIyBJbnRyb2R1Y3Rpb24NCg0KVGhlIERNUCBBc3Npc3RhbnQgaXMgYSBwbGF0Zm9ybSB0aGF0IHdlIHdpbGwgdXNlIHRvIGNyZWF0ZSBhIGRhdGEgbWFuYWdlbWVudCBwbGFuIChETVApIGZvciB0aGUgc2VyaWVzLCB3aGljaCB3aWxsIGJlZ2luIGluIEJsb2NrIDEgYW5kIHdpbGwgY29udGludWUgdGhyb3VnaG91dCB0aGUgcHJvZ3JhbS4gIFRvIHVzZSB0aGUgRE1QIEFzc2lzdGFudCwgeW91J2xsIG5lZWQgdG8gY3JlYXRlIGFuIGFjY291bnQgYnkgZm9sbG93aW5nIHRoZSBzdGVwcyBiZWxvdzoNCg0KMS4gR28gdG8gdGhlIERNUCBBc3Npc3RhbnQgV2Vic2l0ZTogPGEgaHJlZj0iaHR0cHM6Ly9kbXAtcGdkLmNhLyI+aHR0cHM6Ly9kbXAtcGdkLmNhLzwvYT4NCg0KMi4gRmlsbCBvdXQgeW91ciBmaXJzdCBhbmQgbGFzdCBuYW1lLCBlbWFpbCwgb3JnYW5pemF0aW9uIChVbml2ZXJzaXR5IG9mIFZpY3RvcmlhKSwgYW5kIHRoZW4gY2hvb3NlIGEgcGFzc3dvcmQuICBZb3Ugc2hvdWxkIHJlY2VpdmUgYW4gZW1haWwgY29uZmlybWluZyB5b3VyIHN1Y2Nlc3NmdWwgYWNjb3VudCBzZXR1cCwgYW5kIG5vdyB5b3UncmUgZ29vZCB0byBnbyEgDQoNCklmIHlvdSBydW4gaW50byBhbnkgaXNzdWVzIHdpdGggdGhpcyBwcm9jZXNzLCBwbGVhc2UgcmVhY2ggb3V0IHRvIHRoZSBwcm9ncmFtIG9yZ2FuaXplciBmb3IgYXNzaXN0YW5jZS4NCg0K</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiU2V0dGluZyB1cCBETVAgQXNzaXN0YW50IgpwYWdldGl0bGU6ICJTZXR0aW5nIHVwIERNUCBBc3Npc3RhbnQiCm91dHB1dDoKICBodG1sX2RvY3VtZW50OgogICAgY29kZV9mb2xkaW5nOiBzaG93ICMgYWxsb3dzIHRvZ2dsaW5nIG9mIHNob3dpbmcgYW5kIGhpZGluZyBjb2RlLiBSZW1vdmUgaWYgbm90IHVzaW5nIGNvZGUuCiAgICBjb2RlX2Rvd25sb2FkOiB0cnVlICMgYWxsb3dzIHRoZSB1c2VyIHRvIGRvd25sb2FkIHRoZSBzb3VyY2UgLlJtZCBmaWxlLiBSZW1vdmUgaWYgbm90IHVzaW5nIGNvZGUuCiAgICBpbmNsdWRlczoKICAgICAgYWZ0ZXJfYm9keTogZm9vdGVyLmh0bWwgIyBpbmNsdWRlIGEgY3VzdG9tIGZvb3Rlci4KICAgIHRvYzogdHJ1ZQogICAgdG9jX2RlcHRoOiAzCiAgICB0b2NfZmxvYXQ6CiAgICAgIGNvbGxhcHNlZDogZmFsc2UKICAgICAgc21vb3RoX3Njcm9sbDogZmFsc2UKZGF0ZTogIjIwMjUtMDItMjgiCi0tLQoKIyMgSW50cm9kdWN0aW9uCgpUaGUgRE1QIEFzc2lzdGFudCBpcyBhIHBsYXRmb3JtIHRoYXQgd2Ugd2lsbCB1c2UgdG8gY3JlYXRlIGEgZGF0YSBtYW5hZ2VtZW50IHBsYW4gKERNUCkgZm9yIHRoZSBzZXJpZXMsIHdoaWNoIHdpbGwgYmVnaW4gaW4gQmxvY2sgMSBhbmQgd2lsbCBjb250aW51ZSB0aHJvdWdob3V0IHRoZSBwcm9ncmFtLiAgVG8gdXNlIHRoZSBETVAgQXNzaXN0YW50LCB5b3UnbGwgbmVlZCB0byBjcmVhdGUgYW4gYWNjb3VudCBieSBmb2xsb3dpbmcgdGhlIHN0ZXBzIGJlbG93OgoKMS4gR28gdG8gdGhlIERNUCBBc3Npc3RhbnQgV2Vic2l0ZTogPGEgaHJlZj0iaHR0cHM6Ly9kbXAtcGdkLmNhLyI+aHR0cHM6Ly9kbXAtcGdkLmNhLzwvYT4KCjIuIEZpbGwgb3V0IHlvdXIgZmlyc3QgYW5kIGxhc3QgbmFtZSwgZW1haWwsIG9yZ2FuaXphdGlvbiAoVW5pdmVyc2l0eSBvZiBWaWN0b3JpYSksIGFuZCB0aGVuIGNob29zZSBhIHBhc3N3b3JkLiAgWW91IHNob3VsZCByZWNlaXZlIGFuIGVtYWlsIGNvbmZpcm1pbmcgeW91ciBzdWNjZXNzZnVsIGFjY291bnQgc2V0dXAsIGFuZCBub3cgeW91J3JlIGdvb2QgdG8gZ28hIAoKSWYgeW91IHJ1biBpbnRvIGFueSBpc3N1ZXMgd2l0aCB0aGlzIHByb2Nlc3MsIHBsZWFzZSByZWFjaCBvdXQgdG8gdGhlIHByb2dyYW0gb3JnYW5pemVyIGZvciBhc3Npc3RhbmNlLgoK</div>
 <div id="footer">
     <hr />
     <div class = "inst-logos">

@@ -14,6 +14,6 @@ output:
 
 ## Moving from Excel to Scripting
 
-* [Download the PowerPoint](files/Day-2_Session-03_GUI-vs_Scripting.pptx)
+* [Download the PowerPoint](files/Block3-1_Excel-to-Scripting.pptx)
 
-<object class = "pdf" data = "files/Day-2_Session-03_GUI-vs_Scripting.pdf"></object>
+<object class = "pdf" data = "files/Block3-1_Excel-to-Scripting.pdf"></object>

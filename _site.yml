@@ -37,12 +37,14 @@ navbar:
       menu:
         - text: "Overview"
           href: Block4_Overview.html
+        - text: "File and Directory Paths"
+          href: Block4-1_File-Paths.html
         - text: "First Steps in R"
-          href: Block4-1_First-Steps.html
+          href: Block4-2_First-Steps.html
         - text: "Data Types and Structures in R"
-          href: Block4-2_Data-Types.html
+          href: Block4-3_Data-Types.html
         - text: "Updating Documentation"
-          href: Block4-3_Updating-Documentation.html
+          href: Block4-4_Updating-Documentation.html
     - text: "Block 5"
       menu:  
         - text: "Overview"
