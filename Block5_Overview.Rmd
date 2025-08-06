@@ -1,6 +1,6 @@
 ---
-title: "Day 5 Overview"
-pagetitle: "Day 5 Overview"
+title: "Block 5 Overview"
+pagetitle: "Block 5 Overview"
 output:
   html_document:
     includes:
@@ -12,12 +12,54 @@ output:
       smooth_scroll: false
 ---
 
-## Day 5
+## Block 5: Visualization
 
-Today is all about depositing data and other materials for preservation and reuse after a research project is complete. We'll start with an overview of what needs to be considered as it relates to choosing how and where data and accompanying materials can be deposited. We'll then look at Borealis specifically, the national data repository used by many post-secondary institutions in Canada. Lastly, we'll do a live demo deposit into Borealis.
+**Setup Pre-requisites:**
 
-By the end of today, you will be able to:
+  * <a href="Block7_EXT-osfsetup.html">Setup an account with OSF</a>
+  * <a href="Block7_EXT-RRStudio.html">Download R and RStudio</a>
+  
+### Welcome to Block 5 of the UVic RDM Jumpstart!
 
-* Articulate considerations in where and what to deposit.
-* Be comfortable making a basic data deposit into Borealis.
+This block is dedicated to the art of data visualizations.  We'll start the session by looking at different types of visualizations, and what makes a good visualization.  We will then break into small groups for an exercise where you'll explore different types of visualizations and talk about what you like/dislike about them, and how this might inform your visualization practices.  This will be followed by getting our hands dirty with `ggplot2`, which is a very powerful R package designed to create visualizations.  After walking through some of the basic steps to creating a visualization with `ggplot2`, you'll be given a chunk of time to play around and explore with some exercises.
+
+Below you'll find the overarching learning objectives for Block 5, as well as an overview of each session.
+
+### Block 5 Learning Objectives
+
+By the end of this block, you will be able to:
+
+* Review `ggplot2` within the data science workflow
+* Discuss criteria of good data visualizations
+* Review and critique various types of data visualizations
+* Identify the grammar of `ggplot2` in creating visualizations in R
+* Begin playing around with more advanced types of visualizations in R
+
+### Block 5 Session Overviews
+
+#### Session 1: Types of Visualizations
+
+* Introduce types of data visualizations
+* Present different types of visualization
+  * What is good?
+  * What is not so good?
+* Explore visualization galleries and critique various types of visualizations
+
+#### Session 2: Visualizations with ggplot
+
+* Load `ggplot2` and the project dataset into R
+* Discuss the general grammar of `ggplot2`
+* Build some basic visualization plots using the project dataset
+* Build some more advanced plots using the project dataset
+* Explore the possibilities of `ggplot2` with exercises
+
+
+
+
+
+
+
+
+
+
 

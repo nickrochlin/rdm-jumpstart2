@@ -12,7 +12,7 @@ output:
       smooth_scroll: false
 ---
 
-## Block 3 Overview
+## Block 3: Moving into Coding and Computational Reproducibility
 
 **Setup Pre-requisites:**
 

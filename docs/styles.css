@@ -250,3 +250,8 @@ img {
   background: repeating-linear-gradient(45deg, #ffffff, #ffffff 5px,#fcf3cf  5px, #fcf3cf 10px);
   color: #32322F;
         }
+
+.invisible-section {
+  visibility: hidden;
+}
+

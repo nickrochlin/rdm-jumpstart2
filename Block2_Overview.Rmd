@@ -12,7 +12,7 @@ output:
       smooth_scroll: false
 ---
 
-## Block 2 Overview
+## Block 2: Organizing and Documenting Data
 
 **Setup Pre-requisites:**
 

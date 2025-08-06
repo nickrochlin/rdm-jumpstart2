@@ -36,18 +36,6 @@ Data visualization is a critical part of the data science workflow. Through visu
 ![](images/tidyverse-workflow.png)
 [Source](https://telapps.london.edu/analytics_with_R/tidyverse.html)
 
-:::note
-In this session we have a few main goals:
-
-1. Introduction to types of data visualizations
-
-2. Discussion of what makes a good visualization
-
-3. Review and critique some data visualization examples
-
-4. Introduction to ggplot to generate visualizations in R
-
-:::
 
 Let's get started! 
 

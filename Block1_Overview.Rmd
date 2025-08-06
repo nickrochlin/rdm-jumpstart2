@@ -12,7 +12,7 @@ output:
       smooth_scroll: false
 ---
 
-## Block 1 Overview
+## Block 1: Basics of Research Data Management (RDM)
 
 **Setup Pre-requisites:**
 

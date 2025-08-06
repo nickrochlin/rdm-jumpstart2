@@ -23,14 +23,6 @@ knitr::opts_chunk$set(message = FALSE, warnings = FALSE)
 Now that we've familiarized ourselves a bit with R and RStudio, we can start moving forward to working with data in R, which is where the real fun begins!
 :::
 
-In this session, we will:
-
-* Discuss the Tidyverse and its utility in the data science workflow
-* Introduce packages and libraries in R, and then install and load the Tidyverse
-* Identify how to import datasets into R
-* Describe techniques to explore datasets in R
-* Recode column names in a dataset
-
 ## Packages and Libraries
 
 When you first download R, it comes equipped with a number of pre-installed functions, or capabilities, that you can start using immediately.  This is often called "Base R:.  However, for certain tasks and workflows, it can be beneficial to use more specialized tools, or functions, to accomplish work and facilitate workflows for efficiently.  This is where packages and libraries come into play.

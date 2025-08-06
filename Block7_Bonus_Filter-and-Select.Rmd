@@ -14,9 +14,7 @@ output:
       smooth_scroll: false
 ---
 
-## Overview
-
-------------------------------------------------------------------------
+## Data Filtering and Selection Techniques
 
 ![](images/3-ACT-3-Overview.png)
 

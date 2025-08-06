@@ -26,14 +26,6 @@ RStudio is a program that helps you write and run R code more easily, especially
 You will have hopefully already downloaded R and RStudio.  If not, follow the instructions on this page: <a href="Block7_EXT-RRStudio.html">R and RStudio setup</a>
 
 
-In this tutorial, we will:
-
-- Get familiarized with the RStudio interface
-- Learn how to set the working directory
-- Identify the types of documents we can create in R Studio
-- Create an R script to start our work
-- 
-
 ## RStudio Interface
 
 When we launch RStudio for the first time, we notice three main panels or quadrants: 
