@@ -57,7 +57,23 @@ If you've done this successfully, you will have these remaining 8 files in your 
 
 This might seem like a brash move to delete all these files, but in a real research project, you don't get the ability to see all the files you will generate at the onset.  This exercise was meant to give you a sense of what can be generated in a project and how to think about setting up your work, but now that you've done so, let's ground ourselves in reality and start back at square 1!
 
-**Keep your naming convention handy**, as we'll return to it in a little while, but first let's move onto the next session to learn a bit about documentation.
+5) In OSF, rename the remaining files according to the naming convention by clicking on the three dots on the far right side next to the file, and selecting *"Rename"*.
+
+6) Add the folders you developed (if one was developed), by clicking the green arrow button at the top right side of the screen, and selecting *"Create folder"*
+
+7) Next, move any files into associated folders, by clicking the three dots on the right right side next to the file, and selecting *"Move"*, then choosing the appropriate folder.
+
+6) Finally, download this folder to your personal machine.  This will take a couple steps:
+
+  * Click *"Download this folder"* at the top right of the screen.  
+  * This will create a `.zip` archive in your `Downloads` folder.  
+    * On a Mac, you can click on the archive, and it will create a new folder in your `Downloads` folder.
+    * On a Windows machine, you can right-click the archive and select *"Extract All"*, and select where you want the files to go.
+    
+**For the purposes of this series, save this folder in your `Documents` folder, which should be attached to your OneDrive**.  If you have any issues with this process, please ask your instructor.
+
+
+Finally, **Keep your naming convention handy**, as we'll return to it in a little while, but first let's move onto the next session to learn a bit about documentation.
 
 
 

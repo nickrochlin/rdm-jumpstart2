@@ -27,8 +27,12 @@ A few things to note:
 
 * It's also possible that you might not be able to complete every section of a README at the start of a project - and that's ok!  This *should* be a living document that is regularly updated, and it's good to think of how you might implement an update schedule, either by yourself or among your project collaborators.
 
+* This will be the place that you can write down your naming convention and folder structure that you created.  If things change during a project, it's no problem!  This is where the updating schedule comes in handy, and we'll be returning to the README throughout the series to update it accordingly.
 
-### Let's Get Started!
+**Let's jump in and start filling it out!**
+
+
+### Update the DMP
 
 
 :::question

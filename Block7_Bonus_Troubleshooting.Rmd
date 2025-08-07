@@ -59,8 +59,10 @@ Keep calm!
   ![](images/day4_error_loadlibraries.png)
  
 
-## Team Challenge (30 minutes)
-In small teams, you will work together to troubleshoot some errors in R. We've created a RMarkdown file with some code related to the same Time Use dataset we've been using this week. You will notice a lot of errors when trying to run the code. 
+## Challenge 
+Now, see if you can try your hand at some troubleshooting in the wild! We've created a RMarkdown file with some code related to the same Time Use dataset we've been using this week. You will notice a lot of errors when trying to run the code. 
+
+See the [OSF repo](https://osf.io/38c74/) to access the files.
 
 Take note of how many errors you encounter and what you do to solve them. 
 

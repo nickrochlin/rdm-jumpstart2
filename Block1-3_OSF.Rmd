@@ -35,7 +35,7 @@ Storage solutions that are supported by your institution will generally come wit
 
 You will have hopefully already set up an account on OSF. If not, follow the instructions on this page: <a href="Block7_EXT-osfSetup.html">OSF Setup</a>
 
-For this workshop, we have set up a template that we will have you fork -- or copy. This template can be found at [https://osf.io/3efyh/](https://osf.io/3efyh/)
+For this workshop, we have set up a template that we will have you fork -- or copy. This template can be found at [https://osf.io/rx5a3/](https://osf.io/rx5a3/)
 
 The steps that we'll be covering in this session include:
 
