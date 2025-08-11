@@ -20,8 +20,6 @@ Welcome to UVic RDM Jumpstart, 2025! Before going any further, [please read our 
 
 In this series you will be introduced to the practical applications of research data management (RDM) and computational reproducibility, with a focus on the connections between the tools and platforms that support good RDM practices. 
 
-## Website 
-
 ### Program Content 
 
 The series is broken up into 6 blocks.  On the menu bar at the top of the webpage, you will see a drop-down menu for each of the 6 blocks and their content.  Each block begins with an **Overview** that covers any technical pre-requisites, a textual description of the block, learning objectives, and an overview for each individual session.  Each session's content is listed on their respective pages. The session content will guide the live instruction, and is also meant to function as asynchronous materials for those wanting to revisit the content after live delivery, or if people want to guide themselves through the content on their own.
@@ -42,7 +40,7 @@ As mentioned above, learning objectives for each block are listed in the **Overv
 
 * Complete a Data Management Plan (DMP) for a mock project 
 * Complete a README document for a mock project
-* Create 1-2 R coding scripts (depending on decisions made by the group) to manipulate a dataset.
+* Create 1-2 R coding scripts (depending on decisions made by the group) to manipulate a dataset
 
 If you are interested in receiving a certificate, whether you attend live or work through some/all the content asynchronously, please submit these three documents for review to Nick Rochlin.  If you are not interested in receiving the certificate but are interested in seeing the completed documents, please reach out to Nick and he will forward them to you.
 
