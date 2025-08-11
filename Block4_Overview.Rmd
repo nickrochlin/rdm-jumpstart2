@@ -16,7 +16,7 @@ output:
 
 **Setup Pre-requisites:**
 
-  * <a href="Block7_EXT-osfsetup.html">Setup an account with OSF</a>
+  * <a href="Block7_EXT-osfSetup.html">Setup an account with OSF</a>
   * <a href="Block7_EXT-RRStudio.html">Download R and RStudio</a>
 
 ### Welcome to Block 4 of the UVic RDM Jumpstart!

@@ -17,7 +17,7 @@ output:
 **Setup Pre-requisites:**
 
   * <a href="Block7_EXT-DMP-setup.html">Setup an account with the DMP Assistant</a> 
-  * <a href="Block7_EXT-osfsetup.html">Setup an account with OSF</a>
+  * <a href="Block7_EXT-osfSetup.html">Setup an account with OSF</a>
   * <a href="Block7_EXT-Borealis.html">Setup an account with Borealis</a>
 
 
