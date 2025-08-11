@@ -297,9 +297,10 @@ Let's keep playing:
 # 4) z <- "baseball"
 # 5) w + x
 # 6) w/x
-# 7) N/A
+# 7) Ex: w <- 500 
+#       x <- 9000
 # 8) This should show an error like the following: "Error in y + z : non-numeric argument to binary operator".  This is because R will only let you add numerical values together, and not character values.  This will be covered in more detail in the next section.
-# 9) N/A
+# 9) movies <- c("Pulp Fiction", "Lord of the Rings: The Fellowship of the Ring", "Highlander")
 
 ```
 :::
@@ -368,24 +369,11 @@ Now that we've established some best practices in literate programming, go throu
 
 :::
 
-
-:::question
-
-Let's now go to the <a href="https://dmp-pgd.ca/">DMP Assistant</a> and updated the following questions:
-
-* **Section 1: Data Collection**
-  * What file formats will your data be collected and saved in?  Select all that apply.
-  * Describe related tools and software needed to access, manipulate, and analyze the data.
-
-::: 
-
-
-
 ## Save Your Work
 
 You can save your script by selecting `file > save` or by clicking the flopping disk icon in the top navigation pane.
 
-Name your script in line with your naming convention / how you see fit.
+Name your script `my-first-script.R`.
 
 <br>
 
@@ -394,6 +382,24 @@ Name your script in line with your naming convention / how you see fit.
 At the end of each work session, remember to save your data as .RData and .csv, and also your RMarkdown file (.Rmd). We will upload those files to OSF.
 
 ![](images/osf/osfUpload.gif)
+
+:::question
+
+Let's now go to the <a href="https://dmp-pgd.ca/">DMP Assistant</a> and updated the following questions:
+
+* **Section 1: Data Collection**
+  * What file formats will your data be collected and saved in?  Select all that apply.
+  * Describe related tools and software needed to access, manipulate, and analyze the data.
+  
+<br.
+
+We've also added a new script file to our project, and should update our README file to reflect this with a description of the file.
+
+::: 
+
+
+
+
 
 
 

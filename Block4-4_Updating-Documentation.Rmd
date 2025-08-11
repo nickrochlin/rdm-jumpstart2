@@ -20,8 +20,9 @@ Now that we've covered some decent ground in R, let's return to our README file 
 
 Things to consider:
 
-* We've changed all the column names from our original dataset, and have created a new file to reflect the cleaned column names.
-* We also recoded a few variables and have created another new file that has the cleaned column names and the recoded variables.
+* We  changed all the column names from our original dataset, and have created a new file to reflect the cleaned column names.
+* We recoded a few variables and have created another new file that has the cleaned column names and the recoded variables.
+* We created a new script file (possibly 2 script files).
 
 **Question:** How do we want to record these changes in our documentation?
 
