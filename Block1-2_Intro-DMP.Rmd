@@ -38,17 +38,7 @@ In this tutorial, we'll cover the following:
     * Downloading the final document
     * Writing the plan
 
-<br>
 
-:::question
-
-Let's go to the <a href="https://dmp-pgd.ca/">DMP Assistant</a> and keep filling in the questions:
-
-* **Section 1: Data Collection**
-  
-  * Describe how you will organize, name, and version-control your files to help you and others understand your data.
-  
-:::
 
 
 

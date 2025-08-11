@@ -72,10 +72,17 @@ This might seem like a brash move to delete all these files, but in a real resea
     
 **For the purposes of this series, save this folder in your `Documents` folder, which should be attached to your OneDrive**.  If you have any issues with this process, please ask your instructor.
 
+Finally, **Keep your naming convention handy**, as we'll return to it in a little while, but first let's update our DMP before we move onto learning a bit about data documentation.
 
-Finally, **Keep your naming convention handy**, as we'll return to it in a little while, but first let's move onto the next session to learn a bit about documentation.
+:::question
 
+Let's go to the <a href="https://dmp-pgd.ca/">DMP Assistant</a> and fill in the following section:
 
+* **Section 1: Data Collection**
+  
+  * Describe how you will organize, name, and version-control your files to help you and others understand your data.
+  
+:::
 
 
 
