@@ -391,7 +391,7 @@ Let's now go to the <a href="https://dmp-pgd.ca/">DMP Assistant</a> and updated 
   * What file formats will your data be collected and saved in?  Select all that apply.
   * Describe related tools and software needed to access, manipulate, and analyze the data.
   
-<br.
+<br>
 
 We've also added a new script file to our project, and should update our README file to reflect this with a description of the file.
 
