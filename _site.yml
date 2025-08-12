@@ -113,6 +113,8 @@ navbar:
               href: Block7_EXT-Borealis.html
         - text: "Contributors"
           href: contributors.html
+        - text: "Feedback"
+          href: Feedback.html
 output:
   html_document:
     theme: flatly
