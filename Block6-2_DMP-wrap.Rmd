@@ -14,7 +14,7 @@ output:
 
 ## DMP and Project Wrap-Up
 
-This session is going to be a bit of a free-form exercise in wrapping a project up.  For those that haven't been following along for the whole program, you can access the project files that we'll be discussing here: <a href="https://osf.io/rx5a3/">UVic RDM Jumpstart OSF</a>
+This session is going to be a bit of a free-form exercise in wrapping a project up.  For those that haven't been following along for the whole program, you can access the project files that we'll be discussing here: <a href="https://osf.io/mzbyt/files/osfstorage">UVic RDM Jumpstart OSF - Deposit repo</a>
 
 There are 3 main goals we're going to work through, and will follow them in sequential order:
 
@@ -67,7 +67,7 @@ It might also be valuable to review the questions you have already answered, and
 
 ### What Should We Keep?
 
-If you've been following along with the whole program, you can go to your OSF fork or your local storage to take a look at the files you have.  If you're just jumping in now, you can go to the <a href="https://osf.io/rx5a3/">UVic RDM Jumpstart OSF</a> to get a sense of the files that were generated.
+If you've been following along with the whole program, you can go to your OSF fork or your local storage to take a look at the files you have.  If you're just jumping in now, you can go to the <a href="https://osf.io/mzbyt/files/osfstorage">UVic RDM Jumpstart OSF - Deposit repo</a> to get a sense of the files that were generated.
 
 :::question
 
