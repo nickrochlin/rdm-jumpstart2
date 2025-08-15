@@ -51,6 +51,7 @@ In a real research project you don't get the ability to see all the files you wi
 4) In OSF, rename files according to the naming convention by clicking on the three dots on the far right side next to the file, and selecting *"Rename"*.  **You do not need to rename all the files** if you think the names are fitting, but again, try to put your researcher hat on and think about how this would work in a real project.
 
 **Do not rename the following files:**
+
   * block-4_first-steps.csv
   * block-5_visualization.csv
   * block-5_visualization.RData
