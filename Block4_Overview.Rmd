@@ -37,7 +37,7 @@ By the end of this block, you will be able to:
 * Change column names in R
 * Describe the different data types and structures in R, and how this relates to working with a dataset
 * Check data types in R
-* How to handle missing data in R
+* Handle missing data in R
 * Recode variables in R
 
 ### Block 4 Session Overviews
@@ -55,6 +55,7 @@ By the end of this block, you will be able to:
 
 #### Session 2: First Steps in R
 
+* Introduce R projects as good practice for setting a working directory
 * Discuss the Tidyverse and its utility in the data science workflow
 * Install and load the Tidyverse
 * Import the project dataset into R

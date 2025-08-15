@@ -46,7 +46,7 @@ Let's also load our dataset.  For this exercise, we are using a dataset that is 
 :::
 
 ```{r}
-load("data/timeuse_block-5_visualization.RData")
+load("data/block-5_visualization.RData")
 ```
 
 There are many ways to make data visualizations in R; however, other approaches tend to be more automatic and consequently limit the amount you can change and adapt your visualization to your needs. `ggplot2` works in layers, allowing for maximum control and flexibility. 

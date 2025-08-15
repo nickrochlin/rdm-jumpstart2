@@ -47,7 +47,7 @@ library(readr) # for reading and writing data
 For this section, you can continue from the previous section or load a backup of the dataset from the `resources` folder:
 
 ```{r}
-load("data/timeuse_block-5_visualization.RData")
+load("data/block-5_visualization.RData")
 ```
 
 The `js_data` object contains the dataset we used, transformed, and modified up to now. In this session, we will assume this is our final dataset to deposit into a repository such as Borealis. Saving in `.csv` or `.tsv` makes sure our files are open and usable across platforms, easily imported into other programming languages, databases, or spreadsheet software.

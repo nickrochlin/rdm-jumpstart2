@@ -135,7 +135,7 @@ First we load  the `dplyr` package (remember to install it first if you haven't 
 
 ```{r, message = FALSE}
 library(dplyr)
-load("data/timeuse_clean-cols.RData")
+load("data/clean-cols.RData")
 ```
 
 Just to reacquaint ourselves with our data, use the `head` function to peak at the first 6 rows of our data. 

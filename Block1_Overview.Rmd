@@ -22,7 +22,7 @@ output:
 
 ### Welcome to Block 1 of the UVic RDM Jumpstart!
 
-In this Block we're going to kick things off with a high-level introduction of the most fundamental aspects of Research Data Management (RDM).  We'll then move into an introduction to data management plans (DMPs), by providing an overview of the questions and considerations of a DMP, and then doing an introduction to the DMP Assistant, which is a Canadian tool to help produce DMPs, and we'll create a new DMP.  We will then move to an introduction to the Open Science Framework (OSF), which is an online storage platform that supports good RDM practices and facilitates collaboration, and through this platform will discuss and demonstrate concepts of data backup and version control, and spend some time investigating the project files that we will be working with throughout the Jumpstart program.  We'll wrap this block up by returning to the DMP Assistant and begin answering a couple questions.  Throughout the program we'll be returning to the DMP Assistant, and filling in questions as new concepts are introduced.
+In this Block we're going to kick things off with a high-level introduction of the most fundamental aspects of Research Data Management (RDM).  We'll then move into an introduction to data management plans (DMPs), by providing an overview of the questions and considerations of a DMP, and then doing an introduction to the DMP Assistant, which is a Canadian tool to help produce DMPs, through which we'll create a new DMP.  We will then move to an introduction to the Open Science Framework (OSF), which is an online storage platform that supports good RDM practices and facilitates collaboration, and through this platform we'll discuss and demonstrate concepts of data backup and version control, and spend some time investigating the project files that we will be working with throughout the Jumpstart program.  We'll wrap this block up by returning to the DMP Assistant and begin answering a couple questions.  Throughout the program we'll be returning to the DMP Assistant and filling in questions as new concepts are introduced.
 
 Below you'll find the overarching learning objectives for Block 1, as well as an overview of each session.
 
@@ -37,7 +37,7 @@ By the end of this block, you will be able to:
 * Begin summarizing the questions and considerations of a DMP.
 * Navigate the DMP Assistant.
 * Situate the Open Science Framework (OSF) within the research data lifecycle.
-* Describe concepts of version control as it relates to research data and associated tools.
+* Describe concepts of version control as they relates to research data and associated tools.
 
 ### Block 1 Session Overviews
 

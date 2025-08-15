@@ -48,8 +48,8 @@ By the end of this block, you will be able to:
 
 #### Session 2: Naming Conventions and Folder Structure for the Project
 
-* Revisit the files in the project and collaboratively develop a naming convention
-* Collaboratively develop an appropriate directory structure for the project
+* Revisit the files in the project and collaboratively develop an appropriate directory structure for the project
+* Collaboratively develop a naming convention for the project
 * Update the project DMP
 
 #### Session 3: Documentation

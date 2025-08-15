@@ -17,11 +17,50 @@ output:
 knitr::opts_chunk$set(message = FALSE, warnings = FALSE)
 ```
 
+**In order to follow along with this session, you'll need to have downloaded some of the files in the OSF repo for this series.  If you haven't done so, go to this page and select the "Download this folder" button on the top right of the screen: [download OSF files](https://osf.io/rx5a3/files/osfstorage)
+
+If you have any issues, please ask your instructor, or refer to **"Block 1: Introduction to OSF"**.
+
+
 ## Introduction
 
 :::intro
 Now that we've familiarized ourselves a bit with R and RStudio, we can start moving forward to working with data in R, which is where the real fun begins!
 :::
+
+## R Projects 
+
+### Setting working directory
+
+Most R tutorials and books teach the function `setwd()` for setting the working directory. This function manually sets the working directory during an R session. It tells R where to look for files and where to save outputs just for that session.
+
+But here’s the problem...
+
+Using `setwd()` can break your code when:
+
+ - Someone else tries to run it on their machine.
+ - You move your project folder.
+ - You're running your code on a server or in cloud environments like RStudio Cloud.
+
+Since file paths are hardcoded and depend on your machine, **it's not reproducible**.
+
+### Create an R Project
+
+An R Project is a feature in RStudio (and supported in base R too) that provides a self-contained working environment. When you create an R Project it creates a .Rproj file in a folder and that folder becomes the root directory of your project. Every time you open the project (via the .Rproj file), R automatically sets the working directory to that folder. You can reference files relative to the project root — no need to hardcode file paths.
+
+This is super useful when you're working on multiple analyses, sharing code with collaborators, or version-controlling with Git. **It is a good practice for reproducible research**
+
+To create an R Project, select File > New Project
+
+![](images/day2_CreateProject.gif)
+
+
+## Your Turn!
+
+:::question
+Create your first RProject. Let's figure out what we should call it!
+:::
+
 
 ## Packages and Libraries
 
@@ -92,7 +131,7 @@ In order to start working with a dataset in R, we first need to import, or "read
 ### Read a csv file
 To import a csv file we can use the `read_csv()` function and assign it to a new object we will call *js_data*. We create a new object to be able to call it in different functions later on.
 ```{r}
-js_data <- read_csv("data/timeuse_block-4_first-steps.csv")
+js_data <- read_csv("data/block-4_first-steps.csv")
 ```
 
 ### Read Other Formats
@@ -141,6 +180,21 @@ View(js_data)
 
 
 ## Change Column Names
+
+Let's now return to the R syntax diagram that we looked at in Block 3:
+
+![](images/day2_RSyntax.png)
+
+In that session, we discussed **objects** and **functions**, and played with the idea of objects storing information, and functions manipulating the object/data.
+
+Now we're going to start implementing **pipes** as a way to connect objects to **functions** and **arguments**.
+
+#### Pipes
+
+Pipes are used to chain steps of instructions or actions together, and often involve writing over an object to give it a new value. We'll walk through some examples of how this works, and start to see how the full syntax of R comes together.
+
+<br>
+
 We mentioned earlier that we wanted to work with column names that were more descriptive of the content of each variable. To change column names we can use the function `rename()`.
 
 The function `rename()` is part of one of the packages that was installed with tidyverse.
@@ -151,7 +205,14 @@ Type the following code to change the column name from "PUMFID" to "id"
 js_data <- js_data |>
   rename ("id" = "PUMFID")
 ```
-Did it work?
+
+**Step-by-step explanation:**
+
+* This command first starts off with the `js_data` object, which is our dataset.
+* The assignment operator comes next, and will re-write the information stored in `js_data` with all the information that is to the right side of the operator.
+* We then use the `js_data` object and the pipe `|>` to tell R that we want to take the data that is stored in `js_data`, and then do something to it (which is what comes after the pipe).
+* The `rename` function is used to rename columns, and is always followed by brackets.  Inside those brackets, we'll put the new column name that we want in quotation marks `""`, followed by an equal sign `=`, followed by the existing column name in quotation marks `""`.
+* We then run the command and hope it works!
 :::
 
 ## Your Turn!
@@ -231,7 +292,7 @@ Now that we've created a dataset that has some significant changes, it can be he
 The file name below is for example purposes, and feel free to use a file naming convention that you developed:
 
 ```{r}
-write_csv(js_data, file="data/timeuse_clean-cols.csv")
+write_csv(js_data, file="data/clean-cols.csv")
 ```
 
 <br>
@@ -241,7 +302,7 @@ An additional way to save data files in R is as an `.Rdata` file.  Unlike a simp
 The syntax is similar is the same as `write_csv`, but uses the function `save()`:
 
 ```{r}
-save(js_data, file="data/timeuse_clean-cols.RData")
+save(js_data, file="data/clean-cols.RData")
 ```
 
 <br>
@@ -249,7 +310,7 @@ save(js_data, file="data/timeuse_clean-cols.RData")
 :::note
 When opening an `.RData` file, instead of using `read_csv()`, you use the `load()` command.  The syntax is the same, and to reopen the file you just saved would look like this:
 ```{r, eval = FALSE}
-`load("data/timeuse_clean-cols.RData")`
+`load("data/clean-cols.RData")`
 ```
 
 

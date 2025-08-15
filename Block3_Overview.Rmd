@@ -50,7 +50,7 @@ By the end of this block, you will be able to:
   * What it does well
   * What it doesn't do so well
 * `.xlxs` vs. `.csv` files
-* Scripting and literature programming
+* Scripting and literate programming
 * The data science workflow with R
 * Update additional sections of the project DMP
 

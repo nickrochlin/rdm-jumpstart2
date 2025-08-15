@@ -14,7 +14,7 @@ output:
 
 ## Documentation in Action
 
-Now that we've gotten a sense of how documentation looks in the wild, we can now start completing a README for the project that we'll be working on throughout the program.  We'll begin by opening the `README-template.txt` document that was downloaded from OSF.  If you haven't yet done this, or are having issues finding it, please see the session `"Block 1 - Introduction to OSF"`, for instructions, or ask your program instructor.  
+Now that we've gotten a sense of how documentation looks in the wild, we can now start completing a README for the project that we'll be working on throughout the program.  We'll begin by opening the `README-template.txt` document that was downloaded from OSF.  If you haven't yet done this, or are having issues finding it, please see the session **"Block 1 - Introduction to OSF"**, for instructions, or ask your program instructor.  
 
 
 ### Quick Link to README Template
@@ -23,9 +23,9 @@ Here is a quick link to the template for you to quickly download, if needed: [RE
 
 A few things to note:
 
-* You may notice that the document looks a bit jittery and isn't the friendliest thing to read.  This is because it is a **plain text document**, meaning that it has none of the formatting of a Microsoft Word document, but can be open by any operating system.  It might take a little bit of getting used to, but if you look at the `*Note` at the top of the document, it says that any text in `[square brackets]` should be changed to specific information for your project, and that text that `*begin with asterisks` and offers guidance can be deleted after completion.
+* You may notice that the document looks a bit jittery and isn't the friendliest thing to read.  This is because it is a **plain text document**, meaning that it has none of the formatting of a Microsoft Word document, but can be opened by any operating system.  It might take a little bit of getting used to, but if you look at the `*Note` at the top of the document, it says that any text in `[square brackets]` should be changed to specific information for your project, and that text that `*begin with asterisks` and offers guidance can be deleted after completion.
 
-* It's also possible that you might not be able to complete every section of a README at the start of a project - and that's ok!  This *should* be a living document that is regularly updated, and it's good to think of how you might implement an update schedule, either by yourself or among your project collaborators.
+* It's also possible that you might not be able to complete every section of a README at the start of a project - and that's ok!  This **should** be a living document that is regularly updated, and it's good to think of how you might implement an update schedule, either by yourself or among your project collaborators.
 
 * This will be the place that you can write down your naming convention and folder structure that you created.  If things change during a project, it's no problem!  This is where the updating schedule comes in handy, and we'll be returning to the README throughout the series to update it accordingly.
 
