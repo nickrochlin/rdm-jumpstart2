@@ -203,7 +203,7 @@ The function `rename()` is part of one of the packages that was installed with t
 Type the following code to change the column name from "PUMFID" to "id"
 ```{r}
 js_data <- js_data |>
-  rename ("id" = "PUMFID")
+  rename("id" = "PUMFID")
 ```
 
 **Step-by-step explanation:**

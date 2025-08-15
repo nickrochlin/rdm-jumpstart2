@@ -33,6 +33,12 @@ The go-to package for data visualization in R is `ggplot2`, which is part of the
 
 This package approaches data visualization through "a grammar of graphics." In other words, using the same syntax, you can create an infinite number of data visualizations. Although there are a lot of functions and components to learn at first, once you understand the overall structure of building graphics in `ggplot2`, you can replicate and expand on this structure to visualize data in an unlimited number of ways. 
 
+### Create a New Script
+
+Let's start by creating a new script.
+
+![](images/block3_create-r-script.gif)
+
 If you have installed the tidyverse, then `ggplot2` is included. Otherwise you can install it now. Let's also load our dataset for today.
 
 ```{r}
@@ -79,7 +85,21 @@ There are many more data visualization options in `ggplot` but to get started to
 
 
 ### Basic Bar Plot: Counts
-Let's make our first plot in R! We are going to slowly add layers, building up to a box plot representing the number of people in each group in the `isFeelRushed` variable. 
+Let's make our first plot in R! We are going to slowly add layers, building up to a box plot representing the number of people in each group in the `isFeelRushed` variable.
+
+When creating visualizations, it's always good to have a sense of the variables you're working with.  It can be helpful to use the `View()` command we discussed in the session **First Steps in R**:
+
+```{r, results = 'hide'}
+View(js_data)
+```
+
+It can also be helpful to have the data dictionary handy, so you know each variable's data type and description:
+
+```{r, echo=FALSE, out.width="95%", out.height="500in"}
+    knitr::include_graphics("images/Block4-2_Dictionary.pdf")
+```
+
+<br>
 
 First we create the blank plot on which we will add our data. We nearly always start with the function `ggplot` and then telling the function what dataset to use. 
 
@@ -117,7 +137,7 @@ ggplot(js_data, aes(x = as.factor(isFeelRushed))) +
 
 ### Basic Bar Plot: Group Means
 
-Building from yesterday, let's see if people who feel rushed tend to work more than people who do not feel rushed. To represent the mean for each group or some other variable, you add both an x and a y variable to the `aes()` function and use the `geom_bar(stat = "summary")`. Note that the Y-axis scale has now adjusted to a scale that matches the variable we are using (i.e., mean number of minutes spent working for each group). 
+Now, let's see if people who feel rushed tend to work more than people who do not feel rushed. To represent the mean for each group or some other variable, you add both an x and a y variable to the `aes()` function and use the `geom_bar(stat = "summary")`. Note that the Y-axis scale has now adjusted to a scale that matches the variable we are using (i.e., mean number of minutes spent working for each group). 
 
 ```{r}
 ggplot(js_data, aes(x = as.factor(isFeelRushed), y = durWork)) +
@@ -224,6 +244,12 @@ For the following questions, the goal is to get you thinking about the building 
 
 As a final note, a **huge** part of learning how to code is using search engines, and there is a ton of documentation out there to help you.  This also relates back to putting things into plain-language steps, because being able to clearly articulate your goals is synonymous with using good search terms.
 
+The data dictionary will also be an asset in working through this exercise:
+
+```{r, echo=FALSE, out.width="95%", out.height="500in"}
+    knitr::include_graphics("images/Block4-2_Dictionary.pdf")
+```
+
 Good luck!
 
 :::
@@ -291,4 +317,22 @@ prov_edu_plot <- ggplot(js_data, aes(x = province_fact, fill = eduLevel_fact)) +
   ) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+
+:::
+
+## Save Your Work
+
+We didn't make any changes to the data in this session, but we did create a new R script.  Save that script and back it up to OSF.
+
+![](images/osf/osfUpload.gif)
+
+
+## Update Documentation
+
+We've added a new file to our project, so we'll also need to update the README document to reflect this.
+
+
+
+
+
 
