@@ -16,7 +16,7 @@ output:
 
 Now that we've learned some of the principles of RDM and file and folder organization, let's put these theories to work!
 
-First, let's open up your forked OSF repository for the UVic RDM Jumpstart.  If you haven't yet done this, see the session on **"Introduction to OSF"**, or talk to your instructor.
+First, let's open up your forked OSF repository for the UVic RDM Jumpstart.  If you haven't yet done this, see the session on **"Introduction to OSF"**, or [use this link](https://osf.io/rx5a3/).
 
 Now, let's start by looking at the README file that is embedded in the repository wiki, which describes all the files that we have, as well as how the files are organized in OSF storage.
 
@@ -56,7 +56,7 @@ In a real research project you don't get the ability to see all the files you wi
   * block-5_visualization.csv
   * block-5_visualization.RData
   
-Because not everybody is taking every block in this series, and these files are needed to begin certain sections, it will be chaotic if the names aren't the same across the board.  With that said, this exercise was meant to give you a sense about how these files would be named, so it was hopefully valuable to think about how they might be renamed.
+Because not everybody is taking every block in this series, and these files are needed to begin certain sections, it will be chaotic if the names aren't the same across the board.  With that said, this exercise is meant to give you a sense about how these files would be named, so it was hopefully valuable to think about how they might be renamed.
 
 <br>
 
