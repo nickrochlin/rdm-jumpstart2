@@ -74,33 +74,6 @@ This panel contains various tools and outputs:
  - **Viewer:** View HTML content, like R Markdown outputs or Shiny apps.
 
 
-## Types of files in R
-
-There are two main types of files we can create in R studio to edit our code (R script files `.R` and RMarkdown files `.Rmd`)
-
-The R script file (`.R`) is a plain text file that contains R code only. Use it when you want to write and run code line-by-line, such as for data cleaning, analysis, or function building. It's good for experimenting, scripting, and running code interactively. It's also good for sharing code with other researchers.
-
-The RMarkdown file (`.Rmd`) has a mix of R code and written explanations, using Markdown formatting.  It can be used to create dynamic, reproducible reports that can be knitted into HTML, PDF, or Word documents.It's great for homework, research reports, dashboards, or combining narrative with code.
-
-For the purposes of this program we'll be using R scripts, but if you're interested in learning more about RMarkdown, check out:
-
-* <a href="https://rmarkdown.rstudio.com/lesson-8.html">RMarkdown lesson from RStudio</a>
-* <a href="https://bookdown.org/yihui/rmarkdown/">RMarkdown definitive guide</a> 
-
-<br>
-
-To create an R script file, select File > New File > R Script
-
-![](images/block3_create-r-script.gif)
-
-
-## Your Turn! 
-
-:::question
-Create your first R script file. 
-:::
-
-
 ## Easing Into R
 
 ### R as a Calculator
@@ -149,6 +122,31 @@ As you can see from the actions above, the R console can be used as a place to t
 
 :::
 
+## Types of files in R
+
+There are two main types of files we can create in R studio to edit our code (R script files `.R` and RMarkdown files `.Rmd`)
+
+The R script file (`.R`) is a plain text file that contains R code only. Use it when you want to write and run code line-by-line, such as for data cleaning, analysis, or function building. It's good for experimenting, scripting, and running code interactively. It's also good for sharing code with other researchers.
+
+The RMarkdown file (`.Rmd`) has a mix of R code and written explanations, using Markdown formatting.  It can be used to create dynamic, reproducible reports that can be knitted into HTML, PDF, or Word documents.It's great for homework, research reports, dashboards, or combining narrative with code.
+
+For the purposes of this program we'll be using R scripts, but if you're interested in learning more about RMarkdown, check out:
+
+* <a href="https://rmarkdown.rstudio.com/lesson-8.html">RMarkdown lesson from RStudio</a>
+* <a href="https://bookdown.org/yihui/rmarkdown/">RMarkdown definitive guide</a> 
+
+<br>
+
+To create an R script file, select File > New File > R Script
+
+![](images/block3_create-r-script.gif)
+
+
+## Your Turn! 
+
+:::question
+Create your first R script file. 
+:::
 
 ### Working in an R Script File
 
@@ -237,6 +235,11 @@ numbers <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 sports <- c("Basketball", "Golf", "Soccer", "Tennis")
 ```
 
+:::note
+
+You'll notice that the word strings, or strings of characters, are surrounded by quotation marks `""`.  This is because R, and most coding languages, handle character strings uniquely, and require quotations to surround words and phrases. We'll cover this more in the next section, but for now, just know that every time you want to use a character string as a value in R, you need to use quotation marks.
+
+:::
 
 :::question
 
@@ -288,10 +291,6 @@ mean(numbers)
 In this example, the `mean` function is applied to the `numbers` object (which in this case is the `argument`), and gives the mean for the series of numbers.  For the sake of this session we're not going to spend too much time on functions, but they will be discussed in more detail next session as we start getting deeper into the weeds of R.
 
 <br>
-
-#### Pipes
-
-Pipes are a more advanced function in R, and something we'll start playing around with more in the next session.  However, to start with a simple introduction, pipes are used to chain steps of instructions or actions together, and often involve writing over an object to give it a new value.  For the time being we will leave the descriptions of pipes at this, but will revisit pipes in the next section once we get a few more concepts into our tool belt.
 
 
 ### Literate Coding
