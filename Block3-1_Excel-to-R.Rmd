@@ -18,18 +18,5 @@ output:
 
 <object class = "pdf" data = "files/Block3-1_Excel-to-Scripting.pdf"></object>
 
-<br>
-
-:::question
-
-Let's now go to the <a href="https://dmp-pgd.ca/">DMP Assistant</a> and updated the following questions:
-
-* **Section 1: Data Collection**
-  * What file formats will your data be collected and saved in?  Select all that apply.
-  
-* **Section 4: Preservation**
-  * Indicate how you will ensure your data is preservation friendly before archiving. Consider preservation-friendly file formats, anonymization and de-identification of human subjects data, long-term file integrity, and inclusion of supporting documentation.
-  
-:::
 
 
