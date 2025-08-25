@@ -58,7 +58,7 @@ Data can come in many different formats or units. Sometimes we have numbers with
 Numeric data is data made up of numbers. This is what we most commonly think of as data, and this data type can have decimals. For example, how many hours people slept on a given day (6, 8.25, 7.5), the percent accuracy that students got on an exam (87.45, 75.92, 98.40), or number of people who attended a data management workshop each day (32, 38, 28). 
 
 #### **Integer Data**
-This data type deals with whole numbers (i.e., no decimals) and operates similarly to numeric data types. Some data can be stored as "numeric" and "integer" at the same time.
+This data type deals with whole numbers (i.e., no decimals) and operates similarly to numeric data types. 
 
 #### **Character/String Data**
 Character variables are variables with words or letters. Such as names of people (Erin, Maria, Huy) or places (ON, BC, QC). Character variables usually need to be put in quotation marks in R code, so they are not confused with words that actually denote functions in R. 
@@ -186,7 +186,7 @@ js_data <- js_data |> mutate(province_fact = recode_factor(js_data$province,
 ```
 
 :::walkthrough
-  - This code is telling R to use the function `recode_factor()` to recode the variable "province" from the dataset "js_data" into a new variable called "province_fact" (you could call it anything, but make sure it is a meaningful name). 
+  - This code is telling R to use the function `recode_factor()` to recode the variable "province" from the dataset "js_data" into a new variable called "province_fact", which changes the data type of this variable from numerical to factor. 
 
   - The list outlines how each value of the current "province" variable should be recoded for the new "province_fact" variable. 
   
@@ -271,12 +271,12 @@ Can you re-code marital status into a factor variable?
 
 ```{r class.source = 'fold-hide', results = 'hide'}
 js_data<-js_data |> mutate(maritalStat_fact = recode_factor(js_data$maritalStat, 
-                            "1" = "Married", 
-                            "2" = "Living common-law", 
-                            "3" = "Widowed",
-                            "4" = "Separated", 
-                            "5" = "Divorced", 
-                            "6" = "Single, never married"))
+            "1" = "Married", 
+            "2" = "Living common-law", 
+            "3" = "Widowed",
+            "4" = "Separated", 
+            "5" = "Divorced", 
+            "6" = "Single, never married"))
 
 class(js_data$maritalStat_fact)
 ```
@@ -287,13 +287,13 @@ Can you recode level of education into a factor variable?
 
 ```{r class.source = 'fold-hide', results = 'hide'}
 js_data <- js_data |> mutate(eduLevel_fact = recode_factor(js_data$eduLevel,
-                            "1" = "Less than high school dimploma or its equivalent",
-                            "2" = "High school diploma or equivalency",
-                            "3" = "Trade certificate or diploma",
-                            "4" = "College, CEGEP, or other non-university certificate or dimploma",
-                            "5" = "University certificate or dimploma below the bachelor's level",
-                            "6" = "Bachelor's degree",
-                            "7" = "University certificate, diploma, degree above the BA level"))
+          "1" = "Less than high school dimploma or its equivalent",
+          "2" = "High school diploma or equivalency",
+          "3" = "Trade certificate or diploma",
+          "4" = "College, CEGEP, or other non-university certificate or dimploma",
+          "5" = "University certificate or dimploma below the bachelor's level",
+          "6" = "Bachelor's degree",
+          "7" = "University certificate, diploma, degree above the BA level"))
 
 class(js_data$eduLevel_fact)
 ```
