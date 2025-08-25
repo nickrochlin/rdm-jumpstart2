@@ -17,6 +17,8 @@ output:
 knitr::opts_chunk$set(message = FALSE, warnings = FALSE)
 ```
 
+## First Steps in R
+
 **In order to follow along with this session, you'll need to have downloaded some of the files in the OSF repo for this series.  If you haven't done so, go to this page and select the "Download this folder" button on the top right of the screen:** [download OSF files](https://osf.io/rx5a3/files/osfstorage)
 
 If you have any issues, please ask your instructor, or refer to **"Block 1: Introduction to OSF"**.
