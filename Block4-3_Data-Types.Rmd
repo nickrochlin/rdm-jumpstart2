@@ -90,18 +90,7 @@ You may see mention of tibbles, which are an updated version of data frames and 
 For this course, our data is in data frame format. 
 
 #### **Lists**
-Lists are an ordered collection of elements. They can contain different data types and they are one dimensional. You can also have lists that contain a series of vectors or data frames. We don't often have data in list form, but because lists can contain elements of different lengths (unlike data frames) some functions in R will output results into list format, so it is good to be aware of them. Here is an example of a list:
-
-```{r}
-list_example <- list("red", 400, "skyblue", "forestgreen", .333)
-list_example
-```
-
-Because lists are ordered (i.e., each element in the list has a specific spot in the list), you can call for an element based on the order it has been assigned. For example, "skyblue" is third in this example list. 
-
-```{r}
-list_example [3]
-```
+Lists are an ordered collection of elements. They can contain different data types and they are one dimensional. You can also have lists that contain a series of vectors or data frames. We don't often have data in list form, but because lists can contain elements of different lengths (unlike data frames) some functions in R will output results into list format, so it is good to be aware of them. 
 
 ## Introduction to dplyr
 In order to check and modify data types we suggest using the `dplyr` package, which is part of the tidyverse. `dplyr` is a powerful R package designed to simplify data manipulation tasks. It provides a set of intuitive functions that help with filtering, selecting, and transforming data frames. It is the go to package for data organization. We will use just a few of the functions of this package in this course, but there are many more applications of `dplyr` you can explore. You can find more information about `dplyr` on the <a href="https://dplyr.tidyverse.org/index.html">tidyverse website</a>.
@@ -220,17 +209,6 @@ Now lets check the data type of this new variable we just created.
 class(js_data$province_fact)
 ```
 
-An alternative way to check your data types is using the `is.numeric`, `is.factor`, or other variations of this function. With this function you will get a logical operator as the output. These are base R functions, and not from the tidyverse. 
-```{r}
-is.numeric(js_data$province_fact)
-is.factor(js_data$province_fact)
-
-```
-
-Sometimes you may want to change the data type without recoding all of the data. In this case a useful function is `as.numeric()`. Because this data is already stored in numeric format, this function will not change the data type in this instance, but this can be helpful for other datasets you may work with in the future. Here is an example of how you would use this function. This is a base R function, and not from the tidyverse. 
-```{r, results = 'hide'}
-as.numeric(js_data$durSleep)
-```
 
 ## Missing Data
 You may have noticed that there are some cells in the data with `NA` This represents missing data in our dataset. Most datasets having missing data. There are many reasons for missing data and many different ways to handle missing data. These choices will depend on the context of specific research, but generally you should plan for how to approach missing data in advance. 
@@ -267,7 +245,6 @@ If you want to know the total number of rows (i.e., participants) with no missin
 sum(complete.cases(js_data))
 ```
 
-View(js_data)
 
 ## Your Turn!
 
