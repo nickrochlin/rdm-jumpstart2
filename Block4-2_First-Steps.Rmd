@@ -40,7 +40,7 @@ A common way to set a working directory is to use the `setwd()` function. This f
 
 This can be done in 2 ways:
 
-* Manually in R, by writing `setwd(path-to-director/secondary-part/etc...)`
+* Manually in R, by writing `setwd("path-to-director/secondary-part/etc...")`
 * Setting it by selecting the `Session` tab in the toolbar, and selecting `Set Working Directory`:
 
 ![](images/block4-1_set-wd.gif)
