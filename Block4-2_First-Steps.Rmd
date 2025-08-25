@@ -168,7 +168,7 @@ names(js_data)
 Notice that the column names from the original dataset don't provide a clear description of what the variable is. We will change the column names later to facilitate working with our data in the future.
 
 ## Head Function
-The head function will display the top rows of the dataset. It will include information about the default data type assigned to each column. You will learn more about data types tomorrow.
+The head function will display the top rows of the dataset. It will include information about the default data type assigned to each column. We will cover data types more in the next session.
 
 ```{r, data-isolation, results = FALSE}
 head(js_data)
@@ -240,7 +240,7 @@ names(js_data)
 Now, see if you can change the `AGEGR10` column name to `ageGrp`
 ```{r, class.source = 'fold-hide'}
 js_data <- js_data |>
-  rename ("ageGrp" = "AGEGR10")
+  rename("ageGrp" = "AGEGR10")
 ```
 
 :::
@@ -255,7 +255,7 @@ Next, try to change the following 3 column names:
 **Hint:** It can be tedious to do these changes one by one, but by using commas `,` you can rename column names with a single code chunk.  
 ```{r, class.source = 'fold-hide'}
 js_data <- js_data |>
-  rename ("sex" = "SEX",
+  rename("sex" = "SEX",
           "maritalStat" = "MARSTAT",
           "province" = "PRV")
 ```
@@ -266,7 +266,7 @@ Now, to change the rest of the column names copy the following code. (If you fee
 
 ```{r, class.source = 'fold-hide'}
 js_data <- js_data |>
-  rename ("popCenter" = "LUC_RST",
+  rename("popCenter" = "LUC_RST",
           "eduLevel" = "EHG_ALL",
           "feelRushed" = "GTU_110",
           "extraTime" = "GTU_130",
