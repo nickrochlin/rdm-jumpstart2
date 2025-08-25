@@ -309,6 +309,8 @@ write_csv(js_data, file="data/clean-cols.csv")
 
 <br>
 
+### .RData Files
+
 An additional way to save data files in R is as an `.Rdata` file.  Unlike a simple `.csv` file, `.RData` files are designed to store R objects and your entire R workspace, while maintain their data types and structures (covered in the next session!).  This allows you to return to your R environment exactly as you left it when you reload the file, and allows others opening your files to have that environment as well, acting as a great way to faciliate reproducibility.
 
 The syntax is similar is the same as `write_csv`, but uses the function `save()`:
